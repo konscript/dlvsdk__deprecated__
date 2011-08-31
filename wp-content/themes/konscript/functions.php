@@ -1,100 +1,91 @@
-<?php
-/**
- * Functions (functions.php)
- * Will reach and require the necessary functions and libraries. It's here because WP expects it as default for custom functions.
- */
+<?php 
+// Safety first.
+if (!empty($_SERVER['SCRIPT_FILENAME']) && 'functions.php' == basename($_SERVER['SCRIPT_FILENAME']))
+	die ('Please do not load this page directly!');
 
-// Load Hybrid core theme framework.
-require_once( trailingslashit( TEMPLATEPATH ) . 'libraries/hybrid-core/hybrid.php' );
-$theme = new Hybrid();
-
-// Load the core functions
-require_once( trailingslashit( TEMPLATEPATH ) . 'functions/core.php' );
-
-// Load the admin-only functions
-if (is_admin()) {
-	require_once( trailingslashit( TEMPLATEPATH ) . 'functions/admin.php' );
+// load up jQuery from Google CDN
+if( !is_admin()){
+   wp_deregister_script('jquery'); 
+   wp_register_script('jquery', ("http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"), false, '1.6.2'); 
+   wp_enqueue_script('jquery');
 }
 
-// Theme setup function. This function adds support for theme features and defines the default theme actions and filters.
-add_action( 'after_setup_theme', 'hybrid_theme_setup_theme' );
-function hybrid_theme_setup_theme() {
+// Add awesome browser classes to body tag
+add_filter('body_class','browser_body_class');
+function browser_body_class($classes) {
+	global $is_lynx, $is_gecko, $is_IE, $is_opera, $is_NS4, $is_safari, $is_chrome, $is_iphone;
 
-	// Get the theme prefix.
-	$prefix = hybrid_get_prefix();
+	if($is_lynx) $classes[] = 'lynx';
+	elseif($is_gecko) $classes[] = 'gecko';
+	elseif($is_opera) $classes[] = 'opera';
+	elseif($is_NS4) $classes[] = 'ns4';
+	elseif($is_safari) $classes[] = 'safari';
+	elseif($is_chrome) $classes[] = 'chrome';
+	elseif($is_IE) $classes[] = 'ie';
+	else $classes[] = 'unknown';
 
-	// Add support for framework features.
-	add_theme_support( 'hybrid-core-menus', array( 'primary' ) );
-	add_theme_support( 'hybrid-core-sidebars', array( 'primary', 'secondary', 'subsidiary', 'before-content', 'after-content', 'after-singular' ) );
-	add_theme_support( 'hybrid-core-widgets' );
-	add_theme_support( 'hybrid-core-shortcodes' );
-	add_theme_support( 'hybrid-core-post-meta-box' );
-	add_theme_support( 'hybrid-core-theme-settings' );
-	add_theme_support( 'hybrid-core-meta-box-footer' );
-	add_theme_support( 'hybrid-core-drop-downs' );
-	add_theme_support( 'hybrid-core-seo' );
-	add_theme_support( 'hybrid-core-template-hierarchy' );
-	add_theme_support( 'hybrid-core-deprecated' );
-
-	// Add support for framework extensions.  
-	add_theme_support( 'breadcrumb-trail' );
-	add_theme_support( 'custom-field-series' );
-	add_theme_support( 'get-the-image' );
-	add_theme_support( 'post-stylesheets' );
-
-	// Only add cleaner gallery support if not using child theme. Eventually, all child themes should support this.  
-	if ( 'hybrid' == get_stylesheet() )
-		add_theme_support( 'cleaner-gallery' );
-
-	// Add support for WordPress features.  
-	add_theme_support( 'automatic-feed-links' );
-
-	// Register sidebars.  
-	add_action( 'init', 'hybrid_theme_register_sidebars', 11 );
-
-	// Disables widget areas.  
-	add_filter( 'sidebars_widgets', 'hybrid_theme_remove_sidebars' );
-
-	// Header actions.  
-	add_action( "{$prefix}_header", 'hybrid_site_title' );
-	add_action( "{$prefix}_header", 'hybrid_site_description' );
-
-	// Load the primary menu.  
-	add_action( "{$prefix}_after_header", 'hybrid_get_primary_menu' );
-
-	// Add the primary and secondary sidebars after the container.  
-	add_action( "{$prefix}_after_container", 'hybrid_get_primary' );
-	add_action( "{$prefix}_after_container", 'hybrid_get_secondary' );
-
-	// Add the breadcrumb trail and before content sidebar before the content.  
-	add_action( "{$prefix}_before_content", 'hybrid_breadcrumb' );
-	add_action( "{$prefix}_before_content", 'hybrid_get_utility_before_content' );
-
-	// Add the title, byline, and entry meta before and after the entry.  
-	add_action( "{$prefix}_before_entry", 'hybrid_entry_title' );
-	add_action( "{$prefix}_before_entry", 'hybrid_byline' );
-	add_action( "{$prefix}_after_entry", 'hybrid_entry_meta' );
-
-	// Add the after singular sidebar and custom field series extension after singular views.  
-	add_action( "{$prefix}_after_singular", 'hybrid_get_utility_after_singular' );
-	add_action( "{$prefix}_after_singular", 'custom_field_series' );
-
-	// Add the after content sidebar and navigation links after the content.  
-	add_action( "{$prefix}_after_content", 'hybrid_get_utility_after_content' );
-	add_action( "{$prefix}_after_content", 'hybrid_navigation_links' );
-
-	// Add the subsidiary sidebar and footer insert to the footer.  
-	add_action( "{$prefix}_before_footer", 'hybrid_get_subsidiary' );
-	add_action( "{$prefix}_footer", 'hybrid_footer_insert' );
-
-	// Add the comment avatar and comment meta before individual comments.  
-	add_action( "{$prefix}_before_comment", 'hybrid_avatar' );
-	add_action( "{$prefix}_before_comment", 'hybrid_comment_meta' );
-
-	// Add Hybrid theme-specific body classes.  
-	add_filter( 'body_class', 'hybrid_theme_body_class' );
-
+	if($is_iphone) $classes[] = 'iphone';
+	return $classes;
 }
 
+// Remove useless the_generator meta tag - whoops
+add_filter( 'the_generator', create_function('$a', "return null;") );
 
-?>
+// Custom Logo
+function custom_logo() { ?> 
+	<style type="text/css">
+		h1 a { background-image: url(
+			<?php get_bloginfo('template_directory'); ?>/img/logo-login.gif
+		) !important; }
+    </style>
+<?php }
+
+add_action('login_head', 'custom_logo');
+
+// Admin Footer
+function remove_footer_admin () {
+	echo 'Powered by Konscript';
+}
+
+add_filter('admin_footer_text', 'remove_footer_admin');
+
+// Sidebars
+if ( function_exists('register_sidebar') )
+	register_sidebar(array('name'=>'Sidebar',
+	'before_widget' => '<li class="widget">',
+	'after_widget' => '</li>',
+	'before_title' => '<h2 class="widgettitle">',
+	'after_title' => '</h3>',
+));
+
+// menu support
+function theme_addmenus() {
+	register_nav_menus(
+		array(
+			'main' => 'Main Menu',
+			'about' => 'About submenu',
+			'travel' => 'Travel submenu',			
+			'unicef' => 'empty menu',		
+		)
+	);
+}
+add_action( 'init', 'theme_addmenus' );
+
+function theme_nav() {
+    if ( function_exists( 'wp_nav_menu' ) ){
+	    wp_nav_menu(array(
+	    'theme_location' 	=> 'main',
+	    'fallback_cb' => theme_nav_fallback
+        ));
+    }else{
+        theme_nav_fallback();
+    }
+}
+
+function theme_nav_fallback() {
+	    wp_nav_menu(array(
+	    'theme_location' 	=> 'about'
+        ));
+}
+
+require_once( get_template_directory() . '/lib/admin/theme-options.php' );

@@ -1,51 +1,63 @@
-<?php
-/**
- * Header Template
- *
- * The header template is generally used on every page of your site. Nearly all other
- * templates call it somewhere near the top of the file. It is used mostly as an opening
- * wrapper, which is closed with the footer.php file. It also executes key functions needed
- * by the theme, child themes, and plugins. 
- *
- * @package Hybrid
- * @subpackage Template
- */
-?>
-<!DOCTYPE html>
-<html <?php language_attributes(); ?>>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<meta http-equiv="Content-Type" content="<?php bloginfo( 'html_type' ); ?>; charset=<?php bloginfo( 'charset' ); ?>" />
-<title><?php hybrid_document_title(); ?></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title> <?php the_title(); ?> &raquo; <?php bloginfo('name'); ?></title>
+	
+	<meta name="description" content="<?php if (have_posts()): while (have_posts()): the_post(); echo strip_tags(get_the_excerpt()); endwhile; endif; ?>" />
+	
+	<link rel="alternate" type="application/atom+xml" title="<?php bloginfo('name'); ?> Atom Feed (<?php bloginfo('language'); ?>)" href="<?php bloginfo('atom_url'); ?>" />
+	<link rel="icon" type="image/png" href="<?php bloginfo('template_url'); ?>/img/favicon.ico" />
+	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
+	
+	<!--Stylesheets-->
+	<link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/stylesheet/compiled/ie.css" type="text/css" media="screen" charset="utf-8" />
+	<link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/stylesheet/compiled/print.css" type="text/css" media="print" charset="utf-8" />
+    <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/stylesheet/compiled/main.css" type="text/css" media="screen" charset="utf-8" />
+	
+	<!--Mobile-->
+	<?php if (ereg('iPhone', $_SERVER['HTTP_USER_AGENT']) || ereg('iPod', $_SERVER['HTTP_USER_AGENT']) || ereg('iPad',$_SERVER['HTTP_USER_AGENT'])): ?>
+		
+		<meta name="viewport" content="initial-scale=1.0">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<meta name="apple-touch-fullscreen" content="yes" />
+		<link rel="apple-touch-icon" href="<?php bloginfo('template_url'); ?>/img/apple-touch-icon.png" />
+		
+		<?php if (ereg('iPad', $_SERVER['HTTP_USER_AGENT'])): ?>
+			<link type="text/css" rel="stylesheet" href="<?php bloginfo('template_url'); ?>/css/ipad.css" />
+		<?php else: ?>
+			<link type="text/css" rel="stylesheet" href="<?php bloginfo('template_url'); ?>/css/iphone.css" />	
+		<?php endif; ?>
+		
+	<?php else: ?>
+		<meta name="viewport" content="width=960" />
+	<?php endif ?>
 
-<link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>" type="text/css" media="all" />
-<link rel="profile" href="http://gmpg.org/xfn/11" />
-<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
-
-<?php do_atomic( 'head' ); // @deprecated 0.9.0. Use 'wp_head'. ?>
-<?php wp_head(); // wp_head ?>
-
+	<?php wp_head(); ?>
+	
+	<!--Scripts--> 
+	<?php // NOTE: We are enqueing jQuery from Google CDN in the functions.php. If it doesn't load we grab the local version ?>
+	<script>!window.jQuery && document.write('<script src="scripts/jquery-1.6.2.min.js"><\/script>')</script>
+	<script type="text/javascript">
+		jQuery(document).ready(function init() { 
+			// jQuery init function
+		});
+	</script>
+	
+	<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/scripts/jquery.browser.addEnvClass.js"></script>
+	<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/scripts/init.js"></script>
+	 
+	
 </head>
+<body <?php body_class(); ?>>
 
-<body class="<?php hybrid_body_class(); ?>">
-
-<?php do_atomic( 'before_html' ); // hybrid_before_html ?>
-
-<div id="body-container">
-
-	<?php do_atomic( 'before_header' ); // hybrid_before_header ?>
-
-	<div id="header-container">
-
-		<div id="header">
-
-			<?php do_atomic( 'header' ); // hybrid_header ?>
-
-		</div><!-- #header -->
-
-	</div><!-- #header-container -->
-
-	<?php do_atomic( 'after_header' ); // hybrid_after_header ?>
-
-	<div id="container">
-
-		<?php do_atomic( 'before_container' ); // hybrid_before_container ?>
+	<div id="body-container">
+		<?php //<div id="inner-container"> ?>
+			<div id="header">
+				<div id="logo"><a href="<?php echo home_url(); ?>"><img src="<?php bloginfo('template_directory'); ?>/img/dlvs_logo.jpg" alt=""></a></div>
+				<div id="tools"> Kontakt os | Login </div>			
+				<div id="primary-menu">
+					<?php theme_nav(); ?>
+				</div>
+		</div><!--#end header-->

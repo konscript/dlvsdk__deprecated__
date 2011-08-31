@@ -15,10 +15,27 @@ $blueprint-grid-width: ($blueprint-container-size + $blueprint-grid-margin) / $b
 // Load compass tools, utilities and blueprint modules
 @import "blueprint";
 @import "blueprint/reset";
-@import "compass/typography/text/replacement";
-@import "compass/utilities/general/clearfix";
-@import "compass/css3/opacity";
 
-// Global constants and variables goes here (re-usable colors, default sizes etc.)
+// Color
+$color-primary: #000000; 		// Black
+$color-primary-b: #535353; 	// Dark Grey
+$color-primary-c: #7f7f7f; 	// Light Grey
+$color-secondary: #fff;		// White
+$color-tertiary: #fff;		// White
 
-// Custom mixins goes here
+$font-color: $color-primary;
+$link-color: #a00e2e;
+
+
+// Typography
+$typography-family-primary: 'Verdana', Arial, Helvetica, sans-serif;
+$typography-size-header: 161px;
+$typography-size-subheader: 141px;
+$typography-size-normal: 12px;
+
+
+
+// Fonts
+$blueprint-font-family: $typography-family-primary;
+$blueprint-font-size: $typography-size-normal;
+@import "blueprint/typography";

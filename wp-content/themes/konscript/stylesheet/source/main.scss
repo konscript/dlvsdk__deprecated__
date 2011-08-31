@@ -13,16 +13,14 @@ body.bp {
   @include blueprint-utilities;
   @include blueprint-debug;
   @include blueprint-interaction;
-  // Remove the scaffolding when you're ready to start doing visual design.
-  // Or leave it in if you're happy with how blueprint looks out-of-the-box
 }
 
 form.bp {
   @include blueprint-form;
-  // You'll probably want to remove the scaffolding once you start styling your site.
-  @include blueprint-scaffolding; }
+  }
 
 // Page layout can be done using mixins applied to your semantic classes and IDs:
+/*
 body.two-col {
   #container {
     @include container; }
@@ -38,31 +36,88 @@ body.two-col {
     $content-columns: ceil(2 * $blueprint-grid-columns / 3);
     // true means it's the last column in the row
     @include column($content-columns, true); } }
+*/    
+
+
+
+/**
+ * Variables
+ *****/
+ $margin-left: 20px;
 
 /**
  * Body
  ************************************************/
 
 // Contains everything
-body {}
+body {
+	font-size:12px;
+	line-height: 14pt;
+	font-style:normal;
+	font-family: $typography-family-primary;
+	color:$color-primary;
+	background-image: url('../../img/bg.gif');
+	background-repeat:repeat-x;
+	background-color: #b2b2b2;	
+}
 
 	// Wrapper for everything inside of the body
-	#body-container {}
+	#body-container {
+			@include container;
+			background-color: white;	
+	}
+
+/*
+	// inner container with margin
+	#inner-container {
+		margin: 10px;	
+	}
+*/
 
 /**
  * Elements
  ************************************************/
 
 // Hyperlinks 
-a:link {}
 a:visited {}
 a:hover {}
 a:active {}
 
+a:link {
+	text-decoration: none;
+	outline:none;
+ 	color:#a00e2e;
+}
+
+a:hover {
+	color: $link-color;
+}
+
 // Headers 
-h1 {}
-h2 {}
-h3 {}
+h1 {
+	font-size: 35px;
+	line-height: normal;
+	font-weight: normal;
+	font-family: Georgia;
+	color: black;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+h2{
+	font-size:23px;
+	font-weight:normal;
+	font-family:Georgia;
+	color:#000000;
+}
+
+h3 {
+	font-size:18px;
+	font-weight:normal;
+	font-family:Georgia;
+	color:#000000;
+}
+	
 h4 {}
 h5 {}
 h6 {}
@@ -176,7 +231,20 @@ img.wp-smiley {}
 #header-container {}
 
 	// Contains site title and tagline
-	#header {}
+	#header {
+		@include column($blueprint-grid-columns); 
+		height:120px;
+		margin-top: 20px;
+	}
+	
+		#logo{
+			@include column(12); 
+		}
+		
+		#tools{			
+			@include column(12, true); 
+			text-align:right;
+		}		
 
 		// Site title
 		#site-title {}
@@ -191,17 +259,87 @@ img.wp-smiley {}
  ************************************************/
 
 // Wrapper for entire menu area
-#primary-menu {}
+#primary-menu {
+
+}
 
 	// Wrapper for unordered list of menu items
-	#primary-menu div.menu {}
+	#primary-menu div.menu-main-container {
+		float:left;
+		width:100%;
+		height:50px;
+		line-height:50px;	 		
+ 		background: url('http://www.sikkerrejse.dk/Frontend/images/menubg.gif') no-repeat left center;  
+ 		border-radius:10px;
+	}
 
 		// Menu list.
-		#primary-menu ul {}
-			#primary-menu li {}
-				#primary-menu li a {}
-			#primary-menu li.current-menu-item {}
+		#primary-menu ul {
+				list-style-type:none;				
+		}
+			#primary-menu li {
+				float:left;
+				
+			}
+				#primary-menu li a {   	
+					display:block;			
+					padding-left: 11px;	
+					padding-right: 11px;
+					color:#ffffff;
+					text-decoration:none;
+					background: url('../../img/menu_off.gif') no-repeat right top;					
+				}
+				
+				#primary-menu li:first-child a {   	
+					border-radius: 10px 0 0 10px ;
+				}
+				
+				#primary-menu li a:hover {   
+					background:url('../../img/menu_on.gif') repeat-x;
 
+				}
+				
+				#primary-menu li.current-menu-item a,
+				#primary-menu li.current-page-ancestor a  {
+					background:url('../../img/menu_on.gif') repeat-x;
+				}
+				
+
+/** 
+ * Secondary Menu					
+ **********/
+ 
+	#sidebar {
+		$sidebar-columns: floor($blueprint-grid-columns / 4);
+		@include column($sidebar-columns); 
+		font-size:11px;
+	}	 
+	
+	#sidebar ul {
+		list-style-type:none;
+		margin-left:$margin-left;
+	}
+	#sidebar ul li {
+		display:inline;
+		height:30px;
+		line-height:30px;
+
+	}
+	#sidebar ul li a {
+		color:#000000;
+		float:left;
+		text-decoration:none;
+		width:185px;
+		background:url('../../img/submenu_off.gif') repeat-x;
+		text-indent: 30px;
+	}
+	#sidebar ul li a:hover,
+	#sidebar ul .current-menu-item a {
+		background:url('../../img/submenu_on.gif') repeat-x;
+		color:#000000;
+		text-decoration:underline;
+		font-weight: normal;
+	}
 /**
  * Containers below the header and navigation
  ************************************************/
@@ -211,10 +349,19 @@ img.wp-smiley {}
 
 	/**
 	 * Content
-	 ************************************************/
+	 ************************************************/	
 
-	// Contains site's main content
-	#content {}
+	// Content for pages with sidebar
+	#content {
+	    $content-columns: ceil(3 * $blueprint-grid-columns / 4);
+		@include column($content-columns, true);
+		min-height: 600px;
+	}
+	
+	// Content without sitebar
+	body.home #content {
+		@include column($blueprint-grid-columns); 
+	}	
 
 		// Breadcrumb trail
 		.breadcrumb {}
@@ -413,7 +560,11 @@ img.wp-smiley {}
 				#subsidiary .widget-title {}
 
 	// Footer section
-	#footer {}
+	#footer {
+		@include column($blueprint-grid-columns); 
+		color: #898887;
+		font-size: 11px;
+	}
 
 		// Footer extra
 		#footer .copyright {}
