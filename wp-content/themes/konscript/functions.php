@@ -50,8 +50,19 @@ function remove_footer_admin () {
 add_filter('admin_footer_text', 'remove_footer_admin');
 
 // Sidebars
-if ( function_exists('register_sidebar') )
-	register_sidebar(array('name'=>'Sidebar'));
+if ( function_exists ('register_sidebar')) { 
+    register_sidebar ('page'); 
+    register_sidebar ('post');     
+}
+
+// submenus
+function sidebar_page() {
+	include("sidebar-page.php");
+}
+
+function sidebar_cat() {
+	include("sidebar-cat.php");
+}
 
 // menu support
 function theme_addmenus() {

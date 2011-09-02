@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<?php get_sidebar(); ?>
+<?php sidebar_cat(); ?>
 
 <div id="content">
 	<h1><?php wp_title(''); ?></h1>

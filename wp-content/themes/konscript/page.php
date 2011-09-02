@@ -1,7 +1,9 @@
 <?php /* Template Name: Page*/ ?>
 
+
 <?php get_header(); ?>
-<?php get_sidebar(); ?>
+<?php sidebar_page(); ?>
+
 
 <div id="content">	
     <?php if (have_posts()): while (have_posts()): the_post(); ?>

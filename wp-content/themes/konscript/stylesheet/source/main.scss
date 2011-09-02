@@ -307,7 +307,7 @@ img.wp-smiley {}
 				}
 				
 				#primary-menu li:first-child a {   	
-					border-radius: 10px 0 0 10px ;
+			 		@include border-radius(10px 0 0 10px);					
 				}
 				
 				#primary-menu li a:hover {   
@@ -318,7 +318,8 @@ img.wp-smiley {}
 				#primary-menu li.current-menu-item a,
 				#primary-menu li.current-page-ancestor a,
 				#primary-menu li.current-menu-parent a,
-				#primary-menu li.current-post-parent a
+				#primary-menu li.current-post-parent a,
+				#primary-menu li.current_page_parent a 
 				{
 					background:url('../../img/menu_on.gif') repeat-x;
 				}
@@ -337,7 +338,7 @@ img.wp-smiley {}
 					width: 80px;
 					border: 0;
 					padding: 2px;
-					border-radius: 2px;
+			 		@include border-radius(2px);					
 				}
 				
 				// search button
@@ -381,7 +382,8 @@ img.wp-smiley {}
 		text-indent: 30px;
 	}
 	#sidebar ul li a:hover,
-	#sidebar ul .current-menu-item a {
+	#sidebar ul .current-menu-item a,
+	#sidebar ul .current-cat a {
 		background:url('../../img/submenu_on.gif') repeat-x;
 		color:#000000;
 		text-decoration:underline;
@@ -399,9 +401,9 @@ img.wp-smiley {}
 	 ************************************************/	
 
 	// Content for pages with sidebar
+    $content-width:ceil(3 * $blueprint-grid-columns / 4);
 	#content {
-	    $content-columns: ceil(3 * $blueprint-grid-columns / 4);
-		@include column($content-columns, true);
+		@include column($content-width, true);
 	}
 	
 	// Content without sitebar
@@ -573,6 +575,12 @@ img.wp-smiley {}
 
 	// Widgets in general
 	.widget {}
+	
+		// hide category name in submenu
+		#sidebar li.widget_categories{
+			list-style-type: none;
+			h2 { display:none; }
+		}		
 		.widget-inside {}
 			.widget-title {}
 
@@ -629,3 +637,46 @@ img.wp-smiley {}
 		// Footer extra
 		#footer .copyright {}
 		#footer .credit {}
+		
+/****************************************************/
+
+
+/**
+ * Contact form 7
+ **/	
+ 
+div.wpcf7{
+	div {}
+    $label-width: floor(2 * $content-width / 7);
+	label { @include column($label-width) ; clear: left; padding-bottom:10px;}
+	.high label{ height: 60px;}
+
+    $form-width: ceil(5 * $content-width / 7 );
+	#title{	@include column(2, true);}
+	#first-name{@include column(5, true); }
+	#last-name{@include column(5, true); }
+	#job-title{@include column(5, true); }	
+	#organisation{@include column(5, true); }		
+	#phone{@include column(4, true); }
+	#email{@include column(4, true); }		
+	#address{
+		@include column(8, true); 
+		height:35px;
+	}
+	#employees{@include column(4, true); }
+	#vaccination_before{@include column(2, true); }			
+	#message{@include column(8, true); height:45px;}				
+	.wpcf7-submit{@include column(2, true);}
+	.wpcf7-response-output{float:left}
+	.ajax-loader{float:left;}
+	.wpcf7-not-valid-tip{
+		@include column(5, true);	
+		border:0;
+		color:red;
+		background: none;
+		position:static;
+		font-size: 0.8em;
+	}
+	
+
+}
