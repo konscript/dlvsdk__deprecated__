@@ -51,12 +51,7 @@ add_filter('admin_footer_text', 'remove_footer_admin');
 
 // Sidebars
 if ( function_exists('register_sidebar') )
-	register_sidebar(array('name'=>'Sidebar',
-	'before_widget' => '<li class="widget">',
-	'after_widget' => '</li>',
-	'before_title' => '<h2 class="widgettitle">',
-	'after_title' => '</h3>',
-));
+	register_sidebar(array('name'=>'Sidebar'));
 
 // menu support
 function theme_addmenus() {
@@ -71,21 +66,13 @@ function theme_addmenus() {
 }
 add_action( 'init', 'theme_addmenus' );
 
-function theme_nav() {
-    if ( function_exists( 'wp_nav_menu' ) ){
-	    wp_nav_menu(array(
-	    'theme_location' 	=> 'main',
-	    'fallback_cb' => theme_nav_fallback
-        ));
-    }else{
-        theme_nav_fallback();
-    }
-}
-
-function theme_nav_fallback() {
-	    wp_nav_menu(array(
-	    'theme_location' 	=> 'about'
-        ));
+// primary menu with search
+function primary_menu(){
+    wp_nav_menu(array(
+		'theme_location' 	=> 'main',
+		'container'=> false
+	));
+	get_search_form(); 
 }
 
 require_once( get_template_directory() . '/lib/admin/theme-options.php' );

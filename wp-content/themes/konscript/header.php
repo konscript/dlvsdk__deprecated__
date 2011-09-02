@@ -52,12 +52,12 @@
 </head>
 <body <?php body_class(); ?>>
 
+<div id="wrapper">
 	<div id="body-container">
-		<?php //<div id="inner-container"> ?>
 			<div id="header">
 				<div id="logo"><a href="<?php echo home_url(); ?>"><img src="<?php bloginfo('template_directory'); ?>/img/dlvs_logo.jpg" alt=""></a></div>
-				<div id="tools"> Kontakt os | Login </div>			
+				<div id="tools"> <a href="">Contact</a> | <a href="about/contact/">Login</a> </div>			
 				<div id="primary-menu">
-					<?php theme_nav(); ?>
+					<?php primary_menu(); ?>
 				</div>
 		</div><!--#end header-->

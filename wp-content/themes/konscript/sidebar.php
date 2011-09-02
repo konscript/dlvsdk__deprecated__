@@ -1,11 +1,23 @@
 <?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('Sidebar') ) : ?>
 	<!--Default sidebar info goes here-->
-	<h2>Recent Posts</h2>
-    <ul>
-	    <?php
-	      $recent_posts = wp_get_recent_posts();
-	      foreach($recent_posts as $post){
-	        echo '<li><a href="' . get_permalink($post["ID"]) . '" title="Look '.$post["post_title"].'" >' .   $post["post_title"].'</a> </li> ';
-	      } ?>
-    </ul>
+	<div id="sidebar"> &nbsp;
+	<?php
+	
+		// only pages can have submenus (is that correct?!)		
+		if(is_page()){
+			// get get number of children
+			$numberOfChildren = count(get_pages('child_of='.get_the_ID()));				
+		
+			// return true if subpage else false
+			$isSubpage = ($post->post_parent) ? true : false;		
+		
+			if($numberOfChildren>0 || $isSubpage){
+				$permalink = basename(get_permalink($post->post_parent)); 		
+				wp_nav_menu(array(
+					'menu' 	=> $permalink
+				));
+			}
+	    }
+    ?>    
+	</div>
 <?php endif; ?>

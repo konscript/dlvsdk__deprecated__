@@ -4,6 +4,7 @@
 
 // Load the base
 @import "_base";
+@import "compass/css3/border-radius";
 
 // If you are doing a lot of stylesheet concatenation, it is suggested
 // that you scope your blueprint styles, so that you can better control
@@ -19,37 +20,21 @@ form.bp {
   @include blueprint-form;
   }
 
-// Page layout can be done using mixins applied to your semantic classes and IDs:
-/*
-body.two-col {
-  #container {
-    @include container; }
-  #header, #footer {
-    @include column($blueprint-grid-columns); }
-  #sidebar {
-    // One third of the grid columns, rounding down. With 24 cols, this is 8.
-    $sidebar-columns: floor($blueprint-grid-columns / 3);
-    @include column($sidebar-columns); }
-  #content {
-    // Two thirds of the grid columns, rounding up.
-    // With 24 cols, this is 16.
-    $content-columns: ceil(2 * $blueprint-grid-columns / 3);
-    // true means it's the last column in the row
-    @include column($content-columns, true); } }
-*/    
-
-
 
 /**
  * Variables
  *****/
- $margin-left: 20px;
+$margin: $blueprint-grid-margin;
+$quiet-color: lighten($font-color, 40%);
 
 /**
  * Body
  ************************************************/
-
 // Contains everything
+html, body{
+	height:100%;
+}
+
 body {
 	font-size:12px;
 	line-height: 14pt;
@@ -58,13 +43,21 @@ body {
 	color:$color-primary;
 	background-image: url('../../img/bg.gif');
 	background-repeat:repeat-x;
-	background-color: #b2b2b2;	
+	background-color: #b2b2b2;		
 }
 
+
+	#wrapper {
+		width: $blueprint-container-size + 2 * $blueprint-grid-margin;
+		margin: 0 auto;
+		overflow: hidden;		
+		background-color: #fff;	
+		min-height:100%;
+	}
+	
 	// Wrapper for everything inside of the body
 	#body-container {
 			@include container;
-			background-color: white;	
 	}
 
 /*
@@ -79,18 +72,22 @@ body {
  ************************************************/
 
 // Hyperlinks 
-a:visited {}
-a:hover {}
-a:active {}
-
-a:link {
+a {
 	text-decoration: none;
 	outline:none;
- 	color:#a00e2e;
+	color: $link-color;
 }
-
+a:visited {}
 a:hover {
 	color: $link-color;
+	text-decoration: underline;
+}
+a:active {}
+
+
+h1, h2, h3, h4, h5, h6 {
+	color: #1F1E1D;
+	padding-bottom: .4em;
 }
 
 // Headers 
@@ -141,6 +138,26 @@ p {}
 // Unordered lists 
 ul {}
 	ul li {}
+	
+/* ul */
+ul.nodots {
+	padding:0;
+	margin:0;
+	list-style-type:none;
+}
+
+ul {
+	list-style-position: outside;
+	//padding:0 0 0 3em;
+	margin:0 0 10px 0;
+}
+
+#maincontent ul li { 
+	vertical-align: top;
+	padding-bottom: 8px;
+	line-height: 12pt;
+	list-style-image: url(/Frontend/images/dlvs-12.png);
+}	
 
 // Ordered lists 
 ol {}
@@ -232,18 +249,21 @@ img.wp-smiley {}
 
 	// Contains site title and tagline
 	#header {
-		@include column($blueprint-grid-columns); 
+		@include column($blueprint-grid-columns, true); 
 		height:120px;
-		margin-top: 20px;
+		margin-top: $blueprint-grid-margin;
 	}
 	
 		#logo{
-			@include column(12); 
+			@include column($blueprint-grid-columns / 2); 
 		}
 		
 		#tools{			
-			@include column(12, true); 
+			@include column($blueprint-grid-columns / 2, true); 
 			text-align:right;
+			font-size: 11px;			
+			a {	color: $quiet-color; }
+						
 		}		
 
 		// Site title
@@ -257,20 +277,16 @@ img.wp-smiley {}
 /**
  * Primary Menu
  ************************************************/
-
-// Wrapper for entire menu area
-#primary-menu {
-
-}
-
-	// Wrapper for unordered list of menu items
-	#primary-menu div.menu-main-container {
+	
+	// Wrapper for entire menu area
+	#primary-menu {
+		overflow:hidden;	
 		float:left;
 		width:100%;
 		height:50px;
 		line-height:50px;	 		
- 		background: url('http://www.sikkerrejse.dk/Frontend/images/menubg.gif') no-repeat left center;  
- 		border-radius:10px;
+ 		background: url('../../img/menubg.gif') no-repeat left center;  
+ 		@include border-radius(10px);
 	}
 
 		// Menu list.
@@ -300,10 +316,39 @@ img.wp-smiley {}
 				}
 				
 				#primary-menu li.current-menu-item a,
-				#primary-menu li.current-page-ancestor a  {
+				#primary-menu li.current-page-ancestor a,
+				#primary-menu li.current-menu-parent a,
+				#primary-menu li.current-post-parent a
+				{
 					background:url('../../img/menu_on.gif') repeat-x;
 				}
 				
+				// search form
+				#primary-menu #searchform{			
+					position: relative;
+					top: -11px;					
+					margin-right: $margin / 2;					
+					float: right;
+				}
+				
+				// search field
+				#primary-menu #searchform .field{				
+					vertical-align: middle;
+					width: 80px;
+				}
+				
+				// search button
+				#primary-menu #searchform .submit{
+					vertical-align: middle;
+					background: url('../../img/search_button.gif') no-repeat top center;
+					border : none;
+					color : transparent;
+					font-size : 0;
+					cursor: pointer;
+					height: 22px;
+					width: 46px;				
+				}
+			
 
 /** 
  * Secondary Menu					
@@ -317,7 +362,6 @@ img.wp-smiley {}
 	
 	#sidebar ul {
 		list-style-type:none;
-		margin-left:$margin-left;
 	}
 	#sidebar ul li {
 		display:inline;
@@ -329,7 +373,7 @@ img.wp-smiley {}
 		color:#000000;
 		float:left;
 		text-decoration:none;
-		width:185px;
+		width:100%;
 		background:url('../../img/submenu_off.gif') repeat-x;
 		text-indent: 30px;
 	}
@@ -355,11 +399,10 @@ img.wp-smiley {}
 	#content {
 	    $content-columns: ceil(3 * $blueprint-grid-columns / 4);
 		@include column($content-columns, true);
-		min-height: 600px;
 	}
 	
 	// Content without sitebar
-	body.home #content {
+	body.page-template-no-sidebar-php #content {
 		@include column($blueprint-grid-columns); 
 	}	
 
@@ -387,7 +430,7 @@ img.wp-smiley {}
 
 		// Entry wrapper <div>
 		.hentry {}
-		.post {}
+		.post { margin-bottom: $margin;}
 		.page {}
 
 			// Post, page, and 404 page titles
@@ -561,10 +604,24 @@ img.wp-smiley {}
 
 	// Footer section
 	#footer {
-		@include column($blueprint-grid-columns); 
-		color: #898887;
-		font-size: 11px;
+		@include column($blueprint-grid-columns, true); 	
 	}
+
+		#footer .text {	
+			@include column(7 * $blueprint-grid-columns / 8); 			
+			margin-top: $margin;
+			padding-top: $margin / 2;
+			border-top: solid 1px #EEEDED;
+			color: #898887;
+			font-size: 11px;
+		}
+		
+		#footer .logo {	
+			@include column(1 * $blueprint-grid-columns / 8, true); 	
+			text-align:right;				
+		}
+		
+		
 
 		// Footer extra
 		#footer .copyright {}
