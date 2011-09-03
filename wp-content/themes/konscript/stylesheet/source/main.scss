@@ -5,6 +5,7 @@
 // Load the base
 @import "_base";
 @import "compass/css3/border-radius";
+@import "compass/css3/transition";
 
 // If you are doing a lot of stylesheet concatenation, it is suggested
 // that you scope your blueprint styles, so that you can better control
@@ -285,7 +286,7 @@ img.wp-smiley {}
 		width:100%;
 		height:50px;
 		line-height:50px;	 		
- 		background: url('../../img/menubg.gif') no-repeat left center;  
+ 		background: url('../../img/menubg.gif') repeat-x left center;  
  		@include border-radius(10px);
 	}
 
@@ -303,25 +304,25 @@ img.wp-smiley {}
 					padding-right: 11px;
 					color:#ffffff;
 					text-decoration:none;
-					background: url('../../img/menu_off.gif') no-repeat right top;					
+					border-right: 2px groove #BBB;
 				}
 				
+				// rounded corners on very first menu item
 				#primary-menu li:first-child a {   	
 			 		@include border-radius(10px 0 0 10px);					
 				}
-				
-				#primary-menu li a:hover {   
-					background:url('../../img/menu_on.gif') repeat-x;
 
-				}
-				
+				// selected item AND hovered item 
+				#primary-menu li a:hover,			
 				#primary-menu li.current-menu-item a,
-				#primary-menu li.current-page-ancestor a,
 				#primary-menu li.current-menu-parent a,
 				#primary-menu li.current-post-parent a,
-				#primary-menu li.current_page_parent a 
-				{
+				#primary-menu li.current_page_parent a,
+				#primary-menu li.current-page-ancestor a				
+				{					
 					background:url('../../img/menu_on.gif') repeat-x;
+					border-right: 2px solid #bc2127;
+			
 				}
 				
 				// search form
@@ -378,16 +379,20 @@ img.wp-smiley {}
 		float:left;
 		text-decoration:none;
 		width:100%;
-		background:url('../../img/submenu_off.gif') repeat-x;
+		background:url('../../img/submenu_off.gif') no-repeat;
+		background-position:7px 50%;
 		text-indent: 30px;
+		border-bottom: 1px solid #eee;
 	}
 	#sidebar ul li a:hover,
 	#sidebar ul .current-menu-item a,
 	#sidebar ul .current-cat a {
-		background:url('../../img/submenu_on.gif') repeat-x;
+		background:url('../../img/submenu_on.gif') no-repeat;
+		background-position:0 50%;
 		color:#000000;
 		text-decoration:underline;
 		font-weight: normal;
+		border-bottom: 1px solid #eee;
 	}
 /**
  * Containers below the header and navigation
