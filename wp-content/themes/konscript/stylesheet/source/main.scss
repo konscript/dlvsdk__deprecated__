@@ -27,6 +27,7 @@ form.bp {
  *****/
 $margin: $blueprint-grid-margin;
 $quiet-color: lighten($font-color, 40%);
+$body-container-width: $blueprint-grid-columns - 2;
 
 /**
  * Body
@@ -49,7 +50,7 @@ body {
 
 
 	#wrapper {
-		width: $blueprint-container-size + 2 * $blueprint-grid-margin;
+		@include container;		
 		margin: 0 auto;
 		overflow: hidden;		
 		background-color: #fff;	
@@ -58,7 +59,9 @@ body {
 	
 	// Wrapper for everything inside of the body
 	#body-container {
-			@include container;
+		@include append(1);
+		@include column($body-container-width, true); 
+		@include prepend(1);
 	}
 
 /*
@@ -250,17 +253,17 @@ img.wp-smiley {}
 
 	// Contains site title and tagline
 	#header {
-		@include column($blueprint-grid-columns, true); 
+		@include column($body-container-width, true); 
 		height:120px;
 		margin-top: $blueprint-grid-margin;
 	}
 	
 		#logo{
-			@include column($blueprint-grid-columns / 2); 
+			@include column($body-container-width / 2); 
 		}
 		
 		#tools{			
-			@include column($blueprint-grid-columns / 2, true); 
+			@include column($body-container-width / 2, true); 
 			text-align:right;
 			font-size: 11px;			
 			a {	color: $quiet-color; }
@@ -360,7 +363,7 @@ img.wp-smiley {}
  **********/
  
 	#sidebar {
-		$sidebar-columns: floor($blueprint-grid-columns / 4);
+		$sidebar-columns: floor($body-container-width / 4);
 		@include column($sidebar-columns); 
 		font-size:11px;
 	}	 
@@ -406,14 +409,14 @@ img.wp-smiley {}
 	 ************************************************/	
 
 	// Content for pages with sidebar
-    $content-width:ceil(3 * $blueprint-grid-columns / 4);
+    $content-width:ceil(3 * $body-container-width / 4);
 	#content {
 		@include column($content-width, true);
 	}
 	
 	// Content without sitebar
 	body.page-template-no-sidebar-php #content {
-		@include column($blueprint-grid-columns); 
+		@include column($body-container-width); 
 	}	
 
 		// Breadcrumb trail
@@ -620,11 +623,11 @@ img.wp-smiley {}
 
 	// Footer section
 	#footer {
-		@include column($blueprint-grid-columns, true); 	
+		@include column($body-container-width, true); 	
 	}
 
 		#footer .text {	
-			@include column(7 * $blueprint-grid-columns / 8); 			
+			@include column(7 * $body-container-width / 8); 			
 			margin-top: $margin;
 			padding-top: $margin / 2;
 			border-top: solid 1px #EEEDED;
@@ -633,7 +636,7 @@ img.wp-smiley {}
 		}
 		
 		#footer .logo {	
-			@include column(1 * $blueprint-grid-columns / 8, true); 	
+			@include column(1 * $body-container-width / 8, true); 	
 			text-align:right;				
 		}
 		
@@ -651,35 +654,27 @@ img.wp-smiley {}
  **/	
  
 div.wpcf7{
-	div {}
-    $label-width: floor(2 * $content-width / 7);
-	label { @include column($label-width) ; clear: left; padding-bottom:10px;}
-	.high label{ height: 60px;}
 
-    $form-width: ceil(5 * $content-width / 7 );
-	#title{	@include column(2, true);}
-	#first-name{@include column(5, true); }
-	#last-name{@include column(5, true); }
-	#job-title{@include column(5, true); }	
-	#organisation{@include column(5, true); }		
-	#phone{@include column(4, true); }
-	#email{@include column(4, true); }		
-	#address{
-		@include column(8, true); 
-		height:35px;
+	// error message for select box (title)
+	.wpcf7-form-control-wrap.title span.wpcf7-not-valid-tip {
+		position: static;
 	}
-	#employees{@include column(4, true); }
-	#vaccination_before{@include column(2, true); }			
-	#message{@include column(8, true); height:45px;}				
-	.wpcf7-submit{@include column(2, true);}
-	.wpcf7-response-output{float:left}
-	.ajax-loader{float:left;}
+	
+	// error message for textarea (address)
+	.wpcf7-form-control-wrap.address span.wpcf7-not-valid-tip {
+		top: -10px;
+	}	
+
+	// general error message
 	.wpcf7-not-valid-tip{
-		@include column(5, true);	
+		position:absolute;
+		top: -1px;
+		padding: 0;
+		margin: 0;
+		left: 2%;
 		border:0;
 		color:red;
 		background: none;
-		position:static;
 		font-size: 0.8em;
 	}
 	
