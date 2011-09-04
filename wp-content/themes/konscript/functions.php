@@ -146,10 +146,10 @@ add_action( 'widgets_init', create_function( '', 'return register_widget("Specif
  * submenus
  ***************************************************************************************/
 function sidebar_page() {
-	include("sidebar-page.php");
+	include("submenu-page.php");
 }
 function sidebar_cat() {
-	include("sidebar-cat.php");
+	include("submenu-cat.php");
 }
 
 // menu support
