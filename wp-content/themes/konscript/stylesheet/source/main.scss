@@ -675,9 +675,14 @@ img.wp-smiley {}
 /**
  * Contact form 7
  **/	
- 
-div.wpcf7{
 
+//for embeded form in iframe 
+body.page-template-template-iframe-php div.wpcf7 {
+	background-color:white;
+	padding-bottom: 30px;
+}
+
+div.wpcf7{
 	// error message for select box (title)
 	.wpcf7-form-control-wrap.title span.wpcf7-not-valid-tip {
 		position: static;
