@@ -6,6 +6,7 @@
 @import "_base";
 @import "compass/css3/border-radius";
 @import "compass/css3/transition";
+@import "compass/css3/gradient";
 
 // If you are doing a lot of stylesheet concatenation, it is suggested
 // that you scope your blueprint styles, so that you can better control
@@ -28,13 +29,14 @@ form.bp {
 $margin: $blueprint-grid-margin;
 $quiet-color: lighten($font-color, 40%);
 $body-container-width: $blueprint-grid-columns - 2;
+$radius: 5px;
 
 /**
  * Body
  ************************************************/
 // Contains everything
 html, body{
-	height:100%;
+	//height:100%;
 }
 
 body {
@@ -160,7 +162,7 @@ ul {
 	vertical-align: top;
 	padding-bottom: 8px;
 	line-height: 12pt;
-	list-style-image: url(/Frontend/images/dlvs-12.png);
+	list-style-image: url(../../img/dlvs-12.png);
 }	
 
 // Ordered lists 
@@ -290,7 +292,7 @@ img.wp-smiley {}
 		height:50px;
 		line-height:50px;	 		
  		background: url('../../img/menubg.gif') repeat-x left center;  
- 		@include border-radius(10px);
+ 		@include border-radius($radius);
 	}
 
 		// Menu list.
@@ -312,7 +314,7 @@ img.wp-smiley {}
 				
 				// rounded corners on very first menu item
 				#primary-menu li:first-child a {   	
-			 		@include border-radius(10px 0 0 10px);					
+			 		@include border-radius($radius 0 0 $radius);					
 				}
 
 				// selected item AND hovered item 
@@ -414,9 +416,11 @@ img.wp-smiley {}
 		@include column($content-width, true);
 	}
 	
-	// Content without sitebar
-	body.page-template-no-sidebar-php #content {
-		@include column($body-container-width); 
+	// Content without sitebar AND frontpage
+	body.page-template-no-sidebar-php #content,
+	body.home #content	
+	{
+		@include column($body-container-width, true); 
 	}	
 
 		// Breadcrumb trail
@@ -470,6 +474,25 @@ img.wp-smiley {}
 
 			// Entry metadata
 			.entry-meta {}
+			
+			// read more link
+			a.readmore{ 
+				margin: 5px 0;
+				padding: 3px; 
+				background-color: #820f13;
+				color: white;
+				text-transform:uppercase;
+				@include border-radius(2px);
+				font-size: 0.9em;
+				display:block;
+				width: 70px;	
+				@include transition(background-color, 0.4s);
+			}
+			
+			a.readmore:hover{
+				background-color: #a62227;
+				text-decoration:none;
+			}
 
 		// Post series
 		.series {} 
@@ -585,7 +608,7 @@ img.wp-smiley {}
 	.widget {}
 	
 		// hide category name in submenu
-		#sidebar li.widget_categories{
+		#sidebar li.categories{
 			list-style-type: none;
 			h2 { display:none; }
 		}		
@@ -680,3 +703,63 @@ div.wpcf7{
 	
 
 }
+
+/**
+ * frontpage
+ **/
+
+body.home .widget{
+	margin-bottom: $margin;
+}
+
+#flash-banner {
+	@include column($body-container-width, true); 	
+}
+
+#shortcuts {
+	@include column($body-container-width, true); 
+	@include border-radius($radius);		
+	background-image: url("../../img/fanerbg.gif");
+	height: 91px;
+	overflow:hidden;
+	margin-bottom: $margin;
+	
+	
+	$shortcut-width: $body-container-width / 3;
+	
+	.shortcut{
+		@include column( $shortcut-width ); 
+		margin: 5px 0;				
+		
+			.logo { 
+				@include column( $shortcut-width / 3 );
+				height: 91px;
+			}
+			
+			h3 {
+				margin-top: 15px;
+			}
+	}
+	
+	.shortcut:last-child{
+			@include column($shortcut-width, true); 
+	}
+}
+ 
+#column-left {
+	@include column( $body-container-width / 3); 	
+}
+#column-center {
+	@include column( $body-container-width / 3); 		
+}
+#column-right {
+	@include column( $body-container-width / 3, true); 
+	@include linear-gradient(color-stops(#e21c25, #a62227));
+	@include border-radius($radius);	
+	color: white;
+	.textwidget { padding: $margin $margin 0 $margin; }
+	h2 { padding: 0 $margin; color: white; margin-top:$margin; }	
+	a { color:white; text-decoration:underline; }
+}
+
+
