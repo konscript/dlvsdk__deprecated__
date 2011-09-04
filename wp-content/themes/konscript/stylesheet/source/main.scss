@@ -677,9 +677,14 @@ img.wp-smiley {}
  **/	
 
 //for embeded form in iframe 
-body.page-template-template-iframe-php div.wpcf7 {
+body.page-template-template-iframe-php{
 	background-color:white;
-	padding-bottom: 30px;
+	background-image:none;
+
+	div.wpcf7 {
+		background-color:white;
+		padding-bottom: 30px;
+	}
 }
 
 div.wpcf7{
