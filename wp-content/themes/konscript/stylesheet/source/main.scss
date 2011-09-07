@@ -288,20 +288,21 @@ img.wp-smiley {}
 	#primary-menu {
 		overflow:hidden;	
 		float:left;
-		width:100%;
+		@include column($body-container-width, true); 
 		height:50px;
-		line-height:50px;	 		
  		background: url('../../img/menubg.gif') repeat-x left center;  
  		@include border-radius($radius);
 	}
 
 		// Menu list.
+		$searchform-width: 9;
 		#primary-menu ul {
 				list-style-type:none;				
+				@include column($body-container-width - $searchform-width); 
 		}
 			#primary-menu li {
 				float:left;
-				
+				line-height:50px;				
 			}
 				#primary-menu li a {   	
 					display:block;			
@@ -331,32 +332,34 @@ img.wp-smiley {}
 				}
 				
 				// search form
-				#primary-menu #searchform{			
-					position: relative;
-					top: -11px;					
-					margin-right: $margin / 2;					
-					float: right;
+				#primary-menu #searchform{	
+					@include column($searchform-width, true);					
+					text-align:right;
+					height:22px;
+					position:relative;
+					margin-top:12px;
+					 											
 				}
 				
 				// search field
 				#primary-menu #searchform .field{				
-					vertical-align: middle;
 					width: 80px;
 					border: 0;
 					padding: 2px;
-			 		@include border-radius(2px);					
+			 		@include border-radius(2px);	
+					vertical-align: middle;	 						
 				}
 				
 				// search button
 				#primary-menu #searchform .submit{
-					vertical-align: middle;
 					background: url('../../img/search_button.gif') no-repeat top center;
 					border : none;
 					color : transparent;
 					font-size : 0;
 					cursor: pointer;
 					height: 22px;
-					width: 46px;				
+					width: 46px;	
+					vertical-align: middle;	
 				}
 			
 
@@ -763,6 +766,7 @@ body.home .widget{
 	@include column( $body-container-width / 3); 		
 }
 #column-right {
+	background-color: #e21c25;
 	@include column( $body-container-width / 3, true); 
 	@include linear-gradient(color-stops(#e21c25, #a62227));
 	@include border-radius($radius);	
