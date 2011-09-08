@@ -218,7 +218,7 @@ form {}
 .right, .alignright {}
 .center, .aligncenter {}
 .block, .alignnone {}
-.clear {}
+.clear{clear:both;}	
 
 /**
  * Images
@@ -713,8 +713,16 @@ div.wpcf7{
 		background: none;
 		font-size: 0.8em;
 	}
+	// general positioning of fields
+	.input-field { margin-bottom:10px; }
+	.input-field input, .input-field textarea { width: 300px; }
 	
-
+	//positioning of title, first- and last name
+	.multiple-fields{ float:left; }
+	.multiple-fields { margin-right: 10px; }
+	.multiple-fields.title, .multiple-fields.title .input-field select{ width: 60px;}
+	.multiple-fields.first-name, .multiple-fields.first-name .input-field input{ width: 110px;}
+	.multiple-fields.last-name, .multiple-fields.last-name .input-field input{ width: 110px;}
 }
 
 /**
