@@ -10,6 +10,9 @@ if( !is_admin()){
    wp_enqueue_script('jquery');
 }
 
+   wp_register_script('jquery', ("http://ajax.goosgleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"), false, '1.6.2'); 
+   wp_enqueue_script('jquery');
+
 // Add awesome browser classes to body tag
 add_filter('body_class','browser_body_class');
 function browser_body_class($classes) {
@@ -142,6 +145,7 @@ class SpecificPost extends WP_Widget {
 // register SpecificPost widget
 add_action( 'widgets_init', create_function( '', 'return register_widget("SpecificPost");' ) );
 
+
 /**
  * submenus
  ***************************************************************************************/
@@ -152,7 +156,27 @@ function sidebar_cat() {
 	include("submenu-cat.php");
 }
 
-// menu support
+/*
+ * meta box with dynamic menus
+ ****************/
+require_once 'functions/meta-box/meta-box.class.php';
+include 'functions/DynamicMenus.php';
+
+/**
+##########################################
+# INCLUDE AND REGISTER CUSTOM POST TYPES #
+##########################################
+**/
+
+// Include custom post type scripts.
+require_once('functions/post-type-faq.php');
+require_once('functions/post-type-vaccination.php');
+
+/**
+#############################
+# REGISTER NAVIGATION AREAS #
+#############################
+**/
 function theme_addmenus() {
 	register_nav_menus(
 		array(
@@ -167,18 +191,55 @@ add_action( 'init', 'theme_addmenus' );
 
 // primary menu with search
 function primary_menu(){
-    wp_nav_menu(array(
+
+
+	function remove_parent($var)
+	{
+		// check for current page values, return false if they exist.
+		if ($var == 'current_page_parent' || $var == 'current-menu-item' || $var == 'current-page-ancestor') { return false; }
+
+		return true;
+	}
+
+	/****
+	 * custom post type menu ancestor fix
+	 * NB. Remember to add slug as title attribute in menu manager!
+	 * http://wordpress.stackexchange.com/questions/3014/highlighting-wp-nav-menu-ancestor-class-w-o-children-in-nav-structure
+	 ******/
+	add_filter('nav_menu_css_class', 'current_type_nav_class', 10, 2 );
+	function current_type_nav_class($classes, $item) {
+		$post_type = get_query_var('post_type');
+
+		/*
+		global $current_item_id;
+		if(in_array("current_page_parent", $item->classes)){
+			$current_item_id = $item->ID;
+		}
+		*/
+		
+		// if current menu item is of the same post type
+		if ($item->attr_title != '' && $item->attr_title == $post_type) {
+		    array_push($classes, 'current-menu-item');
+		    array_push($classes, 'dlvs-custom-post-type');		    
+		};
+		return $classes;
+	}			
+	
+    $menu = wp_nav_menu(array(
 		'theme_location' 	=> 'main',
-		'container'=> false
+		'container'=> false,
+		'echo'            => true,
+
 	));
+	
 	get_search_form(); 
 }
 
-
-
 /**
- * shorten 
- ***************************************************************************************/
+#############################
+# SHORTEN EXCERPT			#
+#############################
+**/
 function konscript_excerpt($length, $str) {
    if(strlen($str)>$length) {
        $subex = substr($str,0,$length-5);

@@ -784,4 +784,33 @@ body.home .widget{
 	a { color:white; text-decoration:underline; }
 }
 
-
+/**
+ * faq
+ **********************************/
+ .single-faq{
+ 	.answer {
+ 		display:none; 
+ 		margin-bottom: 10px;
+	}
+ }
+ 
+ /**
+  * vaccinations
+  **********************************/
+	table#vaccinations{
+		width:100%;
+		margin-bottom: 10px;
+  	
+  		thead tr td{
+			font-weight: bold;
+  		}
+  		
+  		td{
+  			line-height: 25px;
+  		}
+  		
+  		
+  		tbody tr:nth-child(odd){
+  			background-color: #d5d5d5;
+  		}
+  }

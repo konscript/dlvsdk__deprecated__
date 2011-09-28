@@ -13,7 +13,8 @@
 
 <div class="hide">
 	<?php wp_footer(); ?>
-	<script type="text/javascript">
+	<script t
+	ype="text/javascript">
 
 	  var _gaq = _gaq || [];
 	  _gaq.push(['_setAccount', 'UA-25539846-1']);
@@ -27,6 +28,6 @@
 
 	</script>	
 </div>
-
+<?php echo get_num_queries(); ?> queries.
 </body>
 </html>

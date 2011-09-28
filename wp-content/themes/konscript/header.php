@@ -47,7 +47,7 @@
 	
 	<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/scripts/jquery.browser.addEnvClass.js"></script>
 	<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/scripts/init.js"></script>
-	 
+	<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/scripts/screen.js"></script>	 
 	
 </head>
 <body <?php body_class(); ?>>
