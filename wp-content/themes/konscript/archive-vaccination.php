@@ -27,7 +27,7 @@
 		</tbody>
 	</table>
 
-	<?php echo the_content(); ?>
+	<?php //echo the_content(); ?>
 	</div><!-- #content -->
 </section><!-- #primary -->
 

@@ -262,6 +262,7 @@ img.wp-smiley {}
 	
 		#logo{
 			@include column($body-container-width / 2); 
+			height: 67px;
 		}
 		
 		#tools{			
