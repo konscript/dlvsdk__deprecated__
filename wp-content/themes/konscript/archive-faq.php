@@ -3,7 +3,7 @@
 
 <section id="primary">
 	<div id="content" role="main">
-	<h1>FAQ</h1>
+	<h1><?php post_type_archive_title(); ?></h1>
 		
 		<?php $args = array(
 		'orderby'         => 'post_date',
