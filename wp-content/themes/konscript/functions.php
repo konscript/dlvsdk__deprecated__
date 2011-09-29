@@ -10,8 +10,8 @@ if( !is_admin()){
    wp_enqueue_script('jquery');
 }
 
-   wp_register_script('jquery', ("http://ajax.goosgleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"), false, '1.6.2'); 
-   wp_enqueue_script('jquery');
+wp_register_script('jquery', ("http://ajax.goosgleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"), false, '1.6.2'); 
+wp_enqueue_script('jquery');
 
 // Add awesome browser classes to body tag
 add_filter('body_class','browser_body_class');
@@ -56,7 +56,6 @@ add_filter('admin_footer_text', 'remove_footer_admin');
  * Frontpage widgets
  ***************************************************************************************/
 	if (function_exists('register_sidebar')) {
-
 		register_sidebar(array(
 			'name' => 'Left Column',
 			'id'   => 'left_column',
@@ -84,8 +83,6 @@ add_filter('admin_footer_text', 'remove_footer_admin');
 			'before_title'  => '<h2>',
 			'after_title'   => '</h2>'
 		));
-		
-
 	}
 
 /**
@@ -179,12 +176,7 @@ require_once('functions/post-type-vaccination.php');
 **/
 function theme_addmenus() {
 	register_nav_menus(
-		array(
-			'main' => 'Main Menu',
-			'about' => 'About submenu',
-			'travel' => 'Travel submenu',			
-			'unicef' => 'empty menu',		
-		)
+		array('main' => 'Main Menu')
 	);
 }
 add_action( 'init', 'theme_addmenus' );
