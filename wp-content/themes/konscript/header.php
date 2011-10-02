@@ -8,6 +8,7 @@
 	
 	<link rel="alternate" type="application/atom+xml" title="<?php bloginfo('name'); ?> Atom Feed (<?php bloginfo('language'); ?>)" href="<?php bloginfo('atom_url'); ?>" />
 	<link rel="icon" type="image/png" href="<?php bloginfo('template_url'); ?>/img/favicon.ico" />
+		
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 	
 	<!--Stylesheets-->
@@ -39,14 +40,6 @@
 	<!--Scripts--> 
 	<?php // NOTE: We are enqueing jQuery from Google CDN in the functions.php. If it doesn't load we grab the local version ?>
 	<script>!window.jQuery && document.write('<script src="scripts/jquery-1.6.2.min.js"><\/script>')</script>
-	<script type="text/javascript">
-		jQuery(document).ready(function init() { 
-			// jQuery init function
-		});
-	</script>
-	
-	<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/scripts/jquery.browser.addEnvClass.js"></script>
-	<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/scripts/init.js"></script>
 	<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/scripts/screen.js"></script>	 
 	
 </head>

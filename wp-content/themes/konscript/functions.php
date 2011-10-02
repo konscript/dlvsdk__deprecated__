@@ -13,24 +13,6 @@ if( !is_admin()){
 wp_register_script('jquery', ("http://ajax.goosgleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"), false, '1.6.2'); 
 wp_enqueue_script('jquery');
 
-// Add awesome browser classes to body tag
-add_filter('body_class','browser_body_class');
-function browser_body_class($classes) {
-	global $is_lynx, $is_gecko, $is_IE, $is_opera, $is_NS4, $is_safari, $is_chrome, $is_iphone;
-
-	if($is_lynx) $classes[] = 'lynx';
-	elseif($is_gecko) $classes[] = 'gecko';
-	elseif($is_opera) $classes[] = 'opera';
-	elseif($is_NS4) $classes[] = 'ns4';
-	elseif($is_safari) $classes[] = 'safari';
-	elseif($is_chrome) $classes[] = 'chrome';
-	elseif($is_IE) $classes[] = 'ie';
-	else $classes[] = 'unknown';
-
-	if($is_iphone) $classes[] = 'iphone';
-	return $classes;
-}
-
 // Remove useless the_generator meta tag - whoops
 add_filter( 'the_generator', create_function('$a', "return null;") );
 
@@ -184,15 +166,6 @@ add_action( 'init', 'theme_addmenus' );
 // primary menu with search
 function primary_menu(){
 
-
-	function remove_parent($var)
-	{
-		// check for current page values, return false if they exist.
-		if ($var == 'current_page_parent' || $var == 'current-menu-item' || $var == 'current-page-ancestor') { return false; }
-
-		return true;
-	}
-
 	/****
 	 * custom post type menu ancestor fix
 	 * NB. Remember to add slug as title attribute in menu manager!
@@ -201,13 +174,6 @@ function primary_menu(){
 	add_filter('nav_menu_css_class', 'current_type_nav_class', 10, 2 );
 	function current_type_nav_class($classes, $item) {
 		$post_type = get_query_var('post_type');
-
-		/*
-		global $current_item_id;
-		if(in_array("current_page_parent", $item->classes)){
-			$current_item_id = $item->ID;
-		}
-		*/
 		
 		// if current menu item is of the same post type
 		if ($item->attr_title != '' && $item->attr_title == $post_type) {
