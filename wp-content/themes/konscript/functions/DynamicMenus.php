@@ -25,7 +25,7 @@ function get_menus(){
 function page_meta() {
 	$meta_box = array(
 		'id'			=> 'dpm_page-menu',
-		'title'		=> 'Page Menu',
+		'title'		=> 'Attach submenu to page',
 		'pages'		=> array('page'),
 		'context'	=> 'normal',
 		'fields'	=> array(
@@ -33,7 +33,8 @@ function page_meta() {
 				'name'		=> 'Menu',
 				'id'			=> 'dpm_page-menu-id',
 				'type'		=> 'select',
-				'options'	=> get_menus()
+				'options'	=> get_menus(),
+				'desc' => 'This submenu will be shown in the left sidebar on this page'
 			)
 		)
 	);
