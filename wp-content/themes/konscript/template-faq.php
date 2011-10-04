@@ -1,5 +1,6 @@
+<?php /* Template Name: FAQ*/ ?>
 <?php get_header(); ?>
-<?php sidebar_page(); ?>
+<?php get_submenu(); ?>
 
 <section id="primary">
 	<div id="content" role="main">

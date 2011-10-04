@@ -1,10 +1,12 @@
+<?php /* Template Name: News*/ ?>
 <?php get_header(); ?>
 <?php include("submenu-cat.php"); ?>
 
-NEVER USE..
 
 <div id="content">
 	<h1><?php wp_title(''); ?></h1>
+	
+	<?php query_posts( 'posts_per_page=0' ); ?>
 	
 	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 		<div class="post">

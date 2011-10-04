@@ -12,7 +12,7 @@ function vaccination_register() {
   $labels = array(
    'name' => _x('Vaccinations', 'post type general name'),
    'singular_name' => _x('Vaccination', 'post type singular name'),
-   'add_new' => _x('Add New', 'testemonial'),
+   'add_new' => _x('Add New', 'vaccination'),
    'add_new_item' => __('Add New Vaccination'),
    'edit_item' => __('Edit Vaccination'),
    'new_item' => __('New Vaccination'),
@@ -29,11 +29,11 @@ function vaccination_register() {
    'publicly_queryable' => true,
    'show_ui' => true,
    'query_var' => true,
-   'menu_position' => 5,
+   'menu_position' => 2,
    '_builtin' => false, // It's a custom post type, not built in!
    'menu_icon' => get_stylesheet_directory_uri() . '/img/icon_article.png',
    'rewrite' => array('slug' => 'vaccination', 'with_front' => false),
-	'has_archive' => true,
+	'has_archive' => false,
    'capability_type' => 'post',
    'hierarchical' => false,
    'supports' => array('thumbnail', 'title', 'editor')

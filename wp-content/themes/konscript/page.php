@@ -1,8 +1,5 @@
-<?php /* Template Name: Page*/ ?>
-
-
 <?php get_header(); ?>
-<?php sidebar_page(); ?>
+<?php get_submenu(); ?>
 
 
 <div id="content">	

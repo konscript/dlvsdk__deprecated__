@@ -1,7 +1,6 @@
 <?php get_header(); ?>
 <?php include("submenu-cat.php"); ?>
 
-NEVER USE..
 
 <div id="content">
 	<h1><?php wp_title(''); ?></h1>

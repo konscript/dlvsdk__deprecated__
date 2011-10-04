@@ -28,6 +28,6 @@
 
 	</script>	
 </div>
-<?php //echo get_num_queries()." queries."; ?> 
+<?php echo get_num_queries()." queries."; ?> 
 </body>
 </html>
