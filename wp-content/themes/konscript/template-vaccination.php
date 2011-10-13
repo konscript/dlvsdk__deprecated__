@@ -9,8 +9,8 @@
 	<?php $args = array(
 	'orderby'         => 'title',
 	'order'           => 'ASC',
-    'numberposts'     => -1,	
-	'post_type'       => 'vaccination'); ?>		
+	'numberposts'     => -1,
+	'post_type'       => 'vaccination'); ?>
 
 	<?php $vaccinations = get_posts( $args ); ?> 
 	<table id="vaccinations">
