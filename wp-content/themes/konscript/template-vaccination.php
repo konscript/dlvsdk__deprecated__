@@ -9,6 +9,7 @@
 	<?php $args = array(
 	'orderby'         => 'title',
 	'order'           => 'ASC',
+    'numberposts'     => -1,	
 	'post_type'       => 'vaccination'); ?>		
 
 	<?php $vaccinations = get_posts( $args ); ?> 
@@ -20,7 +21,8 @@
 			
 			<tr>
 				<td><a href="<?php echo get_permalink( $vaccination->ID ); ?>"><?php echo $vaccination->post_title; ?></a></td>
-				<td><?php echo $fields["vaccination-price"][0]; ?></td><td><?php echo $fields["vaccination-quantity"][0]; ?></td>
+				<td><?php echo $fields["vaccination-price"][0]; ?></td>
+				<td><?php echo $fields["vaccination-quantity"][0]; ?></td>
 				<td><?php echo $fields["vaccination-duration"][0]; ?></td>
 			</tr>		 
 		<?php } ?>
