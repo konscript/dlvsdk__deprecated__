@@ -420,8 +420,8 @@ img.wp-smiley {}
 		@include column($content-width, true);
 	}
 	
-	// Content without sitebar AND frontpage
-	body.page-template-no-sidebar-php #content,
+	// Content without sitebar OR frontpage-template
+	body.sidebar-hidden #content,
 	body.home #content	
 	{
 		@include column($body-container-width, true); 

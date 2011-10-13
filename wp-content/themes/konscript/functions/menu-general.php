@@ -1,9 +1,63 @@
 <?php
 
-// submenu include shortcode
-function get_submenu() {
-	include(get_template_directory() . "/submenu.php");
+// add "sidebar-hidden" to body class
+add_filter('body_class','my_class_names');
+function my_class_names($classes) {
+	
+	$submenu = build_submenu();
+	
+	if($submenu == -2){
+		$classes[] = 'sidebar-hidden';
+	}
+	
+	return $classes;
 }
+
+// output submenu 
+function get_submenu() {
+	$submenu = build_submenu();
+	
+	// submenu isn't hidden
+	if($submenu != -2){
+		echo '
+		<div id="sidebar"> &nbsp;
+			'.$submenu.'
+		</div>';
+	}
+}
+
+// build submenu
+function build_submenu(){
+	global $post;
+	 
+	// Get the ID of the set menu
+	$menu_id = get_post_meta($post->ID, 'dpm_page-menu-id', true);
+		
+	// the menu is unset, look for parent menus
+	if($menu_id == -1 || $menu_id == null){
+		
+		// single post (not page)
+		if(is_single()){	
+			$page_id = getPageIDOfCurrentCustomPostType();							
+			
+			// get menu ID
+			$menu_id = get_post_meta($page_id, 'dpm_page-menu-id', true);
+			
+		// sub-page
+		}else{
+			$menu_id = get_post_meta($post->post_parent, 'dpm_page-menu-id', true);
+		}						
+	}
+	
+	// menu is found, output it
+	if($menu_id > 0){
+		return wp_nav_menu(array('menu' => $menu_id, 'echo' => false));
+		
+	// the menu is set to hide
+	}elseif($menu_id == -2){
+		return "-2";
+	}	
+} 
 
 // include Kristians Dynamic Menus on admin page
 include 'DynamicMenus.php';
@@ -18,7 +72,6 @@ function theme_addmenus() {
 		array('main' => 'Main Menu')
 	);
 }
-
 add_action( 'init', 'theme_addmenus' );
 
 
@@ -41,15 +94,6 @@ function primary_menu(){
 	
 	function current_type_nav_class($classes, $item) {
 		global $pageIDOfCurrentCustomPostType;
-		/*
-		$post_type = get_query_var('post_type');
-		
-		// if current menu item is of the same post type
-		if ($item->attr_title != '' && $item->attr_title == $post_type) {
-		    array_push($classes, 'current-menu-item');
-		    array_push($classes, 'dlvs-custom-post-type');		    
-		};
-		*/
 		
 		// add class if post_id fits the page_id the menu item points to (object_id)
 		if($item->object_id == $pageIDOfCurrentCustomPostType){

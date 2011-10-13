@@ -10,7 +10,7 @@ Author URI: http://github.com/ksmandersen/
 
 // Get the available menu's registed in Wordpress Menu interface
 function get_menus(){
-    $r = array(-1 => "");
+    $r = array(-1 => "", -2 => "- Hide Submenu -");
     $menus = wp_get_nav_menus();
 		if(is_array($menus) && count($menus) > 0) {
 			foreach($menus as $key => $menu) {
@@ -18,11 +18,13 @@ function get_menus(){
 				$r[$menu->term_id] = $o->name;
 			}
 		}
+	
     return $r;
 }
 
 // Register meta box for page
-function page_meta() {
+function page_meta() {						
+	
 	$meta_box = array(
 		'id'			=> 'dpm_page-menu',
 		'title'		=> 'Attach submenu to page',
@@ -30,7 +32,7 @@ function page_meta() {
 		'context'	=> 'normal',
 		'fields'	=> array(
 			array(
-				'name'		=> 'Menu',
+				'name'		=> 'Submenu',
 				'id'			=> 'dpm_page-menu-id',
 				'type'		=> 'select',
 				'options'	=> get_menus(),

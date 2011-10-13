@@ -12,8 +12,7 @@
 					 	$quantity = $fields["vaccination-quantity"][0];	 	
 					 	$price = $fields["vaccination-price"][0];
 					 	$date = $fields["vaccination-date"][0];	 	
-					 	
-					 	echo $price;
+					 						 	
 					 	echo the_content();
 					 ?>                    
                 </div>
