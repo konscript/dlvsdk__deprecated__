@@ -3,13 +3,15 @@ jQuery.noConflict();
 
 	// execute when DOM is ready
 	$(document).ready(function() {	
-	
-		toggleFaq();
-		fixCustomPostTypeMenu();
-		
+		contentSlider();
+		toggleFaq();	
 	});
 	
-	
+	// content slider on frontpage
+	function contentSlider(){
+		$("#featured > ul").tabs({fx:{opacity: "toggle", duration:"slow"}}).tabs("rotate", 10000, true);
+	}	
+
 	// show/hide faq
 	function toggleFaq(){
 		$('.single-faq .question').click(function() {	
@@ -17,15 +19,6 @@ jQuery.noConflict();
 			return false;
 		});			
 	}
-	
-	// remove selection in primary menu, when custom post type selected
-	function fixCustomPostTypeMenu(){
-		var custom_post_type = $('#menu-main .dlvs-custom-post-type').length;
-
-		if(custom_post_type > 0){
-			$('#menu-main .current_page_parent').not('.dlvs-custom-post-type').removeClass('current_page_parent');
-		}
-	}	
 	
 })(jQuery);
 

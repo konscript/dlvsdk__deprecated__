@@ -12,6 +12,9 @@ $blueprint-grid-margin: 20px;
 // Or you can set $blueprint-grid-width to a fixed value and unset $blueprint-container-size -- it will be calculated for you.
 $blueprint-grid-width: ($blueprint-container-size + $blueprint-grid-margin) / $blueprint-grid-columns - $blueprint-grid-margin;
 
+// column width
+$blueprint-column-width: $blueprint-container-size / $blueprint-grid-columns;
+
 // Load compass tools, utilities and blueprint modules
 @import "blueprint";
 @import "blueprint/reset";

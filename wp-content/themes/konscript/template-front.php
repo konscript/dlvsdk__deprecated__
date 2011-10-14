@@ -3,62 +3,97 @@
 <?php get_header(); ?>
 
 <div id="content">	
-	<div id="flash-banner">
-		<object id="d1f1b4e1-d3d1-4cb6-927b-efa73ea74b86" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" height="216" width="920" style="visibility: visible; ">
-		<param name="movie" value="<?php bloginfo('template_url'); ?>/img/banner.swf">
-		<param name="loop" value="true">
-			<object type="application/x-shockwave-flash" data="<?php bloginfo('template_url'); ?>/img/banner.swf" height="216" width="920" loop="true" id="mutetabId7184431">
-			<a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player"></a>
-			</object>
-		</object>
-	</div>
+	<div id="featured" >
+	 <!-- First Content -->
+	 <div id="fragment-1" class="ui-tabs-panel">
+		<img src="<?php bloginfo('template_url'); ?>/img/frontpage-stockphoto.jpg"/>	 
+		
+		<div class="left">&nbsp;</div>
+		<div class="right">
+			<div class="inner">
+				<p class="header">NUMMER 1: Ipsum lorem Doloret</p>
+				<p>Ipsum lorem Doloret</p>			
+			</div>
+		</div>
+	 </div>
 	
-	<div id="shortcuts">
-		<div class="shortcut">
-			<div class="logo"><img src="<?php bloginfo('template_url'); ?>/img/fane_rejse.jpg" /></div>
-			<div>
-				<h3>Going travelling?</h3>
-				<a href="">Find recommended vaccinations</a>
+	 <!-- Second Content -->
+	 <div id="fragment-2" class="ui-tabs-panel ui-tabs-hide">
+<img src="<?php bloginfo('template_url'); ?>/img/frontpage-stockphoto.jpg"/>
+		<div class="left">&nbsp;</div>
+		<div class="right">
+			<div class="inner">
+				<p class="header">NUMMER 2: Ipsum lorem Doloret</p>
+				<p>Ipsum lorem Doloret</p>			
 			</div>
 		</div>
-		
-		<div class="shortcut">
-			<div class="logo"><img src="<?php bloginfo('template_url'); ?>/img/front_helbred.gif" /></div>
-			<div>
-				<h3>Vaccines</h3>
-				<a href="">Prices and side effects</a>
+	 </div>
+	
+	 <!-- Third Content -->
+	 <div id="fragment-3" class="ui-tabs-panel ui-tabs-hide">
+		<div class="left">&nbsp;</div>
+		<div class="right">
+			<div class="inner">
+				<p class="header">NUMMER 3: Ipsum lorem Doloret</p>
+				<p>Ipsum lorem Doloret</p>			
 			</div>
 		</div>
-		
-		<div class="shortcut">
-			<div class="logo"><img src="<?php bloginfo('template_url'); ?>/img/forside_rejseapotektet.gif" /></div>
-			<div>
-				<h3>Travel wiki</h3>
-				<a href="">Advice on the run</a>
-			</div>
-		</div>			
+	 </div>
+
+	 
+	 <!-- tabs -->
+		<ul class="ui-tabs-nav">
+		  <li class="ui-tabs-nav-item" id="nav-fragment-1"><a href="#fragment-1"><img src="<?php bloginfo('template_url'); ?>/img/plane.png"/><div>Going Travelling?</div></a></li>
+		  <li class="ui-tabs-nav-item" id="nav-fragment-2"><a href="#fragment-2"><img src="<?php bloginfo('template_url'); ?>/img/goggles.png"/><div>It's influenza season</div></a></li>
+		  <li class="ui-tabs-nav-item" id="nav-fragment-3"><a href="#fragment-3"><img src="<?php bloginfo('template_url'); ?>/img/boxnotes.png"/><div>Get An Appointment</div></a></li>
+		</ul>	 
+	 
 	</div>
 
-	<div id="column-left">
-	<?php if (function_exists('dynamic_sidebar') && dynamic_sidebar('left_column')) : else : ?>
+	<div class="frontpage-widgets" id="column-left">
+	<?php  if (function_exists('dynamic_sidebar') && dynamic_sidebar('left_column')) : else : ?>
 		<p><strong>Widget Ready</strong></p>
 		<p>This left_column is widget ready! Add one in the admin panel.</p>
-	<?php endif; ?>
+	<?php endif;  ?>
+		
 	</div>
 		
-	<div id="column-center">
-	<?php if (function_exists('dynamic_sidebar') && dynamic_sidebar('center_column')) : else : ?>
+	<div class="frontpage-widgets" id="column-center">
+	<?php /* if (function_exists('dynamic_sidebar') && dynamic_sidebar('center_column')) : else : ?>
 		<p><strong>Widget Ready</strong></p>
 		<p>This center_column is widget ready! Add one in the admin panel.</p>
-	<?php endif; ?>
-
+	<?php endif; */?>
+	
+			<h3>Our Clinics</h3>
+			<img src="<?php bloginfo('template_url'); ?>/img/clinic_map.png" />
 	</div>
 		
-	<div id="column-right">
-	<?php if (function_exists('dynamic_sidebar') && dynamic_sidebar('right_column')) : else : ?>
+	<div class="frontpage-widgets" id="column-right">
+	<?php /* if (function_exists('dynamic_sidebar') && dynamic_sidebar('right_column')) : else : ?>
 		<p><strong>Widget Ready</strong></p>
 		<p>This right_column is widget ready! Add one in the admin panel.</p>
-	<?php endif; ?>
+	<?php endif; */ ?>
+	
+			<h3>Online Booking</h3>
+			
+			<p class="header">Book you time now - it's easy!</p>			
+			<a class="button" href="#">Book!</a>
+			
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+			
+			<img src="<?php bloginfo('template_url'); ?>/img/firstaidkit.png" class="bookingimage"/>
+			
+			<ul id="clinics">
+				<li>London</li>				
+				<li>Clinic #2</li>
+				<li>Clinic #3</li>
+				<li>Clinic #4</li>
+				<li>Clinic #5</li>
+			</ul>
+																
+				
+			
+			
 	</div>
 
 
