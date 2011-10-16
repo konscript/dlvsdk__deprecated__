@@ -7,6 +7,12 @@
 !.gitignore
 !wp-content/
 
+# ignore drafts made by stupid programs
+*.*~
+
+# ignore sass cache
+.sass-cache/
+
 # Ignore everything in the "wp-content" directory, except the "plugins" and "themes" directories.
 wp-content/*
 !wp-content/plugins/
@@ -16,6 +22,7 @@ wp-content/*
 wp-content/plugins/*
 ## !wp-content/plugins/my-single-file-plugin.php
 ## !wp-content/plugins/my-directory-plugin/
+!wp-content/plugins/advanced-custom-fields/acf.php
 
 # Ignore everything in the "themes" directory, except the themes you specify ("konscript" as default)
 wp-content/themes/*
