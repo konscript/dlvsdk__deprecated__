@@ -3,49 +3,43 @@
 <?php get_header(); ?>
 
 <div id="content">	
-	<div id="featured" >
-	 <!-- First Content -->
-	 <div id="fragment-1" class="ui-tabs-panel">
-		<img src="<?php bloginfo('template_url'); ?>/img/frontpage-stockphoto.jpg"/>	 
-		
-		<div class="left">&nbsp;</div>
-		<div class="right">
-			<div class="inner">
-				<p class="header">NUMMER 1: Ipsum lorem Doloret</p>
-				<p>Ipsum lorem Doloret</p>			
-			</div>
-		</div>
-	 </div>
-	
-	 <!-- Second Content -->
-	 <div id="fragment-2" class="ui-tabs-panel ui-tabs-hide">
-<img src="<?php bloginfo('template_url'); ?>/img/frontpage-stockphoto.jpg"/>
-		<div class="left">&nbsp;</div>
-		<div class="right">
-			<div class="inner">
-				<p class="header">NUMMER 2: Ipsum lorem Doloret</p>
-				<p>Ipsum lorem Doloret</p>			
-			</div>
-		</div>
-	 </div>
-	
-	 <!-- Third Content -->
-	 <div id="fragment-3" class="ui-tabs-panel ui-tabs-hide">
-		<div class="left">&nbsp;</div>
-		<div class="right">
-			<div class="inner">
-				<p class="header">NUMMER 3: Ipsum lorem Doloret</p>
-				<p>Ipsum lorem Doloret</p>			
-			</div>
-		</div>
-	 </div>
 
-	 
+	<div id="featured" >
+	
+	<?php if(get_field('tabs')): ?>
+		<?php 
+			// define variables
+			$tab_id = 0; 
+			$tabs = "";						
+		?>	
+		<?php while(the_repeater_field('tabs')): ?>    
+			<?php 
+				// increment tab id
+				$tab_id++; 
+			?>
+			
+			 <!-- tab content -->
+			 <div id="fragment-<?php echo $tab_id; ?>" class="ui-tabs-panel">
+				<img src="<?php the_sub_field('background_image'); ?>" alt="<?php the_sub_field('title'); ?>" />        		
+				<div class="left">&nbsp;</div>
+				<div class="right">
+					<div class="inner">
+						<p class="header"><?php the_sub_field('title'); ?></p>
+						<p><?php the_sub_field('description'); ?></p>			
+					</div>
+				</div>
+			 </div>        
+				
+			<?php 
+				// add tabs
+				$tabs .= '<li class="ui-tabs-nav-item" id="nav-fragment-'.$tab_id.'"><a href="#fragment-'.$tab_id.'"><img src="'.get_sub_field('icon').'"/><div>'.get_sub_field('title').'</div></a></li>';
+			?>			
+		<?php endwhile; ?>	 
+	<?php endif; ?>	
+		 
 	 <!-- tabs -->
 		<ul class="ui-tabs-nav">
-		  <li class="ui-tabs-nav-item" id="nav-fragment-1"><a href="#fragment-1"><img src="<?php bloginfo('template_url'); ?>/img/plane.png"/><div>Going Travelling?</div></a></li>
-		  <li class="ui-tabs-nav-item" id="nav-fragment-2"><a href="#fragment-2"><img src="<?php bloginfo('template_url'); ?>/img/goggles.png"/><div>It's influenza season</div></a></li>
-		  <li class="ui-tabs-nav-item" id="nav-fragment-3"><a href="#fragment-3"><img src="<?php bloginfo('template_url'); ?>/img/boxnotes.png"/><div>Get An Appointment</div></a></li>
+			<?php echo $tabs; ?>
 		</ul>	 
 	 
 	</div>
@@ -89,11 +83,7 @@
 				<li>Clinic #3</li>
 				<li>Clinic #4</li>
 				<li>Clinic #5</li>
-			</ul>
-																
-				
-			
-			
+			</ul>														
 	</div>
 
 

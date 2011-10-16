@@ -7,6 +7,12 @@
 !.gitignore
 !wp-content/
 
+# ignore drafts made by stupid programs
+*.*~
+
+# ignore sass cache
+.sass-cache/
+
 # Ignore everything in the "wp-content" directory, except the "plugins" and "themes" directories.
 wp-content/*
 !wp-content/plugins/
