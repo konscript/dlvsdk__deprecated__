@@ -10,29 +10,27 @@
 		<?php 
 			// define variables
 			$tab_id = 0; 
-			$tabs = "";						
+			$tabs = "";									
 		?>	
 		<?php while(the_repeater_field('tabs')): ?>    
 			<?php 
 				// increment tab id
 				$tab_id++; 
+				$tab_visibility = $tab_id > 1 ? "ui-tabs-hide" : "";
 			?>
 			
 			 <!-- tab content -->
-			 <div id="fragment-<?php echo $tab_id; ?>" class="ui-tabs-panel">
+			 <div id="fragment-<?php echo $tab_id; ?>" class="ui-tabs-panel <?= $tab_visibility ?>">
 				<img src="<?php the_sub_field('background_image'); ?>" alt="<?php the_sub_field('title'); ?>" />        		
-				<div class="left">&nbsp;</div>
-				<div class="right">
-					<div class="inner">
-						<p class="header"><?php the_sub_field('title'); ?></p>
-						<p><?php the_sub_field('description'); ?></p>			
-					</div>
+				<div class="inner">
+					<p class="header"><?php the_sub_field('title'); ?></p>
+					<p><?php the_sub_field('description'); ?></p>			
 				</div>
 			 </div>        
 				
 			<?php 
 				// add tabs
-				$tabs .= '<li class="ui-tabs-nav-item" id="nav-fragment-'.$tab_id.'"><a href="#fragment-'.$tab_id.'"><img src="'.get_sub_field('icon').'"/><div>'.get_sub_field('title').'</div></a></li>';
+				$tabs .= '<li class="ui-tabs-nav-item" id="nav-fragment-'.$tab_id.'"><a href="#fragment-'.$tab_id.'"><img src="'.get_sub_field('icon').'"/><span class="title">'.get_sub_field('title').'</span></a></li>';
 			?>			
 		<?php endwhile; ?>	 
 	<?php endif; ?>	

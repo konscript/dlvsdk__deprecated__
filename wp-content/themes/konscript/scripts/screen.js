@@ -9,7 +9,7 @@ jQuery.noConflict();
 	
 	// content slider on frontpage
 	function contentSlider(){
-		$("#featured > ul").tabs({fx:{opacity: "toggle", duration:"slow"}}).tabs("rotate", 10000, true);
+		$("#featured > ul").tabs({fx:{opacity: "toggle", duration:"slow"}}).tabs("rotate", 1000000000, true);
 	}	
 
 	// show/hide faq
