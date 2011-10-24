@@ -763,17 +763,20 @@ body.home .widget{
  * frontpage content slider 
  */
  #featured { 
- 
+
  	// height of content slider
 	$featured-height: 182px;
 	
 	// columns for right column (tabs)
-	$one_third: $body-container-cols * 1 / 3;
+	$one_third: floor($body-container-cols * 1 / 3);
 	
 	// columns for left colum (content)
-	$two_thirds: $body-container-cols * 2 / 3;;
+	$two_thirds: ceil($body-container-cols * 2 / 3);
+	
+
  
 	@include column($body-container-cols, true); 
+
 	position:relative; 
 	height:$featured-height; 
 	margin-bottom: $blueprint-grid-margin;
@@ -781,9 +784,13 @@ body.home .widget{
 
 	/* all tabs container */
 	ul.ui-tabs-nav{ 
-		list-style:none;	 
-		list-style-image: none;		
-		@include column($one_third, true); 
+		list-style:none outside none;
+		@include column($one_third, true);	
+
+
+		third: $one_third;		
+		half: $two_thirds;		
+		all: $body-container-cols;
 	}
 
 	/* single tab container  */
@@ -830,7 +837,8 @@ body.home .widget{
 	/* slider content */
 	.ui-tabs-panel{ 
 		// width of content column. Added a column more, since there should be no gap between tabs and content column
-		@include column($two_thirds + 1, true); 		
+		@include column($two_thirds + 0.95, true); 		
+
 		height:  $featured-height;							
 		position: relative;
 		overflow:hidden;
