@@ -736,12 +736,81 @@ class Acf
 	/*--------------------------------------------------------------------------------------
 	*
 	*	update_value
+<<<<<<< HEAD
+=======
 	*
 	*	@author Elliot Condon
 	*	@since 3.0.0
 	* 
 	*-------------------------------------------------------------------------------------*/
 	
+	function update_value($post_id, $field, $value)
+	{
+		$this->fields[$field['type']]->update_value($post_id, $field, $value);
+	}
+	
+	
+	/*--------------------------------------------------------------------------------------
+	*
+	*	update_field
+	*
+	*	@author Elliot Condon
+	*	@since 3.0.0
+	* 
+	*-------------------------------------------------------------------------------------*/
+	
+	function update_field($post_id, $field)
+	{
+		// format the field (select, repeater, etc)
+		$field = $this->pre_save_field($field);
+		
+		// save it!
+		update_post_meta($post_id, $field['key'], $field);
+	}
+	
+	
+	/*--------------------------------------------------------------------------------------
+	*
+	*	pre_save_field
+	*
+	*	@author Elliot Condon
+	*	@since 3.0.0
+	* 
+	*-------------------------------------------------------------------------------------*/
+	
+	function pre_save_field($field)
+	{
+		// format the field (select, repeater, etc)
+		return $this->fields[$field['type']]->pre_save_field($field);
+	}
+	
+	
+	/*--------------------------------------------------------------------------------------
+	*
+	*	format_value_for_input
+	*
+	*	@author Elliot Condon
+	*	@since 3.0.0
+	* 
+	*-------------------------------------------------------------------------------------*/
+	
+	//function format_value_for_input($value, $field)
+	//{
+	//	return $this->fields[$field['type']]->format_value_for_input($value, $field);
+	//}
+	
+	
+	/*--------------------------------------------------------------------------------------
+	*
+	*	format_value_for_api
+>>>>>>> 737e3c4717907151e8cba57eb67e5df80a185152
+	*
+	*	@author Elliot Condon
+	*	@since 3.0.0
+	* 
+	*-------------------------------------------------------------------------------------*/
+	
+<<<<<<< HEAD
 	function update_value($post_id, $field, $value)
 	{
 		$this->fields[$field['type']]->update_value($post_id, $field, $value);
@@ -809,6 +878,10 @@ class Acf
 	
 	function format_value_for_api($value, $field)
 	{
+=======
+	function format_value_for_api($value, $field)
+	{
+>>>>>>> 737e3c4717907151e8cba57eb67e5df80a185152
 		if(!isset($this))
 		{
 			// called form api!
@@ -1034,10 +1107,17 @@ class Acf
 				return false;
 			}
 		}
+<<<<<<< HEAD
 		
 		
 		
 		
+=======
+		
+		
+		
+		
+>>>>>>> 737e3c4717907151e8cba57eb67e5df80a185152
 		switch ($rule['param']) {
 		
 			// POST TYPE
@@ -1434,6 +1514,8 @@ class Acf
 	
 	function is_field_unlocked($field_name)
 	{
+		return true;
+
 		switch ($field_name) {
 		    case 'repeater':
 		    	if(md5($this->get_license_key($field_name)) == "bbefed143f1ec106ff3a11437bd73432"){ return true; }else{ return false; }
