@@ -8,6 +8,7 @@
 @import "compass/css3/transition";
 @import "compass/css3/gradient";
 @import "compass/css3/opacity";
+@import "compass/utilities/general/clearfix";
 
 // If you are doing a lot of stylesheet concatenation, it is suggested
 // that you scope your blueprint styles, so that you can better control
@@ -370,6 +371,13 @@ img.wp-smiley {}
 		font-size:11px;
 	}	 
 	
+	// hide category name in submenu
+	#sidebar li.categories,
+	#sidebar li.pagenav {
+		list-style-type: none;
+		h2 { display:none; }
+	}			
+	
 	#sidebar ul {
 		list-style-type:none;
 	}
@@ -605,11 +613,6 @@ img.wp-smiley {}
 	// Widgets in general
 	.widget {}
 	
-		// hide category name in submenu
-		#sidebar li.categories{
-			list-style-type: none;
-			h2 { display:none; }
-		}		
 		.widget-inside {}
 			.widget-title {}
 
@@ -721,7 +724,7 @@ div.wpcf7{
 }
 
 /**
- * frontpage
+ * frontpage widgets
  **/
 
 body.home .widget{
@@ -744,7 +747,9 @@ body.home .widget{
 	@include column( $body-container-cols / 3); 	
 }
 #column-center {
-	@include column( $body-container-cols / 3); 		
+	@include column( $body-container-cols / 3); 			
+	.mapText {margin-top: 10px}
+	.world_map_thumbs img {width: 90%;}		
 }
 #column-right {
 	@include column( $body-container-cols / 3, true); 
@@ -758,6 +763,31 @@ body.home .widget{
 	
 	.bookingimage {float:right; height:140px; margin-top: 40px;}
 }
+
+// search-as-you-type for countries (in #column-center)
+.ui-autocomplete {
+  padding: 0;
+  list-style: none;
+  background-color: #fff;
+  width: 218px;
+  border: 1px solid #B0BECA;
+  max-height: 350px;
+  overflow-y: scroll;
+}
+.ui-autocomplete .ui-menu-item a {
+  border-top: 1px solid #B0BECA;
+  display: block;
+  padding: 4px 6px;
+  color: #353D44;
+  cursor: pointer;
+}
+.ui-autocomplete .ui-menu-item:first-child a {
+  border-top: none;
+}
+.ui-autocomplete .ui-menu-item a.ui-state-hover {
+  background-color: #D5E5F4;
+  color: #161A1C;
+} 
 
 /**
  * frontpage content slider 
@@ -871,18 +901,15 @@ body.home .widget{
 	
 }
 
-/**
- * faq
- **********************************/
- .single-faq{
- 	.answer {
- 		display:none; 
- 		margin-bottom: 10px;
-	}
- }
+/*
+ *
+ *	CUSTOM POST TYPES
+ *
+ *
+ *****************************************************************/    
  
  /**
-  * vaccinations
+  * vaccination
   **********************************/
 	table#vaccinations{
 		width:100%;
@@ -902,8 +929,63 @@ body.home .widget{
   		}
   }
   
+ /**
+  * country
+  **********************************/  
+  .country{
+
+	// book button
+	h1 { float:left;	}  	
+	.button { 
+		display: block;
+		float: left;
+		margin-top: 16px;
+		margin-left: 15px;
+	}
+	
+	#purposes{
+		float: left;
+		margin-right: 20px;
+	}
+
+  	// single purpose container
+  	div.vaccinations {  	  	
+		padding: 10px 0;
+		
+		// title
+		.purpose{
+			font-weight:bold;
+			font-size: 1.2em;
+		}
+  	}
+  
+  }
+  
+
+/*
+ * jQuery scripts styled
+ ******/
+ 
+ // show/hide slidedown
+ .slidedown{
+ 	.title {cursor: pointer;}
+ 	.content {
+ 		display:none; 
+ 		margin-bottom: 5px;
+ 		padding-bottom: 5px;
+ 		border-bottom: 1px solid #ddd;
+	}	
+ } 
+ 
+ /*
+  * Generic Fixes
+  *****/
+	.clearfix{
+		@include clearfix;
+	}  
+
 /**
- * wysiwyg styles
+ * WP style: wysiwyg styles
  ********************************/
 img.alignright {float:right; margin:0 0 1em 1em}
 img.alignleft {float:left; margin:0 1em 1em 0}

@@ -29,7 +29,7 @@ function faq_register() {
    'publicly_queryable' => true,
    'show_ui' => true,
    'query_var' => true,
-   'menu_position' => 5,
+   //'menu_position' => 1,
    '_builtin' => false, // It's a custom post type, not built in!
    'menu_icon' => get_stylesheet_directory_uri() . '/img/icon_article.png',
    'rewrite' => array('slug' => 'faq', 'with_front' => false),

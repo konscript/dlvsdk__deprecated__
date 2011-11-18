@@ -35,4 +35,13 @@ function remove_footer_admin () {
 }
 
 add_filter('admin_footer_text', 'remove_footer_admin');
+
+// debug outputting
+function debug($output){
+	$debug = "<pre>";
+	$debug .= print_r($output, true);	
+	$debug .= "<pre>";	
+
+	echo $debug; 
+}
 ?>

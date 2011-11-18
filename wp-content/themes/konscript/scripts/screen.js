@@ -5,6 +5,8 @@ jQuery.noConflict();
 	$(document).ready(function() {	
 		contentSlider();
 		toggleFaq();	
+		showWorldMap();   
+		travelguide();
 	});
 	
 	// content slider on frontpage
@@ -14,10 +16,27 @@ jQuery.noConflict();
 
 	// show/hide faq
 	function toggleFaq(){
-		$('.single-faq .question').click(function() {	
-			$(this).next('.answer').toggle(200, 'swing');
+		$('.slidedown .title').click(function() {	
+			$(this).next('.content').toggle(200, 'swing');
 			return false;
 		});			
+	}	
+	
+	// show world map to click on
+	function showWorldMap(){
+		$("#world_map_thumb").fancybox({
+			'titlePosition'		: 'inside',
+			'transitionIn'		: 'elastic',
+			'transitionOut'		: 'elastic'
+		});	
+	}
+	
+	function travelguide(){
+		// display submit button for js-enabled users
+		$('#travelguide [type=submit]').hide();
+			
+		// search as you type on country finder
+		$('select#country-selector').selectToAutocomplete();	
 	}
 	
 })(jQuery);
