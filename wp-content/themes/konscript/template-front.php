@@ -75,7 +75,7 @@ get_header();
 			<h3>Online Booking</h3>
 			
 			<p class="header">Book you time now - it's easy!</p>			
-			<a class="button" href="#">Book!</a>
+			<a class="button" href="/clinics">Book!</a>
 			
 			Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
 			
