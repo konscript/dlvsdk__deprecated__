@@ -5,6 +5,7 @@
 # CREATE COUNTRY POST TYPE #
 ################################
 **/	
+//register custom post type
 add_action('init', 'country_register');
 
 function country_register() {
@@ -29,7 +30,7 @@ function country_register() {
    'publicly_queryable' => true,
    'show_ui' => true,
    'query_var' => true,
-   //'menu_position' => 1,
+   'menu_position' => 3,
    '_builtin' => false, // It's a custom post type, not built in!
    'menu_icon' => get_stylesheet_directory_uri() . '/img/icon_article.png',
    'rewrite' => array('slug' => 'country', 'with_front' => false),
@@ -41,5 +42,7 @@ function country_register() {
    
    register_post_type('country', $args);
 }
+
+
 
 ?>

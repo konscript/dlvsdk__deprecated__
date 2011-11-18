@@ -12,10 +12,12 @@ require_once 'functions/setup.php';
 // meta box class
 require_once 'functions/meta-box/meta-box.class.php';
 
-// custom post type scripts.
+// register custom post types and taxonomies
 require_once('functions/post-type-faq.php');
 require_once('functions/post-type-vaccination.php');
 require_once('functions/post-type-country.php');
+require_once('functions/post-type-clinic.php');
+require_once('functions/post-type-region.php');
 
 // menus
 require_once 'functions/menu-general.php';
