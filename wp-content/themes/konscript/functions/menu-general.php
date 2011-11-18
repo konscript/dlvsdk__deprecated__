@@ -4,6 +4,7 @@
 add_filter('body_class','my_class_names');
 function my_class_names($classes) {
 	
+	// will output "-2" if the option "Don't show menu" has been chosen
 	$submenu = build_submenu();
 	
 	if($submenu == -2){
@@ -14,15 +15,25 @@ function my_class_names($classes) {
 }
 
 // output submenu 
-function get_submenu() {
-	$submenu = build_submenu();
+function get_submenu($supplied_menu = false) {
+
+	if($supplied_menu == false){
+		$submenu = build_submenu();
 	
-	// submenu isn't hidden
-	if($submenu != -2){
-		echo '
-		<div id="sidebar"> &nbsp;
-			'.$submenu.'
-		</div>';
+		// submenu isn't hidden
+		if($submenu != -2){
+			echo '
+			<div id="sidebar"> &nbsp;
+				'.$submenu.'
+			</div>';
+		}
+		
+	// a menu was supplied
+	}else{
+			echo '
+			<div id="sidebar"> &nbsp;
+				'.$supplied_menu.'
+			</div>';
 	}
 }
 
@@ -38,7 +49,7 @@ function build_submenu(){
 		
 		// single post (not page)
 		if(is_single()){	
-			$page_id = getPageIDOfCurrentCustomPostType();							
+			$page_id = getPageIDOfCurrentCustomPostType();												
 			
 			// get menu ID
 			$menu_id = get_post_meta($page_id, 'dpm_page-menu-id', true);

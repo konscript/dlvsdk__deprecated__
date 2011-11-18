@@ -11,12 +11,12 @@
 		'order'           => 'DESC',
 		'post_type'       => 'faq'); ?>		
 		
-		 <?php $vaccinations = get_posts( $args ); ?> 
+		 <?php $faqs = get_posts( $args ); ?> 
 
-		 <?php foreach($vaccinations as $vaccination):?>	
-	 	<div class="single-faq">
-			<a href="" class="question"><?php echo $vaccination->post_title; ?></a>
-			<p class="answer"><?php echo $vaccination->post_content; ?></p>
+		 <?php foreach($faqs as $faq):?>	
+	 	<div class="slidedown">
+			<a href="#" class="title"><?php echo $faq->post_title; ?></a>
+			<p class="content"><?php echo $faq->post_content; ?></p>
 		</div>
 	 	<?php endforeach; ?>
 	</div><!-- #content -->

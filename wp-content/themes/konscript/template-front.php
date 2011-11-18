@@ -1,9 +1,11 @@
 <?php /* Template Name: Frontpage*/ ?>
-
-<?php get_header(); ?>
+<?php
+// redirect for country selector
+redirectTravelGuide();
+get_header(); 
+?>
 
 <div id="content">	
-
 	<div id="featured" >
 	
 	<?php if(get_field('tabs')): ?>
@@ -56,8 +58,12 @@
 		<p>This center_column is widget ready! Add one in the admin panel.</p>
 	<?php endif; */?>
 	
-			<h3>Our Clinics</h3>
-			<img src="<?php bloginfo('template_url'); ?>/img/clinic_map.png" />
+			<h3>Where are you going?</h3>
+			<p>Type your destination:</p>			
+			<?php travelguide(); ?>			
+			
+			<p class="mapText">Or click map to find destination:</p>
+			<a id="world_map_thumb" href="<?php bloginfo('template_url'); ?>/ajax/world_map.htm"><img src="<?php bloginfo('template_url'); ?>/img/world_map_thumb.png" /></a>
 	</div>
 		
 	<div class="frontpage-widgets" id="column-right">
@@ -87,4 +93,9 @@
 
 </div><!--#end content -->
 
+<div style="display: none;">
+	<div id="world_map_big" style="width:800px;overflow:auto;">
+		<img src="<?php bloginfo('template_url'); ?>/img/world_map.png" />
+	</div>
+</div>
 <?php get_footer(); ?>
