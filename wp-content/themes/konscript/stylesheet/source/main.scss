@@ -1,0 +1,981 @@
+/**
+ * Main (main.scss)
+ */
+
+// Load the base
+@import "_base";
+@import "compass/css3/border-radius";
+@import "compass/css3/transition";
+@import "compass/css3/gradient";
+@import "compass/css3/opacity";
+@import "compass/utilities/general/clearfix";
+
+// If you are doing a lot of stylesheet concatenation, it is suggested
+// that you scope your blueprint styles, so that you can better control
+// what pages use blueprint when stylesheets are concatenated together.
+body.bp {
+  @include blueprint-typography(true);
+  @include blueprint-utilities;
+  @include blueprint-debug;
+  @include blueprint-interaction;
+}
+
+form.bp {
+  @include blueprint-form;
+  }
+
+
+/**
+ * Variables
+ *****/
+$margin: $blueprint-grid-margin;
+$quiet-color: lighten($font-color, 40%);
+$body-container-cols: $blueprint-grid-columns - 2;
+$radius: 5px;
+
+/**
+ * Body
+ ************************************************/
+// Contains everything
+html, body{
+	//height:100%;
+}
+
+body {
+	font-size:12px;
+	line-height: 14pt;
+	font-style:normal;
+	font-family: $typography-family-primary;
+	color:$color-primary;
+	background-image: url('../../img/bg.gif');
+	background-repeat:repeat-x;
+	background-color: #b2b2b2;		
+}
+
+
+	#wrapper {
+		@include container;		
+		margin: 0 auto;
+		overflow: hidden;		
+		background-color: #fff;	
+		min-height:100%;
+	}
+	
+	// Wrapper for everything inside of the body
+	#body-container {
+		@include prepend(1);
+		@include column($body-container-cols, true); 
+		@include append(1);		
+	}
+
+/**
+ * Elements
+ ************************************************/
+
+// Hyperlinks 
+a {
+	text-decoration: none;
+	outline:none;
+	color: $link-color;
+}
+a:visited {}
+a:hover {
+	color: $link-color;
+	text-decoration: underline;
+}
+a:active {}
+
+
+h1, h2, h3, h4, h5, h6 {
+	color: #1F1E1D;
+	//padding-bottom: .4em;
+	margin-bottom: 10px;
+}
+
+// Headers 
+h1 {
+	font-size: 35px;
+	line-height: normal;
+	font-weight: normal;
+	font-family: Georgia;
+	color: black;
+	margin-top: 10px;
+}
+
+h2{
+	font-size:23px;
+	font-weight:normal;
+	font-family:Georgia;
+	color:#000000;
+}
+
+h3 {
+	font-size:18px;
+	font-weight:normal;
+	font-family:Georgia;
+	color:#000000;
+}
+	
+h4 {}
+h5 {}
+h6 {}
+
+// Text elements 
+strong {}
+em {}
+cite {}
+abbr {}
+acronym {}
+sup {}
+sub {}
+address {}
+ins {}
+dfn {}
+del {}
+
+// Paragraphs 
+p {}
+
+// Unordered lists 
+ul {}
+	ul li {}
+	
+/* ul */
+ul.nodots {
+	padding:0;
+	margin:0;
+	list-style-type:none;
+}
+
+ul {
+	list-style: inside url(../../img/dlvs-12.png);	
+	margin:0 0 10px 0;
+}
+
+ul li { 
+	margin:0 0 5px 0;
+}	
+
+// Ordered lists 
+ol {}
+	ol li {}
+
+// Defition lists 
+dl {}
+	dt {}
+	dd {}
+
+// Blockquotes 
+blockquote {}
+	blockquote blockquote {}
+	blockquote em {}
+
+// Object 
+object {}
+
+// Code 
+code {}
+pre {}
+pre code {}
+
+// Tables 
+table {}
+	caption {}
+	tr {}
+	th {}
+	td {}
+
+// Forms 
+form {}
+	textarea {}
+	input {}
+	label {}
+	option {}
+
+// Notes 
+.note {}
+
+// Warnings/Alerts
+.warning, .alert {}
+
+// Errors
+.error {}
+
+// Downloads
+.download {}
+
+// Alignment
+.left, .alignleft {}
+.right, .alignright {}
+.center, .aligncenter {}
+.block, .alignnone {}
+.clear{clear:both;}	
+
+// general headers
+p.header {
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+/**
+ * Images
+ ************************************************/
+
+// Normal images
+img {}
+a img {}
+
+// WP Smilies
+img.wp-smiley {}
+
+// Thumbnails
+.thumbnail {}
+
+// WP Captions [caption]
+.wp-caption {}
+	.wp-caption img {}
+	.wp-caption p {}
+
+// Gallery [gallery]
+.gallery {}
+	.gallery img {}
+
+// Avatars
+.avatar {}
+
+/**
+ * Header
+ ************************************************/
+
+// Contains entire header
+#header-container {}
+
+	// Contains site title and tagline
+	#header {
+		@include column($body-container-cols, true); 
+		height:120px;
+		margin: $blueprint-grid-margin 0;
+	}
+	
+		#logo{
+			@include column($body-container-cols / 2); 
+			height: 67px;
+		}
+		
+		#tools{			
+			@include column($body-container-cols / 2, true); 
+			text-align:right;
+			font-size: 11px;			
+			a {	color: $quiet-color; }
+						
+		}		
+
+		// Site title
+		#site-title {}
+			#site-title a {}
+				#site-title a span {}
+
+		// Site description/tagline
+		#site-description {}
+
+/**
+ * Primary Menu
+ ************************************************/
+	
+	// Wrapper for entire menu area
+	#primary-menu {
+		overflow:hidden;	
+		float:left;
+		@include column($body-container-cols, true); 
+		height:50px;
+ 		background: url('../../img/menubg.gif') repeat-x left center;  
+ 		@include border-radius($radius);
+	}
+
+		// Menu list.
+		$searchform-cols: 9;
+		#primary-menu ul {
+				list-style: none;
+				@include column($body-container-cols - $searchform-cols); 
+		}
+			#primary-menu li {
+				float:left;
+				line-height:50px;				
+			}
+				#primary-menu li a {   	
+					display:block;			
+					padding-left: 11px;	
+					padding-right: 11px;
+					color:#ffffff;
+					text-decoration:none;
+					border-right: 2px groove #BBB;
+				}
+				
+				// rounded corners on very first menu item
+				#primary-menu li:first-child a {   	
+			 		@include border-radius($radius 0 0 $radius);					
+				}
+
+				// selected item AND hovered item 
+				#primary-menu li a:hover,			
+				#primary-menu li.current-menu-item a,
+				#primary-menu li.current-menu-parent a,
+				#primary-menu li.current-post-parent a,
+				#primary-menu li.current_page_parent a,
+				#primary-menu li.current-page-ancestor a				
+				{					
+					background:url('../../img/menu_on.gif') repeat-x;
+					border-right: 2px solid #bc2127;
+			
+				}
+				
+				// search form
+				#primary-menu #searchform{	
+					@include column($searchform-cols, true);					
+					text-align:right;
+					height:22px;
+					position:relative;
+					margin-top:12px;
+					 											
+				}
+				
+				// search field
+				#primary-menu #searchform .field{				
+					width: 80px;
+					border: 0;
+					padding: 2px;
+			 		@include border-radius(2px);	
+					vertical-align: middle;	 						
+				}
+				
+				// search button
+				#primary-menu #searchform .submit{
+					background: url('../../img/search_button.gif') no-repeat top center;
+					border : none;
+					color : transparent;
+					font-size : 0;
+					cursor: pointer;
+					height: 22px;
+					width: 46px;	
+					vertical-align: middle;	
+				}
+			
+
+/** 
+ * Secondary Menu					
+ **********/
+ 
+	#sidebar {
+		$sidebar-columns: floor($body-container-cols / 4);
+		@include column($sidebar-columns); 
+		font-size:11px;
+	}	 
+	
+	// hide category name in submenu
+	#sidebar li.categories,
+	#sidebar li.pagenav {
+		list-style-type: none;
+		h2 { display:none; }
+	}			
+	
+	#sidebar ul {
+		list-style-type:none;
+	}
+	#sidebar ul li {
+		display:inline;
+		height:30px;
+		line-height:30px;
+
+	}
+	#sidebar ul li a {
+		color:#000000;
+		float:left;
+		text-decoration:none;
+		width:100%;
+		background:url('../../img/submenu_off.gif') no-repeat;
+		background-position:7px 50%;
+		text-indent: 30px;
+		border-bottom: 1px solid #eee;
+	}
+	#sidebar ul li a:hover,
+	#sidebar ul .current-menu-item a,
+	#sidebar ul .current-cat a {
+		background:url('../../img/submenu_on.gif') no-repeat;
+		background-position:0 50%;
+		color:#000000;
+		text-decoration:underline;
+		font-weight: normal;
+		border-bottom: 1px solid #eee;
+	}
+/**
+ * Containers below the header and navigation
+ ************************************************/
+
+// Wrapper for the content and primary/secondary widget sections
+#container {}
+
+	/**
+	 * Content
+	 ************************************************/	
+
+	// Content for pages with sidebar
+    $content-cols:ceil(3 * $body-container-cols / 4);
+	#content {
+		@include column($content-cols, true);
+	}
+	
+	// Content without sitebar OR frontpage-template
+	body.sidebar-hidden #content,
+	body.home #content	
+	{
+		@include column($body-container-cols, true); 
+	}	
+
+		// Breadcrumb trail
+		.breadcrumb {}
+			.breadcrumb-trail {}
+
+		// Archive and search <div> before posts are listed
+		.archive-info
+		.author-info {}
+		.term-info
+		.category-info {}
+		.tag-info {}
+		.date-info {}
+		.search-info {}
+
+			// Archive and search page titles.
+			.archive-title
+			.author-title {}
+			.term-title {}
+			.category-title {}
+			.tag-title {}
+			.date-title {}
+			.search-title {}
+
+		// Entry wrapper <div>
+		.hentry {}
+		.post { margin-bottom: $margin;}
+		.page {}
+
+			// Post, page, and 404 page titles
+			.entry-title {}
+			.post-title {}
+			.page-title {}
+			.attachment-title {}
+			.error-404-title {}
+
+			// Author and date byline
+			.byline {}
+
+			// Full entries
+			.entry-content {}
+
+			// Excerpts (introduced)
+			.entry-summary {}
+
+				// Using <!--nextpage-->
+				p.page-links a {}
+
+				// More link <!--more-->
+				a.more-link {}
+
+			// Entry metadata
+			.entry-meta {}
+			
+			// read more link
+			a.button{ 
+				margin: 5px 0;
+				padding: 5px; 
+				background-color: #d1211c;
+				color: white;
+				text-transform:uppercase;
+				@include border-radius(2px);
+				font-size: 0.9em;
+				@include transition(background-color, 0.4s);
+			}
+			
+			a.button:hover{
+				background-color: #820f13;
+				text-decoration:none;
+			}
+
+		// Post series
+		.series {} 
+			.series-title {}
+
+		// Navigation links
+		.navigation-links {}
+			.navigation-links .previous {}
+			.navigation-links .next {}
+
+		// WP PageNavi (plugin)
+		.wp-pagenavi {}
+			.wp-pagenavi .pages {}
+			.wp-pagenavi .current {}
+			.wp-pagenavi .extend {}
+			.wp-pagenavi a {}
+
+		// Attachment image navigation
+		.navigation-attachment {}
+
+		/**
+		 * Comments template
+		 ************************************************/
+
+		// Wrapper for entire comments area
+		#comments-template {}
+
+			// Comments section headers/titles
+			.comments-header {}
+			#comments-number {}
+
+			// Comments closed paragraph
+			p.comments-closed {}
+
+				// Main comments section
+				#comments {}
+					#comments ol {}
+
+						// Individual comments (note that WordPress has even/odd backwards)
+						#comments li {}
+							#comments li li {}
+								#comments li li li {}
+									#comments li li li li {}
+						#comments li.even {}
+						#comments li.odd {}
+						#comments li.thread-even {}
+						#comments li.thread-odd {}
+						#comments li.author {}
+						#comments li.trackback {}
+						#comments li.pingback {}
+
+							// Comment avatars
+							#comments .avatar {}
+
+							// Comment metadata
+							#comments .comment-meta {}
+								#comments .comment-meta cite {}
+
+							// Comment text
+							#comments .comment-text {}
+
+					// Paged comments navigation
+					#comments-template .paged-navigation {}
+						#comments-template .paged-navigation .page-numbers {}
+						#comments-template .paged-navigation .next {}
+						#comments-template .paged-navigation .prev {}
+
+				// Main comment form div
+				#respond {}
+
+					// Comment form title
+					#reply {}
+
+					// Comment form elements
+					p#cancel-comment-reply {}
+					#respond form {}
+						#respond .form-author {}
+							#respond input {}
+						#respond .form-email {}
+						#respond .form-url {}
+						#respond .form-textarea {}
+							#respond textarea {}
+						#respond #submit {}
+							#respond #submit:hover {}
+
+		/**
+		 * Utility widget sections (see other widget code below)
+		 ************************************************/
+
+		// All utility widget sections (except widgets template)
+		.utility {}
+
+		// Before content
+		#utility-before-content {}
+
+		// After content
+		#utility-after-content {}
+
+		// After post but before comments
+		#utility-after-single {}
+
+		// After page but before comments
+		#utility-after-page {}
+
+		// Widgets page template widgets
+		.page-template-widgets #content .widget {}
+
+	/**
+	 * Widget sections (Primary and Secondary)
+	 ************************************************/
+
+	// Widgets in general
+	.widget {}
+	
+		.widget-inside {}
+			.widget-title {}
+
+	// Primary widget section
+	#primary {}
+		#primary .widget {}
+			#primary .widget-inside {}
+				#primary .widget-title {}
+				#primary .widget ul {}
+					#primary .widget ul li {}
+
+	// Secondary widget section
+	#secondary {}
+		#secondary .widget {}
+			#secondary .widget-inside {}
+				#secondary .widget-title {}
+				#secondary .widget ul {}
+					#secondary .widget ul li {}
+
+/**
+ * Footer
+ ************************************************/
+
+// Wrapper for the entire footer
+#footer-container {}
+
+	// Subsidiary widget section
+	#subsidiary {}
+		#subsidiary .widget {}
+			#subsidiary .widget-inside {}
+				#subsidiary .widget-title {}
+
+	// Footer section
+	#footer {
+		@include column($body-container-cols, true); 	
+	}
+
+		#footer .text {	
+			@include column(7 * $body-container-cols / 8); 			
+			margin-top: $margin;
+			padding-top: $margin / 2;
+			border-top: solid 1px #EEEDED;
+			color: #898887;
+			font-size: 11px;
+		}
+		
+		#footer .logo {	
+			@include column(1 * $body-container-cols / 8, true); 	
+			text-align:right;				
+		}
+		
+		
+
+		// Footer extra
+		#footer .copyright {}
+		#footer .credit {}
+		
+/****************************************************/
+
+
+/**
+ * Contact form 7
+ **/	
+
+//for embeded form in iframe 
+body.page-template-template-iframe-php{
+	background-color:white;
+	background-image:none;
+
+	div.wpcf7 {
+		background-color:white;
+		padding-bottom: 30px;
+	}
+}
+
+div.wpcf7{
+	// error message for select box (title)
+	.wpcf7-form-control-wrap.title span.wpcf7-not-valid-tip {
+		position: static;
+	}
+	
+	// error message for textarea (address)
+	.wpcf7-form-control-wrap.address span.wpcf7-not-valid-tip {
+		top: -10px;
+	}	
+
+	// general error message
+	.wpcf7-not-valid-tip{
+		position:absolute;
+		top: -1px;
+		padding: 0;
+		margin: 0;
+		left: 2%;
+		border:0;
+		color:red;
+		background: none;
+		font-size: 0.8em;
+	}
+	// general positioning of fields
+	.input-field { margin-bottom:10px; }
+	.input-field input, .input-field textarea { width: 300px; }
+	
+	//positioning of title, first- and last name
+	.multiple-fields{ float:left; }
+	.multiple-fields { margin-right: 10px; }
+	.multiple-fields.title, .multiple-fields.title .input-field select{ width: 60px;}
+	.multiple-fields.first-name, .multiple-fields.first-name .input-field input{ width: 110px;}
+	.multiple-fields.last-name, .multiple-fields.last-name .input-field input{ width: 110px;}
+}
+
+/**
+ * frontpage widgets
+ **/
+
+body.home .widget{
+	margin-bottom: $margin;
+}
+
+#content .frontpage-column{
+	overflow:hidden;
+}
+
+#content .frontpage-column h3 {
+	text-indent: 25px;
+	height: 30px;
+	line-height: 30px;
+	background: url(../../img/reddot.png) center left no-repeat;
+	padding: 0;
+}
+
+#column-left {
+	@include column( $body-container-cols * 2 / 3); 	
+}
+#column-right {
+	@include column( $body-container-cols / 3, true); 
+	
+	a.button{
+		float:right;
+		margin:2px 5px;
+	}
+	
+	#clinics{ margin-top: 30px;	}	
+	.bookingimage {float:right; height:140px; margin-top: 40px;}
+}
+
+// search-as-you-type for countries (in #column-center)
+.ui-autocomplete {
+  padding: 0;
+  list-style: none;
+  background-color: #fff;
+  width: 218px;
+  border: 1px solid #B0BECA;
+  max-height: 350px;
+  overflow-y: scroll;
+}
+.ui-autocomplete .ui-menu-item a {
+  border-top: 1px solid #B0BECA;
+  display: block;
+  padding: 4px 6px;
+  color: #353D44;
+  cursor: pointer;
+}
+.ui-autocomplete .ui-menu-item:first-child a {
+  border-top: none;
+}
+.ui-autocomplete .ui-menu-item a.ui-state-hover {
+  background-color: #D5E5F4;
+  color: #161A1C;
+} 
+
+/**
+ * frontpage content slider 
+ */
+ #featured { 
+
+ 	// height of content slider
+	$featured-height: 182px;
+	
+	// columns for right column (tabs)
+	$one_third: floor($body-container-cols * 1 / 3);
+	
+	// columns for left colum (content)
+	$two_thirds: ceil($body-container-cols * 2 / 3);
+	
+
+ 
+	@include column($body-container-cols, true); 
+
+	position:relative; 
+	height:$featured-height; 
+	margin-bottom: $blueprint-grid-margin;
+	border: 1px solid #ccc;	
+
+	/* all tabs container */
+	ul.ui-tabs-nav{ 
+		list-style:none outside none;
+		@include column($one_third, true);	
+
+
+		third: $one_third;		
+		half: $two_thirds;		
+		all: $body-container-cols;
+	}
+
+	/* single tab container  */
+	ul.ui-tabs-nav li{ 
+		@include linear-gradient(color-stops(#f9f9f9, #eee));
+		border-left: 1px solid #ccc;
+		border-bottom: 1px solid #ccc;		
+		margin: 0;
+		text-indent: 0px;
+	}
+
+	/* single tab link */
+	ul.ui-tabs-nav li.ui-tabs-nav-item a{ 
+		padding: 5px 0;
+		display:block;
+		text-decoration: none;
+		height:50px; 
+		color:#000;  
+		font-size: 16px;		
+	}
+
+	// image
+	ul.ui-tabs-nav li.ui-tabs-nav-item a img{	 
+		margin: 5px 20px;
+		width: 40px;
+		vertical-align:middle;
+	}
+
+	// text
+	ul.ui-tabs-nav li.ui-tabs-nav-item a .title{ 
+		line-height: 40px;
+		margin-top: 5px;
+	}
+	/* selected/hovered tab */
+	ul.ui-tabs-nav li.ui-tabs-nav-item:hover,
+	ul.ui-tabs-nav li.ui-tabs-selected{
+		background-image: url(../../img/content-slider-active-icon.png);
+		background-position: 95% 50%;
+		background-repeat: no-repeat;		
+	}
+
+
+
+	/* slider content */
+	.ui-tabs-panel{ 
+		// width of content column. Added a column more, since there should be no gap between tabs and content column
+		@include column($two_thirds + 0.95, true); 		
+
+		height:  $featured-height;							
+		position: relative;
+		overflow:hidden;
+		
+		img {
+			position:absolute;
+			top:0;
+			left: 0;
+			z-index: 1;
+		}				
+		
+		div.inner {
+			position:relative;
+			z-index: 2;	
+			@include column($one_third, true); 		
+			float:right;
+			padding: $blueprint-grid-margin;
+			height:  $featured-height;			
+			border-left: 1px solid #ccc;
+
+			/* Opacity and fall-back for browsers that don't support rgba */	
+			background: rgb(255,255,255); 
+			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99ffffff, endColorstr=#99ffffff);
+			-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99ffffff, endColorstr=#99ffffff)";
+			background: rgba(255,255,255, .6);
+		}
+		
+	}
+	.ui-tabs-panel.ui-tabs-hide{ display:none; }
+	
+}
+
+/*
+ *
+ *	CUSTOM POST TYPES
+ *
+ *
+ *****************************************************************/    
+ 
+ /**
+  * vaccination
+  **********************************/
+	table#vaccinations{
+		width:100%;
+		margin-bottom: 10px;
+  	
+  		thead tr td{
+			font-weight: bold;
+  		}
+  		
+  		td{
+  			line-height: 25px;
+  		}
+  		
+  		
+  		tbody tr:nth-child(odd){
+  			background-color: #d5d5d5;
+  		}
+  }
+  
+ /**
+  * country
+  **********************************/  
+  div.post.country{
+
+	h1 { float: left;	}
+	.button { float: right; margin-top: 16px;}
+	
+	table#vaccinations_groups thead tr td {
+		font-weight: bold;
+	}
+
+	table#vaccinations_groups tr td:first-child	{
+		text-align:right;
+		font-weight: bold;
+	}
+	
+	table#vaccinations_groups tr td{
+		text-align:center;	
+		padding: 10px;
+	}
+  
+  }
+  
+
+/*
+ * jQuery scripts styled
+ ******/
+ 
+ // show/hide slidedown
+ .slidedown{
+ 	.title {cursor: pointer;}
+ 	.content {
+ 		display:none; 
+ 		margin-bottom: 5px;
+ 		padding-bottom: 5px;
+ 		border-bottom: 1px solid #ddd;
+	}	
+ } 
+ 
+ /*
+  * Generic Fixes
+  *****/
+	.clearfix{
+		@include clearfix;
+	}  
+
+/**
+ * WP style: wysiwyg styles
+ ********************************/
+img.alignright {float:right; margin:0 0 1em 1em}
+img.alignleft {float:left; margin:0 1em 1em 0}
+img.aligncenter {display: block; margin-left: auto; margin-right: auto}
+.alignright {float:right; }
+.alignleft {float:left; }
+.aligncenter {display: block; margin-left: auto; margin-right: auto}  
