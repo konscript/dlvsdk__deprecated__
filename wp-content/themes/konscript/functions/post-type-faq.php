@@ -5,7 +5,12 @@
 # CREATE FAQ POST TYPE #
 ################################
 **/
+
+// register custom post type
 add_action('init', 'faq_register');
+
+// register taxonomy
+add_action( 'init', 'faq_category_register');
 
 function faq_register() {
 
@@ -29,7 +34,7 @@ function faq_register() {
    'publicly_queryable' => true,
    'show_ui' => true,
    'query_var' => true,
-   //'menu_position' => 1,
+   'menu_position' => 3,
    '_builtin' => false, // It's a custom post type, not built in!
    'menu_icon' => get_stylesheet_directory_uri() . '/img/icon_article.png',
    'rewrite' => array('slug' => 'faq', 'with_front' => false),
@@ -42,4 +47,29 @@ function faq_register() {
    register_post_type('faq', $args);
 }
 
+function faq_category_register(){
+  // Add new taxonomy, make it hierarchical (like categories)
+  $labels = array(
+    'name' => _x( 'Categories', 'taxonomy general name' ),
+    'singular_name' => _x( 'Category', 'taxonomy singular name' ),
+    'search_items' =>  __( 'Search Categories' ),
+    'all_items' => __( 'All Categories' ),
+    'parent_item' => __( 'Parent Category' ),
+    'parent_item_colon' => __( 'Parent Category:' ),
+    'edit_item' => __( 'Edit Category' ), 
+    'update_item' => __( 'Update Category' ),
+    'add_new_item' => __( 'Add New Category' ),
+    'new_item_name' => __( 'New Category Name' ),
+    'menu_name' => __( 'Category' ),
+  ); 	
+  
+  $args = array(
+    'labels' => $labels,  
+    'hierarchical' => true,
+    'show_ui' => true,
+    'query_var' => true,
+    'rewrite' => array( 'slug' => 'faq_category' ),
+  );  
+  register_taxonomy('faq_category',array('faq'), $args);  
+}
 ?>

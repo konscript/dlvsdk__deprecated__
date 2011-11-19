@@ -7,38 +7,79 @@ $args = array(
 );
 $menu = "".wp_list_pages( $args ).""; 
 
-	get_submenu($menu); 
+get_submenu($menu); 
+
 ?>
 	<div id="content">
 		<?php if (have_posts()): while (have_posts()): the_post(); ?>
 		    <div class="post country">
 		        <h1><?php the_title(); ?></h1>	        		        
-		        <div class="post-content">		   		        			        	
-					<a href="/clinics?destination=<?php echo urlencode(the_title('', '', false)) ?>" class="button">Book vaccination</a>
-		        <div class="clear"></div>
+		        <div class="post-content">		   		        			
+		        	<?php
+		        		$destination = urlencode(the_title('', '', false));
+		        	?>		                	
+					<a href="/clinic/destination/<?php echo $destination; ?>" class="button">Book vaccination</a>
+		        <div class="clear"></div> <!-- TODO: proper clearfix should be added -->
 
-		             
-	        		<div id="purposes">
-					<?php if(get_field('vaccination_purposes')): ?>		        		       
-						<?php while(the_repeater_field('vaccination_purposes')):
-							$purpose = get_sub_field('purpose');
-							$vaccinations = get_sub_field('vaccinations');	
-							?>						
+						<?php
+							// labels for groups
+							$vaccinations_groups_labels = array(
+								"All travellers", "Above 2 weeks", "Above 3 months", "Above 6 months"
+							);
 							
-							<div class="vaccinations"><p class="purpose"><?=$purpose ?></p>
-							<?php foreach($vaccinations as $vaccination): ?>
-							 	<div class="slidedown">
-									<a class="title"><?=$vaccination->post_title ?></a>							 	
-									<div class="content"><?php echo $vaccination->post_content; ?></div>
-								</div>								
+							// vaccinations for groups
+							$vaccinations_groups = array();
+							$vaccinations_groups[1] = get_field('group_1');
+							$vaccinations_groups[2] = get_field('group_2');
+							$vaccinations_groups[3] = get_field('group_3');
+							$vaccinations_groups[4] = get_field('group_4');
+						?>		
+						<table id="vaccinations_groups">
+							<thead>
+								<tr>
+									<td>&nbsp;</td>
+									<?php foreach($vaccinations_groups_labels as $label): ?>
+										<td><?=$label?></td>
+									<?php endforeach; ?>							
+								</tr>
+							</thead>
+							<tbody>
+							<?php foreach($vaccinations_groups as $group_id => $group): ?>
+								<?php if(!empty($group)): ?>
+									<?php foreach($group as $vaccination): ?>									
+										<tr>	
+											<td><a href="<?php echo get_permalink( $vaccination->ID ); ?>"><?php echo $vaccination->post_title; ?></a></td>
+											<?php 
+											// output cell with vaccination indicator
+											$checkmark = '<img src="'.get_bloginfo("template_url").'/img/checkmark.png"/>';
+											for ( $counter = 1; $counter <= count($vaccinations_groups_labels); $counter++) {
+												echo "<td>";
+												echo ($counter == $group_id)? $checkmark : " - ";
+												echo "</td>";										
+											}
+											?>
+										</tr>
+									<?php endforeach; ?>
+								<?php endif; ?>			
+							<?php endforeach; ?>	
+							</tbody>
+						</table>		
+						
+						<h3>FAQ</h3>
+						<?php 
+							$country_id = get_the_ID();
+							$faqs = getFaqsByCountry($country_id); 
+						?>			
+						<?php foreach($faqs as $faq): ?>
+							<div class="slidedown">
+								<a href="#" class="title"><?php echo $faq[0]; ?></a>
+								<p class="content"><?php echo $faq[1]; ?></p>
+							</div>
+						<?php endforeach; ?>					
 
-							<?php endforeach; ?>
-							</div>							
-						<?php endwhile;	?>
-					<?php endif; ?>
+						<h3>Description</h3>							
+					 	<?php echo the_content(); ?>											
 					</div>					 						 
-				 	<?php echo the_content(); ?>
-                </div>
 		    </div><!--#end post-->
         <?php endwhile; endif; ?>
 	</div><!--#end content -->

@@ -1,5 +1,11 @@
 <?php get_header(); ?>
-<?php include("submenu-cat.php"); ?>
+<?php 
+	$submenu = wp_list_categories(array(
+		'title_li' => '&nbsp;',
+		'echo' => false
+	));
+	get_submenu($submenu); 
+?>
 
 
 <div id="content">

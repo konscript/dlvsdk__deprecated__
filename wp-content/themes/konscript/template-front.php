@@ -44,40 +44,23 @@ get_header();
 	 
 	</div>
 
-	<div class="frontpage-widgets" id="column-left">
-	<?php  if (function_exists('dynamic_sidebar') && dynamic_sidebar('left_column')) : else : ?>
-		<p><strong>Widget Ready</strong></p>
-		<p>This left_column is widget ready! Add one in the admin panel.</p>
-	<?php endif;  ?>
-		
-	</div>
-		
-	<div class="frontpage-widgets" id="column-center">
-	<?php /* if (function_exists('dynamic_sidebar') && dynamic_sidebar('center_column')) : else : ?>
-		<p><strong>Widget Ready</strong></p>
-		<p>This center_column is widget ready! Add one in the admin panel.</p>
-	<?php endif; */?>
-	
-			<h3>Where are you going?</h3>
+	<div class="frontpage-column" id="column-left">
+
+			<h3><?=the_field("title_left")?></h3>
+			<?=the_field("content_left")?>
 			<p>Type your destination:</p>			
 			<?php travelguide(); ?>			
 			
 			<p class="mapText">Or click map to find destination:</p>
 			<a id="world_map_thumb" href="<?php bloginfo('template_url'); ?>/ajax/world_map.htm"><img src="<?php bloginfo('template_url'); ?>/img/world_map_thumb.png" /></a>
-	</div>
+
 		
-	<div class="frontpage-widgets" id="column-right">
-	<?php /* if (function_exists('dynamic_sidebar') && dynamic_sidebar('right_column')) : else : ?>
-		<p><strong>Widget Ready</strong></p>
-		<p>This right_column is widget ready! Add one in the admin panel.</p>
-	<?php endif; */ ?>
-	
-			<h3>Online Booking</h3>
+	</div>
 			
-			<p class="header">Book you time now - it's easy!</p>			
-			<a class="button" href="/clinics">Book!</a>
-			
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+	<div class="frontpage-column" id="column-right">	
+			<h3><?=the_field("title_right")?></h3>			
+			<?=the_field("content_right")?>	
+			<a class="button" href="/clinics">Book!</a>				
 			
 			<img src="<?php bloginfo('template_url'); ?>/img/firstaidkit.png" class="bookingimage"/>
 			

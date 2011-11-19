@@ -731,11 +731,11 @@ body.home .widget{
 	margin-bottom: $margin;
 }
 
-#content .frontpage-widgets{
+#content .frontpage-column{
 	overflow:hidden;
 }
 
-#content .frontpage-widgets h3 {
+#content .frontpage-column h3 {
 	text-indent: 25px;
 	height: 30px;
 	line-height: 30px;
@@ -744,12 +744,7 @@ body.home .widget{
 }
 
 #column-left {
-	@include column( $body-container-cols / 3); 	
-}
-#column-center {
-	@include column( $body-container-cols / 3); 			
-	.mapText {margin-top: 10px}
-	.world_map_thumbs img {width: 90%;}		
+	@include column( $body-container-cols * 2 / 3); 	
 }
 #column-right {
 	@include column( $body-container-cols / 3, true); 
@@ -759,8 +754,7 @@ body.home .widget{
 		margin:2px 5px;
 	}
 	
-	#clinics{ margin-top: 30px;	}
-	
+	#clinics{ margin-top: 30px;	}	
 	.bookingimage {float:right; height:140px; margin-top: 40px;}
 }
 
@@ -932,32 +926,24 @@ body.home .widget{
  /**
   * country
   **********************************/  
-  .country{
+  div.post.country{
 
-	// book button
-	h1 { float:left;	}  	
-	.button { 
-		display: block;
-		float: left;
-		margin-top: 16px;
-		margin-left: 15px;
+	h1 { float: left;	}
+	.button { float: right; margin-top: 16px;}
+	
+	table#vaccinations_groups thead tr td {
+		font-weight: bold;
+	}
+
+	table#vaccinations_groups tr td:first-child	{
+		text-align:right;
+		font-weight: bold;
 	}
 	
-	#purposes{
-		float: left;
-		margin-right: 20px;
+	table#vaccinations_groups tr td{
+		text-align:center;	
+		padding: 10px;
 	}
-
-  	// single purpose container
-  	div.vaccinations {  	  	
-		padding: 10px 0;
-		
-		// title
-		.purpose{
-			font-weight:bold;
-			font-size: 1.2em;
-		}
-  	}
   
   }
   

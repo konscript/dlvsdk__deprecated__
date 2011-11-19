@@ -12,20 +12,28 @@ require_once 'functions/setup.php';
 // meta box class
 require_once 'functions/meta-box/meta-box.class.php';
 
-// custom post type scripts.
+// register custom post types and taxonomies
 require_once('functions/post-type-faq.php');
 require_once('functions/post-type-vaccination.php');
 require_once('functions/post-type-country.php');
+require_once('functions/post-type-clinic.php');
+require_once('functions/post-type-region.php');
 
 // menus
 require_once 'functions/menu-general.php';
 require_once 'functions/DynamicMenus.php';
 
-// widgets
-require_once 'functions/widget-frontpage.php';
-
 // travelguide
 require_once 'functions/travelguide.php';
+
+// url rewrites
+require_once 'functions/rewrite.php';
+
+// relationships
+require_once 'functions/relationships.php';
+
+
+
 
 function getPageIDOfCurrentCustomPostType(){
 	global $wpdb;
