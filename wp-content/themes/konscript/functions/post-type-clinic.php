@@ -38,7 +38,7 @@ function clinic_register() {
    '_builtin' => false, // It's a custom post type, not built in!
    'menu_icon' => get_stylesheet_directory_uri() . '/img/icon_article.png',
    'rewrite' => array('slug' => 'clinic', 'with_front' => false),
-	'has_archive' => false,   
+	'has_archive' => true,   
    'capability_type' => 'post',
    'hierarchical' => false,
    'supports' => array('thumbnail', 'title', 'editor')

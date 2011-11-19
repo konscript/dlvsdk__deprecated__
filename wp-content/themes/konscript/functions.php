@@ -23,11 +23,17 @@ require_once('functions/post-type-region.php');
 require_once 'functions/menu-general.php';
 require_once 'functions/DynamicMenus.php';
 
-// widgets
-require_once 'functions/widget-frontpage.php';
-
 // travelguide
 require_once 'functions/travelguide.php';
+
+// url rewrites
+require_once 'functions/rewrite.php';
+
+// relationships
+require_once 'functions/relationships.php';
+
+
+
 
 function getPageIDOfCurrentCustomPostType(){
 	global $wpdb;
