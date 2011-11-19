@@ -39,4 +39,31 @@ function getFaqsByCountry($country_id){
 	return $data;
 }
 
+/*
+ * Now we will find all FAQs grouped by region
+ ********/
+function getFaqsGroupedByRegion(){
+	$data = array();
+
+	// get all regions
+	$regions = get_posts( array('post_type' => 'region') ); 
+
+	// loop through regions
+	foreach($regions as $region){
+		// region id
+		$region_id = $region->ID; 		
+	
+		// fetch faqs in region
+		$faqs = get_post_custom_values('faqs', $region_id);		
+		$faqs = explode(",", $faqs[0]);		
+
+		$data[] = array(
+			"region_name" => $region->post_title,
+			"faqs" => $faqs
+		);
+	}
+	
+	return $data;
+}
+
 ?>

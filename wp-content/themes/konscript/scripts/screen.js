@@ -7,11 +7,14 @@ jQuery.noConflict();
 		toggleFaq();	
 		showWorldMap();   
 		travelguide();
+		searchFaq();
 	});
 	
 	// content slider on frontpage
 	function contentSlider(){
-		$("#featured > ul").tabs({fx:{opacity: "toggle", duration:"slow"}}).tabs("rotate", 10000, true);
+		if($("#featured > ul .ui-tabs-nav-item").size() > 0){
+			$("#featured > ul").tabs({fx:{opacity: "toggle", duration:"slow"}}).tabs("rotate", 10000, true);
+		}
 	}	
 
 	// show/hide faq
@@ -39,5 +42,59 @@ jQuery.noConflict();
 		$('select#country-selector').selectToAutocomplete();	
 	}
 	
+	function searchFaq(){
+		
+		// during text input
+		$('#searchFaq').keyup(function() {
+							
+			var search_word = $(this).val();
+			
+			// clear on empty
+			if(search_word == ""){
+				$('#clearSearch').trigger('click');
+				return false;
+			}			
+			
+			// length of word must be above 3 to trigger search
+			if(search_word.length < 3){
+				return false;
+			}			
+
+			// hide all
+			$(".slidedown").hide();
+			$(".region").hide();			
+		
+			// find matches
+			var matches = $("p:contains("+search_word+"), a:contains("+search_word+")").parent(".slidedown");
+			
+			// show containers
+			matches.show();
+			
+			// fadein answers
+			matches.children().fadeIn();
+		});
+		
+		// clear search results
+		$('#clearSearch').click(function() {
+			// hide questions
+			$(".slidedown .content").hide();
+			
+			// show containers and regions
+			$(".slidedown").fadeIn();
+			$(".region").show();						
+			
+			// clear input field
+			$("#searchFaq").val("");
+			return false;
+		});
+		
+		// make jquery :contains case-insensitive
+		jQuery.expr[':'].contains = function(a, i, m) {
+		  return jQuery(a).text().toUpperCase()
+			  .indexOf(m[3].toUpperCase()) >= 0;
+		};		
+	}
+	
 })(jQuery);
+
 

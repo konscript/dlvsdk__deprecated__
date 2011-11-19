@@ -13,7 +13,7 @@
 
 <div class="hide">
 	<?php wp_footer(); ?>
-	
+
 	<script src="<?php bloginfo('template_url'); ?>/scripts/jquery-ui-autocomplete.js"></script>
 	<script src="<?php bloginfo('template_url'); ?>/scripts/jquery.select-to-autocomplete.js"></script>	
 	<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/scripts/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
