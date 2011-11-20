@@ -5,7 +5,7 @@
  * Regions <> FAQ
  * Regions <> Country
  *
- * Now we will find all the FAQs relevant for a country 
+ * get all the FAQs relevant for a country 
  ********/
 function getFaqsByCountry($country_id){
 	$data = array();
@@ -40,7 +40,7 @@ function getFaqsByCountry($country_id){
 }
 
 /*
- * Now we will find all FAQs grouped by region
+ * get all FAQs grouped by region
  ********/
 function getFaqsGroupedByRegion(){
 	$data = array();
@@ -55,15 +55,61 @@ function getFaqsGroupedByRegion(){
 	
 		// fetch faqs in region
 		$faqs = get_post_custom_values('faqs', $region_id);		
-		$faqs = explode(",", $faqs[0]);		
+		$faqs = empty($faqs[0]) ? array() : explode(",", $faqs[0]);		
 
-		$data[] = array(
-			"region_name" => $region->post_title,
-			"faqs" => $faqs
-		);
+		// only add region to data array, if there are any faqs
+		if(count($faqs) > 0){
+			$data[] = array(
+				"region_name" => $region->post_title,
+				"faqs" => $faqs
+			);
+		}
 	}
 	
 	return $data;
 }
 
+/*
+ * get all FAQs grouped by term
+ ********/
+function getFaqsGroupedByTerm(){
+	$data = array();
+	
+	// get terms for the taxonomy "faq_category"
+	$terms = get_terms( "faq_category" );
+	
+	foreach($terms as $term){
+		// get faq_ids related to the current term
+		$faqs = get_objects_in_term( $term->term_id, "faq_category" );							
+
+		// only add term to data array, if there are any faqs
+		if(count($faqs) > 0){
+			$data[] = array(
+				"term_name" => $term->name,
+				"faqs" => $faqs
+			);				
+		}		
+	}
+	return $data;
+}
+
+/*
+ * get FAQS and related metadata
+ ********/
+function getFaqs(){
+	$args = array(
+	'orderby'         => 'post_date',
+	'order'           => 'DESC',
+	'post_type'       => 'faq'); 
+
+	// get faqs
+	$faqs = array();
+	foreach(get_posts( $args )  as $faq){	
+		$faqs[$faq->ID] = array(
+			'post_title' => $faq->post_title,
+			'post_content' => $faq->post_content				
+		);
+	} 		
+	return $faqs;	
+}
 ?>

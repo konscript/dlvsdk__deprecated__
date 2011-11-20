@@ -62,7 +62,7 @@ jQuery.noConflict();
 
 			// hide all
 			$(".slidedown").hide();
-			$(".region").hide();			
+			$(".faq h3").hide();			
 		
 			// find matches
 			var matches = $("p:contains("+search_word+"), a:contains("+search_word+")").parent(".slidedown");
@@ -72,6 +72,7 @@ jQuery.noConflict();
 			
 			// fadein answers
 			matches.children().fadeIn();
+
 		});
 		
 		// clear search results
@@ -81,7 +82,7 @@ jQuery.noConflict();
 			
 			// show containers and regions
 			$(".slidedown").fadeIn();
-			$(".region").show();						
+			$(".faq h3").show();						
 			
 			// clear input field
 			$("#searchFaq").val("");

@@ -4,48 +4,37 @@
 
 <section id="primary">
 	<div id="content" role="main">
-	<h1><?php post_type_archive_title(); ?></h1>
-	
+	<div class="post faq">
+		<h1><?php post_type_archive_title(); ?></h1>	
 
-		<div class="searchbar-inner" >
-			<input type="text" id="searchFaq" placeholder="Type to search" />
-			<a href="#" id="clearSearch">Clear</a>
-		</div>
+			<div class="searchbar-inner" >
+				<input type="text" id="searchFaq" placeholder="Type to search" />
+				<a href="#" id="clearSearch">Clear</a>
+			</div>
 
-		<?php
-		$regions = getFaqsGroupedByRegion();
-		?>
+			<?php 		
+			// get regions and their related faq_id. Eg. Asia: 231, 234..
+			$regions = getFaqsGroupedByRegion();					
+			$terms = getFaqsGroupedByTerm();								
+			$faqs = getFaqs();		
+			?>					
 		
-		<?php $args = array(
-		'orderby'         => 'post_date',
-		'order'           => 'DESC',
-		'post_type'       => 'faq'); ?>		
-		
-
-		<?php 
-		$faqs_list = array();
-		foreach(get_posts( $args )  as $faq){	
-			$faqs_list[$faq->ID] = array(
-				'post_title' => $faq->post_title,
-				'post_content' => $faq->post_content				
-			);
-		} 
-		
-
-		
-		foreach($regions as $region): ?>
-			<p class="region"><?=$region["region_name"]; ?></p>
-						
-			<?php foreach($region["faqs"] as $faq_id): 
-				$faq = $faqs_list[$faq_id];	?>
-			 	<div class="slidedown">
-					<a href="#" class="title"><?php echo $faq["post_title"]; ?></a>
-					<p class="content"><?php echo $faq["post_content"]; ?></p>
-				</div>	 				
-			<?php endforeach; ?>
-		<?php endforeach; ?>
-	 	
-	
+			<?php foreach($regions as $region): ?>
+				<h3><?=$region["region_name"]; ?></h3>
+				<?php foreach($region["faqs"] as $faq_id): 
+					$faq = $faqs[$faq_id];	
+					echo slidedown($faq["post_title"], $faq["post_content"]);
+				endforeach;
+			endforeach; ?>
+			
+			<?php foreach($terms as $term): ?>
+				<h3><?=$term["term_name"]; ?></h3>
+				<?php foreach($term["faqs"] as $faq_id): 
+					$faq = $faqs[$faq_id];	
+					echo slidedown($faq["post_title"], $faq["post_content"]);
+				endforeach;
+			endforeach; ?>			
+ 		</div>	
 	</div><!-- #content -->
 </section><!-- #primary -->
 
