@@ -32,7 +32,8 @@ require_once 'functions/rewrite.php';
 // relationships
 require_once 'functions/relationships.php';
 
-
+// relationships
+require_once 'functions/utilities.php';
 
 
 function getPageIDOfCurrentCustomPostType(){
