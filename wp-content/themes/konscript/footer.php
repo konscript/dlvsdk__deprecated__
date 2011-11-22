@@ -16,12 +16,8 @@
 
 	<script src="<?php bloginfo('template_url'); ?>/scripts/jquery-ui-autocomplete.js"></script>
 	<script src="<?php bloginfo('template_url'); ?>/scripts/jquery.select-to-autocomplete.js"></script>	
-	<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/scripts/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
-	<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/scripts/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
-	<link rel="stylesheet" type="text/css" href="<?php bloginfo('template_url'); ?>/scripts/fancybox/jquery.fancybox-1.3.4.css" media="screen" />	    
-		
+  <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/scripts/continents-map/continents-map.js"></script>    		
 	<script type="text/javascript">
-
 	  var _gaq = _gaq || [];
 	  _gaq.push(['_setAccount', 'UA-25539846-1']);
 	  _gaq.push(['_trackPageview']);

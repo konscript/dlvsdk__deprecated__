@@ -29,19 +29,19 @@ function clinic_register() {
  );
  
  $args = array(
-   'labels' => $labels,
-   'public' => true,
-   'publicly_queryable' => true,
-   'show_ui' => true,
-   'query_var' => true,
-   'menu_position' => 3,
-   '_builtin' => false, // It's a custom post type, not built in!
-   'menu_icon' => get_stylesheet_directory_uri() . '/img/icon_article.png',
-   'rewrite' => array('slug' => 'clinic', 'with_front' => false),
-	'has_archive' => true,   
-   'capability_type' => 'post',
-   'hierarchical' => false,
-   'supports' => array('thumbnail', 'title', 'editor')
+	'labels' => $labels,
+	'public' => true,
+	'publicly_queryable' => true,
+	'show_ui' => true,
+	'query_var' => true,
+	'menu_position' => 3,
+	'_builtin' => false, // It's a custom post type, not built in!
+	'menu_icon' => get_stylesheet_directory_uri() . '/img/icon_article.png',
+	'rewrite' => array('slug' => 'clinic', 'with_front' => false),
+	'has_archive' => false,   
+	'capability_type' => 'post',
+	'hierarchical' => false,
+	'supports' => array('thumbnail', 'title', 'editor')
    );
    
    register_post_type('clinic', $args);

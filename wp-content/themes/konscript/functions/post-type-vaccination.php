@@ -43,38 +43,4 @@ function vaccination_register() {
 }
 
 
-/* ADD CUSTOM FIELDS TO VACCINATION POST TYPE */
-vaccination_add_meta_box();
-
-function vaccination_add_meta_box() {
-  
-  $prefix = 'vaccination';
-  
-  $vaccination_meta_box = array(
-  	'id' => 'vaccination-meta',
-  	'title' => 'Vaccination Options',
-  	'pages' => array('vaccination'),
-
-  	'fields' => array(
-  		array(
-  			'name' => 'Price',
-  			'id' => $prefix . '-price',
-  			'type' => 'text',	
-  		),
-  		array(
-  			'name' => 'Duration',
-  			'id' => $prefix . '-duration',
-  			'type' => 'text',	
-  		),  		
-  		array(
-  			'name' => 'Quantity',
-  			'id' => $prefix . '-quantity',
-  			'type' => 'text',	
-  		)  		
-  	)
-  );
-  
-  new RW_Meta_Box($vaccination_meta_box);
-}
-
 ?>

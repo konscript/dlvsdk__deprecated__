@@ -5,7 +5,6 @@ jQuery.noConflict();
 	$(document).ready(function() {	
 		contentSlider();
 		toggleFaq();	
-		showWorldMap();   
 		travelguide();
 		searchFaq();
 	});
@@ -24,15 +23,6 @@ jQuery.noConflict();
 			return false;
 		});			
 	}	
-	
-	// show world map to click on
-	function showWorldMap(){
-		$("#world_map_thumb").fancybox({
-			'titlePosition'		: 'inside',
-			'transitionIn'		: 'elastic',
-			'transitionOut'		: 'elastic'
-		});	
-	}
 	
 	function travelguide(){
 		// display submit button for js-enabled users
