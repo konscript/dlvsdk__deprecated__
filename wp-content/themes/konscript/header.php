@@ -14,7 +14,8 @@
 	<!--Stylesheets-->
 	<link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/stylesheet/compiled/ie.css" type="text/css" media="screen" charset="utf-8" />
 	<link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/stylesheet/compiled/print.css" type="text/css" media="print" charset="utf-8" />
-    <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/stylesheet/compiled/main.css" type="text/css" media="screen" charset="utf-8" />
+  <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/stylesheet/compiled/main.css" type="text/css" media="screen" charset="utf-8" />
+  <link rel="stylesheet" type="text/css" media="screen,projection" href="<?php bloginfo('template_url'); ?>/scripts/continents-map/continents-map-540px.css" />  
 	
 	<!--Mobile-->
 	<?php if (ereg('iPhone', $_SERVER['HTTP_USER_AGENT']) || ereg('iPod', $_SERVER['HTTP_USER_AGENT']) || ereg('iPad',$_SERVER['HTTP_USER_AGENT'])): ?>

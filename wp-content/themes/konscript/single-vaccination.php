@@ -6,16 +6,15 @@
 		    <div class="post">
 		        <h1><?php the_title(); ?></h1>
 		        <div class="post-content">
-					 <?php		
-					 	$fields = get_post_custom();					 
-					 	
-					 	$quantity = $fields["vaccination-quantity"][0];	 	
-					 	$price = $fields["vaccination-price"][0];
-					 	$date = $fields["vaccination-date"][0];	 	
-					 						 	
-					 	echo the_content();
-					 ?>                    
-                </div>
+							<?php	the_content();	 ?>   							
+							<?php echo slidedown("Vaccine contents", get_field("vaccine_contents")); ?>							
+							<?php echo slidedown("Who should be vaccinated?", get_field("who_should_be_vaccinated")); ?>
+							<?php echo slidedown("Vaccination dosis", get_field("vaccination_dosis")); ?>
+							<?php echo slidedown("Who should not be vaccinated?", get_field("who_should_not_be_vaccinated")); ?>
+							<?php echo slidedown("Pregnancy and lactation", get_field("pregnancy_and_lactation")); ?>
+							<?php echo slidedown("Duration of immunity", get_field("duration_of_immunity")); ?>
+							<?php echo slidedown("Most frequent side effects", get_field("side_effects")); ?>							                 
+            </div>
 		    </div><!--#end post-->
         <?php endwhile; endif; ?>
 	</div><!--#end content -->

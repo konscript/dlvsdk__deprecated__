@@ -48,11 +48,19 @@ get_header();
 
 			<h3><?=the_field("title_left")?></h3>
 			<?=the_field("content_left")?>
-			<p>Type your destination:</p>			
+			<p>Type your destination:</p>
 			<?php travelguide(); ?>			
 			
-			<p class="mapText">Or click map to find destination:</p>
-			<a id="world_map_thumb" href="<?php bloginfo('template_url'); ?>/ajax/world_map.htm"><img src="<?php bloginfo('template_url'); ?>/img/world_map_thumb.png" /></a>
+ <div id="map-continents">
+   <ul id="continents">
+    <li id="c1"><a href="/region/africa">Africa</a></li>
+    <li id="c2"><a href="/region/asia">Asia</a></li>
+    <li id="c3"><a href="/region/oceania">Oceania</a></li>
+    <li id="c4"><a href="/region/europe">Europe</a></li>
+    <li id="c5"><a href="/region/north-america">North America</a></li>
+    <li id="c6"><a href="/region/south-africa">South America</a></li>
+   </ul>
+ </div>			
 
 		
 	</div>
