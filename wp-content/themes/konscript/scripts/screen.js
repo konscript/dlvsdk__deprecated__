@@ -3,23 +3,16 @@ jQuery.noConflict();
 
 	// execute when DOM is ready
 	$(document).ready(function() {	
-		contentSlider();
-		toggleSlidedown();	
 		travelguide();
-		searchFaq();
-	});
-	
-	// content slider on frontpage
-	function contentSlider(){
-		if($("#featured > ul .ui-tabs-nav-item").size() > 0){
-			$("#featured > ul").tabs({fx:{opacity: "toggle", duration:"slow"}}).tabs("rotate", 10000, true);
-		}
-	}	
-
-	// show/hide faq
-	function toggleSlidedown(){
+		searchFaq();		
+		
+		// accordion slidedown 
 		$( ".accordion" ).accordion({ header: 'a.title' });
-	}	
+		
+		// add tabs on frontpage
+		$("#tabs").tabs({fx:{opacity: "toggle"}}).tabs("rotate", 10000, true);			
+	
+	});
 	
 	function travelguide(){
 		// display submit button for js-enabled users

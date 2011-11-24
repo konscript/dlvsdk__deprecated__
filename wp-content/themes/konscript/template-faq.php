@@ -21,12 +21,14 @@ $menu = wp_list_pages( $args );
 				<input type="text" id="searchFaq" placeholder="Type to search" />
 				<a href="#" id="clearSearch">Clear</a>
 			</div>
+			
 
+			
 			<?php 		
-			// get regions and their related faq_id. Eg. Asia: 231, 234..
-			$regions = getFaqsGroupedByRegion();					
-			$terms = getFaqsGroupedByTerm();								
-			$faqs = getFaqs();		
+				// get regions and their related faq_id. Eg. Asia: 231, 234..
+				$regions = getFaqsGroupedByRegion();					
+				$terms = getFaqsGroupedByTerm();								
+				$faqs = getFaqs();		
 			?>					
 		
 			<?php foreach($regions as $region): ?>
