@@ -33,6 +33,8 @@ body.home .widget{
 	.bookingimage {float:right; height:140px; margin-top: 40px;}
 }
 
+<<<<<<< HEAD
+=======
 $travelwidth: $body-container-cols * 2 / 3;
 
 #travelguide-before {	
@@ -46,6 +48,7 @@ $travelwidth: $body-container-cols * 2 / 3;
 	text-align: left;	
 	font-style: italic; }
 
+>>>>>>> 96f9cc8e2db0b8819692583127f55b5e14ebd04d
 #travelguide {
 	margin: 0 auto;
 	position: relative;
@@ -65,83 +68,32 @@ $travelwidth: $body-container-cols * 2 / 3;
 /**
  * frontpage content slider 
  */
- #featured { 
+ #tabs { 
 
  	// height of content slider
-	$featured-height: 182px;
+	$featured-height: 183px;
 	
 	// columns for right column (tabs)
 	$one_third: floor($body-container-cols * 1 / 3);
 	
 	// columns for left colum (content)
 	$two_thirds: ceil($body-container-cols * 2 / 3);
-	
-
- 
+	 
 	@include column($body-container-cols, true); 
 
 	position:relative; 
 	height:$featured-height; 
 	margin-bottom: $blueprint-grid-margin;
 	border: 1px solid #ccc;	
-
-	/* all tabs container */
-	ul.ui-tabs-nav{ 
-		list-style:none outside none;
-		@include column($one_third, true);	
-
-
-		third: $one_third;		
-		half: $two_thirds;		
-		all: $body-container-cols;
-	}
-
-	/* single tab container  */
-	ul.ui-tabs-nav li{ 
-		@include background-image(linear-gradient(#f9f9f9, #eeeeee));
-		//@include linear-gradient(color-stops(#f9f9f9, #eee));
-		border-left: 1px solid #ccc;
-		border-bottom: 1px solid #ccc;		
-		margin: 0;
-		text-indent: 0px;
-	}
-
-	/* single tab link */
-	ul.ui-tabs-nav li.ui-tabs-nav-item a{ 
-		padding: 5px 0;
-		display:block;
-		text-decoration: none;
-		height:50px; 
-		color:#000;  
-		font-size: 16px;		
-	}
-
-	// image
-	ul.ui-tabs-nav li.ui-tabs-nav-item a img{	 
-		margin: 5px 20px;
-		width: 40px;
-		vertical-align:middle;
-	}
-
-	// text
-	ul.ui-tabs-nav li.ui-tabs-nav-item a .title{ 
-		line-height: 40px;
-		margin-top: 5px;
-	}
-	/* selected/hovered tab */
-	ul.ui-tabs-nav li.ui-tabs-nav-item:hover,
-	ul.ui-tabs-nav li.ui-tabs-selected{
-		background-image: url(../../img/content-slider-active-icon.png);
-		background-position: 95% 50%;
-		background-repeat: no-repeat;		
-	}
-
-	/* slider content */
-	.ui-tabs-panel{ 
-		// width of content column. Added a column more, since there should be no gap between tabs and content column
-		@include column($two_thirds + 0.95, true); 		
+	padding: 0;
+	@include border-radius(0);
+	
+	// tabs content
+	> div {				
+		@include column($two_thirds, true); 		
 
 		height:  $featured-height;							
+		padding: 0;			
 		position: relative;
 		overflow:hidden;
 		
@@ -153,9 +105,10 @@ $travelwidth: $body-container-cols * 2 / 3;
 		}				
 		
 		div.inner {
-			position:relative;
-			z-index: 2;	
 			@include column($one_third, true); 		
+		
+			position:relative;
+			z-index: 2;			
 			float:right;
 			padding: $blueprint-grid-margin;
 			height:  $featured-height;			
@@ -166,11 +119,63 @@ $travelwidth: $body-container-cols * 2 / 3;
 			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99ffffff, endColorstr=#99ffffff);
 			-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99ffffff, endColorstr=#99ffffff)";
 			background: rgba(255,255,255, .6);
+		}		
+	}
+
+	/* tabs container */
+	ul { 
+		@include column($one_third + 1, true);	
+		background: none;
+		border: 0;
+		padding: 0;
+				
+		li:first-child {
+			border-top: 0;
 		}
 		
-	}
-	.ui-tabs-panel.ui-tabs-hide{ display:none; }
-	
+		/* single tab  */
+		li { 
+			@include linear-gradient(color-stops(#f9f9f9, #eee));
+			margin: 0;
+			text-indent: 0px;
+			@include border-radius(0px);
+			width: 100%;	
+			border: 1px solid #ccc;			
+			padding-bottom: 0px;
+							
+				/*  link */
+				a { 
+					padding: 5px 0;
+					display:block;
+					text-decoration: none;
+					height:50px; 
+					color:#000;  
+					font-size: 16px;		
+					width: 100%;
+				}
+			
+			// image
+			a img{	 
+				margin: 5px 20px;
+				width: 40px;
+				vertical-align:middle;
+			}
+
+			// text
+			a .title{ 
+				line-height: 40px;
+				margin-top: 5px;
+			}												
+		}
+		
+		/* selected/hovered tab */
+		li:hover,
+		li.ui-tabs-selected{
+			background-image: url(../../img/content-slider-active-icon.png);
+			background-position: 95% 50%;
+			background-repeat: no-repeat;		
+		}					
+	}	
 }
 
 /* Map */

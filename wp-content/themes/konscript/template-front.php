@@ -6,43 +6,42 @@ get_header();
 ?>
 
 <div id="content">	
-	<div id="featured" >
+
+	<div id="tabs" >
 	
 	<?php if(get_field('tabs')): ?>
 		<?php 
 			// define variables
 			$tab_id = 0; 
-			$tabs = "";									
+			$tabs = "";
 		?>	
 		<?php while(the_repeater_field('tabs')): ?>    
 			<?php 
 				// increment tab id
 				$tab_id++; 
-				$tab_visibility = $tab_id > 1 ? "ui-tabs-hide" : "";
 			?>
-			
-			 <!-- tab content -->
-			 <div id="fragment-<?php echo $tab_id; ?>" class="ui-tabs-panel <?= $tab_visibility ?>">
-				<img src="<?php the_sub_field('background_image'); ?>" alt="<?php the_sub_field('title'); ?>" />        		
+				
+			<!-- tab content -->
+			<div id="tabs-<?=$tab_id;?>">
+				<img src="<?php the_sub_field('background_image'); ?>" alt="<?php the_sub_field('title'); ?>" />
 				<div class="inner">
 					<p class="header"><?php the_sub_field('title'); ?></p>
 					<p><?php the_sub_field('description'); ?></p>			
 				</div>
-			 </div>        
+			</div>
 				
 			<?php 
-				// add tabs
-				$tabs .= '<li class="ui-tabs-nav-item" id="nav-fragment-'.$tab_id.'"><a href="#fragment-'.$tab_id.'"><img src="'.get_sub_field('icon').'"/><span class="title">'.get_sub_field('title').'</span></a></li>';
+				// tabs
+				$tabs .= '<li><a href="#tabs-'.$tab_id.'"><img src="'.get_sub_field('icon').'"/><span class="title">'.get_sub_field('title').'</span></a></li>';
 			?>			
 		<?php endwhile; ?>	 
 	<?php endif; ?>	
 		 
 	 <!-- tabs -->
-		<ul class="ui-tabs-nav">
+		<ul	>
 			<?php echo $tabs; ?>
-		</ul>	 
-	 
-	</div>
+		</ul>	 	 
+	</div><!-- end #tabs -->
 
 	<div class="frontpage-column" id="column-left">
 
@@ -68,17 +67,17 @@ get_header();
 	<div class="frontpage-column" id="column-right">	
 			<h3><?=the_field("title_right")?></h3>			
 			<?=the_field("content_right")?>	
-			<a class="button" href="<?php bloginfo('wpurl'); ?>/clinics">Book!</a>				
+			<a class="button" href="<?php bloginfo('wpurl'); ?>/clinics">Book!</a>
 			
 			<img src="<?php bloginfo('template_url'); ?>/img/firstaidkit.png" class="bookingimage"/>
 			
 			<ul id="clinics">
-				<li>London</li>				
+				<li>London</li>
 				<li>Clinic #2</li>
 				<li>Clinic #3</li>
 				<li>Clinic #4</li>
 				<li>Clinic #5</li>
-			</ul>														
+			</ul>
 	</div>
 
 
