@@ -55,7 +55,7 @@ $travelwidth: $body-container-cols * 2 / 3;
 				
 	input.ui-autocomplete-input {
 		@include border-radius(5px);
-		@include background-image(linear-gradient(#f0f0f0, #fff));
+		//@include background-image(linear-gradient(#f0f0f0, #fff));
 		width: 188px - (2 * 10px);
 		padding: 10px;
 		border: 1px solid #909090;
