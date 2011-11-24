@@ -33,11 +33,35 @@ body.home .widget{
 	.bookingimage {float:right; height:140px; margin-top: 40px;}
 }
 
+<<<<<<< HEAD
+=======
+$travelwidth: $body-container-cols * 2 / 3;
+
+#travelguide-before {	
+	padding-top: 10px;
+	@include column($travelwidth / 3);
+	text-align: right;
+	font-style: italic; }
+#travelguide-after {
+	padding-top: 10px;	
+	@include column($travelwidth / 3, true);
+	text-align: left;	
+	font-style: italic; }
+
+>>>>>>> 96f9cc8e2db0b8819692583127f55b5e14ebd04d
 #travelguide {
-	.ui-autocomplete-input {
-		@include border-radius(4);
+	margin: 0 auto;
+	position: relative;
+	@include column($travelwidth / 3); 	
+	z-index: 30000;
+				
+	input.ui-autocomplete-input {
+		@include border-radius(5px);
+		@include background-image(linear-gradient(#f0f0f0, #fff));
+		width: 188px - (2 * 10px);
 		padding: 10px;
 		border: 1px solid #909090;
+		background-color: #fff;		
 	}
 }
 
@@ -156,6 +180,7 @@ body.home .widget{
 
 /* Map */
 #map-continents {
+	padding-top: 30px;	
 	#continents li .bg {
 		@include opacity(0);
 		@include transition-property(opacity);

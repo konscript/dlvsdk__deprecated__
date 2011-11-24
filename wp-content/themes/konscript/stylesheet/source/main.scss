@@ -335,7 +335,7 @@ img.wp-smiley {}
 				#primary-menu #searchform .field{				
 					width: 80px;
 					border: 0;
-					padding: 2px;
+					padding: 5px;
 			 		@include border-radius(2px);	
 					vertical-align: middle;	 						
 				}
@@ -348,7 +348,8 @@ img.wp-smiley {}
 					font-size : 0;
 					cursor: pointer;
 					height: 22px;
-					width: 46px;	
+					width: 46px;
+					margin-right: 5px;	
 					vertical-align: middle;	
 				}
 			

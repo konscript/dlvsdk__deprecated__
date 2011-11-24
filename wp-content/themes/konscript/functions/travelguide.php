@@ -14,8 +14,10 @@
  }
 
 function travelguide(){ ?>
+
+	<p id="travelguide-before">Type your destination</p>
 	
-  <form method="POST" id="travelguide" action="/">
+  <form method="GET" id="travelguide" action="<?php bloginfo('wpurl'); ?>">
     <select name="Country" id="country-selector" autofocus="autofocus" autocorrect="off" autocomplete="off">
       <option value="" selected="selected">Select Country</option>
 		<?php $countries = getListOfCountries() ?>	
@@ -30,13 +32,15 @@ function travelguide(){ ?>
     </select>
     <input type="Submit" value="Find">
   </form>	
+
+	<p id="travelguide-after">or click on the map:</p>
 		
 	<?php 
 } 
 
 function redirectTravelGuide() {
-	if(isset($_POST["Country"])){
-		header("Location: ".get_permalink($_POST["Country"]));
+	if(isset($_GET["Country"])){
+		header("Location: ".get_permalink($_GET["Country"]));
 	}
 }
 
