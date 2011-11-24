@@ -388,7 +388,9 @@ img.wp-smiley {}
 		background:url('../../img/submenu_off.gif') no-repeat;
 		background-position:7px 50%;
 		text-indent: 30px;
-		border-bottom: 1px solid #eee;
+		border-bottom: 1px solid #eee;		
+		height: 30px;
+		overflow: hidden;		
 	}
 	#sidebar ul li a:hover,
 	#sidebar ul .current-menu-item a,
