@@ -52,10 +52,10 @@ jQuery.noConflict();
 
 			// hide all
 			$(".slidedown").hide();
-			$(".faq h3").hide();			
+			//$(".faq h3").hide();			
 		
 			// find matches
-			var matches = $("p:contains("+search_word+"), a:contains("+search_word+")").parent(".slidedown");
+			var matches = $(".slidedown .content:contains("+search_word+"), .slidedown .title:contains("+search_word+")").parent(".slidedown");
 			
 			// show containers
 			matches.show();

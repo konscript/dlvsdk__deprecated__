@@ -6,6 +6,8 @@
 	<div id="content" role="main">
 	<div class="post faq">
 		<h1><?php post_type_archive_title(); ?></h1>	
+		
+			<?php echo the_content(); ?>
 
 			<div class="searchbar-inner" >
 				<input type="text" id="searchFaq" placeholder="Type to search" />
