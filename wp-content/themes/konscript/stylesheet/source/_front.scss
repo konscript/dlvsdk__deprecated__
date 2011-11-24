@@ -1,0 +1,192 @@
+/**
+ * frontpage widgets
+ **/
+
+body.home .widget{
+	margin-bottom: $margin;
+}
+
+#content .frontpage-column{
+	overflow:hidden;
+}
+
+#content .frontpage-column h3 {
+	text-indent: 25px;
+	height: 30px;
+	line-height: 30px;
+	background: url(../../img/reddot.png) center left no-repeat;
+	padding: 0;
+}
+
+#column-left {
+	@include column( $body-container-cols * 2 / 3); 	
+}
+#column-right {
+	@include column( $body-container-cols / 3, true); 
+	
+	a.button{
+		float:right;
+		margin:2px 5px;
+	}
+	
+	#clinics{ margin-top: 30px;	}	
+	.bookingimage {float:right; height:140px; margin-top: 40px;}
+}
+
+// search-as-you-type for countries (in #column-center)
+/*
+.ui-autocomplete {
+  padding: 0;
+  list-style: none;
+  background-color: #fff;
+  width: 218px;
+  border: 1px solid #B0BECA;
+  max-height: 350px;
+  overflow-y: scroll;
+}
+.ui-autocomplete .ui-menu-item a {
+  border-top: 1px solid #B0BECA;
+  display: block;
+  padding: 4px 6px;
+  color: #353D44;
+  cursor: pointer;
+}
+.ui-autocomplete .ui-menu-item:first-child a {
+  border-top: none;
+}
+.ui-autocomplete .ui-menu-item a.ui-state-hover {
+  background-color: #D5E5F4;
+  color: #161A1C;
+}
+*/
+
+#travelguide {
+	.ui-autocomplete-input {
+		@include border-radius(4);
+		padding: 10px;
+		border: 1px solid #909090;
+	}
+}
+
+/**
+ * frontpage content slider 
+ */
+ #featured { 
+
+ 	// height of content slider
+	$featured-height: 182px;
+	
+	// columns for right column (tabs)
+	$one_third: floor($body-container-cols * 1 / 3);
+	
+	// columns for left colum (content)
+	$two_thirds: ceil($body-container-cols * 2 / 3);
+	
+
+ 
+	@include column($body-container-cols, true); 
+
+	position:relative; 
+	height:$featured-height; 
+	margin-bottom: $blueprint-grid-margin;
+	border: 1px solid #ccc;	
+
+	/* all tabs container */
+	ul.ui-tabs-nav{ 
+		list-style:none outside none;
+		@include column($one_third, true);	
+
+
+		third: $one_third;		
+		half: $two_thirds;		
+		all: $body-container-cols;
+	}
+
+	/* single tab container  */
+	ul.ui-tabs-nav li{ 
+		@include background-image(linear-gradient(#f9f9f9, #eeeeee));
+		//@include linear-gradient(color-stops(#f9f9f9, #eee));
+		border-left: 1px solid #ccc;
+		border-bottom: 1px solid #ccc;		
+		margin: 0;
+		text-indent: 0px;
+	}
+
+	/* single tab link */
+	ul.ui-tabs-nav li.ui-tabs-nav-item a{ 
+		padding: 5px 0;
+		display:block;
+		text-decoration: none;
+		height:50px; 
+		color:#000;  
+		font-size: 16px;		
+	}
+
+	// image
+	ul.ui-tabs-nav li.ui-tabs-nav-item a img{	 
+		margin: 5px 20px;
+		width: 40px;
+		vertical-align:middle;
+	}
+
+	// text
+	ul.ui-tabs-nav li.ui-tabs-nav-item a .title{ 
+		line-height: 40px;
+		margin-top: 5px;
+	}
+	/* selected/hovered tab */
+	ul.ui-tabs-nav li.ui-tabs-nav-item:hover,
+	ul.ui-tabs-nav li.ui-tabs-selected{
+		background-image: url(../../img/content-slider-active-icon.png);
+		background-position: 95% 50%;
+		background-repeat: no-repeat;		
+	}
+
+	/* slider content */
+	.ui-tabs-panel{ 
+		// width of content column. Added a column more, since there should be no gap between tabs and content column
+		@include column($two_thirds + 0.95, true); 		
+
+		height:  $featured-height;							
+		position: relative;
+		overflow:hidden;
+		
+		img {
+			position:absolute;
+			top:0;
+			left: 0;
+			z-index: 1;
+		}				
+		
+		div.inner {
+			position:relative;
+			z-index: 2;	
+			@include column($one_third, true); 		
+			float:right;
+			padding: $blueprint-grid-margin;
+			height:  $featured-height;			
+			border-left: 1px solid #ccc;
+
+			/* Opacity and fall-back for browsers that don't support rgba */	
+			background: rgb(255,255,255); 
+			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99ffffff, endColorstr=#99ffffff);
+			-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99ffffff, endColorstr=#99ffffff)";
+			background: rgba(255,255,255, .6);
+		}
+		
+	}
+	.ui-tabs-panel.ui-tabs-hide{ display:none; }
+	
+}
+
+/* Map */
+#map-continents {
+	#continents li .bg {
+		@include opacity(0);
+		@include transition-property(opacity);
+		@include transition-duration(0.5s);	
+	}
+	#continents li:hover .bg {
+		@include opacity(1);	
+	}
+}

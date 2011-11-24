@@ -12,6 +12,7 @@
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 	
 	<!--Stylesheets-->
+  <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/stylesheet/compiled/ui-blitzer/jquery-ui-1.8.16.custom.css" type="text/css" media="screen" charset="utf-8" />
 	<link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/stylesheet/compiled/ie.css" type="text/css" media="screen" charset="utf-8" />
 	<link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/stylesheet/compiled/print.css" type="text/css" media="print" charset="utf-8" />
   <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/stylesheet/compiled/main.css" type="text/css" media="screen" charset="utf-8" />
@@ -51,7 +52,7 @@
 	<div id="body-container">
 			<div id="header">
 				<div id="logo"><a href="<?php echo home_url(); ?>"><img src="<?php bloginfo('template_directory'); ?>/img/dlvs_logo.jpg" alt=""></a></div>
-				<div id="tools"> <a href="/about/contact/">Contact</a> | <a href="">Login</a> </div>			
+				<div id="tools"> <a href="<?php bloginfo('wpurl'); ?>/about/contact">Contact</a> | <a href="#">Login</a> </div>			
 				<div id="primary-menu">
 					<?php primary_menu(); ?>
 				</div>

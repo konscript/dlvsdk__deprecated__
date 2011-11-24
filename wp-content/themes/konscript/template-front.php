@@ -47,28 +47,28 @@ get_header();
 	<div class="frontpage-column" id="column-left">
 
 			<h3><?=the_field("title_left")?></h3>
-			<?=the_field("content_left")?>
 			<p>Type your destination:</p>
 			<?php travelguide(); ?>			
 			
  <div id="map-continents">
    <ul id="continents">
-    <li id="c1"><a href="/region/africa">Africa</a></li>
-    <li id="c2"><a href="/region/asia">Asia</a></li>
-    <li id="c3"><a href="/region/oceania">Oceania</a></li>
-    <li id="c4"><a href="/region/europe">Europe</a></li>
-    <li id="c5"><a href="/region/north-america">North America</a></li>
-    <li id="c6"><a href="/region/south-africa">South America</a></li>
+    <li id="c1"><a href="<?php bloginfo('wpurl'); ?>/region/africa">Africa</a></li>
+    <li id="c2"><a href="<?php bloginfo('wpurl'); ?>/region/asia">Asia</a></li>
+    <li id="c3"><a href="<?php bloginfo('wpurl'); ?>/region/oceania">Oceania</a></li>
+    <li id="c4"><a href="<?php bloginfo('wpurl'); ?>/region/europe">Europe</a></li>
+    <li id="c5"><a href="<?php bloginfo('wpurl'); ?>/region/north-america">North America</a></li>
+    <li id="c6"><a href="<?php bloginfo('wpurl'); ?>/region/south-africa">South America</a></li>
    </ul>
  </div>			
 
+	<?=the_field("content_left")?>
 		
 	</div>
 			
 	<div class="frontpage-column" id="column-right">	
 			<h3><?=the_field("title_right")?></h3>			
 			<?=the_field("content_right")?>	
-			<a class="button" href="/clinics">Book!</a>				
+			<a class="button" href="<?php bloginfo('wpurl'); ?>/clinics">Book!</a>				
 			
 			<img src="<?php bloginfo('template_url'); ?>/img/firstaidkit.png" class="bookingimage"/>
 			
