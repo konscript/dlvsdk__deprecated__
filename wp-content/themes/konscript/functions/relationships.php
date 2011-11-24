@@ -31,7 +31,10 @@ function getFaqsByCountry($country_id){
 			
 			foreach($faqs as $faq){ 
 				$faq = get_post( $faq );
-				$data[] = array($faq->post_title, $faq->post_content);			
+				$data[$faq->ID] = array(
+					'post_title' => $faq->post_title, 
+					'post_content' => $faq->post_content
+				);			
 			}
 		}
 	}
