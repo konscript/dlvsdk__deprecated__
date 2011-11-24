@@ -40,7 +40,7 @@ function clinic_register() {
 	'rewrite' => array('slug' => 'clinic', 'with_front' => false),
 	'has_archive' => false,   
 	'capability_type' => 'post',
-	'hierarchical' => false,
+	'hierarchical' => true,
 	'supports' => array('thumbnail', 'title', 'editor')
    );
    

@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<?php get_submenu(); ?>
+<?php include("menus/clinic.php"); ?>
 	<div id="content">
 
 		<?php if (have_posts()): while (have_posts()): the_post(); ?>

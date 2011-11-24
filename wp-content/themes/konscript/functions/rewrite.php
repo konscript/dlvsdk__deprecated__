@@ -14,15 +14,20 @@ add_filter('query_vars', 'add_query_vars');
 
 // add new rewrite rules for clinic single and archive pages
 function add_rewrite_rules($rules) {
+	
 	// eg. clinic/london/destination/thailand/
     $single_clinic = array('clinic\/([^/]+)\/destination\/([^/]+)\/?$' => 'index.php?clinic=$matches[1]&destination=$matches[2]');
     
 	// eg. clinic/destination/thailand/    
-    $archive_clinic = array('clinic\/destination\/([^/]+)\/?$' => 'index.php?page=clinic&destination=$matches[1]');    
+    $archive_clinic = array('clinic\/destination\/([^/]+)\/?$' => 'index.php?pagename=clinic&destination=$matches[1]');    
     
     // add new rules to existing rules    
     $rules = $single_clinic + $archive_clinic + $rules;
     return $rules;
+    
+    // single: ?clinic=london
+    // archive page: ?post_type=clinic
+    // page: ?pagename=clinic
 }
 add_filter('rewrite_rules_array', 'add_rewrite_rules');
 ?>

@@ -1,12 +1,12 @@
 <?php
-// random utility function that are shared across the application
+// random utility functions that are shared across the application
 
 // show/hide content when click on title
-function slidedown($title, $content){
+function slidedown($title, $content, $id = 0){
 
 	return '
-	 	<div class="slidedown">
-			<a href="#" class="title">'.$title.'</a>
+	 	<div class="accordion">
+			<a href="'.get_permalink( $id ) .'" class="title">'.$title.'</a>
 			<div class="content">'.$content.'</div>
 		</div>';
 }

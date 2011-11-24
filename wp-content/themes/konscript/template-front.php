@@ -61,7 +61,6 @@ get_header();
     <li id="c6"><a href="/region/south-africa">South America</a></li>
    </ul>
  </div>			
-
 		
 	</div>
 			
