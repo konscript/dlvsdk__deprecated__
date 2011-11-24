@@ -87,5 +87,3 @@ jQuery.noConflict();
 	}
 	
 })(jQuery);
-
-

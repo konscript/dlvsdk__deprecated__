@@ -10,7 +10,7 @@ if( !is_admin()){
    wp_enqueue_script('jquery');
    
 	wp_deregister_script('jqueryui');   
-	wp_register_script('jqueryui', ("http://ajax.googleapis.com/ajax/libs/jqueryui/1.5.3/jquery-ui.min.js"), false, '1.5.3');   
+	wp_register_script('jqueryui', ("http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"), false, '1.5.3');   
 	wp_enqueue_script('jqueryui');   
      
 }
