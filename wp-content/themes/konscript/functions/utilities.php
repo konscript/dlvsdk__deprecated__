@@ -5,9 +5,8 @@
 function slidedown($title, $content, $id = 0){
 
 	return '
-	 	<div class="accordion">
-			<a href="'.get_permalink( $id ) .'" class="title">'.$title.'</a>
-			<div>'.$content.'</div>
-		</div>';
+			<h4><a href="'.get_permalink( $id ) .'">'.$title.'</a></h4>
+			<div>'.$content.'</div>';
 }
 ?>
+

@@ -7,7 +7,8 @@ jQuery.noConflict();
 		searchFaq();		
 		
 		// accordion slidedown 
-		$( ".accordion" ).accordion({ header: 'a.title' });
+		$( ".accordion" ).accordion({ header: 'h4', active: false, collapsible: true });
+
 		
 		// add tabs on frontpage
 		$("#tabs").tabs({fx:{opacity: "toggle"}}).tabs("rotate", 10000, true);			
@@ -29,7 +30,7 @@ jQuery.noConflict();
 							
 			var search_word = $(this).val();
 			
-			// clear on empty
+			// clear when input is empty
 			if(search_word == ""){
 				$('#clearSearch').trigger('click');
 				return false;
@@ -41,28 +42,27 @@ jQuery.noConflict();
 			}			
 
 			// hide all
-			$(".slidedown").hide();
-			//$(".faq h3").hide();			
+			$(".accordion h4").hide();				
 		
 			// find matches
-			var matches = $(".slidedown .content:contains("+search_word+"), .slidedown .title:contains("+search_word+")").parent(".slidedown");
-			
-			// show containers
+			var matches = $(".accordion h4:contains("+search_word+")");
+			var contentMatches = $(".accordion div:contains("+search_word+")").prev('h4');
+			matches = matches.add(contentMatches);			
+						
+			// show matches
 			matches.show();
 			
-			// fadein answers
-			matches.children().fadeIn();
-
+			// activate answers
+			//$('.accordion').accordion( "activate" , false );
 		});
 		
 		// clear search results
-		$('#clearSearch').click(function() {
-			// hide questions
-			$(".slidedown .content").hide();
+		$('#clearSearch').click(function() {		
+			// hide answers
+			$('.accordion').accordion( "activate" , false );
 			
 			// show containers and regions
-			$(".slidedown").fadeIn();
-			$(".faq h3").show();						
+			$(".faq h4").fadeIn();												
 			
 			// clear input field
 			$("#searchFaq").val("");
