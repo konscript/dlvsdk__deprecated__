@@ -33,33 +33,6 @@ body.home .widget{
 	.bookingimage {float:right; height:140px; margin-top: 40px;}
 }
 
-// search-as-you-type for countries (in #column-center)
-/*
-.ui-autocomplete {
-  padding: 0;
-  list-style: none;
-  background-color: #fff;
-  width: 218px;
-  border: 1px solid #B0BECA;
-  max-height: 350px;
-  overflow-y: scroll;
-}
-.ui-autocomplete .ui-menu-item a {
-  border-top: 1px solid #B0BECA;
-  display: block;
-  padding: 4px 6px;
-  color: #353D44;
-  cursor: pointer;
-}
-.ui-autocomplete .ui-menu-item:first-child a {
-  border-top: none;
-}
-.ui-autocomplete .ui-menu-item a.ui-state-hover {
-  background-color: #D5E5F4;
-  color: #161A1C;
-}
-*/
-
 $travelwidth: $body-container-cols * 2 / 3;
 
 #travelguide-before {	
