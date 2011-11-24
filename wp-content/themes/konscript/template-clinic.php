@@ -28,7 +28,7 @@
 				$url = empty($destination) ? get_permalink( $clinic->ID ) : get_permalink( $clinic->ID ) . "destination/".$destination;
 			?>	 	
 	
-			<p><a href="<?php echo $url; ?>"><?php the_title(); ?></a></p>
+			<p><a href="<?php echo $url; ?>"><?php echo $clinic->post_title; ?></a></p>
 
 		<?php } ?>
 
