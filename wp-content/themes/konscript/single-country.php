@@ -1,15 +1,14 @@
 <?php get_header(); ?>
 <?php 
 $args = array(
-  'post_type'=>'country',
+  'post_type'=>'region',
   'title_li'=> '&nbsp;',
   'echo'         => false,  
 );
-$menu = "".wp_list_pages( $args ).""; 
-
-get_submenu($menu); 
-
+$menu = wp_list_pages( $args );
 ?>
+<?php the_submenu($menu); ?>
+
 	<div id="content">
 		<?php if (have_posts()): while (have_posts()): the_post(); ?>
 		    <div class="post country">

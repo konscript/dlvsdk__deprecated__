@@ -4,7 +4,7 @@ jQuery.noConflict();
 	// execute when DOM is ready
 	$(document).ready(function() {	
 		contentSlider();
-		toggleFaq();	
+		toggleSlidedown();	
 		travelguide();
 		searchFaq();
 	});
@@ -17,11 +17,8 @@ jQuery.noConflict();
 	}	
 
 	// show/hide faq
-	function toggleFaq(){
-		$('.slidedown .title').click(function() {	
-			$(this).next('.content').toggle(200, 'swing');
-			return false;
-		});			
+	function toggleSlidedown(){
+		$( ".accordion" ).accordion({ header: 'a.title' });
 	}	
 	
 	function travelguide(){

@@ -5,8 +5,8 @@
 		'title_li' => '&nbsp;',
 		'echo' => false
 	));
-	get_submenu($submenu); 
 ?>
+<?php the_submenu(); ?>
 
 
 <div id="content">

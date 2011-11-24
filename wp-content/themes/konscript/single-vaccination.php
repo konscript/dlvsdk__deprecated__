@@ -1,5 +1,15 @@
 <?php get_header(); ?>
-<?php get_submenu(); ?>
+<?php 
+$args = array(
+  'post_type'=>'vaccination',
+  'title_li'=> '&nbsp;',
+  'echo' => false,  
+);
+$menu = wp_list_pages( $args );
+
+?>
+<?php the_submenu($menu); ?>
+
 	<div id="content">
 
 		<?php if (have_posts()): while (have_posts()): the_post(); ?>

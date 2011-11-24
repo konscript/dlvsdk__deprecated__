@@ -4,7 +4,7 @@
 		'title_li' => '&nbsp;',
 		'echo' => false
 	));
-	get_submenu($submenu); 
+	the_submenu($submenu); 
 ?>
 
 

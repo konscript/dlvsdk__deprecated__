@@ -4,10 +4,8 @@
 add_filter('body_class','my_class_names');
 function my_class_names($classes) {
 	
-	// will output "-2" if the option "Don't show menu" has been chosen
-	$submenu = build_submenu();
-	
-	if($submenu == -2){
+	// will output false if the option "Don't show menu" has been chosen
+	if(get_submenu()  === false){
 		$classes[] = 'sidebar-hidden';
 	}
 	
@@ -15,20 +13,21 @@ function my_class_names($classes) {
 }
 
 // output submenu 
-function get_submenu($supplied_menu = false) {
+function the_submenu($supplied_menu = false) {
 
-	if($supplied_menu == false){
-		$submenu = build_submenu();
+	// use wordpres inbuilt menu
+	if($supplied_menu === false){		
+		$submenu = get_submenu();
 	
 		// submenu isn't hidden
-		if($submenu != -2){
+		if($submenu !== false){
 			echo '
 			<div id="sidebar"> &nbsp;
 				'.$submenu.'
 			</div>';
 		}
 		
-	// a menu was supplied
+	// a custom menu is supplied
 	}else{
 			echo '
 			<div id="sidebar"> &nbsp;
@@ -38,7 +37,7 @@ function get_submenu($supplied_menu = false) {
 }
 
 // build submenu
-function build_submenu(){
+function get_submenu(){
 	global $post;
 	 
 	// Get the ID of the set menu
@@ -66,12 +65,23 @@ function build_submenu(){
 		
 	// the menu is set to hide
 	}elseif($menu_id == -2){
-		return "-2";
+		return false;
 	}	
 } 
 
 // include Kristians Dynamic Menus on admin page
 include 'DynamicMenus.php';
+
+// FIX: add "current-menu-item" class to wp_list_pages with custom post types
+function my_page_css_class( $css_class, $page ) {
+	global $post;
+	
+	if ( $post->ID == $page->ID ) {
+		$css_class[] = 'current-menu-item';
+	}
+	return $css_class;
+}
+add_filter( 'page_css_class', 'my_page_css_class', 10, 2 );
 
 /**
 #############################

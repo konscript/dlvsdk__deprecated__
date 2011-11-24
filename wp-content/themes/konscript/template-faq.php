@@ -1,6 +1,14 @@
 <?php /* Template Name: FAQ*/ ?>
 <?php get_header(); ?>
-<?php get_submenu(); ?>
+<?php 
+$args = array(
+  'post_type'=>'region',
+  'title_li'=> '&nbsp;',
+  'echo'         => false,  
+);
+$menu = wp_list_pages( $args );
+?>
+<?php the_submenu($menu); ?>
 
 <section id="primary">
 	<div id="content" role="main">
@@ -25,7 +33,7 @@
 				<h3><?=$region["region_name"]; ?></h3>
 				<?php foreach($region["faqs"] as $faq_id): 
 					$faq = $faqs[$faq_id];	
-					echo slidedown($faq["post_title"], $faq["post_content"]);
+					echo slidedown($faq["post_title"], $faq["post_content"], $faq_id);
 				endforeach;
 			endforeach; ?>
 			
@@ -33,7 +41,7 @@
 				<h3><?=$term["term_name"]; ?></h3>
 				<?php foreach($term["faqs"] as $faq_id): 
 					$faq = $faqs[$faq_id];	
-					echo slidedown($faq["post_title"], $faq["post_content"]);
+					echo slidedown($faq["post_title"], $faq["post_content"], $faq_id);
 				endforeach;
 			endforeach; ?>			
  		</div>	

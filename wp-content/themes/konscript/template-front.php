@@ -47,6 +47,7 @@ get_header();
 	<div class="frontpage-column" id="column-left">
 
 		<h3><?=the_field("title_left")?></h3>
+
 		<?php travelguide(); ?>			
 			
 		<div id="map-continents">

@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<?php get_submenu(); ?>
+<?php the_submenu(); ?>
 
 
 <div id="content">	
