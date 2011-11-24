@@ -46,21 +46,22 @@ get_header();
 
 	<div class="frontpage-column" id="column-left">
 
-			<h3><?=the_field("title_left")?></h3>
-			<p>Type your destination:</p>
-			<?php travelguide(); ?>			
+		<h3><?=the_field("title_left")?></h3>
+
+		<?php travelguide(); ?>			
 			
- <div id="map-continents">
-   <ul id="continents">
-    <li id="c1"><a href="<?php bloginfo('wpurl'); ?>/region/africa">Africa</a></li>
-    <li id="c2"><a href="<?php bloginfo('wpurl'); ?>/region/asia">Asia</a></li>
-    <li id="c3"><a href="<?php bloginfo('wpurl'); ?>/region/oceania">Oceania</a></li>
-    <li id="c4"><a href="<?php bloginfo('wpurl'); ?>/region/europe">Europe</a></li>
-    <li id="c5"><a href="<?php bloginfo('wpurl'); ?>/region/north-america">North America</a></li>
-    <li id="c6"><a href="<?php bloginfo('wpurl'); ?>/region/south-africa">South America</a></li>
-   </ul>
- </div>			
-	<?=the_field("content_left")?>
+		<div id="map-continents">
+		  <ul id="continents">
+		   <li id="c1"><a href="<?php bloginfo('wpurl'); ?>/region/africa">Africa</a></li>
+		   <li id="c2"><a href="<?php bloginfo('wpurl'); ?>/region/asia">Asia</a></li>
+		   <li id="c3"><a href="<?php bloginfo('wpurl'); ?>/region/oceania">Oceania</a></li>
+		   <li id="c4"><a href="<?php bloginfo('wpurl'); ?>/region/europe">Europe</a></li>
+		   <li id="c5"><a href="<?php bloginfo('wpurl'); ?>/region/north-america">North America</a></li>
+		   <li id="c6"><a href="<?php bloginfo('wpurl'); ?>/region/south-africa">South America</a></li>
+		  </ul>
+		</div>			
+
+		<?=the_field("content_left")?>
 		
 	</div>
 			

@@ -84,5 +84,3 @@ jQuery.noConflict();
 	}
 	
 })(jQuery);
-
-
