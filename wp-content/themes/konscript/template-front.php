@@ -47,7 +47,6 @@ get_header();
 	<div class="frontpage-column" id="column-left">
 
 			<h3><?=the_field("title_left")?></h3>
-			<?=the_field("content_left")?>
 			<p>Type your destination:</p>
 			<?php travelguide(); ?>			
 			
@@ -62,6 +61,7 @@ get_header();
    </ul>
  </div>			
 
+	<?=the_field("content_left")?>
 		
 	</div>
 			

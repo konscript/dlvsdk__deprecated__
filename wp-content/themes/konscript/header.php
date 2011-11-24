@@ -12,6 +12,7 @@
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 	
 	<!--Stylesheets-->
+  <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/stylesheet/compiled/ui-blitzer/jquery-ui-1.8.16.custom.css" type="text/css" media="screen" charset="utf-8" />
 	<link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/stylesheet/compiled/ie.css" type="text/css" media="screen" charset="utf-8" />
 	<link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/stylesheet/compiled/print.css" type="text/css" media="print" charset="utf-8" />
   <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/stylesheet/compiled/main.css" type="text/css" media="screen" charset="utf-8" />
