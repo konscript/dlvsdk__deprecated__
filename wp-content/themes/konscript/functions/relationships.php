@@ -94,7 +94,7 @@ function getFaqsGroupedByTerm(){
 }
 
 /*
- * get FAQS and related metadata
+ * get FAQS ordered by date
  ********/
 function getFaqs(){
 	$args = array(
@@ -113,18 +113,24 @@ function getFaqs(){
 	return $faqs;	
 }
 
+/*
+ * get countries ordered by name
+ ********/
 function getCountries(){
 	$args = array(
-	'post_type'       => 'countries'); 
+		'post_type'       => 'country',
+		'orderby'         => 'post_title',
+		'order'           => 'DESC'
+	); 
 
-	// get faqs
-	$faqs = array();
-	foreach(get_posts( $args )  as $faq){	
-		$faqs[$faq->ID] = array(
-			'post_title' => $faq->post_title,
-			'post_content' => $faq->post_content				
+	// get countries
+	$countries = array();
+	foreach(get_posts( $args )  as $country){
+		$countries[$country->ID] = array(
+			'post_title' => $country->post_title,
+			'post_content' => $country->post_content				
 		);
 	} 		
-	return $faqs;	
+	return $countries;	
 }
 ?>

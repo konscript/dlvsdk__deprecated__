@@ -60,7 +60,6 @@ get_header();
     <li id="c6"><a href="<?php bloginfo('wpurl'); ?>/region/south-africa">South America</a></li>
    </ul>
  </div>			
-
 	<?=the_field("content_left")?>
 		
 	</div>

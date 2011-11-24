@@ -1,6 +1,6 @@
 <?php /* Template Name: Vaccination*/ ?>
 <?php get_header(); ?>
-<?php get_submenu(); ?>
+<?php the_submenu(); ?>
 
 <section id="primary">
 	<div id="content" role="main">

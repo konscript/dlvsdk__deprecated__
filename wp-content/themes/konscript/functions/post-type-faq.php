@@ -40,7 +40,7 @@ function faq_register() {
    'rewrite' => array('slug' => 'faq', 'with_front' => false),
 	 'has_archive' => false,   
    'capability_type' => 'post',
-   'hierarchical' => false,
+   'hierarchical' => true,
    'supports' => array('thumbnail', 'title', 'editor')
    );
    
