@@ -21,6 +21,8 @@ $menu = wp_list_pages( $args );
 		        <div class="clear"></div> <!-- TODO: proper clearfix should be added -->
 
 						<?php
+							$already_outputted = array();
+													
 							// labels for groups
 							$vaccinations_groups_labels = array(
 								"All travellers", "Above 2 weeks", "Above 3 months", "Above 6 months"
@@ -31,7 +33,7 @@ $menu = wp_list_pages( $args );
 							$vaccinations_groups[1] = get_field('group_1');
 							$vaccinations_groups[2] = get_field('group_2');
 							$vaccinations_groups[3] = get_field('group_3');
-							$vaccinations_groups[4] = get_field('group_4');
+							$vaccinations_groups[4] = get_field('group_4');						
 						?>		
 						<table id="vaccinations_groups">
 							<thead>
@@ -44,20 +46,27 @@ $menu = wp_list_pages( $args );
 							</thead>
 							<tbody>
 							<?php foreach($vaccinations_groups as $group_id => $group): ?>
-								<?php if(!empty($group)): ?>
+								<?php if(!empty($group)): ?>								
 									<?php foreach($group as $vaccination): ?>									
-										<tr>	
-											<td><a href="<?php echo get_permalink( $vaccination->ID ); ?>"><?php echo $vaccination->post_title; ?></a></td>
-											<?php 
-											// output cell with vaccination indicator
-											$checkmark = '<img src="'.get_bloginfo("template_url").'/img/checkmark.png"/>';
-											for ( $counter = 1; $counter <= count($vaccinations_groups_labels); $counter++) {
-												echo "<td>";
-												echo ($counter == $group_id)? $checkmark : " - ";
-												echo "</td>";										
-											}
-											?>
-										</tr>
+									
+									<?php
+										// make sure every vaccine is only outputted once (somebody may have added a vaccine to multiple groups)									
+										if(!in_array($vaccination->ID, $already_outputted)):
+										$already_outputted[] = $vaccination->ID;										
+									?>
+											<tr>	
+												<td><a href="<?php echo get_permalink( $vaccination->ID ); ?>"><?php echo $vaccination->post_title; ?></a></td>
+												<?php 
+												// output cell with vaccination indicator
+												$checkmark = '<img src="'.get_bloginfo("template_url").'/img/checkmark.png"/>';
+												for ( $counter = 1; $counter <= count($vaccinations_groups_labels); $counter++) {
+													echo "<td>";
+													echo ($counter == $group_id)? $checkmark : " - ";
+													echo "</td>";										
+												}
+												?>
+											</tr>
+										<?php endif; ?>														
 									<?php endforeach; ?>
 								<?php endif; ?>			
 							<?php endforeach; ?>	
@@ -69,12 +78,11 @@ $menu = wp_list_pages( $args );
 							$country_id = get_the_ID();
 							$faqs = getFaqsByCountry($country_id); 
 						?>			
-						<?php foreach($faqs as $faq): ?>
-							<div class="slidedown">
-								<a href="#" class="title"><?php echo $faq[0]; ?></a>
-								<p class="content"><?php echo $faq[1]; ?></p>
-							</div>
-						<?php endforeach; ?>					
+						<div class="accordion">						
+						<?php foreach($faqs as $id => $faq):
+							echo slidedown($faq["post_title"], $faq["post_content"], $id);
+						endforeach; ?>		
+						</div>			
 
 						<h3>Description</h3>							
 					 	<?php echo the_content(); ?>											

@@ -31,7 +31,10 @@ function getFaqsByCountry($country_id){
 			
 			foreach($faqs as $faq){ 
 				$faq = get_post( $faq );
-				$data[] = array($faq->post_title, $faq->post_content);			
+				$data[$faq->ID] = array(
+					'post_title' => $faq->post_title, 
+					'post_content' => $faq->post_content
+				);			
 			}
 		}
 	}
@@ -98,12 +101,15 @@ function getFaqsGroupedByTerm(){
  ********/
 function getFaqs(){
 	$args = array(
-	'orderby'         => 'post_date',
-	'order'           => 'DESC',
-	'post_type'       => 'faq'); 
+	'orderby'  		=> 'post_date',
+	'order'    		=> 'DESC',
+	'post_type'		=> 'faq',
+	'numberposts'				=>	'-1',
+	); 
 
 	// get faqs
-	$faqs = array();
+	$faqs = array();	
+	
 	foreach(get_posts( $args )  as $faq){	
 		$faqs[$faq->ID] = array(
 			'post_title' => $faq->post_title,
