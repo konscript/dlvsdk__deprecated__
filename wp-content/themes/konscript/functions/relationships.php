@@ -126,12 +126,13 @@ function getCountries(){
 	$args = array(
 		'post_type'       => 'country',
 		'orderby'         => 'post_title',
-		'order'           => 'DESC'
+		'order'           => 'DESC',
+		'numberposts'			=>	'-1',		
 	); 
 
 	// get countries
 	$countries = array();
-	foreach(get_posts( $args )  as $country){
+	foreach(get_posts( $args ) as $country){
 		$countries[$country->ID] = array(
 			'post_title' => $country->post_title,
 			'post_content' => $country->post_content				

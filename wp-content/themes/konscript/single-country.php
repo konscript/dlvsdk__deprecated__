@@ -17,7 +17,7 @@ $menu = wp_list_pages( $args );
 		        	<?php
 		        		$destination = urlencode(the_title('', '', false));
 		        	?>		                	
-					<a href="/clinic/destination/<?php echo $destination; ?>" class="button">Book vaccination</a>
+					<a href="<?php bloginfo('wpurl'); ?>/clinic/destination/<?php echo $destination; ?>" class="button-book">Book vaccination</a>
 		        <div class="clear"></div> <!-- TODO: proper clearfix should be added -->
 
 						<?php
@@ -25,7 +25,7 @@ $menu = wp_list_pages( $args );
 													
 							// labels for groups
 							$vaccinations_groups_labels = array(
-								"All travellers", "Above 2 weeks", "Above 3 months", "Above 6 months"
+								"All travellers", "+2 weeks", "+3 months", "+6 months"
 							);
 							
 							// vaccinations for groups

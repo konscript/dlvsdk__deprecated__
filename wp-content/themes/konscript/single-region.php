@@ -17,13 +17,13 @@ $menu = wp_list_pages( $args );
 
 			<?php
 			// list of all countries
-			$countries = getCountries();			
+			$countries = getCountries();
 			
 			// region data
-			$region = get_post_custom_values('countries');		
+			$region = get_post_custom_values('countries');
 			
 			// ids of countries in region
-			$country_ids = explode(",", $region[0]);					
+			$country_ids = explode(",", $region[0]);
 
 			// output countries in region
 			foreach($country_ids as $country_id): ?>
