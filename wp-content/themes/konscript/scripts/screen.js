@@ -10,7 +10,10 @@ jQuery.noConflict();
 		$( ".accordion" ).accordion({ header: 'a.title' });
 		
 		// add tabs on frontpage
-		$("#tabs").tabs({fx:{opacity: "toggle"}}).tabs("rotate", 10000, true);			
+		$("#tabs").tabs({fx:{opacity: "toggle"}}).tabs("rotate", 10000, true);
+		
+		// process buttons (jquery ui)
+		$( "a.button" ).button();
 	
 	});
 	
