@@ -29,10 +29,31 @@ body.home .widget{
 		margin:2px 5px;
 	}
 	
-	#clinics{ margin-top: 30px;	}	
-	.bookingimage {float:right; height:140px; margin-top: 40px;}
-}
+	.button-frontpage {
+		@include background-image(linear-gradient(#0cc70c, #187805));
+		@include border-radius(4px);
+		@include box-shadow(0px 1px 4px rgba(000,000,000,0.3),0px 0px 1px rgba(255,255,255,0.7));
+		@include transition-property(all);
+		@include transition-duration(0.5s);		
+		display: block;
+		float: right;
+		border: 1px solid #187805;
+		padding: 10px 20px;
+		color: #fff;
+		font-size: 14px;
 
+		&:hover {
+			@include background-image(linear-gradient(#16d816, #208c0b));		
+			@include box-shadow(0px 1px 5px rgba(000,000,000,0.6),0px 0px 1px rgba(255,255,255,0.7));		
+			border: 1px solid #208c0b;
+			color: #fff;
+			text-decoration: none;
+		}
+	}
+	
+	#clinics{ margin-top: 30px;	}	
+	.bookingimage {float:right; clear: both; height:140px; margin-top: 20px;}
+}
 
 $travelwidth: $body-container-cols * 2 / 3;
 

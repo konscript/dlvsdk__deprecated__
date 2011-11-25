@@ -67,7 +67,7 @@ get_header();
 	<div class="frontpage-column" id="column-right">	
 			<h3><?=the_field("title_right")?></h3>			
 			<?=the_field("content_right")?>	
-			<a class="button" href="<?php bloginfo('wpurl'); ?>/clinics">Book!</a>
+			<a class="button-frontpage" href="<?php bloginfo('wpurl'); ?>/clinics">Book!</a>
 			
 			<img src="<?php bloginfo('template_url'); ?>/img/firstaidkit.png" class="bookingimage"/>
 			
