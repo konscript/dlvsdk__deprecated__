@@ -22,7 +22,7 @@ function the_submenu($supplied_menu = false) {
 		// submenu isn't hidden
 		if($submenu !== false){
 			echo '
-			<div id="sidebar"> &nbsp;
+			<div id="sidebar">
 				'.$submenu.'
 			</div>';
 		}
@@ -30,7 +30,7 @@ function the_submenu($supplied_menu = false) {
 	// a custom menu is supplied
 	}else{
 			echo '
-			<div id="sidebar"> &nbsp;
+			<div id="sidebar">
 				'.$supplied_menu.'
 			</div>';
 	}
