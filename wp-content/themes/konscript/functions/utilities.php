@@ -9,4 +9,3 @@ function slidedown($title, $content, $id = 0){
 			<div>'.$content.'</div>';
 }
 ?>
-
