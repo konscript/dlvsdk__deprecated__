@@ -24,15 +24,14 @@ body.home .widget{
 #column-right {
 	@include column( $body-container-cols / 3, true); 
 	
-	a.button{
+	a.button-book{
 		float:right;
 		margin:2px 5px;
 	}
 	
 	#clinics{ margin-top: 30px;	}	
-	.bookingimage {float:right; height:140px; margin-top: 40px;}
+	.bookingimage {float:right; clear: both; height:140px; margin-top: 20px;}
 }
-
 
 $travelwidth: $body-container-cols * 2 / 3;
 

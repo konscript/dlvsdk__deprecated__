@@ -67,8 +67,9 @@ get_header();
 	<div class="frontpage-column" id="column-right">	
 			<h3><?=the_field("title_right")?></h3>			
 			<?=the_field("content_right")?>	
-			<a class="button" href="<?php bloginfo('wpurl'); ?>/clinics">Book!</a>
+			<a class="button-book" href="<?php bloginfo('wpurl'); ?>/clinic">Book!</a>
 			
+			<!--
 			<img src="<?php bloginfo('template_url'); ?>/img/firstaidkit.png" class="bookingimage"/>
 			
 			<ul id="clinics">
@@ -78,14 +79,8 @@ get_header();
 				<li>Clinic #4</li>
 				<li>Clinic #5</li>
 			</ul>
+			-->
 	</div>
-
 
 </div><!--#end content -->
-
-<div style="display: none;">
-	<div id="world_map_big" style="width:800px;overflow:auto;">
-		<img src="<?php bloginfo('template_url'); ?>/img/world_map.png" />
-	</div>
-</div>
 <?php get_footer(); ?>
