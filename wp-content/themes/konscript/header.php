@@ -43,14 +43,9 @@
 	<?php // NOTE: We are enqueing jQuery from Google CDN in the functions.php. If it doesn't load we grab the local version ?>
 	<script>!window.jQuery && document.write('<script src="<?php bloginfo('template_url'); ?>/scripts/jquery-1.6.2.min.js"><\/script>')</script>
 	<script>!window.jQuery.ui && document.write('<script src="<?php bloginfo('template_url'); ?>/scripts/jquery-ui-1.8.16.custom.min.js"><\/script>')</script>
-	<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/scripts/screen.js"></script>	 	
-	
+	<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/scripts/screen.js"></script>	 			
 </head>
 <body <?php body_class(); ?>>
-
-	<div class="demo-description" style="display: none; ">
-	<p>Click tabs to swap between content that is broken into logical sections.</p>
-	</div><!-- End demo-description -->
 
 <div id="wrapper">
 	<div id="body-container">

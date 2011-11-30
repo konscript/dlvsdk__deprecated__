@@ -734,11 +734,12 @@ div.wpcf7{
 		margin-bottom: 10px;
   	
   		thead tr td{
-			font-weight: bold;
+				font-weight: bold;
   		}
   		
   		td{
   			line-height: 25px;
+				padding: 3px 6px;  			
   		}
   		
   		
@@ -750,24 +751,20 @@ div.wpcf7{
  /**
   * country
   **********************************/  
-  div.post.country{
+  div.post.country{	
+		table#vaccinations_groups thead tr td {
+			font-weight: bold;
+		}
 
-	h1 { float: left;	}
-	.button { float: right; margin-top: 16px;}
+		table#vaccinations_groups tr td:first-child	{
+			text-align:right;
+			font-weight: bold;
+		}
 	
-	table#vaccinations_groups thead tr td {
-		font-weight: bold;
-	}
-
-	table#vaccinations_groups tr td:first-child	{
-		text-align:right;
-		font-weight: bold;
-	}
-	
-	table#vaccinations_groups tr td{
-		text-align:center;	
-		padding: 10px;
-	}
+		table#vaccinations_groups tr td{
+			text-align:center;	
+			padding: 10px;
+		}
   
   }
 
@@ -776,22 +773,21 @@ div.wpcf7{
 **********************************/    
 
 .post.faq{
-
+	h3 { margin-top: 20px; }
 }
+
+
 /*
- * jQuery scripts styled
- ******/
- 
- // show/hide slidedown
- .slidedown{
- 	.title {cursor: pointer;}
- 	.content {
- 		display:none; 
- 		margin-bottom: 5px;
- 		padding-bottom: 5px;
- 		border-bottom: 1px solid #ddd;
-	}	
- } 
+ *
+ *	Templates
+ *
+ *
+ *****************************************************************/    
+
+	#booking-popup {
+			width: 400px;
+			height: 300px;
+	}
  
  /*
   * Generic Fixes
@@ -803,10 +799,10 @@ div.wpcf7{
  /*
   * Buttons
   *****/
-	.button-book {
-		@include background-image(linear-gradient(#0cc70c, #187805));
+	a.button-book {
+		//@include background-image(linear-gradient(#0cc70c, #187805));
 		@include border-radius(4px);
-		//@include box-shadow(0px 1px 4px rgba(000,000,000,0.3),0px 0px 1px rgba(255,255,255,0.7));
+		@include box-shadow(0px 1px 4px rgba(000,000,000,0.3),0px 0px 1px rgba(255,255,255,0.7));
 		@include transition-property(all);
 		@include transition-duration(0.3s);		
 		background-color: #208c0b;
@@ -818,7 +814,7 @@ div.wpcf7{
 		font-size: 14px;
 
 		&:hover {
-			@include background-image(linear-gradient(#16d816, #208c0b));		
+			//@include background-image(linear-gradient(#16d816, #208c0b));		
 			@include box-shadow(0px 1px 4px rgba(000,000,000,0.4),0px 0px 1px rgba(255,255,255,0.7));		
 			background-color: #0cc70c;
 			border: 1px solid #208c0b;

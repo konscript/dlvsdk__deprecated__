@@ -12,13 +12,11 @@ $menu = wp_list_pages( $args );
 	<div id="content">
 		<?php if (have_posts()): while (have_posts()): the_post(); ?>
 		    <div class="post country">
-		        <h1><?php the_title(); ?></h1>	        		        
-		        <div class="post-content">		   		        			
-		        	<?php
-		        		$destination = urlencode(the_title('', '', false));
-		        	?>		                	
-					<a href="<?php bloginfo('wpurl'); ?>/clinic/destination/<?php echo $destination; ?>" class="button-book">Book vaccination</a>
-		        <div class="clear"></div> <!-- TODO: proper clearfix should be added -->
+	        	<?php	$destination = urlencode(the_title('', '', false));	?>		                	
+						<a class="button-book" href="<?php bloginfo('wpurl'); ?>/booking-popup/destination/<?php echo $destination; ?>">Book!</a>						
+		        <h1><?php the_title(); ?></h1>	        		      
+
+		        <div class="post-content">	
 
 						<?php
 							$already_outputted = array();
