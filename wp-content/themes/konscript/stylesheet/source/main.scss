@@ -52,13 +52,14 @@ body {
 		overflow: hidden;		
 		background-color: #fff;	
 		min-height:100%;
+		@include box-shadow(0px 4px 8px rgba(000,000,000,0.2));		
 	}
 	
 	// Wrapper for everything inside of the body
 	#body-container {
 		@include prepend(1);
 		@include column($body-container-cols, true); 
-		@include append(1);		
+		@include append(1);	
 	}
 
 /**
@@ -660,8 +661,6 @@ img.wp-smiley {}
 			text-align:right;				
 		}
 		
-		
-
 		// Footer extra
 		#footer .copyright {}
 		#footer .credit {}
@@ -773,7 +772,22 @@ div.wpcf7{
 **********************************/    
 
 .post.faq{
-	h3 { margin-top: 20px; }
+	
+	h3 { margin: 20px 0 10px 0; }
+	
+	#searchFaq {
+		@include border-radius(5px);
+		@include background-image(linear-gradient(#f0f0f0, #fff));
+		width: 200px;
+		padding: 10px;
+		border: 1px solid #909090;
+		background-color: #fff; }
+		
+	#clearSearch {
+		@include border-radius(5px);
+		padding: 2px 6px 3px 6px;		
+		border: 1px solid #D8DCDF;		
+	}
 }
 
 
@@ -800,7 +814,7 @@ div.wpcf7{
   * Buttons
   *****/
 	a.button-book {
-		//@include background-image(linear-gradient(#0cc70c, #187805));
+		@include background-image(linear-gradient(#0cc70c, #187805));
 		@include border-radius(4px);
 		@include box-shadow(0px 1px 4px rgba(000,000,000,0.3),0px 0px 1px rgba(255,255,255,0.7));
 		@include transition-property(all);
@@ -814,7 +828,7 @@ div.wpcf7{
 		font-size: 14px;
 
 		&:hover {
-			//@include background-image(linear-gradient(#16d816, #208c0b));		
+			@include background-image(linear-gradient(#16d816, #208c0b));		
 			@include box-shadow(0px 1px 4px rgba(000,000,000,0.4),0px 0px 1px rgba(255,255,255,0.7));		
 			background-color: #0cc70c;
 			border: 1px solid #208c0b;
