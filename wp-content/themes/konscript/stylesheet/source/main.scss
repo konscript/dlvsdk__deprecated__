@@ -45,14 +45,13 @@ body {
 	background-color: #b2b2b2;		
 }
 
-
 	#wrapper {
 		@include container;		
+		@include box-shadow(0px 4px 8px rgba(000,000,000,0.2));		
 		margin: 0 auto;
 		overflow: hidden;		
 		background-color: #fff;	
 		min-height:100%;
-		@include box-shadow(0px 4px 8px rgba(000,000,000,0.2));		
 	}
 	
 	// Wrapper for everything inside of the body
@@ -836,6 +835,19 @@ div.wpcf7{
 			text-decoration: none;
 		}
 	}
+
+// jQuery UI corrections/adjustments
+
+.ui-dialog {
+	@include box-shadow(0px 4px 8px rgba(000,000,000,0.2));
+}
+.ui-widget-content, .ui-widget-header {
+	border: 0;
+}
+.ui-accordion .ui-accordion-content {
+	margin-top: 0;
+}
+
 
 /**
  * WP style: wysiwyg styles
