@@ -5,7 +5,7 @@ redirectTravelGuide();
 get_header(); 
 ?>
 
-<div id="content">	
+<div id="content"  class="no-sidebar">	
 
 	<div id="tabs" >
 	

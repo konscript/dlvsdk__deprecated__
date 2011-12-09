@@ -121,7 +121,11 @@ $travelwidth: $body-container-cols * 2 / 3;
 
 	/* tabs container */
 	ul { 
-		@include column($one_third + 1, true);	
+		// override normal blueprint columns
+		@include float-left;	
+		width: span($one_third) + $blueprint-grid-margin;
+		@include last;
+		
 		background: none;
 		border: 0;
 		padding: 0;

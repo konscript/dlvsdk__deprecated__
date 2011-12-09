@@ -1,6 +1,8 @@
 <?php
 
 // add "sidebar-hidden" to body class
+/*
+DISABLED: Layout will always have a sidebar
 add_filter('body_class','my_class_names');
 function my_class_names($classes) {
 	
@@ -11,6 +13,7 @@ function my_class_names($classes) {
 	
 	return $classes;
 }
+*/
 
 // output submenu 
 function the_submenu($supplied_menu = false) {
@@ -19,13 +22,10 @@ function the_submenu($supplied_menu = false) {
 	if($supplied_menu === false){		
 		$submenu = get_submenu();
 	
-		// submenu isn't hidden
-		if($submenu !== false){
-			echo '
-			<div id="sidebar">
-				'.$submenu.'
-			</div>';
-		}
+		echo '
+		<div id="sidebar">
+			'.$submenu.'
+		</div>';
 		
 	// a custom menu is supplied
 	}else{
@@ -59,14 +59,7 @@ function get_submenu(){
 		}						
 	}
 	
-	// menu is found, output it
-	if($menu_id > 0){
-		return wp_nav_menu(array('menu' => $menu_id, 'echo' => false));
-		
-	// the menu is set to hide
-	}elseif($menu_id == -2){
-		return false;
-	}	
+	return wp_nav_menu(array('menu' => $menu_id, 'echo' => false));
 } 
 
 // include Kristians Dynamic Menus on admin page
