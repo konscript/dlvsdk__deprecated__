@@ -18,12 +18,78 @@ jQuery.noConflict();
 		// process buttons (jquery ui)
 		$( "a.button" ).button();
 		button_book();
+		
+		// Booking: load iframe and disable form
+		bookingNavigate();
+		
 	});
 	
 	/*
 	 * functions begin
 	 **************************************************************************************/	
 
+	// Booking: load iframe when clinic is selected
+	function bookingNavigate() {
+    $('#navigateStepBack').hide();
+    
+    var inputFields = '.template.booking .form input,.template.booking .form select, .template.booking .form textarea';
+	
+		$('#navigateStepNext').click(function() {
+				
+				// disable and fade form
+				$(inputFields).attr('disabled', 'enabled');
+				$('form').fadeTo('fast', 0.5);
+		
+				// date
+				var name = $('.form #name').val();
+				var email = $('.form #email').val();
+				var phone = $('.form #phone').val();
+				var comments = $('.form #comments').val();
+				var clinic_url = $('.form #clinic option:selected').data('url'); // URL
+				var destination = $('.form #destination').val();
+				var participants = $('.form #participants option:selected').val(); // SERVICE	
+				var service = participants;
+				
+				var booking_url = 
+					clinic_url + 
+					'?service=service' + service + 
+					'&l1=' + name +
+					'&l2=' + email +
+					'&l4=' + comments +
+					'&l5=' + destination;
+					
+					// URL encode variables
+					booking_url = encodeURI(booking_url);
+					
+					// add phone number (cannot be url encoded)
+					booking_url = booking_url + '&l3=%2B44' + phone;
+					
+					console.log(booking_url);
+					
+											
+		
+				// load iframe				
+        $('.template.booking iframe').attr('src', booking_url);
+        
+        // change navigation buttons
+        $(this).hide();
+        $('#navigateStepBack').show();
+		});
+		
+		$('#navigateStepBack').click(function() {
+				
+				// enable and fade form
+				$(inputFields).removeAttr('disabled');
+				$('form').fadeTo('fast', 1);				
+		
+				// disable iframe
+        $('.template.booking iframe').attr('src', 'about:blank');
+        
+        // change navigation buttons
+        $(this).hide();
+        $('#navigateStepNext').show();
+		});		
+	}
 
 	/******************
 	 * Search as you type: find country
