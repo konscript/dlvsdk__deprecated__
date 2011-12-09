@@ -46,9 +46,9 @@ body {
 	background-color: #b2b2b2;		
 }
 
-
 	#wrapper {
 		@include container;		
+		@include box-shadow(0px 4px 8px rgba(000,000,000,0.2));		
 		margin: 0 auto;
 		overflow: hidden;		
 		background-color: #fff;	
@@ -59,7 +59,7 @@ body {
 	#body-container {
 		@include prepend(1);
 		@include column($body-container-cols, true); 
-		@include append(1);		
+		@include append(1);	
 	}
 
 /**
@@ -660,8 +660,6 @@ img.wp-smiley {}
 			text-align:right;				
 		}
 		
-		
-
 		// Footer extra
 		#footer .copyright {}
 		#footer .credit {}
@@ -773,7 +771,22 @@ div.wpcf7{
 **********************************/    
 
 .post.faq{
-	h3 { margin-top: 20px; }
+	
+	h3 { margin: 20px 0 10px 0; }
+	
+	#searchFaq {
+		@include border-radius(5px);
+		@include background-image(linear-gradient(#f0f0f0, #fff));
+		width: 200px;
+		padding: 10px;
+		border: 1px solid #909090;
+		background-color: #fff; }
+		
+	#clearSearch {
+		@include border-radius(5px);
+		padding: 2px 6px 3px 6px;		
+		border: 1px solid #D8DCDF;		
+	}
 }
 
 
@@ -873,6 +886,19 @@ div.wpcf7{
 			text-decoration: none;
 		}
 	}
+
+// jQuery UI corrections/adjustments
+
+.ui-dialog {
+	@include box-shadow(0px 4px 8px rgba(000,000,000,0.2));
+}
+.ui-widget-content, .ui-widget-header {
+	border: 0;
+}
+.ui-accordion .ui-accordion-content {
+	margin-top: 0;
+}
+
 
 /**
  * WP style: wysiwyg styles
