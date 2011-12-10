@@ -12,7 +12,7 @@ $menu = wp_list_pages( $args );
 <div id="content">
 	<?php if (have_posts()): while (have_posts()): the_post(); ?>
 		<div class="post region">
-			<a class="button-book" href="<?php bloginfo('wpurl'); ?>/booking-popup">Book!</a>
+			<a class="button-book" href="<?php bloginfo('wpurl'); ?>/booking">Book!</a>
 			<h1><?php the_title(); ?></h1>
 			<div class="post-content">
       	Please click a country below, to read more about it, and the recommended vaccinations.
