@@ -42,7 +42,7 @@ $travelwidth: $body-container-cols * 2 / 3;
 	font-style: italic; }
 #travelguide-after {
 	padding-top: 10px;	
-	@include column($travelwidth / 3, true);
+	@include column(floor($travelwidth / 3), true);
 	text-align: left;	
 	font-style: italic; }
 
@@ -116,6 +116,14 @@ $travelwidth: $body-container-cols * 2 / 3;
 			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99ffffff, endColorstr=#99ffffff);
 			-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99ffffff, endColorstr=#99ffffff)";
 			background: rgba(255,255,255, .6);
+			
+			.header{ margin: 0 0 10px 0; }
+			
+			.button {
+				position:absolute;
+				bottom: 30px;
+				right: 10px;
+			}
 		}		
 	}
 

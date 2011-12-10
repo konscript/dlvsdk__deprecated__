@@ -10,8 +10,8 @@
 @import "compass/css3/box-shadow";
 @import "compass/utilities/general/clearfix";
 @import "blueprint/form";
-@import "_base";
-@import "_front";
+@import "base";
+@import "front";
 
 // If you are doing a lot of stylesheet concatenation, it is suggested
 // that you scope your blueprint styles, so that you can better control
@@ -886,6 +886,10 @@ div.wpcf7{
 			text-decoration: none;
 		}
 	}
+	a.button-book.large {		
+		line-height: 28px;
+		font-size: 1.8em;
+	}	
 
 // jQuery UI corrections/adjustments
 
