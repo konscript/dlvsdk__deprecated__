@@ -13,7 +13,7 @@ $menu = wp_list_pages( $args );
 		<?php if (have_posts()): while (have_posts()): the_post(); ?>
 		    <div class="post country">
 	        	<?php	$destination = urlencode(the_title('', '', false));	?>		                	
-						<a class="button-book" href="<?php bloginfo('wpurl'); ?>/booking-popup/destination/<?php echo $destination; ?>">Book!</a>						
+						<a class="button-book" href="<?php bloginfo('wpurl'); ?>/booking/destination/<?php echo $destination; ?>">Book!</a>						
 		        <h1><?php the_title(); ?></h1>	        		      
 
 		        <div class="post-content">	
