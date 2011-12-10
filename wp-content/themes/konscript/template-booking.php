@@ -7,7 +7,8 @@
 		<?php
 		
 		// destination
-		$destination = urldecode($wp_query->query_vars['destination']);
+		$clinic_param = urldecode($wp_query->query_vars['clinic_param']);		
+		$destination_param = urldecode($wp_query->query_vars['destination_param']);
 				
 		$args = array(
 		'orderby'         => 'title',
@@ -16,30 +17,29 @@
 		'post_type'       => 'clinic'); ?>
 
 		<?php $clinics = get_posts( $args ); ?> 
-
-	
-					
 				<?php echo the_content(); ?>					
 				
 				<div class="form">
-
 					<form>										
 						<label for="name">Name:</label><div class="fieldWrapper"><input type="text" name="name" id="name"></div>
 						<label for="email">Email:</label><div class="fieldWrapper"><input type="text" name="email" id="email"></div>															
-						<label for="phone">Phone:</label><div class="fieldWrapper"><input type="text" name="phone" id="phone"></div>																
+						<label for="phone">Phone: +44</label><div class="fieldWrapper"> <input type="text" name="phone" id="phone"></div>																
 						<label for="comments">Comments:</label><div class="fieldWrapper textarea"><textarea name="comments" id="comments"></textarea></div>
-						<label for="destination">Travel destination:</label><div class="fieldWrapper"><input type="text" name="destination" id="destination"></div>																
-
+						<label for="destination">Travel destination:</label><div class="fieldWrapper"><input type="text" name="destination" id="destination" value="<?php echo $destination_param ?>"></div>																
+						
 						<label for="clinic">Clinic:</label>
 						<div class="fieldWrapper select">
 							<select name="clinic" id="clinic">
 								<option data-url="about:blank" value="">Choose</option>																				
 									<?php foreach($clinics as $clinic){
-
+									
+										$slug = $clinic->post_name;
+										$selected = ( $clinic->post_name == $clinic_param ) ? "selected" : "";
+										
 										$booking_url = trim(get_field("booking_url", $clinic->ID));
 										$address = get_field("address", $clinic->ID);
-										$title = $clinic->post_title;
-										echo'<option data-url="'.$booking_url.'" value="London">'.$title.' - ' . $address . '</option>';
+										$title = $clinic->post_title;																				
+										echo'<option '.$selected.' data-url="'.$booking_url.'" value="London">'.$title.' - ' . $address . '</option>';
 
 									}	?>
 							</select>						

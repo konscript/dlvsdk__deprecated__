@@ -17,7 +17,6 @@ jQuery.noConflict();
 		
 		// process buttons (jquery ui)
 		$( "a.button" ).button();
-		button_book();
 		
 		// Booking: load iframe and disable form
 		bookingNavigate();
@@ -34,6 +33,7 @@ jQuery.noConflict();
     
     var inputFields = '.template.booking .form input,.template.booking .form select, .template.booking .form textarea';
 	
+		// action when click on next button
 		$('#navigateStepNext').click(function() {
 				
 				// disable and fade form
@@ -47,26 +47,21 @@ jQuery.noConflict();
 				var comments = $('.form #comments').val();
 				var clinic_url = $('.form #clinic option:selected').data('url'); // URL
 				var destination = $('.form #destination').val();
-				var participants = $('.form #participants option:selected').val(); // SERVICE	
-				var service = participants;
+				var participants = $('.form #participants option:selected').val(); 
+				var service = participants; // SERVICE	
 				
+				// remove leading zero from phone number
+				phone = phone.substr(0,1) == '0' ? phone.substr(1) : phone;
+
+				// url encode values				
 				var booking_url = 
 					clinic_url + 
 					'?service=service' + service + 
-					'&l1=' + name +
-					'&l2=' + email +
-					'&l4=' + comments +
-					'&l5=' + destination;
-					
-					// URL encode variables
-					booking_url = encodeURI(booking_url);
-					
-					// add phone number (cannot be url encoded)
-					booking_url = booking_url + '&l3=%2B44' + phone;
-					
-					console.log(booking_url);
-					
-											
+					'&l1=' + encodeURI(name) +
+					'&l2=' + encodeURI(email) +
+					'&l3=%2B44' + encodeURI(phone) +
+					'&l4=' + encodeURI(comments) +
+					'&l5=' + encodeURI(destination);											
 		
 				// load iframe				
         $('.template.booking iframe').attr('src', booking_url);
@@ -76,9 +71,10 @@ jQuery.noConflict();
         $('#navigateStepBack').show();
 		});
 		
+		// action when click on edit/back button
 		$('#navigateStepBack').click(function() {
 				
-				// enable and fade form
+				// enable and fadein form
 				$(inputFields).removeAttr('disabled');
 				$('form').fadeTo('fast', 1);				
 		
@@ -100,67 +96,6 @@ jQuery.noConflict();
 			
 		// search as you type on country finder
 		$('select#country-selector').selectToAutocomplete();	
-	}
-
-
-	/******************
-	 * Booking button - open modalwindow with accordion menu inside
-	 ******************/			
-	function button_book()	{
-		
-		// bind accordion "click" function - change button inside jQueryUI dialog
-		$( ".accordion" ).bind( "accordionchange", function(event, ui) {
-	
-			// an option was opened (do nothing on close)
-			if(ui.newHeader.length > 0){
-
-				var link = $(ui.newHeader).find("a");
-				var link_ref = link.attr("href");
-				var link_text = link.text();
-				
-				// add button to dialog
-				$( "#dialog" ).dialog( "option", "buttons", [
-						{
-								text: "Book " + link_text,
-								click: function() { 
-									// follow link
-									window.location = link_ref;
-								}
-						}
-				]);		
-			}
-		});
-		
-		// bind modal window (jQueryUI dialog) to button-book		
-		$('a.button-book').live('click', function() {
-			var url = this.href;
-			var dialog = $("#dialog");
-			if ($("#dialog").length == 0) {
-				dialog = $('<div id="dialog" style="display:hidden"></div>').appendTo('body');
-			
-				// load remote content (ajax)
-				dialog.load(
-						url,
-						function(responseText, textStatus, XMLHttpRequest) {
-					    dialog.dialog({ 
-					    	modal: true,
-					    	draggable: false,
-					    	resizable: false,
-								open: function(){
-										$('.ui-widget-overlay').hide().fadeIn();
-								},
-								show: "fade",
-								hide: "fade"
-				    	});
-						}
-					);				    				    
-			}else{
-				dialog.dialog( "open" );
-			} 
-
-			//prevent the browser to follow the link
-			return false;
-		}); 	
 	}
 
 	/******************
