@@ -78,11 +78,12 @@ $travelwidth: $body-container-cols * 2 / 3;
 	 
 	@include column($body-container-cols, true); 
 
+	border: 1px solid #ccc;	
 	position:relative; 
 	height:$featured-height; 
 	margin-bottom: $blueprint-grid-margin;
-	border: 1px solid #ccc;	
 	padding: 0;
+	overflow: hidden;
 	@include border-radius(0);
 	
 	// tabs content
