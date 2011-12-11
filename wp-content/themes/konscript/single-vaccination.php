@@ -17,6 +17,7 @@ $menu = wp_list_pages( $args );
 		        <h1><?php the_title(); ?></h1>
 		        <div class="post-content">
 							<?php	the_content();	 ?>  
+            </div>							
 							<div class="accordion">						 							
 								<?php echo slidedown("Vaccine contents", get_field("vaccine_contents")); ?>							
 								<?php echo slidedown("Who should be vaccinated?", get_field("who_should_be_vaccinated")); ?>
@@ -26,7 +27,6 @@ $menu = wp_list_pages( $args );
 								<?php echo slidedown("Duration of immunity", get_field("duration_of_immunity")); ?>
 								<?php echo slidedown("Most frequent side effects", get_field("side_effects")); ?>							                 
 							</div>														
-            </div>
 		    </div><!--#end post-->
         <?php endwhile; endif; ?>
 	</div><!--#end content -->

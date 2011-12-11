@@ -5,8 +5,10 @@
 <section id="primary">
 	<div id="content" role="main">
 	<h1><?php post_type_archive_title(); ?></h1> 
-
-	<?php echo the_content(); ?>
+	
+	<div class="post-content">
+		<?php echo the_content(); ?>
+	</div>
 	
 	<?php $args = array(
 	'orderby'         => 'title',
