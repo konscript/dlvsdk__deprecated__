@@ -5,7 +5,7 @@ redirectTravelGuide();
 get_header(); 
 ?>
 
-<div id="content">	
+<div id="content" class="no-sidebar">	
 
 	<div id="tabs" >
 	
@@ -26,7 +26,8 @@ get_header();
 				<img src="<?php the_sub_field('background_image'); ?>" alt="<?php the_sub_field('title'); ?>" />
 				<div class="inner">
 					<p class="header"><?php the_sub_field('title'); ?></p>
-					<p><?php the_sub_field('description'); ?></p>			
+					<p><?php the_sub_field('description'); ?></p>	
+					<a class="button" href="<?php echo get_permalink(get_sub_field('link')->ID); ?>">Read more</a>
 				</div>
 			</div>
 				
@@ -67,8 +68,9 @@ get_header();
 	<div class="frontpage-column" id="column-right">	
 			<h3><?=the_field("title_right")?></h3>			
 			<?=the_field("content_right")?>	
-			<a class="button-book" href="<?php bloginfo('wpurl'); ?>/booking-popup">Book an appointment!</a>
-			
+
+			<a class="button-book" href="<?php bloginfo('wpurl'); ?>/booking">Book an appointment!</a>
+						
 			<!--
 			<img src="<?php bloginfo('template_url'); ?>/img/firstaidkit.png" class="bookingimage"/>
 			

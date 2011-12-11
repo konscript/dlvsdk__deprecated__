@@ -17,13 +17,75 @@ jQuery.noConflict();
 		
 		// process buttons (jquery ui)
 		$( "a.button" ).button();
-		button_book();
+		
+		// Booking: load iframe and disable form
+		bookingNavigate();
+		
 	});
 	
 	/*
 	 * functions begin
 	 **************************************************************************************/	
 
+	// Booking: load iframe when clinic is selected
+	function bookingNavigate() {
+    $('#navigateStepBack').hide();
+    
+    var inputFields = '.template.booking .form input,.template.booking .form select, .template.booking .form textarea';
+	
+		// action when click on next button
+		$('#navigateStepNext').click(function() {
+				
+				// disable and fade form
+				$(inputFields).attr('disabled', 'enabled');
+				$('form').fadeTo('fast', 0.5);
+		
+				// date
+				var name = $('.form #name').val();
+				var email = $('.form #email').val();
+				var phone = $('.form #phone').val();
+				var comments = $('.form #comments').val();
+				var clinic_url = $('.form #clinic option:selected').data('url'); // URL
+				var destination = $('.form #destination').val();
+				var participants = $('.form #participants option:selected').val(); 
+				var service = participants; // SERVICE	
+				
+				// remove leading zero from phone number
+				phone = phone.substr(0,1) == '0' ? phone.substr(1) : phone;
+
+				// url encode values				
+				var booking_url = 
+					clinic_url + 
+					'?service=service' + service + 
+					'&l1=' + encodeURI(name) +
+					'&l2=' + encodeURI(email) +
+					'&l3=%2B44' + encodeURI(phone) +
+					'&l4=' + encodeURI(comments) +
+					'&l5=' + encodeURI(destination);											
+		
+				// load iframe				
+        $('.template.booking iframe').attr('src', booking_url);
+        
+        // change navigation buttons
+        $(this).hide();
+        $('#navigateStepBack').show();
+		});
+		
+		// action when click on edit/back button
+		$('#navigateStepBack').click(function() {
+				
+				// enable and fadein form
+				$(inputFields).removeAttr('disabled');
+				$('form').fadeTo('fast', 1);				
+		
+				// disable iframe
+        $('.template.booking iframe').attr('src', 'about:blank');
+        
+        // change navigation buttons
+        $(this).hide();
+        $('#navigateStepNext').show();
+		});		
+	}
 
 	/******************
 	 * Search as you type: find country
@@ -36,7 +98,6 @@ jQuery.noConflict();
 		$('select#country-selector').selectToAutocomplete();	
 	}
 
-
 	/******************
 	 * Booking button - open modalwindow with accordion menu inside
 	 ******************/			
@@ -46,7 +107,8 @@ jQuery.noConflict();
 		$( ".accordion" ).bind( "accordionchange", function(event, ui) {
 	
 			// an option was opened (do nothing on close)
-			if(ui.newHeader.length > 0){
+/*
+			if(ui.new	er.length > 0){
 				
 				$('.accordion').accordion("resize");
 
@@ -65,6 +127,7 @@ jQuery.noConflict();
 						}
 				]);		
 			}
+*/
 		});
 		
 		// bind modal window (jQueryUI dialog) to button-book		

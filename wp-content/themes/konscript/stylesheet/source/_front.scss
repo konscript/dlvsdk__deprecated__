@@ -42,7 +42,7 @@ $travelwidth: $body-container-cols * 2 / 3;
 	font-style: italic; }
 #travelguide-after {
 	padding-top: 10px;	
-	@include column($travelwidth / 3, true);
+	@include column(floor($travelwidth / 3), true);
 	text-align: left;	
 	font-style: italic; }
 
@@ -78,11 +78,12 @@ $travelwidth: $body-container-cols * 2 / 3;
 	 
 	@include column($body-container-cols, true); 
 
+	border: 1px solid #ccc;	
 	position:relative; 
 	height:$featured-height; 
 	margin-bottom: $blueprint-grid-margin;
-	border: 1px solid #ccc;	
 	padding: 0;
+	overflow: hidden;
 	@include border-radius(0);
 	
 	// tabs content
@@ -116,12 +117,24 @@ $travelwidth: $body-container-cols * 2 / 3;
 			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99ffffff, endColorstr=#99ffffff);
 			-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99ffffff, endColorstr=#99ffffff)";
 			background: rgba(255,255,255, .6);
+			
+			.header{ margin: 0 0 10px 0; }
+			
+			.button {
+				position:absolute;
+				bottom: 30px;
+				right: 10px;
+			}
 		}		
 	}
 
 	/* tabs container */
 	ul { 
-		@include column($one_third + 1, true);	
+		// override normal blueprint columns
+		@include float-left;	
+		width: span($one_third) + $blueprint-grid-margin;
+		@include last;
+		
 		background: none;
 		border: 0;
 		padding: 0;
@@ -132,7 +145,7 @@ $travelwidth: $body-container-cols * 2 / 3;
 		
 		/* single tab  */
 		li { 
-			@include linear-gradient(color-stops(#f9f9f9, #eee));
+			@include background-image(linear-gradient(color-stops(#f9f9f9, #eee)));
 			margin: 0;
 			text-indent: 0px;
 			@include border-radius(0px);

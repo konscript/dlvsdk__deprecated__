@@ -9,8 +9,9 @@
 @import "compass/css3/opacity";
 @import "compass/css3/box-shadow";
 @import "compass/utilities/general/clearfix";
-@import "_base";
-@import "_front";
+@import "blueprint/form";
+@import "base";
+@import "front";
 
 // If you are doing a lot of stylesheet concatenation, it is suggested
 // that you scope your blueprint styles, so that you can better control
@@ -82,7 +83,7 @@ a:active {}
 h1, h2, h3, h4, h5, h6 {
 	color: #1F1E1D;
 	//padding-bottom: .4em;
-	margin-bottom: 10px;
+	margin: 20px 0 10px 0;
 }
 
 // Headers 
@@ -140,7 +141,7 @@ ul.nodots {
 	list-style-type:none;
 }
 
-ul {
+.post ul {
 	list-style: inside url(../../img/dlvs-12.png);	
 	margin:0 0 10px 0;
 }
@@ -207,7 +208,7 @@ form {}
 // general headers
 p.header {
 	font-weight: bold;
-	margin-bottom: 10px;
+	margin-top: 10px;
 }
 
 /**
@@ -421,8 +422,7 @@ img.wp-smiley {}
 	}
 	
 	// Content without sitebar OR frontpage-template
-	body.sidebar-hidden #content,
-	body.home #content	
+	#content.no-sidebar
 	{
 		@include column($body-container-cols, true); 
 	}	
@@ -718,12 +718,22 @@ div.wpcf7{
 	.multiple-fields.last-name, .multiple-fields.last-name .input-field input{ width: 110px;}
 }
 
-/*
- *
+/*****************************************************************
  *	CUSTOM POST TYPES
- *
- *
  *****************************************************************/    
+
+ /*
+  * Clinic
+  **********************************/
+	#opening_hours {
+		width: 300px;
+		
+		td { padding: 5px; }
+		tr:nth-child(even){
+				@include background-image(linear-gradient(#eee, #fff));	
+		}
+		
+	}
  
  /**
   * vaccination
@@ -775,9 +785,7 @@ div.wpcf7{
 * faq
 **********************************/    
 
-.post.faq{
-	
-	h3 { margin: 20px 0 10px 0; }
+.post.faq{	
 	
 	#searchFaq {
 		@include border-radius(5px);
@@ -795,17 +803,60 @@ div.wpcf7{
 }
 
 
-/*
- *
+/*****************************************************************
  *	Templates
- *
- *
  *****************************************************************/    
-
-	#booking-popup {
-			width: 400px;
-			height: 300px;
-	}
+		
+	/*
+	 * Booking template
+	 **************************/
+		div.template.booking {
+			.form{
+			  $formColumns: $body-container-cols / 2;			
+	 			@include column($formColumns);
+	 			
+	 			$formHeight: 25px;
+	 			$padding: 5px;
+	 			
+	 			label {	 					
+	 					$labelColumns: floor( $formColumns * 1 / 3 );
+			 			@include column( $labelColumns );
+			 			text-align: right;
+						line-height: $formHeight;			 			
+			 			height: $formHeight;
+			 			padding: $padding 0;
+			 			text-weight:bold;
+	 			}
+	 			
+	 			.fieldWrapper {
+					@include column( floor( $formColumns * 2 / 3 ) , true);
+		 			height: $formHeight;
+		 			padding: 5px 0;
+		 			
+		 			input,textarea,select {
+			 			border: 1px solid #999;		 			
+		 				padding: $padding;
+		 				height: $formHeight - ( $padding * 2);
+		 				display:block;
+		 				@include border-radius(3px);
+						width: 200px;
+		 			}		 		
+	 			}
+	 			.fieldWrapper.textarea {
+	 				height: 50px;
+		 			textarea {	height:40px;	}
+	 			}	 
+	 			.fieldWrapper.select {
+	 				height: 30px;
+		 			select {	height:30px; }
+	 			}	 	 			
+	 					 			
+ 			}
+ 			
+			.iframe {
+	 			@include column($body-container-cols / 2, true);
+ 			} 			
+ 		}
  
  /*
   * Generic Fixes
@@ -840,6 +891,10 @@ div.wpcf7{
 			text-decoration: none;
 		}
 	}
+	a.button-book.large {		
+		line-height: 28px;
+		font-size: 1.8em;
+	}	
 
 // jQuery UI corrections/adjustments
 
