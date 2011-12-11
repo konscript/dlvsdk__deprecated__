@@ -13,7 +13,7 @@ $menu = wp_list_pages( $args );
 		<?php if (have_posts()): while (have_posts()): the_post(); ?>
 		    <div class="post country">
 	        	<?php	$destination = urlencode(the_title('', '', false));	?>		                	
-						<a class="button-book" href="<?php bloginfo('wpurl'); ?>/booking-popup/destination/<?php echo $destination; ?>">Book!</a>						
+						<a class="button-book" href="<?php bloginfo('wpurl'); ?>/booking-popup/destination/<?php echo $destination; ?>">Book your vaccination!</a>
 		        <h1><?php the_title(); ?></h1>	        		      
 
 		        <div class="post-content">	
@@ -53,7 +53,7 @@ $menu = wp_list_pages( $args );
 										$already_outputted[] = $vaccination->ID;										
 									?>
 											<tr>	
-												<td><a href="<?php echo get_permalink( $vaccination->ID ); ?>"><?php echo $vaccination->post_title; ?></a></td>
+												<td class="vaccination-name"><a href="<?php echo get_permalink( $vaccination->ID ); ?>"><?php echo $vaccination->post_title; ?></a></td>
 												<?php 
 												// output cell with vaccination indicator
 												$checkmark = '<img src="'.get_bloginfo("template_url").'/img/checkmark.png"/>';

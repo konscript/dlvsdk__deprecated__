@@ -47,6 +47,8 @@ jQuery.noConflict();
 	
 			// an option was opened (do nothing on close)
 			if(ui.newHeader.length > 0){
+				
+				$('.accordion').accordion("resize");
 
 				var link = $(ui.newHeader).find("a");
 				var link_ref = link.attr("href");
@@ -70,7 +72,7 @@ jQuery.noConflict();
 			var url = this.href;
 			var dialog = $("#dialog");
 			if ($("#dialog").length == 0) {
-				dialog = $('<div id="dialog" style="display:hidden"></div>').appendTo('body');
+				dialog = $('<div id="dialog" title="Booking - choose your clinic:"></div>').hide().appendTo('body');
 			
 				// load remote content (ajax)
 				dialog.load(
