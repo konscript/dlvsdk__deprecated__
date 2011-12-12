@@ -99,6 +99,70 @@ jQuery.noConflict();
 	}
 
 	/******************
+	 * Booking button - open modalwindow with accordion menu inside
+	 ******************/			
+	function button_book()	{
+		
+		// bind accordion "click" function - change button inside jQueryUI dialog
+		$( ".accordion" ).bind( "accordionchange", function(event, ui) {
+	
+			// an option was opened (do nothing on close)
+/*
+			if(ui.new	er.length > 0){
+				
+				$('.accordion').accordion("resize");
+
+				var link = $(ui.newHeader).find("a");
+				var link_ref = link.attr("href");
+				var link_text = link.text();
+				
+				// add button to dialog
+				$( "#dialog" ).dialog( "option", "buttons", [
+						{
+								text: "Book " + link_text,
+								click: function() { 
+									// follow link
+									window.location = link_ref;
+								}
+						}
+				]);		
+			}
+*/
+		});
+		
+		// bind modal window (jQueryUI dialog) to button-book		
+		$('a.button-book').live('click', function() {
+			var url = this.href;
+			var dialog = $("#dialog");
+			if ($("#dialog").length == 0) {
+				dialog = $('<div id="dialog" title="Booking - choose your clinic:"></div>').hide().appendTo('body');
+			
+				// load remote content (ajax)
+				dialog.load(
+						url,
+						function(responseText, textStatus, XMLHttpRequest) {
+					    dialog.dialog({ 
+					    	modal: true,
+					    	draggable: false,
+					    	resizable: false,
+								open: function(){
+										$('.ui-widget-overlay').hide().fadeIn();
+								},
+								show: "fade",
+								hide: "fade"
+				    	});
+						}
+					);				    				    
+			}else{
+				dialog.dialog( "open" );
+			} 
+
+			//prevent the browser to follow the link
+			return false;
+		}); 	
+	}
+
+	/******************
 	 * FAQ: search through questions and answers
 	 ******************/			
 	function searchFaq(){		
