@@ -6,6 +6,7 @@ $args = array(
   'echo'         => false,  
 );
 $menu = wp_list_pages( $args );
+
 ?>
 <?php the_submenu($menu); ?>
 

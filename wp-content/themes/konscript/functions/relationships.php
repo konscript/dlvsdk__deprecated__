@@ -9,9 +9,9 @@
  ********/
 function getFaqsByCountry($country_id){
 	$data = array();
-
+		
 	// get all regions
-	$regions = get_posts( array('post_type' => 'region') ); 
+	$regions = get_posts( array('post_type' => 'region', 'numberposts' => '-1') ); 
 
 	// loop through regions
 	foreach($regions as $region){
@@ -49,7 +49,7 @@ function getFaqsGroupedByRegion(){
 	$data = array();
 
 	// get all regions
-	$regions = get_posts( array('post_type' => 'region') ); 
+	$regions = get_posts( array('post_type' => 'region', 'numberposts' => '-1') ); 
 
 	// loop through regions
 	foreach($regions as $region){
