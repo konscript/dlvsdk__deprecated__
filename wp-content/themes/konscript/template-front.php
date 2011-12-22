@@ -49,7 +49,10 @@ get_header();
 		<h3><?=the_field("title_left")?></h3>
 
 		<?php travelguide(); ?>			
-			
+		
+		<img id="world-map-test" src="<?php bloginfo('template_url'); ?>/scripts/continents-map/andrews-world-map.jpg"/>
+		<?php
+		/*	
 		<div id="map-continents">
 		  <ul id="continents">
 		   <li id="c1"><a href="<?php bloginfo('wpurl'); ?>/region/africa">Africa</a></li>
@@ -60,7 +63,8 @@ get_header();
 		   <li id="c6"><a href="<?php bloginfo('wpurl'); ?>/region/south-africa">South America</a></li>
 		  </ul>
 		</div>			
-
+		*/
+		?>
 		<?=the_field("content_left")?>
 		
 	</div>

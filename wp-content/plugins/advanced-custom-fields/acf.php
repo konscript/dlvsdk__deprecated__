@@ -3,7 +3,7 @@
 Plugin Name: Advanced Custom Fields
 Plugin URI: http://plugins.elliotcondon.com/advanced-custom-fields/
 Description: Customise your edit pages with an assortment of field types: Wysiwyg, Repeater, text, textarea, image, file, select, checkbox post type, page link and more! Hide unwanted metaboxes and assign to any edit page!
-Version: 3.0.0
+Version: 3.0.4
 Author: Elliot Condon
 Author URI: http://www.elliotcondon.com/
 License: GPL
@@ -45,12 +45,13 @@ class Acf
 		$this->dir = plugins_url('',__FILE__);
 		$this->siteurl = get_bloginfo('url');
 		$this->wpadminurl = admin_url();
-		$this->version = '3.0.0';
+		$this->version = '3.0.4';
 		$this->upgrade_version = '3.0.0'; // this is the latest version which requires an upgrade
 		
 		
 		// set text domain
-		load_plugin_textdomain('acf', false, $this->path.'/lang' );
+		//load_plugin_textdomain('acf', false, $this->path.'/lang' );
+		load_plugin_textdomain('acf', false, basename(dirname(__FILE__)).'/lang' );
 		
 		// load options page
 		$this->setup_options_page();
@@ -66,10 +67,14 @@ class Acf
 		add_action('admin_print_scripts', array($this, 'admin_print_scripts'));
 		add_action('admin_print_styles', array($this, 'admin_print_styles'));
 		add_action('wp_ajax_acf_upgrade', array($this, 'upgrade_ajax'));
+		
 		return true;
 	}
 	
 	
+	
+
+
 	/*--------------------------------------------------------------------------------------
 	*
 	*	setup_fields
@@ -119,14 +124,19 @@ class Acf
 		$return['date_picker'] = new acf_Date_picker($this);
 		$return['color_picker'] = new acf_Color_picker($this);
 		
-		// hook to load in third party fields
 		if($this->is_field_unlocked('repeater'))
 		{
 			include_once('core/fields/repeater.php');
 			$return['repeater'] = new acf_Repeater($this);
 		}
 		
-		// custom fields
+		if($this->is_field_unlocked('flexible_content'))
+		{
+			include_once('core/fields/flexible_content.php');
+			$return['flexible_content'] = new acf_flexible_content($this);
+		}
+		
+		// hook to load in third party fields
 		$custom = apply_filters('acf_register_field',array());
 		
 		if(!empty($custom))
@@ -288,7 +298,7 @@ class Acf
 		// vars
 		global $post;
 		
-		// hide upgrade page fro nav
+		// hide upgrade page from nav
 		echo '<style type="text/css"> #menu-settings a[href="options-general.php?page=acf-upgrade"]{ display:none; }</style>';
 		
 		
@@ -309,9 +319,6 @@ class Acf
 			}
 			else
 			{
-				
-				// create tyn mce instance for wysiwyg
-				wp_tiny_mce();
 		
 				// find post type and add wysiwyg support
 				$post_type = get_post_type($post);
@@ -392,6 +399,7 @@ class Acf
 		// input meta boxes
 		if(in_array($GLOBALS['pagenow'], array('post.php', 'post-new.php')) && $GLOBALS['post_type'] != 'acf')
 		{
+			wp_preload_dialogs( array( 'plugins' => 'safari,inlinepopups,spellchecker,paste,wordpress,media,fullscreen,wpeditimage,wpgallery,tabfocus' ) );
 			?>
 			<script type="text/javascript">
 			(function($){
@@ -1311,7 +1319,6 @@ class Acf
 		    
 		    // Options Page
 		    case "options_page":
-		        
 		
 		        if($rule['operator'] == "==")
 		        {
@@ -1434,8 +1441,10 @@ class Acf
 	
 	function is_field_unlocked($field_name)
 	{
-		return true;
 
+		// sqren: activated plugin
+		return true;
+	
 		switch ($field_name) {
 		    case 'repeater':
 		    	if(md5($this->get_license_key($field_name)) == "bbefed143f1ec106ff3a11437bd73432"){ return true; }else{ return false; }
@@ -1443,6 +1452,9 @@ class Acf
 		    case 'options_page':
 		        if(md5($this->get_license_key($field_name)) == "1fc8b993548891dc2b9a63ac057935d8"){ return true; }else{ return false; }
 		        break;
+		    case 'flexible_content':
+		    	if(md5($this->get_license_key($field_name)) == "d067e06c2b4b32b1c1f5b6f00e0d61d6"){ return true; }else{ return false; }
+		    	break;
 	    }
 	}
 	
@@ -1482,7 +1494,98 @@ class Acf
 		add_action('admin_notices', 'my_admin_notice');
 	}
 	
-
+	
+	
+	/*--------------------------------------------------------------------------------------
+	*
+	*	get_taxonomies_for_select
+	*
+	*---------------------------------------------------------------------------------------
+	*
+	*	returns a multidimentional array of taxonomies grouped by the post type / taxonomy
+	*
+	*	@author Elliot Condon
+	*	@since 3.0.2
+	* 
+	*-------------------------------------------------------------------------------------*/
+	
+	function get_taxonomies_for_select()
+	{
+		$post_types = get_post_types();
+		$choices = array();
+		
+		if($post_types)
+		{
+			foreach($post_types as $post_type)
+			{
+				$post_type_object = get_post_type_object($post_type);
+				$taxonomies = get_object_taxonomies($post_type);
+				if($taxonomies)
+				{
+					foreach($taxonomies as $taxonomy)
+					{
+						if(!is_taxonomy_hierarchical($taxonomy)) continue;
+						$terms = get_terms($taxonomy, array('hide_empty' => false));
+						if($terms)
+						{
+							foreach($terms as $term)
+							{
+								$choices[$post_type_object->label . ': ' . $taxonomy][$term->term_id] = $term->name; 
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		return $choices;
+	}
+	
+	
+	function in_taxonomy($post, $ids)
+	{
+		$terms = array();
+		
+        $taxonomies = get_object_taxonomies($post->post_type);
+    	if($taxonomies)
+    	{
+        	foreach($taxonomies as $tax)
+			{
+				$all_terms = get_the_terms($post->ID, $tax);
+				if($all_terms)
+				{
+					foreach($all_terms as $all_term)
+					{
+						$terms[] = $all_term->term_id;
+					}
+				}
+			}
+		}
+        
+        if($terms)
+		{
+			if(is_array($ids))
+			{
+				foreach($ids as $id)
+				{
+					if(in_array($id, $terms))
+					{
+						return true; 
+					}
+				}
+			}
+			else
+			{
+				if(in_array($ids, $terms))
+				{
+					return true; 
+				}
+			}
+		}
+        	
+        return false;
+        	
+	}
 	
 }
 ?>

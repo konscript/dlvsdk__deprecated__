@@ -9,9 +9,9 @@
  ********/
 function getFaqsByCountry($country_id){
 	$data = array();
-
+		
 	// get all regions
-	$regions = get_posts( array('post_type' => 'region') ); 
+	$regions = get_posts( array('post_type' => 'region', 'numberposts' => '-1') ); 
 
 	// loop through regions
 	foreach($regions as $region){
@@ -33,8 +33,8 @@ function getFaqsByCountry($country_id){
 				$faq = get_post( $faq );
 				$data[$faq->ID] = array(
 					'post_title' => $faq->post_title, 
-					'post_content' => $faq->post_content
-				);			
+					'post_content' => nl2br($faq->post_content)
+				);										
 			}
 		}
 	}
@@ -49,7 +49,7 @@ function getFaqsGroupedByRegion(){
 	$data = array();
 
 	// get all regions
-	$regions = get_posts( array('post_type' => 'region') ); 
+	$regions = get_posts( array('post_type' => 'region', 'numberposts' => '-1') ); 
 
 	// loop through regions
 	foreach($regions as $region){
@@ -113,7 +113,7 @@ function getFaqs(){
 	foreach(get_posts( $args )  as $faq){	
 		$faqs[$faq->ID] = array(
 			'post_title' => $faq->post_title,
-			'post_content' => $faq->post_content				
+			'post_content' => nl2br($faq->post_content)
 		);
 	} 		
 	return $faqs;	
@@ -135,7 +135,7 @@ function getCountries(){
 	foreach(get_posts( $args ) as $country){
 		$countries[$country->ID] = array(
 			'post_title' => $country->post_title,
-			'post_content' => $country->post_content				
+			'post_content' => nl2br($country->post_content)
 		);
 	} 		
 	return $countries;	
