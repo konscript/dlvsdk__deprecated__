@@ -15,7 +15,7 @@ $menu = wp_list_pages( $args );
 		    <div class="post country">
 
 	        	<?php	$destination = urlencode(the_title('', '', false));	?>		                	
-						<a class="button-book" href="<?php bloginfo('wpurl'); ?>/booking/destination/<?php echo $destination; ?>">Book your vaccination!</a>
+						<a class="button-book" href="<?php bloginfo('wpurl'); ?>/booking/destination/<?php echo $destination; ?>"><div class="button-book-title">Book your vaccination!</div></a>
 
 		        <h1><?php the_title(); ?></h1>	        		      
 
