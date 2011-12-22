@@ -50,9 +50,8 @@ get_header();
 
 		<?php travelguide(); ?>			
 		
-		<img id="world-map-test" src="<?php bloginfo('template_url'); ?>/scripts/continents-map/andrews-world-map.jpg"/>
-		<?php
-		/*	
+		<!--<img id="world-map-test" src="<?php bloginfo('template_url'); ?>/scripts/continents-map/andrews-world-map.jpg"/>--> 
+	
 		<div id="map-continents">
 		  <ul id="continents">
 		   <li id="c1"><a href="<?php bloginfo('wpurl'); ?>/region/africa">Africa</a></li>
@@ -62,18 +61,20 @@ get_header();
 		   <li id="c5"><a href="<?php bloginfo('wpurl'); ?>/region/north-america">North America</a></li>
 		   <li id="c6"><a href="<?php bloginfo('wpurl'); ?>/region/south-africa">South America</a></li>
 		  </ul>
-		</div>			
-		*/
-		?>
+		</div>		
 		<?=the_field("content_left")?>
 		
 	</div>
 			
 	<div class="frontpage-column" id="column-right">	
-			<h3><?=the_field("title_right")?></h3>			
-			<?=the_field("content_right")?>	
 
-			<a class="button-book" href="<?php bloginfo('wpurl'); ?>/booking">Book an appointment!</a>
+			<div class="button-pre-text">Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor.</div>
+
+			<a class="button-book" href="<?php bloginfo('wpurl'); ?>/booking"><div class="button-book-title">Book now</div><div class="button-book-meta">Quick and easy</br />online booking</div></a>
+
+			<h3><?=the_field("title_right")?></h3>			
+
+			<?=the_field("content_right")?>	
 						
 			<!--
 			<img src="<?php bloginfo('template_url'); ?>/img/firstaidkit.png" class="bookingimage"/>

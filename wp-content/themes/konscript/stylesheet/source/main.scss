@@ -8,6 +8,7 @@
 @import "compass/css3/gradient";
 @import "compass/css3/opacity";
 @import "compass/css3/box-shadow";
+@import "compass/css3/text-shadow";
 @import "compass/utilities/general/clearfix";
 @import "blueprint/form";
 @import "base";
@@ -247,20 +248,22 @@ img.wp-smiley {}
 	// Contains site title and tagline
 	#header {
 		@include column($body-container-cols, true); 
-		height:120px;
+		height:130px;
 		margin: $blueprint-grid-margin 0;
 	}
 	
 		#logo{
 			@include column($body-container-cols / 2); 
-			height: 67px;
+			height: 77px;
 		}
 		
 		#tools{			
 			@include column($body-container-cols / 2, true); 
-			text-align:right;
-			font-size: 11px;			
-			a {	color: $quiet-color; }
+			text-align: right;
+			margin-top: 10px;
+			font-size: 12px;
+			color: #aaaaaa;
+			a {	color: #aaaaaa; }
 						
 		}		
 
@@ -282,7 +285,8 @@ img.wp-smiley {}
 		float:left;
 		@include column($body-container-cols, true); 
 		height:50px;
- 		background: url('../../img/menubg.gif') repeat-x left center;  
+		@include background-image(linear-gradient(#717171,#343434));
+ 		//background: url('../../img/menubg.gif') repeat-x left center;  
  		@include border-radius($radius);
 	}
 
@@ -302,7 +306,11 @@ img.wp-smiley {}
 					padding-right: 11px;
 					color:#ffffff;
 					text-decoration:none;
-					border-right: 2px groove #BBB;
+					border-top: 0px solid rgba(255,255,255,0);
+					@include transition-property(all);
+					@include transition-duration(2s);					
+					//background-color: #717171;
+					@include background-image(linear-gradient(#717171,#343434));
 				}
 				
 				// rounded corners on very first menu item
@@ -318,9 +326,10 @@ img.wp-smiley {}
 				#primary-menu li.current_page_parent a,
 				#primary-menu li.current-page-ancestor a				
 				{					
-					background:url('../../img/menu_on.gif') repeat-x;
-					border-right: 2px solid #bc2127;
-			
+					//background-color: #818181;					
+					@include background-image(linear-gradient(#818181,#393939));					
+					//background:url('../../img/menu_on.gif') repeat-x;
+					border-top: 0px solid rgba(255,255,255,1);
 				}
 				
 				// search form
@@ -416,7 +425,7 @@ img.wp-smiley {}
 	 ************************************************/	
 
 	// Content for pages with sidebar
-    $content-cols:ceil(3 * $body-container-cols / 4);
+  $content-cols:ceil(3 * $body-container-cols / 4);
 	#content {
 		@include column($content-cols, true);
 	}
@@ -868,8 +877,9 @@ div.wpcf7{
  /*
   * Buttons
   *****/
-	a.button-book {
-		@include background-image(linear-gradient(#0cc70c, #187805));
+	a.button-book,
+	#column-right a.button-book {
+		@include background-image(linear-gradient(#3ccd25, #1a7f00));
 		@include border-radius(4px);
 		//@include box-shadow(0px 1px 4px rgba(000,000,000,0.3),0px 0px 1px rgba(255,255,255,0.7));
 		@include transition-property(all);
@@ -877,10 +887,10 @@ div.wpcf7{
 		background-color: #208c0b;
 		display: block;
 		float: right;
+		width: 100%;
+		margin: 0 0 20px 0;
+		clear: both;
 //	border: 1px solid #187805;
-		padding: 8px 16px;
-		color: #fff;
-		font-size: 12px;
 
 		&:hover {
 			@include background-image(linear-gradient(#16d816, #208c0b));		
@@ -890,7 +900,30 @@ div.wpcf7{
 			color: #fff;
 			text-decoration: none;
 		}
+		
+		.button-book-title {
+			@include text-shadow(0 -1px 1px rgba(000,000,000,0.3), 0 1px 0 rgba(255,255,255,0.3));		
+			float: left;
+			color: #fff;
+			font-size: 22px;
+			font-weight: normal;
+			text-transform: uppercase;
+			font-family: Georgia, verdana, sans-serif;			
+			padding: 24px  0 16px 24px;			
+		}
+		
+		.button-book-meta {
+			@include text-shadow(0 1px 0 rgba(255,255,255,0.3));					
+			padding: 16px 24px 16px 0;			
+			float:right;
+			text-align: right;
+			font-weight: bold;
+			font-size: 11px;
+			color: rgba(0,0,0,0.9);
+		}
+		
 	}
+	
 	a.button-book.large {		
 		line-height: 28px;
 		font-size: 1.8em;

@@ -17,11 +17,11 @@ body.home .widget{
 }
 
 #content .frontpage-column h3 {
-	text-indent: 25px;
-	height: 30px;
-	line-height: 30px;
-	background: url(../../img/reddot.png) center left no-repeat;
+	//text-indent: 25px;
+	//background: url(../../img/reddot.png) center left no-repeat;
 	padding: 0;
+	margin: 0 0 20px 0;
+	text-transform: uppercase;
 }
 
 #column-left {
@@ -30,13 +30,16 @@ body.home .widget{
 #column-right {
 	@include column( $body-container-cols / 3, true); 
 	
-	a.button-book{
-		float:right;
-		margin:2px 5px;
-	}
-	
 	#clinics{ margin-top: 30px;	}	
 	.bookingimage {float:right; clear: both; height:140px; margin-top: 20px;}
+	
+	.button-pre-text {
+		width: 75%;
+		text-align: center;
+		margin: 0 auto 10px auto;
+		font-style: italic;
+		color: #b3b3b3;
+	}
 }
 
 $travelwidth: $body-container-cols * 2 / 3;
@@ -87,7 +90,7 @@ $travelwidth: $body-container-cols * 2 / 3;
 	border: 1px solid #ccc;	
 	position:relative; 
 	height:$featured-height; 
-	margin-bottom: $blueprint-grid-margin;
+	margin-bottom: $blueprint-grid-margin * 2;
 	padding: 0;
 	overflow: hidden;
 	@include border-radius(0);
@@ -114,21 +117,21 @@ $travelwidth: $body-container-cols * 2 / 3;
 			position:relative;
 			z-index: 2;			
 			float:right;
-			padding: $blueprint-grid-margin;
+			padding: $blueprint-grid-margin * 2;
 			height:  $featured-height;			
-			border-left: 1px solid #ccc;
+			//border-left: 1px solid #ccc;
 
 			/* Opacity and fall-back for browsers that don't support rgba */	
 			background: rgb(255,255,255); 
 			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99ffffff, endColorstr=#99ffffff);
 			-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99ffffff, endColorstr=#99ffffff)";
-			background: rgba(255,255,255, .6);
+			background: rgba(255,255,255, 0.8);
 			
 			.header{ margin: 0 0 10px 0; }
 			
 			.button {
 				position:absolute;
-				bottom: 30px;
+				bottom: 50px;
 				right: 10px;
 			}
 		}		
@@ -157,7 +160,11 @@ $travelwidth: $body-container-cols * 2 / 3;
 			@include border-radius(0px);
 			width: 100%;	
 			border: 1px solid #ccc;			
-			padding-bottom: 0px;
+			padding-bottom: 0px;		
+			background-position: 85% 50%;
+			@include transition-property(all);
+			@include transition-duration(2s);					
+			
 							
 				/*  link */
 				a { 
@@ -179,13 +186,11 @@ $travelwidth: $body-container-cols * 2 / 3;
 
 			// text
 			a .title{ 
-				line-height: 40px;
-				margin-top: 5px;
+				line-height: 52px;
 			}												
 		}
 		
 		/* selected/hovered tab */
-		li:hover,
 		li.ui-tabs-selected{
 			background-image: url(../../img/content-slider-active-icon.png);
 			background-position: 95% 50%;
