@@ -38,13 +38,13 @@ html, body{
 }
 
 body {
-	font-size:12px;
-	line-height: 14pt;
-	font-style:normal;
+	font-size: 11px;
+	line-height: 1.75em;
+	font-style: normal;
 	font-family: $typography-family-primary;
-	color:$color-primary;
+	color: $color-primary;
 	background-image: url('../../img/bg.gif');
-	background-repeat:repeat-x;
+	background-repeat: repeat-x;
 	background-color: #b2b2b2;		
 }
 
@@ -85,7 +85,7 @@ a:active {}
 h1, h2, h3, h4, h5, h6 {
 	color: #1F1E1D;
 	//padding-bottom: .4em;
-	margin: 20px 0 10px 0;
+	margin: 20px 0 15px 0;
 }
 
 // Headers 
@@ -95,7 +95,7 @@ h1 {
 	font-weight: normal;
 	font-family: Georgia;
 	color: black;
-	margin-top: 10px;
+	margin-top: 15px;
 }
 
 h2{
@@ -130,7 +130,9 @@ dfn {}
 del {}
 
 // Paragraphs 
-p {}
+p {
+	margin-bottom: 1.5em;
+}
 
 // Unordered lists 
 ul {}

@@ -22,15 +22,13 @@ function the_submenu($supplied_menu = false) {
 	if($supplied_menu === false){		
 		$submenu = get_submenu();
 	
-		echo '
-		<div id="sidebar">
+		echo '<div id="sidebar">
 			'.$submenu.'
 		</div>';
 		
 	// a custom menu is supplied
 	}else{
-			echo '
-			<div id="sidebar">
+			echo '<div id="sidebar">
 				'.$supplied_menu.'
 			</div>';
 	}

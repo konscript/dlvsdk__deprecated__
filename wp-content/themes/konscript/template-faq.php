@@ -2,9 +2,9 @@
 <?php get_header(); ?>
 <?php 
 $args = array(
-  'post_type'=>'region',
-  'title_li'=> '&nbsp;',
-  'echo'         => false,  
+  'post_type'	=>	'region',
+  'title_li'	=>	'header',
+  'echo'			=>	false,  
 );
 $menu = wp_list_pages( $args );
 ?>
