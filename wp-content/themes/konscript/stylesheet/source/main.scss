@@ -105,7 +105,7 @@ h2{
 }
 
 h3 {
-	font-size:18px;
+	font-size:20px;
 	font-weight:normal;
 	font-family:Georgia;
 	color:#000000;
@@ -879,7 +879,7 @@ div.wpcf7{
   *****/
 	a.button-book,
 	#column-right a.button-book {
-		@include background-image(linear-gradient(#3ccd25, #1a7f00));
+		@include background-image(linear-gradient(#3ccd25, #33831f));
 		@include border-radius(4px);
 		//@include box-shadow(0px 1px 4px rgba(000,000,000,0.3),0px 0px 1px rgba(255,255,255,0.7));
 		@include transition-property(all);
@@ -893,7 +893,7 @@ div.wpcf7{
 //	border: 1px solid #187805;
 
 		&:hover {
-			@include background-image(linear-gradient(#16d816, #208c0b));		
+			@include background-image(linear-gradient(#61de4d, #44982f));		
 			@include box-shadow(0px 1px 4px rgba(000,000,000,0.4), 1px 0px 2px rgba(255,255,255,0.7));		
 			background-color: #0cc70c;
 //		border: 1px solid #208c0b;
@@ -905,7 +905,7 @@ div.wpcf7{
 			@include text-shadow(0 -1px 1px rgba(000,000,000,0.3), 0 1px 0 rgba(255,255,255,0.3));		
 			float: left;
 			color: #fff;
-			font-size: 22px;
+			font-size: 24px;
 			font-weight: normal;
 			text-transform: uppercase;
 			font-family: Georgia, verdana, sans-serif;			
@@ -913,13 +913,14 @@ div.wpcf7{
 		}
 		
 		.button-book-meta {
-			@include text-shadow(0 1px 0 rgba(255,255,255,0.3));					
+			@include text-shadow(0 -1px 1px rgba(000,000,000,0.3), 0 1px 0 rgba(255,255,255,0.3));		
+			//@include text-shadow(0 1px 0 rgba(255,255,255,0.3));					
 			padding: 16px 24px 16px 0;			
 			float:right;
 			text-align: right;
-			font-weight: bold;
-			font-size: 11px;
-			color: rgba(0,0,0,0.9);
+			//font-weight: bold;
+			font-size: 12px;
+			color: #0c3b00;
 		}
 		
 	}

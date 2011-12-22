@@ -47,7 +47,6 @@ get_header();
 	<div class="frontpage-column" id="column-left">
 
 		<h3><?=the_field("title_left")?></h3>
-
 		<?php travelguide(); ?>			
 		
 		<!--<img id="world-map-test" src="<?php bloginfo('template_url'); ?>/scripts/continents-map/andrews-world-map.jpg"/>--> 

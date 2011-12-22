@@ -20,15 +20,24 @@ body.home .widget{
 	//text-indent: 25px;
 	//background: url(../../img/reddot.png) center left no-repeat;
 	padding: 0;
-	margin: 0 0 20px 0;
+	margin: 0 0 15px 0;
 	text-transform: uppercase;
 }
 
-#column-left {
+#content #column-left {
 	@include column( $body-container-cols * 2 / 3); 	
+	
+	h3 {
+		margin-top: 20px;
+		text-align: center;
+	}
 }
-#column-right {
+#content #column-right {
 	@include column( $body-container-cols / 3, true); 
+	
+	.button-book {
+		margin-bottom: 35px;
+	}
 	
 	#clinics{ margin-top: 30px;	}	
 	.bookingimage {float:right; clear: both; height:140px; margin-top: 20px;}
@@ -45,29 +54,36 @@ body.home .widget{
 $travelwidth: $body-container-cols * 2 / 3;
 
 #travelguide-before {	
-	padding-top: 10px;
+	padding-top: 20px;
 	@include column($travelwidth / 3);
 	text-align: right;
-	font-style: italic; }
+	font-size: 12px; }
 #travelguide-after {
-	padding-top: 10px;	
+	padding-top: 20px;	
 	@include column(floor($travelwidth / 3), true);
-	text-align: left;	
-	font-style: italic; }
-
+	text-align: left;
+	font-size: 12px; }
 #travelguide {
-	margin: 0 auto;
+	margin: 10px auto 0 auto;
 	position: relative;
 	@include column($travelwidth / 3); 	
 	z-index: 10;
-				
+						
 	input.ui-autocomplete-input {
 		@include border-radius(5px);
-		//@include background-image(linear-gradient(#f0f0f0, #fff));
+		@include background-image(linear-gradient(#fff, #f0f0f0));
 		width: 188px - (2 * 10px);
 		padding: 10px;
-		border: 1px solid #909090;
-		background-color: #fff;		
+		border: 0px;
+		border-bottom: 1px solid #bebebe;
+		border-right: 0px solid #bebebe;		
+		border-left: 0px solid #bebebe;				
+		border-top: 0px;
+		background-color: #fff;
+		color: #000;
+		outline: none;
+		font-size: 12px;
+		font-family: Verdana, Arial, sans-serif;
 	}
 }
 
@@ -201,7 +217,7 @@ $travelwidth: $body-container-cols * 2 / 3;
 
 /* Map */
 #map-continents {
-	padding-top: 30px;	
+	padding-top: 50px;	
 	#continents li .bg {
 		@include opacity(0);
 		@include transition-property(opacity);
