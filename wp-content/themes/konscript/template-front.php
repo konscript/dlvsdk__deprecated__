@@ -66,10 +66,12 @@ get_header();
 	</div>
 			
 	<div class="frontpage-column" id="column-right">	
-			<h3><?=the_field("title_right")?></h3>			
-			<?=the_field("content_right")?>	
 
-			<a class="button-book" href="<?php bloginfo('wpurl'); ?>/booking">Book an appointment!</a>
+		<a class="button-book" href="<?php bloginfo('wpurl'); ?>/booking"><div class="button-book-title">Book now</div><div class="button-book-meta">Quick and easy</br />online booking</div></a>
+
+			<h3><?=the_field("title_right")?></h3>			
+
+			<?=the_field("content_right")?>	
 						
 			<!--
 			<img src="<?php bloginfo('template_url'); ?>/img/firstaidkit.png" class="bookingimage"/>
