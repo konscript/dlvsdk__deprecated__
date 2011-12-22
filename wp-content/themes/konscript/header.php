@@ -50,7 +50,7 @@
 <div id="wrapper">
 	<div id="body-container">
 			<div id="header">
-				<div id="logo"><a href="<?php echo home_url(); ?>"><img src="<?php bloginfo('template_directory'); ?>/img/dlvs_logo.jpg" alt=""></a></div>
+				<div id="logo"><a href="<?php echo home_url(); ?>"><img src="<?php bloginfo('template_directory'); ?>/img/dlvs_logo.png" alt=""></a></div>
 				<div id="tools"> <a href="<?php bloginfo('wpurl'); ?>/about/contact">Contact</a> | <a href="#">Login</a> </div>			
 				<div id="primary-menu">
 					<?php primary_menu(); ?>

@@ -12,6 +12,7 @@
 @import "compass/utilities/general/clearfix";
 @import "blueprint/form";
 @import "base";
+@import "utilities";
 @import "front";
 
 // If you are doing a lot of stylesheet concatenation, it is suggested
@@ -327,7 +328,7 @@ img.wp-smiley {}
 				#primary-menu li.current-page-ancestor a				
 				{					
 					//background-color: #818181;					
-					@include background-image(linear-gradient(#818181,#393939));					
+					@include background-image(linear-gradient(#858585,#393939));					
 					//background:url('../../img/menu_on.gif') repeat-x;
 					border-top: 0px solid rgba(255,255,255,1);
 				}
@@ -335,6 +336,7 @@ img.wp-smiley {}
 				// search form
 				#primary-menu #searchform{	
 					@include column($searchform-cols, true);					
+										display: none;
 					text-align:right;
 					height:22px;
 					position:relative;
@@ -770,6 +772,11 @@ div.wpcf7{
   * country
   **********************************/  
   div.post.country{	
+	
+		#vaccinations_groups {
+			width: 100%;
+		}
+	
 		table#vaccinations_groups thead tr td {
 			font-weight: bold;
 		}
@@ -798,11 +805,16 @@ div.wpcf7{
 	
 	#searchFaq {
 		@include border-radius(5px);
-		@include background-image(linear-gradient(#f0f0f0, #fff));
+		//@include background-image(linear-gradient(#fff, #f0f0f0));
 		width: 200px;
 		padding: 10px;
-		border: 1px solid #909090;
-		background-color: #fff; }
+		border: 0px;
+		border-bottom: 1px solid #bebebe;
+		background-color: #fff;
+		background-color: #fff;
+		color: #000;
+		outline: none;
+		font-size: 12px; }
 		
 	#clearSearch {
 		@include border-radius(5px);
@@ -873,62 +885,6 @@ div.wpcf7{
 	.clearfix{
 		@include clearfix;
 	}  
-
- /*
-  * Buttons
-  *****/
-	a.button-book,
-	#column-right a.button-book {
-		@include background-image(linear-gradient(#3ccd25, #33831f));
-		@include border-radius(4px);
-		//@include box-shadow(0px 1px 4px rgba(000,000,000,0.3),0px 0px 1px rgba(255,255,255,0.7));
-		@include transition-property(all);
-		@include transition-duration(0.3s);		
-		background-color: #208c0b;
-		display: block;
-		float: right;
-		width: 100%;
-		margin: 0 0 20px 0;
-		clear: both;
-//	border: 1px solid #187805;
-
-		&:hover {
-			@include background-image(linear-gradient(#61de4d, #44982f));		
-			@include box-shadow(0px 1px 4px rgba(000,000,000,0.4), 1px 0px 2px rgba(255,255,255,0.7));		
-			background-color: #0cc70c;
-//		border: 1px solid #208c0b;
-			color: #fff;
-			text-decoration: none;
-		}
-		
-		.button-book-title {
-			@include text-shadow(0 -1px 1px rgba(000,000,000,0.3), 0 1px 0 rgba(255,255,255,0.3));		
-			float: left;
-			color: #fff;
-			font-size: 24px;
-			font-weight: normal;
-			text-transform: uppercase;
-			font-family: Georgia, verdana, sans-serif;			
-			padding: 24px  0 16px 24px;			
-		}
-		
-		.button-book-meta {
-			@include text-shadow(0 -1px 1px rgba(000,000,000,0.3), 0 1px 0 rgba(255,255,255,0.3));		
-			//@include text-shadow(0 1px 0 rgba(255,255,255,0.3));					
-			padding: 16px 24px 16px 0;			
-			float:right;
-			text-align: right;
-			//font-weight: bold;
-			font-size: 12px;
-			color: #0c3b00;
-		}
-		
-	}
-	
-	a.button-book.large {		
-		line-height: 28px;
-		font-size: 1.8em;
-	}	
 
 // jQuery UI corrections/adjustments
 
