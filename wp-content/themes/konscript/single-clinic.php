@@ -3,7 +3,7 @@
 	<div id="content">
 		<?php if (have_posts()): while (have_posts()): the_post(); ?>
 			<div class="post clinic">
-				<a class="button-book" href="<?php bloginfo('wpurl'); ?>/booking/destination/<?php echo basename(get_permalink()); ?>"><div class="button-book-title">Book your vaccination!</div></a>
+				<a class="button-book" href="<?php bloginfo('wpurl'); ?>/booking/clinic/<?php echo basename(get_permalink()); ?>"><div class="button-book-title">Book your vaccination!</div></a>
 
 				<h1><?php the_title(); ?></h1>
 				<div class="post-content">									
