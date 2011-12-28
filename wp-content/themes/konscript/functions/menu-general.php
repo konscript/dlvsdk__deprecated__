@@ -122,6 +122,6 @@ function primary_menu(){
 
 	));
 	
-	get_search_form(); 
+	//get_search_form(); 
 }
 ?>
