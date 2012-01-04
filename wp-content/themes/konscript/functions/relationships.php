@@ -125,8 +125,8 @@ function getFaqs(){
 function getCountries(){
 	$args = array(
 		'post_type'       => 'country',
-		'orderby'         => 'post_title',
 		'order'           => 'DESC',
+		'orderby'         => 'post_title',		
 		'numberposts'			=>	'-1',		
 	); 
 

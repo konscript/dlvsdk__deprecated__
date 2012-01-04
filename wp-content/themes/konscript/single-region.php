@@ -17,8 +17,8 @@ $menu = wp_list_pages( $args );
       	Please click a country below, to read more about it, and the recommended vaccinations.
 				<?php
 				// list of all countries
-				$countries = getCountries();
-			
+				$countries = getCountries();						
+
 				// region data
 				$region = get_post_custom_values('countries');
 			
@@ -28,8 +28,16 @@ $menu = wp_list_pages( $args );
 				// output countries in region
 				foreach($country_ids as $country_id): ?>
 					<p><a href="<?php echo get_permalink( $country_id ) ?>"><?php echo $countries[$country_id]['post_title']; ?></a></p>
-				<?php endforeach;	?>
+				<?php endforeach;
 				
+				/*
+				foreach($countries as $country_id=>$country):
+					if(in_array($country_id, $country_ids)): ?>
+						<p><a href="<?php echo get_permalink( $country_id ) ?>"><?php echo $country['post_title']; ?></a></p>						
+					<?php endif;				
+				endforeach;	
+				*/
+				?>
 			</div>
 		</div><!--#end post-->
 	<?php endwhile; endif; ?>
