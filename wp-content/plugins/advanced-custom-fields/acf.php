@@ -1495,6 +1495,10 @@ class Acf
 	
 	function is_field_unlocked($field_name)
 	{
+	
+		// sqren: unlocked!
+		return true;
+		
 		switch ($field_name) {
 		    case 'repeater':
 		    	if(md5($this->get_license_key($field_name)) == "bbefed143f1ec106ff3a11437bd73432"){ return true; }else{ return false; }
