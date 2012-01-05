@@ -122,22 +122,27 @@ function getFaqs(){
 /*
  * get countries ordered by name
  ********/
-function getCountries(){
+function getCountries($country_ids = null){
 	$args = array(
-		'post_type'       => 'country',
-		'order'           => 'DESC',
-		'orderby'         => 'post_title',		
-		'numberposts'			=>	'-1',		
-	); 
-
+		'post_type'		=> 'country',
+		'order'       => 'ASC',
+		'orderby'     => 'title',
+		'numberposts'			=>	'-1',
+	);
+	
+	if(isset($country_ids)){
+	
+		// variable set, but no countries in list. Show none.
+		if(strlen($country_ids) == 0){
+			$country_ids = -1;
+		}
+	
+		$args['include'] = $country_ids;
+	}
+	
 	// get countries
-	$countries = array();
-	foreach(get_posts( $args ) as $country){
-		$countries[$country->ID] = array(
-			'post_title' => $country->post_title,
-			'post_content' => nl2br($country->post_content)
-		);
-	} 		
+	$countries = get_posts( $args );	
+	
 	return $countries;	
 }
 ?>

@@ -2,7 +2,7 @@
 
 /**
 ##########################################
-# INCLUDES								 #
+# INCLUDES								 							 #
 ##########################################
 **/
 
@@ -22,9 +22,6 @@ require_once('functions/post-type-region.php');
 // menus
 require_once 'functions/menu-general.php';
 require_once 'functions/DynamicMenus.php';
-
-// travelguide
-require_once 'functions/travelguide.php';
 
 // url rewrites
 require_once 'functions/rewrite.php';
