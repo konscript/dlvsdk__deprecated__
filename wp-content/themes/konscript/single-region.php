@@ -23,8 +23,9 @@ $menu = wp_list_pages( $args );
 				$countries = getCountries($region[0]);
 
 				// output countries in region
-				foreach($countries as $country_id => $country): ?>
-					<p><a href="<?php echo get_permalink( $country_id ) ?>"><?php echo $country->post_title; ?></a></p>
+				foreach($countries as $country): ?>
+				
+					<p><a href="<?php echo get_permalink( $country->ID ) ?>"><?php echo $country->post_title; ?></a></p>
 				<?php endforeach;
 				
 				?>
