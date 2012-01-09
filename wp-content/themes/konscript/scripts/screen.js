@@ -40,7 +40,7 @@ jQuery.noConflict();
 				$(inputFields).attr('disabled', 'enabled');
 				$('form').fadeTo('fast', 0.5);
 		
-				// date
+				// data
 				var name = $('.form #name').val();
 				var email = $('.form #email').val();
 				var phone = $('.form #phone').val();
@@ -93,9 +93,15 @@ jQuery.noConflict();
 	function travelguide(){
 		// hide submit button for js-enabled users
 		$('#travelguide [type=submit]').hide();
+		
+		// old-school change page on click
+		$('#country-selector').change(function(){
+			var url = $(this).val();
+			window.location.href = url;
+		});
 			
 		// search as you type on country finder
-		$('select#country-selector').selectToAutocomplete();	
+		//$('select#country-selector').selectToAutocomplete();	
 	}
 
 	/******************

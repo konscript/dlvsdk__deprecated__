@@ -54,20 +54,23 @@ body.home .widget{
 
 $travelwidth: $body-container-cols * 2 / 3;
 
+/*
 #travelguide-before {	
 	padding-top: 20px;
 	@include column($travelwidth / 3);
 	text-align: right;
 	font-size: 12px; }
+*/	
 #travelguide-after {
-	padding-top: 20px;	
-	@include column(floor($travelwidth / 3), true);
+	margin-top: 10px;
+	@include column(floor($travelwidth / 2), true);
 	text-align: left;
-	font-size: 12px; }
+	font-size: 12px; }	
 #travelguide {
-	margin: 10px auto 0 auto;
+	text-align:right;
+	margin-top: 10px;
 	position: relative;
-	@include column($travelwidth / 3); 	
+	@include column($travelwidth / 2); 	
 	z-index: 10;
 						
 	input.ui-autocomplete-input {

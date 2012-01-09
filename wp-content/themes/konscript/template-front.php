@@ -1,9 +1,12 @@
 <?php /* Template Name: Frontpage*/ ?>
 <?php
+/*
+// disabled
 // redirect for country selector
 if(isset($_GET["Country"])){
 	header("Location: ".get_permalink($_GET["Country"]));
 }
+*/
 get_header(); 
 ?>
 
@@ -49,10 +52,10 @@ get_header();
 	<div class="frontpage-column" id="column-left">
 
 		<h3><?=the_field("title_left")?></h3>
-		<p id="travelguide-before">Type your destination</p>
 	
 		<form method="GET" id="travelguide" action="<?php bloginfo('wpurl'); ?>">
-		  <select name="Country" id="country-selector" autofocus="autofocus" autocorrect="off" autocomplete="off">
+		  <select name="Country" id="country-selector">
+		 <!-- <select name="Country" id="country-selector" autofocus="autofocus" autocorrect="off" autocomplete="off"> -->
 		    <option value="" selected="selected">Select Country</option>
 			<?php $countries = getCountries(); ?>	
 			<?php foreach($countries as $country): ?>
@@ -60,8 +63,9 @@ get_header();
 					$alt_spellings = get_field('alternative_spellings', $country->ID);
 					$country_name = $country->post_title;
 					$country_slug = get_permalink($country->ID);				
+					$country_id = $country->ID;
 				?>					
-			    <option value="<?= $country->ID; ?>" data-alternative-spellings="<?php echo $alt_spellings; ?>"><?=$country_name; ?></option>					
+			    <option value="<?= $country_slug; ?>" data-alternative-spellings="<?php echo $alt_spellings; ?>"><?=$country_name; ?></option>					
 			<?php endforeach; ?>
 		  </select>
 		  <input type="Submit" value="Find">
