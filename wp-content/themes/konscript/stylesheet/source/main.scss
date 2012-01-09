@@ -306,21 +306,28 @@ img.wp-smiley {}
 			}
 				#primary-menu li a {   	
 					display:block;			
-					padding-left: 11px;	
-					padding-right: 11px;
+					padding-left: 12px;	
+					padding-right: 12px;
 					font-size: 1.1em;
 					color:#ffffff;
 					text-decoration:none;
 					border-top: 0px solid rgba(255,255,255,0);
-					@include transition-property(all);
-					@include transition-duration(2s);					
+					border-left: 1px solid rgba(0, 0, 0, 0.1);
+					border-right: 1px solid #908F8F;
+					//@include transition-property(all);
+					//@include transition-duration(2s);					
 					//background-color: #717171;
 					//@include background-image(linear-gradient(#717171,#343434));
 				}
-				
+
 				// rounded corners on very first menu item
-				#primary-menu li:first-child a {   	
+				#primary-menu li:first-child a {
+					border-left: 0px;
 			 		@include border-radius($radius 0 0 $radius);					
+				}
+
+				#primary-menu li:last-child a {
+					border-right: 0px;				
 				}
 
 				// selected item AND hovered item 
@@ -378,6 +385,7 @@ img.wp-smiley {}
 	#sidebar {
 		$sidebar-columns: floor($body-container-cols / 4);
 		@include column($sidebar-columns); 
+		@include append(1);
 		font-size:11px;
 	}	 
 	
@@ -431,7 +439,7 @@ img.wp-smiley {}
 	 ************************************************/	
 
 	// Content for pages with sidebar
-  $content-cols:ceil(3 * $body-container-cols / 4);
+  $content-cols: ceil(3 * $body-container-cols / 4 - 1);
 	#content {
 		@include column($content-cols, true);
 	}
@@ -749,6 +757,34 @@ div.wpcf7{
 		}
 		
 	}
+
+ /**
+  * region
+  **********************************/
+
+	div.post.region {
+		
+		.country-wrapper {
+			@include clearfix;
+			margin-top: 20px;
+			border-left: 1px solid #eee;
+			border-top: 1px solid #eee;			
+		}
+		
+		.country {
+			display: block;
+			float: left;
+			min-width: 200px;
+			border-right: 1px solid #eee;
+			border-bottom: 1px solid #eee;
+			padding: 10px;
+		}
+		
+		.country:nth-child(odd) {
+			background-color: #f6f6f6;
+		}
+		
+	}
  
  /**
   * vaccination
@@ -757,19 +793,17 @@ div.wpcf7{
 		width:100%;
 		margin-bottom: 10px;
   	
-  		thead tr td{
-				font-weight: bold;
-  		}
+  		thead tr td {
+				font-weight: bold; }
   		
-  		td{
+  		td {
   			line-height: 25px;
-				padding: 3px 6px;  			
-  		}
-  		
+				padding: 4px 10px;
+				border-bottom: 1px solid #eee;
+				border-left: 1px solid #eee; }
   		
   		tbody tr:nth-child(odd){
-  			background-color: #f1f1f1;
-  		}
+  			background-color: #f6f6f6; }
   }
   
  /**
@@ -787,12 +821,13 @@ div.wpcf7{
 
 		table#vaccinations_groups tr td:first-child	{
 			text-align:right;
-			font-weight: bold;
 		}
 	
 		table#vaccinations_groups tr td{
 			text-align:center;	
 			padding: 10px;
+			border-bottom: 1px solid #eee;
+			border-right: 1px solid #eee;			
 		}
 
 			table#vaccinations_groups tr td.vaccination-name {
@@ -812,13 +847,12 @@ div.wpcf7{
 		//@include background-image(linear-gradient(#fff, #f0f0f0));
 		width: 200px;
 		padding: 10px;
-		border: 0px;
-		border-bottom: 1px solid #bebebe;
-		background-color: #fff;
+		border: 1px solid #bebebe;
 		background-color: #fff;
 		color: #000;
 		outline: none;
-		font-size: 12px; }
+		font-size: 12px;
+		font-family: Verdana, Arial, sans-serif; }
 		
 	#clearSearch {
 		@include border-radius(5px);

@@ -79,7 +79,7 @@ Copyright (C) 2011 Winston_Wolf | All rights reserved
 
 really, DO NOT EDIT THIS! */
 $('#map-continents').prepend('<span id="loader">'+loadingText+'</span>').addClass('script');
-$('#continents').find('a').hide();$(agentsListId).find('li').hide();if($('#map-continents').hasClass('multiple-click')){if(searchLink==''){var searchLink='search.php';}
+/*$('#continents').find('a').hide();*/$(agentsListId).find('li').hide();if($('#map-continents').hasClass('multiple-click')){if(searchLink==''){var searchLink='search.php';}
 if(searchLinkVar==''){var searchLinkVar='region';}
 if(searchName==''){var searchName='Search';}
 $('<a href="'+searchLink+'" id="search-link">'+searchName+'</a>').insertAfter('#continents');}
@@ -93,7 +93,7 @@ $.multipleClickAction(e);}else{if($(e).hasClass('active-region')){$.doubleClicke
 $.defaultClickAction(e);$(e).children('a').show();}}}}
 $.MapHoveredRegion=function(e){var liUrl=$(e).children('a').attr('href');if(typeof liUrl!='undefined'&&liUrl!=""){$('#continents').find('.active-region').children('a').hide();$(e).children('a').show();$(e).addClass('focus');$('.'+$(e).attr('id')).children('a').addClass('focus');}
 else{$(e).hide();}}
-$.MapUnHoveredRegion=function(e){$(e).children('a').hide();if($(e).hasClass('active-region')==false){$(e).removeClass('focus');}
+$.MapUnHoveredRegion=function(e){/*$(e).children('a').hide();*/if($(e).hasClass('active-region')==false){$(e).removeClass('focus');}
 $('.'+$(e).attr('id')).children('a').removeClass('focus');}
 var loaderLeft=$('#loader').outerWidth()/-2;var loaderTop=$('#loader').outerHeight()/-2;$('#loader').css({'margin-left':loaderLeft,'margin-top':loaderTop});
 // end of the map

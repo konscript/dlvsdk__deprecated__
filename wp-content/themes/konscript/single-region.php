@@ -14,7 +14,10 @@ $menu = wp_list_pages( $args );
 		<div class="post region">
 			<h1><?php the_title(); ?></h1>
 			<div class="post-content">
-      	Please click a country below, to read more about it, and the recommended vaccinations.
+      	
+				<div>Please click a country below, to read more about it, and the recommended vaccinations.</div>
+
+				<div class="country-wrapper">
 				<?php
 				// get ids of countries in region
 				$region = get_post_custom_values('countries');
@@ -24,11 +27,10 @@ $menu = wp_list_pages( $args );
 
 				// output countries in region
 				foreach($countries as $country): ?>
+					<a href="<?php echo get_permalink( $country->ID ) ?>" class="country"><?php echo $country->post_title; ?></a>
+				<?php endforeach;?>
+				</div>
 				
-					<p><a href="<?php echo get_permalink( $country->ID ) ?>"><?php echo $country->post_title; ?></a></p>
-				<?php endforeach;
-				
-				?>
 			</div>
 		</div><!--#end post-->
 	<?php endwhile; endif; ?>

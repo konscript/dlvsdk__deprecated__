@@ -74,7 +74,7 @@ get_header();
 		<p id="travelguide-after">or click on the map:</p>		
 		
 		<!--<img id="world-map-test" src="<?php bloginfo('template_url'); ?>/scripts/continents-map/andrews-world-map.jpg"/>--> 
-	
+		<div id="map-wrapper">
 		<div id="map-continents">
 		  <ul id="continents">
 		   <li id="c1"><a href="<?php bloginfo('wpurl'); ?>/region/africa">Africa</a></li>
@@ -85,13 +85,13 @@ get_header();
 		   <li id="c6"><a href="<?php bloginfo('wpurl'); ?>/region/south-africa">South America</a></li>
 		  </ul>
 		</div>		
+		</div>
 		<?=the_field("content_left")?>
 		
 	</div>
 			
 	<div class="frontpage-column" id="column-right">	
 
-			<div class="button-pre-text">Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor.</div>
 
 			<a class="button-book" href="<?php bloginfo('wpurl'); ?>/booking"><div class="button-book-title">Book now</div><div class="button-book-meta">Quick and easy</br />online booking</div></a>
 

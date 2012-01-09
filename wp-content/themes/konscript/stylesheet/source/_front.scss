@@ -24,7 +24,8 @@ body.home .widget{
 }
 
 #content #column-left {
-	@include column( $body-container-cols * 2 / 3); 	
+	@include column( $body-container-cols * 2 / 3 - 1 );
+	@include append(1); 	
 	
 	h3 {
 		margin-top: 20px;
@@ -37,7 +38,7 @@ body.home .widget{
 	@include column( $body-container-cols / 3, true); 
 	
 	.button-book {
-		margin-bottom: 35px; 
+		margin: 10px 0 30px 0; 
 	}
 	
 	#clinics{ margin-top: 30px;	}	
@@ -52,7 +53,7 @@ body.home .widget{
 	}
 }
 
-$travelwidth: $body-container-cols * 2 / 3;
+$travelwidth: $body-container-cols * 2 / 3 - 1;
 
 /*
 #travelguide-before {	
@@ -177,7 +178,7 @@ $travelwidth: $body-container-cols * 2 / 3;
 			width: 100%;	
 			border: 1px solid #ccc;			
 			padding-bottom: 0px;		
-			background-position: 85% 50%;
+			background-position: 95% 50%;
 			@include transition-property(all);
 			@include transition-duration(2s);					
 			
@@ -217,8 +218,21 @@ $travelwidth: $body-container-cols * 2 / 3;
 }
 
 /* Map */
+
+#map-wrapper {
+	@include border-radius(5px);
+	margin-top: 70px;
+	width: 100%;
+	border: 1px solid #d0e4ec;
+	background-color: #d4ecf5;
+	background-image: -moz-radial-gradient(50% 50%, ellipse cover, #ffffff, #d4ecf5 100%);
+	background-image: -webkit-radial-gradient(50% 50%, ellipse cover, #ffffff, #d4ecf5 100%);
+	background-image: -o-radial-gradient(50% 50%, ellipse cover, #ffffff, #d4ecf5 100%);
+	background-image: -ms-radial-gradient(50% 50%, ellipse cover, #ffffff, #d4ecf5 100%);
+	background-image: radial-gradient(50% 50%, ellipse cover, #ffffff, #d4ecf5 100%)
+}
+
 #map-continents {
-	padding-top: 50px;	
 	#continents li .bg {
 		@include opacity(0);
 		@include transition-property(opacity);

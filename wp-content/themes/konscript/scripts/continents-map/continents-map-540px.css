@@ -1,7 +1,7 @@
 /* name of the region ('bubble' by default) */
  #map-continents.script #continents a{
   background:#111;
-  background:rgba(0,0,0,.8);
+  background: rgba(60,60,60,0.9);
   color:#eee;
   font-size:1.1em;
   padding:.4em 1.1em;
@@ -20,7 +20,7 @@
    bottom:-4px;
    border:solid;
    border-color:#111 transparent;
-   border-color:rgba(0,0,0,.8) transparent;
+   border-color:rgba(60,60,60,0.85) transparent;
    border-width:4px 4px 0 4px;
    content:""; /* must be empty */
    display:block;
