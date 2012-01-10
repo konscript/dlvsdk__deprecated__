@@ -185,8 +185,16 @@ table {}
 
 // Forms 
 form {}
-	textarea {}
-	input {}
+	select, input, textarea {
+		border: 1px solid #999;		
+		@include border-radius(3px);	
+	
+		// validation error formatting
+		&.error {
+			border: 1px solid red;
+		}
+	}
+		
 	label {}
 	option {}
 
@@ -874,63 +882,72 @@ div.wpcf7{
  *	Templates
  *****************************************************************/    
 		
-	/*
-	 * Booking template
-	 **************************/
-		div.template.booking {
-			.form{
-			  $formColumns: $body-container-cols / 2;			
-	 			@include column($formColumns);
-	 			
-	 			$formHeight: 25px;
-	 			$padding: 5px;
-	 			
-	 			label {	 					
-	 					$labelColumns: floor( $formColumns * 1 / 3 );
-			 			@include column( $labelColumns );
-			 			text-align: right;
-						line-height: $formHeight;			 			
-			 			height: $formHeight;
-			 			padding: $padding 0;
-			 			text-weight:bold;
-	 			}
-	 			
-	 			.fieldWrapper {
-					@include column( floor( $formColumns * 2 / 3 ) , true);
-		 			height: $formHeight;
-		 			padding: 5px 0;
-		 			
-		 			input,textarea,select {
-			 			border: 1px solid #999;		 			
-		 				padding: $padding;
-		 				height: $formHeight - ( $padding * 2);
-		 				display:block;
-		 				@include border-radius(3px);
-						width: 200px;
-		 			}		 		
-	 			}
-	 			.fieldWrapper.textarea {
-	 				height: 50px;
-		 			textarea {	height:40px;	}
-	 			}	 
-	 			.fieldWrapper.select {
-	 				height: 30px;
-		 			select {	height:30px; }
-	 			}	 	 			
-	 					 			
- 			}
+/*
+ * Booking template
+ **************************/
+div.template.booking {
+	.form{
+	  $formColumns: $body-container-cols / 2;			
+		@include column($formColumns);
+		
+		$formHeight: 25px;
+		$padding: 5px;
+		
+		label {	 					
+				$labelColumns: floor( $formColumns * 1 / 3 );
+	 			@include column( $labelColumns );
+	 			text-align: right;
+				line-height: $formHeight;			 			
+	 			height: $formHeight;
+	 			padding: $padding 0;
+	 			text-weight:bold;
+		}
+		
+		.fieldWrapper {
+			@include column( floor( $formColumns * 2 / 3 ) , true);
+ 			height: $formHeight;
+ 			padding: 5px 0;
+ 			position: relative;
  			
-			.iframe {
-	 			@include column($body-container-cols / 2, true);
- 			} 			
- 		}
- 
- /*
-  * Generic Fixes
-  *****/
-	.clearfix{
-		@include clearfix;
-	}  
+ 			input,textarea,select {
+ 				padding: $padding;
+ 				height: $formHeight - ( $padding * 2);
+ 				display:block;
+				width: 200px;
+ 			}		 		
+		}
+		.fieldWrapper.textarea {
+			height: 50px;
+ 			textarea {	height:40px;	}
+		}	 
+		.fieldWrapper.select {
+			height: 30px;
+ 			select {	height:30px; }
+		}	 	 			
+				 			
+	}
+	
+	.iframe {
+		@include column($body-container-cols / 2, true);
+	} 			
+	
+	// validation rules	
+	label.error {
+		position: absolute;
+		top: 0px;
+		left: 220px;
+		width: 300px;
+		text-align:left;
+	} 	 			
+	
+}
+
+/*
+ * Generic Fixes
+ ********************************/
+.clearfix{
+	@include clearfix;
+}  
 
 // jQuery UI corrections/adjustments
 
@@ -943,7 +960,6 @@ div.wpcf7{
 .ui-accordion .ui-accordion-content {
 	margin-top: 0;
 }
-
 
 /**
  * WP style: wysiwyg styles

@@ -31,17 +31,43 @@ jQuery.noConflict();
 	function bookingNavigate() {
     $('#navigateStepBack').hide();
     
+		$("form#booking").validate({
+			rules: {
+				fullname: {
+				  required: true
+				},			
+				email: {
+				  required: true,
+				  email: true
+				},
+				phone: {
+				  required: false,
+				  digits: true,
+	        minlength: 10,
+		      maxlength: 11
+				},
+				clinic: {
+				  required: true
+				}
+			}
+		});    
+    
     var inputFields = '.template.booking .form input,.template.booking .form select, .template.booking .form textarea';
 	
 		// action when click on next button
 		$('#navigateStepNext').click(function() {
-				
+		
+			// form is invalid
+			if(!$("form#booking").valid()){
+			 return false;
+			}
+		
 				// disable and fade form
 				$(inputFields).attr('disabled', 'enabled');
 				$('form').fadeTo('fast', 0.5);
 		
 				// data
-				var name = $('.form #name').val();
+				var fullname = $('.form #fullname').val();
 				var email = $('.form #email').val();
 				var phone = $('.form #phone').val();
 				var comments = $('.form #comments').val();
@@ -57,7 +83,7 @@ jQuery.noConflict();
 				var booking_url = 
 					clinic_url + 
 					'?service=service' + service + 
-					'&l1=' + encodeURI(name) +
+					'&l1=' + encodeURI(fullname) +
 					'&l2=' + encodeURI(email) +
 					'&l3=%2B44' + encodeURI(phone) +
 					'&l4=' + encodeURI(comments) +

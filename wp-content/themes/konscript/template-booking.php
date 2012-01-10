@@ -20,8 +20,8 @@
 				<?php echo the_content(); ?>					
 				
 				<div class="form">
-					<form>										
-						<label for="name">Name:</label><div class="fieldWrapper"><input type="text" name="name" id="name"></div>
+					<form id="booking">
+						<label for="name">Name:</label><div class="fieldWrapper"><input type="text" name="fullname" id="fullname"></div>
 						<label for="email">Email:</label><div class="fieldWrapper"><input type="text" name="email" id="email"></div>															
 						<label for="phone">Phone: +44</label><div class="fieldWrapper"> <input type="text" name="phone" id="phone"></div>																
 						<label for="comments">Comments:</label><div class="fieldWrapper textarea"><textarea name="comments" id="comments"></textarea></div>
