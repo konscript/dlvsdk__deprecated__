@@ -251,8 +251,8 @@ img.wp-smiley {}
 	// Contains site title and tagline
 	#header {
 		@include column($body-container-cols, true); 
-		height:130px;
-		margin: $blueprint-grid-margin 0;
+		//height:130px;
+		margin: $blueprint-grid-margin 0 15px 0;
 	}
 	
 		#logo{
@@ -781,6 +781,8 @@ div.wpcf7{
 			display: block;
 			float: left;
 			width: 200px;
+			white-space: nowrap;
+			overflow: hidden;
 			border-right: 1px solid #eee;
 			border-bottom: 1px solid #eee;
 			padding: 10px;

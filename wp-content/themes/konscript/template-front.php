@@ -51,6 +51,8 @@ get_header();
 
 	<div class="frontpage-column" id="column-left">
 
+		<div id="map-wrapper">
+
 		<h3><?=the_field("title_left")?></h3>
 	
 		<form method="GET" id="travelguide" action="<?php bloginfo('wpurl'); ?>">
@@ -73,8 +75,6 @@ get_header();
 
 		<p id="travelguide-after">or click on the map:</p>		
 		
-		<!--<img id="world-map-test" src="<?php bloginfo('template_url'); ?>/scripts/continents-map/andrews-world-map.jpg"/>--> 
-		<div id="map-wrapper">
 		<div id="map-continents">
 		  <ul id="continents">
 		   <li id="c1"><a href="<?php bloginfo('wpurl'); ?>/region/africa">Africa</a></li>
@@ -92,24 +92,12 @@ get_header();
 			
 	<div class="frontpage-column" id="column-right">	
 
-
-			<a class="button-book" href="<?php bloginfo('wpurl'); ?>/booking"><div class="button-book-title">Book now</div><div class="button-book-meta">Quick and easy</br />online booking</div></a>
+			<a class="button-book" href="<?php bloginfo('wpurl'); ?>/booking"><div class="button-book-title">Book now!</div><div class="button-book-meta">Quick and easy</br />online booking</div></a>
 
 			<h3><?=the_field("title_right")?></h3>			
 
 			<?=the_field("content_right")?>	
-						
-			<!--
-			<img src="<?php bloginfo('template_url'); ?>/img/firstaidkit.png" class="bookingimage"/>
-			
-			<ul id="clinics">
-				<li>London</li>
-				<li>Clinic #2</li>
-				<li>Clinic #3</li>
-				<li>Clinic #4</li>
-				<li>Clinic #5</li>
-			</ul>
-			-->
+
 	</div>
 
 </div><!--#end content -->

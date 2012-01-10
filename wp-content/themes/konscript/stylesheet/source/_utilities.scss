@@ -1,6 +1,9 @@
- /*
-  * Buttons
-  *****/
+/**
+ * Utilities (_utilities.scss)
+ */
+
+ /* Buttons */
+
 	a.button-book,
 	#column-right a.button-book {
 		@include background-image(linear-gradient(#ED1B24, #b5151c));
@@ -24,21 +27,22 @@
 		}
 		
 		.button-book-title {
-			@include text-shadow(0 -1px 1px rgba(000,000,000,0.3), 0 1px 0 rgba(255,255,255,0.3));		
+			@include text-shadow(0 -1px 1px rgba(000,000,000,0.2));		
 			float: left;
 			color: #fff;
-			font-size: 24px;
+			font-size: 22px;
 			font-weight: normal;
 			//font-style: italic;			
 			text-transform: uppercase;
 			//font-family: Georgia, verdana, sans-serif;			
-			padding: 24px 0 24px 24px;			
+			padding: 24px 0 24px 34px;		
+			letter-spacing: -0.05em;	
 		}
 		
 		.button-book-meta {
 			//@include text-shadow(0 -2px 0px rgba(000,000,000,0.2), 0 1px 0 rgba(255,255,255,0));		
 			//@include text-shadow(0 1px 0 rgba(255,255,255,0.3));					
-			padding: 20px 24px 16px 0;			
+			padding: 21px 34px 15px 0;			
 			float:right;
 			font-style: italic;						
 			text-align: right;
