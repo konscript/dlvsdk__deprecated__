@@ -751,9 +751,15 @@ div.wpcf7{
 	#opening_hours {
 		width: 300px;
 		
-		td { padding: 5px; }
-		tr:nth-child(even){
-				@include background-image(linear-gradient(#eee, #fff));	
+		td { 
+			padding: 4px 10px;
+			line-height: 25px;
+			padding: 4px 10px;
+			border-bottom: 1px solid #eee;
+			border-left: 1px solid #eee; }
+			
+		tr:nth-child(odd){
+			background-color: #f6f6f6;
 		}
 		
 	}
@@ -774,7 +780,7 @@ div.wpcf7{
 		.country {
 			display: block;
 			float: left;
-			min-width: 200px;
+			width: 200px;
 			border-right: 1px solid #eee;
 			border-bottom: 1px solid #eee;
 			padding: 10px;

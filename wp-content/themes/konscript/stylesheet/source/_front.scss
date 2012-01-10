@@ -182,7 +182,6 @@ $travelwidth: $body-container-cols * 2 / 3 - 1;
 			@include transition-property(all);
 			@include transition-duration(2s);					
 			
-							
 				/*  link */
 				a { 
 					padding: 5px 0;
@@ -218,18 +217,19 @@ $travelwidth: $body-container-cols * 2 / 3 - 1;
 }
 
 /* Map */
-
+$lightblue: #D4ECF5;
+$darkblue: #74B6CF;
 #map-wrapper {
 	@include border-radius(5px);
 	margin-top: 70px;
 	width: 100%;
-	border: 1px solid #d0e4ec;
-	background-color: #d4ecf5;
-	background-image: -moz-radial-gradient(50% 50%, ellipse cover, #ffffff, #d4ecf5 100%);
-	background-image: -webkit-radial-gradient(50% 50%, ellipse cover, #ffffff, #d4ecf5 100%);
-	background-image: -o-radial-gradient(50% 50%, ellipse cover, #ffffff, #d4ecf5 100%);
-	background-image: -ms-radial-gradient(50% 50%, ellipse cover, #ffffff, #d4ecf5 100%);
-	background-image: radial-gradient(50% 50%, ellipse cover, #ffffff, #d4ecf5 100%)
+	border: 1px solid $darkblue;
+	background-color: $darkblue;
+	background-image: -moz-radial-gradient(50% 50%, ellipse cover, $lightblue, $darkblue 100%);
+	background-image: -webkit-radial-gradient(50% 50%, ellipse cover, $lightblue, $darkblue 100%);
+	background-image: -o-radial-gradient(50% 50%, ellipse cover, $lightblue, $darkblue 100%);
+	background-image: -ms-radial-gradient(50% 50%, ellipse cover, $lightblue, $darkblue 100%);
+	background-image: radial-gradient(50% 50%, ellipse cover, $lightblue, $darkblue 100%)
 }
 
 #map-continents {
