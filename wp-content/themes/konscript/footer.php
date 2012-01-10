@@ -13,10 +13,15 @@
 
 <div class="hide">
 	<?php wp_footer(); ?>
-
+	
+	<?php
+	/*
 	<script src="<?php bloginfo('template_url'); ?>/scripts/jquery-ui-autocomplete.js"></script>
 	<script src="<?php bloginfo('template_url'); ?>/scripts/jquery.select-to-autocomplete.js"></script>	
-	
+	*/
+	?>
+
+	<script src="<?php bloginfo('template_url'); ?>/scripts/jquery.validate.min.js"></script>		
 	<?php if(is_front_page()): ?>
   <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/scripts/continents-map/continents-map.js"></script>    		
 	<?php endif; ?>  
