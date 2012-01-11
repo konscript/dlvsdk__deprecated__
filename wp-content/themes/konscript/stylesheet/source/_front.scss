@@ -104,7 +104,7 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 					height:50px; 
 					color:#000;  
 					font-weight: normal;
-					font-size: 16px;		
+					font-size: 15px;		
 					width: 100%;
 				}
 			
@@ -140,10 +140,10 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 	h3 {
 		@include text-shadow(0 1px 0 rgba(255,255,255,0.5));				
 		display: block;
-		padding: 20px 0 10px 0;
+		padding: 30px 0 0px 0;
 		margin: 0;
-		line-height: 38px;
-		font-size: 38px;
+		line-height: 34px;
+		font-size: 34px;
 		font-weight: normal;
 		text-align: center;
 	}
@@ -161,7 +161,7 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 		margin: 10px 0 0 0;
 		@include column(floor($travelwidth / 2), true);
 		text-align: left;
-		font-size: 12px; }
+		font-size: 11px; }
 
 	#travelguide {
 		text-align:right;
@@ -203,7 +203,7 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 	}
 
 	#map-continents {
-		padding-top: 20px;
+		padding-top: 35px;
 
 		#continents li .bg {
 			@include opacity(0);
