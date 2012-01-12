@@ -62,12 +62,11 @@ get_header();
 			<?php $countries = getCountries(); ?>	
 			<?php foreach($countries as $country): ?>
 				<?php 
-					$alt_spellings = get_field('alternative_spellings', $country->ID);
 					$country_name = $country->post_title;
 					$country_slug = get_permalink($country->ID);				
 					$country_id = $country->ID;
 				?>					
-			    <option value="<?= $country_slug; ?>" data-alternative-spellings="<?php echo $alt_spellings; ?>"><?=$country_name; ?></option>					
+			    <option value="<?= $country_slug; ?>"><?=$country_name; ?></option>					
 			<?php endforeach; ?>
 		  </select>
 		  <input type="Submit" value="Find">
