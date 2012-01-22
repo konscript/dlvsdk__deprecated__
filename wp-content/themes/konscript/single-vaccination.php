@@ -1,14 +1,16 @@
-<?php get_header(); ?>
 <?php 
 $args = array(
   'post_type'=>'vaccination',
   'title_li'=> '&nbsp;',
   'echo' => false,  
 );
-$menu = wp_list_pages( $args );
 
+if(!$_GET["ajax"]){
+	get_header();
+	$menu = wp_list_pages( $args );
+	the_submenu($menu); 
+}
 ?>
-<?php the_submenu($menu); ?>
 
 	<div id="content">
 
@@ -31,4 +33,8 @@ $menu = wp_list_pages( $args );
         <?php endwhile; endif; ?>
 	</div><!--#end content -->
 
-<?php get_footer(); ?>
+<?php 
+if(!$_GET["ajax"]){
+	get_footer(); 
+}	
+?>

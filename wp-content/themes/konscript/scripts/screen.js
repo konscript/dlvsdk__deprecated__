@@ -21,6 +21,9 @@ jQuery.noConflict();
 		// Booking: load iframe and disable form
 		bookingNavigate();
 		
+		// vaccination lightbox
+		vaccinationLightbox();
+		
 	});
 	
 	/*
@@ -131,65 +134,46 @@ jQuery.noConflict();
 	}
 
 	/******************
-	 * Booking button - open modalwindow with accordion menu inside
+	 * On single-country a list of vaccinations is shown. When clicked they will fetch the single-vaccination page with ajax 
 	 ******************/			
-	function button_book()	{
-		
-		// bind accordion "click" function - change button inside jQueryUI dialog
-		$( ".accordion" ).bind( "accordionchange", function(event, ui) {
-	
-			// an option was opened (do nothing on close)
-/*
-			if(ui.new	er.length > 0){
+	function vaccinationLightbox(){
 				
-				$('.accordion').accordion("resize");
-
-				var link = $(ui.newHeader).find("a");
-				var link_ref = link.attr("href");
-				var link_text = link.text();
-				
-				// add button to dialog
-				$( "#dialog" ).dialog( "option", "buttons", [
-						{
-								text: "Book " + link_text,
-								click: function() { 
-									// follow link
-									window.location = link_ref;
-								}
-						}
-				]);		
-			}
-*/
-		});
+		// close dialog when click outside
+		$(".ui-widget-overlay").live("click", function () {
+				$(".vaccinationModal").dialog( "close" );
+		});		
 		
-		// bind modal window (jQueryUI dialog) to button-book		
-		$('a.button-book').live('click', function() {
-			var url = this.href;
-			var dialog = $("#dialog");
-			if ($("#dialog").length == 0) {
-				dialog = $('<div id="dialog" title="Booking - choose your clinic:"></div>').hide().appendTo('body');
+		// bind modal window (jQueryUI dialog) to vaccination-links
+		$('.vaccination-name a').click(function() {
+		
+			// set url
+			var url = this.href + "?ajax=true";
 			
-				// load remote content (ajax)
-				dialog.load(
-						url,
-						function(responseText, textStatus, XMLHttpRequest) {
-					    dialog.dialog({ 
-					    	modal: true,
-					    	draggable: false,
-					    	resizable: false,
-								open: function(){
-										$('.ui-widget-overlay').hide().fadeIn();
-								},
-								show: "fade",
-								hide: "fade"
-				    	});
-						}
-					);				    				    
-			}else{
-				dialog.dialog( "open" );
-			} 
+			// create new modal window
+			var vaccinationModalElm = $('<div></div>').addClass('vaccinationModal').attr('title', 'Vaccination details').appendTo('body');			
+			
+			// lightbox options
+	    vaccinationModalElm.dialog({ 
+	    	modal: true,
+	    	draggable: false,
+	    	resizable: false,
+	    	width: 600,
+				show: "fade",
+				hide: "fade"
+    	});
 
-			//prevent the browser to follow the link
+			// load content into window
+			vaccinationModalElm.load(url,	function(responseText, textStatus, XMLHttpRequest) {				
+	      $(vaccinationModalElm).dialog('open');
+	      
+				// remove id attribute "content" ot remove fixed width 
+				$(this).children('#content').removeAttr('id');
+			
+				// bind accordion 
+				$( ".accordion" ).accordion({ header: 'h4', active: false, collapsible: true });		      
+			});				
+
+			// prevent the browser from following the link
 			return false;
 		}); 	
 	}
