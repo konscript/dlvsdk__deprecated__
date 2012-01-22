@@ -303,10 +303,9 @@ img.wp-smiley {}
 	}
 
 		// Menu list.
-		$searchform-cols: 9;
 		#primary-menu ul {
 				list-style: none;
-				@include column($body-container-cols - $searchform-cols); 
+				@include column($body-container-cols); 
 		}
 			#primary-menu li {
 				float:left;
@@ -352,6 +351,7 @@ img.wp-smiley {}
 					border-top: 0px solid rgba(255,255,255,1);
 				}
 				
+				/*
 				// search form
 				#primary-menu #searchform{	
 					@include column($searchform-cols, true);					
@@ -384,7 +384,7 @@ img.wp-smiley {}
 					margin-right: 5px;	
 					vertical-align: middle;	
 				}
-			
+				*/
 
 /** 
  * Secondary Menu					

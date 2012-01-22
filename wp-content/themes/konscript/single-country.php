@@ -21,9 +21,9 @@ $menu = wp_list_pages( $args );
 
 		        <div class="post-content">	
 
-						<?php
+						<?php							
 							$already_outputted = array();
-													
+												
 							// labels for groups
 							$vaccinations_groups_labels = array(
 								"All travellers", "+2 weeks", "+3 months", "+6 months"
@@ -45,29 +45,35 @@ $menu = wp_list_pages( $args );
 									<?php endforeach; ?>							
 								</tr>
 							</thead>
-							<tbody>
+							<tbody>							
 							<?php foreach($vaccinations_groups as $group_id => $group): ?>
 								<?php if(!empty($group)): ?>								
 									<?php foreach($group as $vaccination): ?>									
-									
-									<?php
-										// make sure every vaccine is only outputted once (somebody may have added a vaccine to multiple groups)									
-										if(!in_array($vaccination->ID, $already_outputted)):
-										$already_outputted[] = $vaccination->ID;										
-									?>
-											<tr>	
-												<td class="vaccination-name"><a href="<?php echo get_permalink( $vaccination->ID ); ?>"><?php echo $vaccination->post_title; ?></a></td>
-												<?php 
-												// output cell with vaccination indicator
-												$checkmark = '<img src="'.get_bloginfo("template_url").'/img/checkmark.png"/>';
-												for ( $counter = 1; $counter <= count($vaccinations_groups_labels); $counter++) {
-													echo "<td>";
-													echo ($counter == $group_id)? $checkmark : " - ";
-													echo "</td>";										
-												}
-												?>
-											</tr>
-										<?php endif; ?>														
+										<?php
+											// make sure every vaccine is only outputted once (somebody may have added a vaccine to multiple groups)									
+											if(!in_array($vaccination->ID, $already_outputted)):
+												$already_outputted[] = $vaccination->ID;										
+												?>									
+												<tr>	
+													<td class="vaccination-name"><a href="<?php echo get_permalink( $vaccination->ID ); ?>"><?php echo $vaccination->post_title; ?></a></td>
+													<?php 
+													// output cell with vaccination indicator
+													$checkmark = '<img src="'.get_bloginfo("template_url").'/img/checkmark.png"/>';
+												
+													$repeat_in_next_group = false;
+													for ( $counter = 1; $counter <= count($vaccinations_groups_labels); $counter++) {
+														echo "<td>";
+														if($counter == $group_id || $repeat_in_next_group === true){
+															$repeat_in_next_group = true;
+															echo $checkmark;
+														}else{
+															echo "-";
+														}
+														echo "</td>";										
+													}
+													?>
+												</tr>
+											<?php endif; ?>		
 									<?php endforeach; ?>
 								<?php endif; ?>			
 							<?php endforeach; ?>	
