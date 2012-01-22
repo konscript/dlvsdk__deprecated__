@@ -3,7 +3,7 @@
 <?php 
 $args = array(
   'post_type'	=>	'region',
-  'title_li'	=>	'header',
+  'title_li'	=>	'&nbsp;',
   'echo'			=>	false,  
 );
 $menu = wp_list_pages( $args );

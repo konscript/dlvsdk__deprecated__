@@ -5,21 +5,32 @@ $args = array(
   'title_li'=> '&nbsp;',
   'echo'         => false,  
 );
-$menu = wp_list_pages( $args );
+$sidebar_menu = wp_list_pages( $args );
+$destination = urlencode(the_title('', '', false));
+$sidebar_book = '<a class="button-book" href="' . get_bloginfo('wpurl') . '/booking/destination/' . $destination . '"><div class="button-book-title">Book your vaccination</div></a>';
 
 ?>
-<?php the_submenu($menu); ?>
+<?php the_submenu($sidebar_menu . $sidebar_book); ?>
 
 	<div id="content">
 		<?php if (have_posts()): while (have_posts()): the_post(); ?>
 		    <div class="post country">
+		        <h1><?php the_title(); ?></h1>
 
-	        	<?php	$destination = urlencode(the_title('', '', false));	?>		                	
-						<a class="button-book" href="<?php bloginfo('wpurl'); ?>/booking/destination/<?php echo $destination; ?>"><div class="button-book-title">Book your vaccination</div></a>
-
-		        <h1><?php the_title(); ?></h1>	        		      
-
-		        <div class="post-content">	
+						<?php $country_meta = '
+							<div class="country-flag">
+								<a href="'.get_field('latest_disease_surveillance').'" target="_blank">Latest Disease Surveillance</a><br />							
+								<img src="'.get_field('flag').'" />
+							</div>
+							<div class="country-meta">
+								<strong>Capital:</strong> '.get_field('capital').'<br />
+								<strong>Population:</strong> '.get_field('population').'<br />
+								<strong>Embassy:</strong> '.get_field('embassy').'<br />
+							</div>';
+							echo $country_meta;
+						?>
+		
+						<div class="post-content">	
 
 						<?php							
 							$already_outputted = array();
@@ -69,7 +80,7 @@ $menu = wp_list_pages( $args );
 														}else{
 															echo "-";
 														}
-														echo "</td>";										
+														echo "</td>";
 													}
 													?>
 												</tr>
@@ -80,19 +91,19 @@ $menu = wp_list_pages( $args );
 							</tbody>
 						</table>		
 						
-						<h3>FAQ</h3>
-						<?php 
+						<!-- <h3>FAQ</h3> -->
+						<?php /*
 							$country_id = get_the_ID();
 							$faqs = getFaqsByCountry($country_id); 
-						?>			
-						<div class="accordion">						
-						<?php foreach($faqs as $id => $faq):
+						*/ ?>			
+						<!-- <div class="accordion"> -->
+						<?php /* foreach($faqs as $id => $faq):
 							echo slidedown($faq["post_title"], $faq["post_content"], $id);
-						endforeach; ?>		
-						</div>			
+						endforeach; */ ?>		
+						<!-- </div> -->
 
-						<h3>Description</h3>							
-					 	<?php echo the_content(); ?>											
+						<!-- <h3>Description</h3> -->
+					 	<?php //echo the_content(); ?>											
 					</div>					 						 
 		    </div><!--#end post-->
         <?php endwhile; endif; ?>

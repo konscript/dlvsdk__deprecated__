@@ -94,7 +94,11 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 			padding-bottom: 0px;		
 			background-position: 95% 50%;
 			@include transition-property(all);
-			@include transition-duration(2s);					
+			@include transition-duration(2s);
+			
+			&:hover {
+				@include background-image(linear-gradient(color-stops(#f9f9f9, #f9f9f9)));
+			}
 			
 				/*  link */
 				a { 
