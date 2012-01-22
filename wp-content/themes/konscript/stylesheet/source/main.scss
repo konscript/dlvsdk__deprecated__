@@ -439,13 +439,6 @@ img.wp-smiley {}
  * Containers below the header and navigation
  ************************************************/
 
-// Wrapper for the content and primary/secondary widget sections
-#container {}
-
-	/**
-	 * Content
-	 ************************************************/	
-
 	// Content for pages with sidebar
   $content-cols: ceil(3 * $body-container-cols / 4 - 1);
 	#content {
@@ -755,21 +748,25 @@ div.wpcf7{
 
  /*
   * Clinic
-  **********************************/
-	#opening_hours {
-		width: 300px;
-		
-		td { 
-			padding: 4px 10px;
-			line-height: 25px;
-			padding: 4px 10px;
-			border-bottom: 1px solid #eee;
-			border-left: 1px solid #eee; }
+	**********************************/
+	.contact {
+		@include column( $content-cols / 2 );	
+	
+		// icons		
+		img {
+				height: 20px;
+				vertical-align: middle;
+				margin-right: 10px;
+				position: absolute;
+			}
 			
-		tr:nth-child(odd){
-			background-color: #f6f6f6;
+		p {
+			text-indent: 30px;
 		}
-		
+	}	
+	
+	.opening_hours {
+			@include column( $content-cols / 2, true );	
 	}
 
  /**
@@ -805,7 +802,7 @@ div.wpcf7{
  /**
   * vaccination
   **********************************/
-	table#vaccinations{
+	table.zebra {
 		width:100%;
 		margin-bottom: 10px;
   	

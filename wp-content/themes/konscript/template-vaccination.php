@@ -18,7 +18,7 @@
 	
 
 	<?php $vaccinations = get_posts( $args ); ?> 
-	<table id="vaccinations">
+	<table class="zebra">
 		<thead><tr><td>Vaccination</td><td>Pris</td><td>Antal</td><td>Beskyttelse</td></tr></thead>
 		<tbody>
 		<?php foreach($vaccinations as $vaccination){ ?>

@@ -129,14 +129,14 @@ function getCountries($country_ids = null){
 		'orderby'     => 'title',
 		'numberposts'			=>	'-1',
 	);
-	
+	// only fetch specified countries - if none specifiec fetch all	
 	if(isset($country_ids)){
 	
 		// variable set, but no countries in list. Show none.
 		if(strlen($country_ids) == 0){
 			$country_ids = -1;
 		}
-	
+		// set "include" argument in get_posts() to filter countries	
 		$args['include'] = $country_ids;
 	}
 	
@@ -144,5 +144,22 @@ function getCountries($country_ids = null){
 	$countries = get_posts( $args );	
 	
 	return $countries;	
+}
+
+/*
+ * get clinics ordered by name
+ ********/
+function getClinics(){
+	$args = array(
+		'post_type'		=> 'clinic',
+		'order'       => 'ASC',
+		'orderby'     => 'title',
+		'numberposts'			=>	'5',
+	);
+
+	// get clinics
+	$clinics = get_posts( $args );	
+	
+	return $clinics;	
 }
 ?>

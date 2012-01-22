@@ -98,6 +98,16 @@ get_header();
 			<?=the_field("content_right")?>	
 
 	</div>
+	
+	<div class="clinics">
+	<?php	$clinics = getClinics();
+		foreach($clinics as $clinic):	?>
+			<div class="clinic">
+				<div class="title"> <?php echo $clinic->post_title; ?></div>
+				<div class="address"><?php the_field("address", $clinic->ID); ?></div>
+			</div>
+		<?php	endforeach;	?>
+	</div>
 
 </div><!--#end content -->
 <?php get_footer(); ?>

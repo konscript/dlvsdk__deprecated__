@@ -239,4 +239,33 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 	}
 }
 
+// Clinics Column (bottom, below left and right)
+.clinics{ 
+	@include column($body-container-cols, true);
+	
+	padding: 10px 0;
+	
+	.clinic{
+		@include column(($body-container-cols/5), true);
+		overflow:hidden;		
+		line-height: 20px;
+		height: 40px;
+		
+		// title
+		.title {
+			font-weight: bold;
+		}
+		
+		// address
+		.address {
+			color: $quiet-color;
+		}
+		
+		// add padding to all children
+		&>*{
+			padding: 0 5px;
+		}
+	} 
+}	
+
 
