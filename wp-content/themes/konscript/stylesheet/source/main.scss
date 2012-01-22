@@ -389,9 +389,10 @@ img.wp-smiley {}
 /** 
  * Secondary Menu					
  **********/
- 
+
+	$sidebar-columns: floor($body-container-cols / 4);
+	 
 	#sidebar {
-		$sidebar-columns: floor($body-container-cols / 4);
 		@include column($sidebar-columns); 
 		@include append(1);
 		font-size:11px;
@@ -400,7 +401,10 @@ img.wp-smiley {}
 	// hide category name in submenu
 	#sidebar li.categories,
 	#sidebar li.pagenav {
+		@include column($sidebar-columns, true); 
+		margin-bottom: 20px;
 		list-style-type: none;
+		
 		h2 { display:none; }
 	}			
 	
@@ -808,6 +812,8 @@ div.wpcf7{
 	table#vaccinations{
 		width:100%;
 		margin-bottom: 10px;
+		border-top: 1px solid #eee;
+		border-right: 1px solid #eee;			
   	
   		thead tr td {
 				font-weight: bold; }
@@ -825,10 +831,48 @@ div.wpcf7{
  /**
   * country
   **********************************/  
+
+	.country-meta {
+		float: left;
+		clear: left;
+		margin-bottom: 10px;
+		text-align: left;
+		
+		strong {
+			float: left;
+			display: block;
+			width: 90px;
+		}
+	}
+	
+	.country-flag {
+		float: right;
+		margin-top: 15px;
+		text-align: right;
+		
+		a {
+			float: right;
+			margin-bottom: 10px;
+		}
+		
+		img {
+			float: right;
+			max-height: 115px;
+		}
+	}
+
+
   div.post.country{	
 	
+		h1 {
+			float: left;
+			//@include column(10);
+		}
+			
 		#vaccinations_groups {
 			width: 100%;
+			border-top: 1px solid #eee;
+			border-left: 1px solid #eee;			
 		}
 	
 		table#vaccinations_groups thead tr td {
@@ -836,7 +880,7 @@ div.wpcf7{
 		}
 
 		table#vaccinations_groups tr td:first-child	{
-			text-align:right;
+			text-align: left;
 		}
 	
 		table#vaccinations_groups tr td{
