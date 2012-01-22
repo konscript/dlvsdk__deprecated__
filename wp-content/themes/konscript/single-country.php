@@ -15,7 +15,7 @@ $menu = wp_list_pages( $args );
 		    <div class="post country">
 
 	        	<?php	$destination = urlencode(the_title('', '', false));	?>		                	
-						<a class="button-book" href="<?php bloginfo('wpurl'); ?>/booking/destination/<?php echo $destination; ?>"><div class="button-book-title">Book your vaccination!</div></a>
+						<a class="button-book" href="<?php bloginfo('wpurl'); ?>/booking/destination/<?php echo $destination; ?>"><div class="button-book-title">Book your vaccination</div></a>
 
 		        <h1><?php the_title(); ?></h1>	        		      
 
@@ -74,19 +74,19 @@ $menu = wp_list_pages( $args );
 							</tbody>
 						</table>		
 						
-						<h3>FAQ</h3>
-						<?php 
+						<!-- <h3>FAQ</h3> -->
+						<?php /*
 							$country_id = get_the_ID();
 							$faqs = getFaqsByCountry($country_id); 
-						?>			
-						<div class="accordion">						
-						<?php foreach($faqs as $id => $faq):
+						*/ ?>			
+						<!-- <div class="accordion"> -->
+						<?php /* foreach($faqs as $id => $faq):
 							echo slidedown($faq["post_title"], $faq["post_content"], $id);
-						endforeach; ?>		
-						</div>			
+						endforeach; */ ?>		
+						<!-- </div> -->
 
-						<h3>Description</h3>							
-					 	<?php echo the_content(); ?>											
+						<!-- <h3>Description</h3> -->
+					 	<?php //echo the_content(); ?>											
 					</div>					 						 
 		    </div><!--#end post-->
         <?php endwhile; endif; ?>
