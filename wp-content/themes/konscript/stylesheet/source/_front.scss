@@ -259,6 +259,7 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 		overflow:hidden;		
 		line-height: 20px;
 		height: 40px;
+		cursor:pointer;
 		
 		// title
 		.title {
