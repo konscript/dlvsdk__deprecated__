@@ -14,8 +14,8 @@
 					
 					<div class="contact">	
 						<p class="header">Contact</p>
-						<p><img src="<?php bloginfo('template_url'); ?>/img/icon-address.png">Address: <?php the_field('address'); ?>, <?php the_field('city'); ?></p>					
-						<p><img src="<?php bloginfo('template_url'); ?>/img/icon-telephone.png">Phone: <?php the_field('phone_number'); ?></p>
+						<p class="address">Address: <?php the_field('address'); ?>, <?php the_field('city'); ?></p>					
+						<p class="telephone">Phone: <?php the_field('phone_number'); ?></p>
 					</div>	
 				
 					<div class="opening_hours">	

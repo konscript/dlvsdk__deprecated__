@@ -265,10 +265,19 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 			color: $quiet-color;
 		}
 		
+		// address icon
+		text-indent: 25px;
+		background: url('../../img/icon-address-black.png') no-repeat	center left;
+		
+		// change icon on hover
+		&:hover{
+				background-image: url('../../img/icon-address-red.png')	;
+		}		
+		
 		// add padding to all children
 		&>*{
 			padding: 0 5px;
-		}
+		}	
 	} 
 }	
 
