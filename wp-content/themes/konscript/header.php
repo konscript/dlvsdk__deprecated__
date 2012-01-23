@@ -12,10 +12,10 @@
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 	
 	<!--Stylesheets-->
-  <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/stylesheet/compiled/ui-blitzer/jquery-ui-1.8.16.custom.css" type="text/css" media="screen" charset="utf-8" />
-	<link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/stylesheet/compiled/ie.css" type="text/css" media="screen" charset="utf-8" />
-	<link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/stylesheet/compiled/print.css" type="text/css" media="print" charset="utf-8" />
-  <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/stylesheet/compiled/main.css" type="text/css" media="screen" charset="utf-8" />
+  <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/stylesheet/compiled/ui-blitzer/jquery-ui-1.8.16.custom.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/stylesheet/compiled/ie.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/stylesheet/compiled/print.css" type="text/css" media="print" />
+  <link rel="stylesheet" href="<?php bloginfo('template_url'); ?>/stylesheet/compiled/main.css" type="text/css" media="screen" />
   <link rel="stylesheet" type="text/css" media="screen,projection" href="<?php bloginfo('template_url'); ?>/scripts/continents-map/continents-map-540px.css" />  
 	
 	<!--Mobile-->
