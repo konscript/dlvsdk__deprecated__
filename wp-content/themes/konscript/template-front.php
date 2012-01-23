@@ -38,7 +38,7 @@ get_header();
 				
 			<?php 
 				// tabs
-				$tabs .= '<li><a href="#tabs-'.$tab_id.'"><img src="'.get_sub_field('icon').'"/><span class="title">'.get_sub_field('title').'</span></a></li>';
+				$tabs .= '<li><a href="#tabs-'.$tab_id.'"><img src="'.get_sub_field('icon').'" alt="'.get_sub_field('title').'"/><span class="title">'.get_sub_field('title').'</span></a></li>';
 			?>			
 		<?php endwhile; ?>	 
 	<?php endif; ?>	
