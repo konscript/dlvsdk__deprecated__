@@ -102,10 +102,12 @@ get_header();
 	<div class="clinics">
 	<?php	$clinics = getClinics();
 		foreach($clinics as $clinic):	?>
+		<a href="<?php echo get_permalink($clinic->ID); ?>">
 			<div class="clinic">
-				<div class="title"><a href="<?php echo get_permalink($clinic->ID); ?>"><?php echo $clinic->post_title; ?></a></div>
+				<div class="title"><?php echo $clinic->post_title; ?></div>
 				<div class="address"><?php the_field("address", $clinic->ID); ?></div>
 			</div>
+		</a>
 		<?php	endforeach;	?>
 	</div>
 

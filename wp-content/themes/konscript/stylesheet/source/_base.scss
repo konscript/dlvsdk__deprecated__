@@ -42,5 +42,5 @@ $blueprint-font-size: $typography-size-normal;
  *****/
 $margin: $blueprint-grid-margin;
 $quiet-color: lighten($font-color, 40%);
-$body-container-cols: $blueprint-grid-columns - 2;
-$radius: 5px;
+$body-container-cols: $blueprint-grid-columns - 1;
+$radius: 3px;
