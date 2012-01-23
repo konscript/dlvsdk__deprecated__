@@ -756,15 +756,13 @@ div.wpcf7{
 	.contact {
 		@include column( $content-cols / 2 );	
 				
-		p.address {
+		p.address {	background: url('../../img/icon-address-black-20px.png') no-repeat	center left; }
+		p.telephone {	background: url('../../img/icon-telephone-20px.png') no-repeat	center left; }		
+		p.telephone, p.address {
 			padding-left: 25px;
-			background: url('../../img/icon-address-black-20px.png') no-repeat	center left;
+			min-height: 20px;
+			line-height:13px;
 		}
-		
-		p.telephone {
-			padding-left: 25px;
-			background: url('../../img/icon-telephone-20px.png') no-repeat	center left;
-		}		
 	}	
 	
 	.opening_hours {

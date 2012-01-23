@@ -249,11 +249,12 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 	
 	padding: 10px 0;
 	
-	.clinic{
+	.clinic {
 		@include column(($body-container-cols/5), true);
 		overflow:hidden;		
 		line-height: 20px;
 		height: 40px;
+		cursor:pointer;
 		
 		// title
 		.title {

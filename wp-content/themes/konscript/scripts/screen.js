@@ -24,6 +24,9 @@ jQuery.noConflict();
 		// vaccination lightbox
 		vaccinationLightbox();
 		
+		// misc css styling
+		miscStyles();
+		
 	});
 	
 	/*
@@ -232,6 +235,15 @@ jQuery.noConflict();
 		  return jQuery(a).text().toUpperCase()
 			  .indexOf(m[3].toUpperCase()) >= 0;
 		};		
+	} // search faq end
+	
+	/******************
+	 * CSS edits and styling
+	 ******************/				
+	function miscStyles(){
+		$('.page-template-template-front-php .clinics .clinic').click(function(){
+	 		 window.location.href = $(this).find('a').attr('href');
+		});
 	}
 	
 })(jQuery);
