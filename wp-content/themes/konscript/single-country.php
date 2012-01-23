@@ -1,5 +1,6 @@
 <?php get_header(); ?>
 <?php 
+// Sidebar menu
 $args = array(
   'post_type'=>'region',
   'title_li'=> '&nbsp;',
@@ -8,9 +9,7 @@ $args = array(
 $sidebar_menu = wp_list_pages( $args );
 $destination = urlencode(the_title('', '', false));
 $sidebar_book = '<a class="button-book" href="' . get_bloginfo('wpurl') . '/booking/destination/' . $destination . '"><div class="button-book-title">Book your vaccination</div></a>';
-
-?>
-<?php the_submenu($sidebar_menu . $sidebar_book); ?>
+the_submenu($sidebar_menu . $sidebar_book); ?>
 
 	<div id="content">
 		<?php if (have_posts()): while (have_posts()): the_post(); ?>
