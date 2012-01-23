@@ -4,7 +4,7 @@
                     Gladsaxevej 376 • 2860 Søborg • Tlf: 70 25 40 80 • Fax: 70 25 90 41 • Email: info@dlvs.dk
                 </div>
                 <div class="logo">
-                	<img src="<?php bloginfo('template_url'); ?>/img/ELCG_DK_LOGO_BUND.gif" />
+                	<img src="<?php bloginfo('template_url'); ?>/img/ELCG_DK_LOGO_BUND.gif" alt="European Lifecare Group" />
                 </div>
 			</div><!--#end footer-->
 		</div><!--#end footer-->	

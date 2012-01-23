@@ -38,7 +38,7 @@ get_header();
 				
 			<?php 
 				// tabs
-				$tabs .= '<li><a href="#tabs-'.$tab_id.'"><img src="'.get_sub_field('icon').'"/><span class="title">'.get_sub_field('title').'</span></a></li>';
+				$tabs .= '<li><a href="#tabs-'.$tab_id.'"><img src="'.get_sub_field('icon').'" alt="'.get_sub_field('title').'"/><span class="title">'.get_sub_field('title').'</span></a></li>';
 			?>			
 		<?php endwhile; ?>	 
 	<?php endif; ?>	
@@ -91,7 +91,7 @@ get_header();
 			
 	<div class="frontpage-column" id="column-right">	
 
-			<a class="button-book" href="<?php bloginfo('wpurl'); ?>/booking"><div class="button-book-title">Book now</div><div class="button-book-meta">Quick and easy</br />online booking</div></a>
+			<a class="button-book" href="<?php bloginfo('wpurl'); ?>/booking"><div class="button-book-title">Book now</div><div class="button-book-meta">Quick and easy<br />online booking</div></a>
 
 			<h3><?=the_field("title_right")?></h3>			
 
