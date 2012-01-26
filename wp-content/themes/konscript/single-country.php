@@ -14,7 +14,7 @@ $sidebar_country_meta = '
 	<div class="country-meta">
 		<strong>Capital:</strong> '.get_field('capital').'<br />
 		<strong>Population:</strong> '.get_field('population').'<br />
-		<strong>Embassy:</strong> '.get_field('embassy').'<br />
+		<strong>Embassy:</strong><br />'.get_field('embassy').'<br />
 		<a href="'.get_field('latest_disease_surveillance').'" target="_blank">Latest Disease Surveillance</a><br />									
 	</div>';
 the_submenu($sidebar_country_meta . $sidebar_menu); ?>
