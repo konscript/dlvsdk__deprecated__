@@ -97,8 +97,7 @@
 		$top_destinations = get_posts( $args );
 		foreach($top_destinations as $country): 		
 		?>
-			<?php $image = wp_get_attachment_image_src(get_field('flag', $country->ID)); ?>
-			<tr><td><img src="<?php  echo $image[0]; ?>" alt="" /><a href="<?php echo get_permalink($country->ID); ?>"><?php echo $country->post_title; ?> </a></td></tr>
+			<tr><td><img src="<?php the_field('flag', $country->ID); ?>" alt="" /><a href="<?php echo get_permalink($country->ID); ?>"><?php echo $country->post_title; ?> </a></td></tr>
 		<?php endforeach; ?>
 		</table>
 	</div>
