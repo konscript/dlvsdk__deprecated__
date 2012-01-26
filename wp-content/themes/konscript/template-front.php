@@ -44,7 +44,7 @@
 
 		<div id="map-wrapper">
 
-		<h3><?=the_field("title_left")?></h3>
+		<h3>What vaccines are recommended?</h3>
 	
 		<form method="GET" id="travelguide" action="<?php bloginfo('wpurl'); ?>">
 		  <select name="Country" id="country-selector">
@@ -75,7 +75,6 @@
 		  </ul>
 		</div>		
 		</div>
-		<?=the_field("content_left")?>
 		
 	</div>
 			
