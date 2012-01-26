@@ -1,18 +1,9 @@
 <?php /* Template Name: Frontpage*/ ?>
-<?php
-/*
-// disabled
-// redirect for country selector
-if(isset($_GET["Country"])){
-	header("Location: ".get_permalink($_GET["Country"]));
-}
-*/
-get_header(); 
-?>
+<?php get_header(); ?>
 
 <div id="content" class="no-sidebar">	
 
-	<div id="tabs" >
+	<div id="tabs">
 	
 	<?php if(get_field('tabs')): ?>
 		<?php 
@@ -53,12 +44,11 @@ get_header();
 
 		<div id="map-wrapper">
 
-		<h3><?=the_field("title_left")?></h3>
+		<h3>What vaccines are recommended?</h3>
 	
 		<form method="GET" id="travelguide" action="<?php bloginfo('wpurl'); ?>">
 		  <select name="Country" id="country-selector">
-		 <!-- <select name="Country" id="country-selector" autofocus="autofocus" autocorrect="off" autocomplete="off"> -->
-		    <option value="" selected="selected">Select Country</option>
+	    <option value="" selected="selected">Select Country</option>
 			<?php $countries = getCountries(); ?>	
 			<?php foreach($countries as $country): ?>
 				<?php 
@@ -81,26 +71,38 @@ get_header();
 		   <li id="c3"><a href="<?php bloginfo('wpurl'); ?>/region/oceania">Oceania</a></li>
 		   <li id="c4"><a href="<?php bloginfo('wpurl'); ?>/region/europe">Europe</a></li>
 		   <li id="c5"><a href="<?php bloginfo('wpurl'); ?>/region/north-america">North America</a></li>
-		   <li id="c6"><a href="<?php bloginfo('wpurl'); ?>/region/south-africa">South America</a></li>
+		   <li id="c6"><a href="<?php bloginfo('wpurl'); ?>/region/south-america">South America</a></li>
 		  </ul>
 		</div>		
 		</div>
-		<?=the_field("content_left")?>
 		
 	</div>
 			
 	<div class="frontpage-column" id="column-right">	
 
-			<a class="button-book" href="<?php bloginfo('wpurl'); ?>/booking"><div class="button-book-title">Book now</div><div class="button-book-meta">Quick and easy<br />online booking</div></a>
+		<a class="button-book" href="<?php bloginfo('wpurl'); ?>/booking"><div class="button-book-title">Book now</div><div class="button-book-meta">Quick and easy<br />online booking</div></a>
+		<h3>Popular destinations</h3>			
 
-			<h3><?=the_field("title_right")?></h3>			
+		<table class="zebra top-destinations">
+		<?php 
+		$args = array(
+			'post_type'		=> 'country',
+			'orderby'   => 'menu_order',
+			'order'     => 'ASC',
+			'numberposts'			=>	'8'
+		);
 
-			<?=the_field("content_right")?>	
-
+		// get countries
+		$top_destinations = get_posts( $args );
+		foreach($top_destinations as $country): 		
+		?>
+			<tr><td><img src="<?php the_field('flag', $country->ID); ?>" alt="" /><a href="<?php echo get_permalink($country->ID); ?>"><?php echo $country->post_title; ?> </a></td></tr>
+		<?php endforeach; ?>
+		</table>
 	</div>
 	
 	<div class="clinics">
-	<?php	$clinics = getClinics();
+		<?php	$clinics = getClinics();
 		foreach($clinics as $clinic):	?>
 		<a href="<?php echo get_permalink($clinic->ID); ?>">
 			<div class="clinic">
