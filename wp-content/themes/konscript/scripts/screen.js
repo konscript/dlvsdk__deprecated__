@@ -162,7 +162,8 @@ jQuery.noConflict();
 	    	resizable: false,
 	    	width: 600,
 				show: "fade",
-				hide: "fade"
+				hide: "fade",
+				position: ['center', 100]
     	});
 
 			// load content into window
