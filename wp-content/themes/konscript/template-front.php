@@ -3,7 +3,7 @@
 
 <div id="content" class="no-sidebar">	
 
-	<div id="tabs" >
+	<div id="tabs">
 	
 	<?php if(get_field('tabs')): ?>
 		<?php 
@@ -71,7 +71,7 @@
 		   <li id="c3"><a href="<?php bloginfo('wpurl'); ?>/region/oceania">Oceania</a></li>
 		   <li id="c4"><a href="<?php bloginfo('wpurl'); ?>/region/europe">Europe</a></li>
 		   <li id="c5"><a href="<?php bloginfo('wpurl'); ?>/region/north-america">North America</a></li>
-		   <li id="c6"><a href="<?php bloginfo('wpurl'); ?>/region/south-africa">South America</a></li>
+		   <li id="c6"><a href="<?php bloginfo('wpurl'); ?>/region/south-america">South America</a></li>
 		  </ul>
 		</div>		
 		</div>
@@ -81,12 +81,26 @@
 			
 	<div class="frontpage-column" id="column-right">	
 
-			<a class="button-book" href="<?php bloginfo('wpurl'); ?>/booking"><div class="button-book-title">Book now</div><div class="button-book-meta">Quick and easy<br />online booking</div></a>
+		<a class="button-book" href="<?php bloginfo('wpurl'); ?>/booking"><div class="button-book-title">Book now</div><div class="button-book-meta">Quick and easy<br />online booking</div></a>
+		<h3>Popular destinations</h3>			
 
-			<h3><?=the_field("title_right")?></h3>			
+		<table class="zebra top-destinations">
+		<?php 
+		$args = array(
+			'post_type'		=> 'country',
+			'orderby'   => 'menu_order',
+			'order'     => 'ASC',
+			'numberposts'			=>	'8'
+		);
 
-			<?=the_field("content_right")?>	
-
+		// get countries
+		$top_destinations = get_posts( $args );
+		foreach($top_destinations as $country): 		
+		?>
+			<?php $image = wp_get_attachment_image_src(get_field('flag', $country->ID)); ?>
+			<tr><td><img src="<?php  echo $image[0]; ?>" alt="" /><a href="<?php echo get_permalink($country->ID); ?>"><?php echo $country->post_title; ?> </a></td></tr>
+		<?php endforeach; ?>
+		</table>
 	</div>
 	
 	<div class="clinics">

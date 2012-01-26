@@ -36,7 +36,7 @@ function country_register() {
    'rewrite' => array('slug' => 'country', 'with_front' => false),
 	'has_archive' => false,
    'capability_type' => 'post',
-   'hierarchical' => true,
+   'hierarchical' => false,
    'supports' => array('thumbnail', 'title', 'editor')
    );
    

@@ -230,18 +230,20 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 	
 	.button-book {
 		margin: 0 0 20px 0; 
+	}	
+	
+	// table with most popular destinations
+	.top-destinations	{
+		td>* {
+			vertical-align: middle;
+		}
+	
+		img {
+			width: 20px;
+			margin-right: 5px;
+		}
 	}
 	
-	#clinics{ margin-top: 30px;	}	
-	.bookingimage {float:right; clear: both; height:140px; margin-top: 20px;}
-	
-	.button-pre-text {
-		width: 75%;
-		text-align: center;
-		margin: 0 auto 10px auto;
-		font-style: italic;
-		color: #b3b3b3;
-	}
 }
 
 // Clinics Column (bottom, below left and right)
