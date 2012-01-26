@@ -826,10 +826,11 @@ div.wpcf7{
   * country
   **********************************/  
 
+	$sidebar-columns: floor($body-container-cols / 4);
+
 	.country-meta {
-		float: left;
-		clear: left;
-		margin-bottom: 10px;
+		@include column($sidebar-columns); 		
+		margin-top: 15px;		
 		text-align: left;
 		
 		strong {
@@ -840,18 +841,11 @@ div.wpcf7{
 	}
 	
 	.country-flag {
-		float: right;
-		margin-top: 15px;
+		@include column($sidebar-columns); 
 		text-align: right;
 		
-		a {
-			float: right;
-			margin-bottom: 10px;
-		}
-		
 		img {
-			float: right;
-			max-height: 115px;
+			width: 100%;
 		}
 	}
 
@@ -859,8 +853,8 @@ div.wpcf7{
   div.post.country{	
 	
 		h1 {
-			float: left;
-			//@include column(10);
+			//float: left;
+			@include column(10);
 		}
 			
 		#vaccinations_groups {

@@ -7,26 +7,27 @@ $args = array(
   'echo'         => false,  
 );
 $sidebar_menu = wp_list_pages( $args );
-$destination = urlencode(the_title('', '', false));
-$sidebar_book = '<a class="button-book" href="' . get_bloginfo('wpurl') . '/booking/destination/' . $destination . '"><div class="button-book-title">Book your vaccination</div></a>';
-the_submenu($sidebar_menu . $sidebar_book); ?>
+$sidebar_country_meta = '
+	<div class="country-flag">
+		<img src="'.get_field('flag').'" />
+	</div>
+	<div class="country-meta">
+		<strong>Capital:</strong> '.get_field('capital').'<br />
+		<strong>Population:</strong> '.get_field('population').'<br />
+		<strong>Embassy:</strong> '.get_field('embassy').'<br />
+		<a href="'.get_field('latest_disease_surveillance').'" target="_blank">Latest Disease Surveillance</a><br />									
+	</div>';
+the_submenu($sidebar_country_meta . $sidebar_menu); ?>
 
 	<div id="content">
 		<?php if (have_posts()): while (have_posts()): the_post(); ?>
 		    <div class="post country">
 		        <h1><?php the_title(); ?></h1>
 
-						<?php $country_meta = '
-							<div class="country-flag">
-								<a href="'.get_field('latest_disease_surveillance').'" target="_blank">Latest Disease Surveillance</a><br />							
-								<img src="'.get_field('flag').'" />
-							</div>
-							<div class="country-meta">
-								<strong>Capital:</strong> '.get_field('capital').'<br />
-								<strong>Population:</strong> '.get_field('population').'<br />
-								<strong>Embassy:</strong> '.get_field('embassy').'<br />
-							</div>';
-							echo $country_meta;
+						<?php 
+							$destination = urlencode(the_title('', '', false));
+							$book_button = '<a class="button-book" href="' . get_bloginfo('wpurl') . '/booking/destination/' . $destination . '"><div class="button-book-title">Book your vaccination</div></a>';
+							echo $book_button;
 						?>
 		
 						<div class="post-content">	
