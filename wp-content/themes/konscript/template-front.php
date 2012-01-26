@@ -1,14 +1,5 @@
 <?php /* Template Name: Frontpage*/ ?>
-<?php
-/*
-// disabled
-// redirect for country selector
-if(isset($_GET["Country"])){
-	header("Location: ".get_permalink($_GET["Country"]));
-}
-*/
-get_header(); 
-?>
+<?php get_header(); ?>
 
 <div id="content" class="no-sidebar">	
 
@@ -57,8 +48,7 @@ get_header();
 	
 		<form method="GET" id="travelguide" action="<?php bloginfo('wpurl'); ?>">
 		  <select name="Country" id="country-selector">
-		 <!-- <select name="Country" id="country-selector" autofocus="autofocus" autocorrect="off" autocomplete="off"> -->
-		    <option value="" selected="selected">Select Country</option>
+	    <option value="" selected="selected">Select Country</option>
 			<?php $countries = getCountries(); ?>	
 			<?php foreach($countries as $country): ?>
 				<?php 
@@ -100,7 +90,7 @@ get_header();
 	</div>
 	
 	<div class="clinics">
-	<?php	$clinics = getClinics();
+		<?php	$clinics = getClinics();
 		foreach($clinics as $clinic):	?>
 		<a href="<?php echo get_permalink($clinic->ID); ?>">
 			<div class="clinic">
