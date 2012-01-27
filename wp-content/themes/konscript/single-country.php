@@ -8,21 +8,37 @@ $args = array(
 );
 $sidebar_menu = wp_list_pages( $args );
 $sidebar_country_meta = '
-	<div class="country-flag">
-		<img src="'.get_field('flag').'" />
-	</div>
-	<div class="country-meta">
-		<strong>Capital:</strong> '.get_field('capital').'<br />
-		<strong>Population:</strong> '.get_field('population').'<br />
-		<strong>Embassy:</strong><br />'.get_field('embassy').'<br />
-		<a href="'.get_field('latest_disease_surveillance').'" target="_blank">Latest Disease Surveillance</a><br />									
-	</div>';
-the_submenu($sidebar_country_meta . $sidebar_menu); ?>
+	<div class="country-meta-header">Country Facts</div>
+	<table class="country-meta zebra">
+		<tr>
+			<td><strong>Capital:</strong></td>
+			<td>'.get_field('capital').'</td>
+		</tr>
+		<tr>
+			<td><strong>Population:</strong></td>
+			<td>'.get_field('population').'</td>
+		</tr>
+		<tr>
+			<td colspan="2"><strong>Embassy:</strong></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				'.get_field('embassy').'<br />
+				<a href="'.get_field('latest_disease_surveillance').'" target="_blank">Latest Disease Surveillance</a>
+			</td>
+		</tr>
+	</table>';
+the_submenu($sidebar_menu . $sidebar_country_meta); ?>
 
 	<div id="content">
 		<?php if (have_posts()): while (have_posts()): the_post(); ?>
 		    <div class="post country">
-		        <h1><?php the_title(); ?></h1>
+		        
+						<div class="country-flag">
+							<img src="<?php echo get_field('flag'); ?>" />
+						</div>
+		
+						<h1><?php the_title(); ?></h1>
 
 						<?php 
 							$destination = urlencode(the_title('', '', false));

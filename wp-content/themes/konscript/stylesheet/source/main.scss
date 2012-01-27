@@ -45,7 +45,7 @@ body {
 	color: $color-primary;
 	background-image: url('../../img/bg.png');
 	background-repeat: repeat-x;
-	background-color: #fff;		
+	background-color: #fff;
 }
 
 	#wrapper {
@@ -62,7 +62,7 @@ body {
 		//@include prepend(1);
 		//@include append(1);	
 		@include column($body-container-cols, true); 
-		margin: 0px 10px;
+		margin: 0 10px 10px 10px;
 	}
 
 /**
@@ -395,7 +395,7 @@ img.wp-smiley {}
 	 
 	#sidebar {
 		@include column($sidebar-columns); 
-		@include append(1);
+		//@include append(1);
 		font-size:11px;
 	}	 
 	
@@ -445,7 +445,7 @@ img.wp-smiley {}
  ************************************************/
 
 	// Content for pages with sidebar
-  $content-cols: ceil(3 * $body-container-cols / 4 - 1);
+  $content-cols: ceil(3 * $body-container-cols / 4);
 	#content {
 		@include column($content-cols, true);
 	}
@@ -828,24 +828,27 @@ div.wpcf7{
 
 	$sidebar-columns: floor($body-container-cols / 4);
 
+	.country-meta-header {
+		@include column($sidebar-columns);
+		text-align: center;
+		font-size: 16px;
+		padding: 0 0 10px 0;
+		font-family:Georgia;		
+	}
+
 	.country-meta {
-		@include column($sidebar-columns - 1);
-		@include prepend(1);
-		margin-top: 15px;
+		@include column($sidebar-columns);
+		//@include prepend(1);
+		//margin-top: 15px;
 		text-align: left;
-		
-		strong {
-			float: left;
-			display: block;
-			width: 90px;
-		}
 	}
 	
 	.country-flag {
-		@include column($sidebar-columns - 1);
-		@include prepend(1);
+		@include column(3);
+		
+//		width: 30px;
 		text-align: right;
-		margin-top: 15px;
+		margin-top: 10px;
 				
 		img {
 			width: 100%;
@@ -858,6 +861,7 @@ div.wpcf7{
 		h1 {
 			//float: left;
 			@include column(10);
+			margin-top: 10px;			
 		}
 			
 		#vaccinations_groups {

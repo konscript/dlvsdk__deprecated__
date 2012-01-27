@@ -139,7 +139,7 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 	@include float-left;	
 	@include last;
 	width: span($two_thirds);
-	margin-right: $blueprint-grid-margin * 2;
+	margin-right: $blueprint-grid-margin;
 	
 	h3 {
 		@include text-shadow(0 1px 0 rgba(255,255,255,0.5));				
@@ -225,7 +225,7 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 #content #column-right {
 	@include float-left;	
 	@include last;
-	width: span($one_third - 0.5);
+	width: span($one_third);
 	//margin-left: $blueprint-grid-margin * 2 * -1;
 	
 	.button-book {
