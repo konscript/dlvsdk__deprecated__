@@ -831,8 +831,8 @@ div.wpcf7{
 	.country-meta-header {
 		@include column($sidebar-columns);
 		text-align: center;
-		font-size: 16px;
-		padding: 0 0 10px 0;
+		font-size: 18px;
+		padding: 0 0 20px 0;
 		font-family:Georgia;		
 	}
 
@@ -842,6 +842,9 @@ div.wpcf7{
 		//@include prepend(1);
 		//margin-top: 15px;
 		text-align: left;
+		tbody {
+			width: 100%;
+		}
 	}
 	
 	.country-flag {

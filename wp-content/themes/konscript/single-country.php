@@ -10,6 +10,7 @@ $sidebar_menu = wp_list_pages( $args );
 $sidebar_country_meta = '
 	<div class="country-meta-header">Country Facts</div>
 	<table class="country-meta zebra">
+		<tbody>
 		<tr>
 			<td><strong>Capital:</strong></td>
 			<td>'.get_field('capital').'</td>
@@ -27,6 +28,7 @@ $sidebar_country_meta = '
 				<a href="'.get_field('latest_disease_surveillance').'" target="_blank">Latest Disease Surveillance</a>
 			</td>
 		</tr>
+		</tbody>
 	</table>';
 the_submenu($sidebar_menu . $sidebar_country_meta); ?>
 
