@@ -7,8 +7,6 @@ $args = array(
   'echo' => false,  
 );
 $sidebar_menu = wp_list_pages( $args );
-$clinic = basename(get_permalink());
-$sidebar_book = '<a class="button-book" href="' . get_bloginfo('wpurl') . '/booking/clinic/' . $clinic . '"><div class="button-book-title">Book your vaccination</div></a>';
 the_submenu($sidebar_menu . $sidebar_book); ?>
 
 	<div id="content">
@@ -16,6 +14,12 @@ the_submenu($sidebar_menu . $sidebar_book); ?>
 			<div class="post clinic">
 
 				<h1><?php the_title(); ?></h1>
+				
+				<?php 
+				$clinic = basename(get_permalink());
+				echo '<a class="button-book" href="' . get_bloginfo('wpurl') . '/booking/clinic/' . $clinic . '"><div class="button-book-title">Book your vaccination</div></a>';
+				?>
+				
 				<div class="post-content">									
 					<?php							
 					// some text about the clinic

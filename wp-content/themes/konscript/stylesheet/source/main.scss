@@ -754,6 +754,20 @@ div.wpcf7{
  /*
   * Clinic
 	**********************************/
+	
+	.post.clinic {
+		h1 {
+			//float: left;
+			@include column(18);
+			margin-top: 10px;			
+		}
+		
+		.post-content {
+			@include column($content-cols, true);
+		}
+		
+	}
+	
 	.contact {
 		@include column( $content-cols / 2 );	
 				
