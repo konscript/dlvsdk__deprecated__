@@ -42,10 +42,12 @@ the_submenu($sidebar_menu . $sidebar_country_meta); ?>
 		<?php if (have_posts()): while (have_posts()): the_post(); ?>
 		    <div class="post country">
 		        
-						<div class="country-flag">
-							<img src="<?php echo get_field('flag'); ?>" />
-						</div>
-		
+						<?php if(get_field('flag')) { ?>
+							<div class="country-flag">
+								<img src="<?php echo get_field('flag'); ?>" />
+							</div>
+						<?php } ?>
+						
 						<h1><?php the_title(); ?></h1>
 
 						<?php 

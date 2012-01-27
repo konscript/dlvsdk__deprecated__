@@ -85,15 +85,7 @@
 
 		<table class="zebra top-destinations">
 		<?php 
-		$args = array(
-			'post_type'		=> 'country',
-			'orderby'   => 'menu_order',
-			'order'     => 'ASC',
-			'numberposts'			=>	'8'
-		);
-
-		// get countries
-		$top_destinations = get_posts( $args );
+		$top_destinations = get_field('top_destinations');
 		foreach($top_destinations as $country): 		
 		?>
 			<tr><td><img src="<?php the_field('flag', $country->ID); ?>" alt="" /><a href="<?php echo get_permalink($country->ID); ?>"><?php echo $country->post_title; ?> </a></td></tr>
