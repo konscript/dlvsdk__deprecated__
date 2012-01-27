@@ -838,6 +838,7 @@ div.wpcf7{
 
 	.country-meta {
 		@include column($sidebar-columns);
+		display: block;
 		//@include prepend(1);
 		//margin-top: 15px;
 		text-align: left;
