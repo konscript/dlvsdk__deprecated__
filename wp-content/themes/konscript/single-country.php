@@ -9,7 +9,7 @@ $args = array(
 $sidebar_menu = wp_list_pages( $args );
 $sidebar_country_meta_links = '<a href="'.get_field('latest_disease_surveillance').'" target="_blank">Latest Disease Surveillance</a>';
 if (get_field('updated_malaria_map')) {
-	$sidebar_country_meta_links .= '<a href="'.get_field('updated_malaria_map').'" target="_blank">Updated Malaria Map</a>';
+	$sidebar_country_meta_links .= '<br /><a href="'.get_field('updated_malaria_map').'" target="_blank">Updated Malaria Map</a>';
 }
 $sidebar_country_meta = '
 	<div class="country-meta-header">Country Facts</div>
@@ -24,14 +24,16 @@ $sidebar_country_meta = '
 			<td>'.get_field('population').'</td>
 		</tr>
 		<tr>
-			<td colspan="2"><strong>'.get_field('embassy_name').'</strong></td>
+			<td colspan="2">
+				<strong>'.get_field('embassy_name').'</strong><br />
+				'.get_field('embassy_info').'
+			</td>
 		</tr>
 		<tr>
 			<td colspan="2">
-				'.get_field('embassy_info').'<br />
-				'.$sidebar_country_meta_links.'
+				'.$sidebar_country_meta_links.'		
 			</td>
-		</tr>
+		</tr>				
 		</tbody>
 	</table>';
 the_submenu($sidebar_menu . $sidebar_country_meta); ?>

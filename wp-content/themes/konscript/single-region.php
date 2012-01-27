@@ -46,12 +46,12 @@ $menu = wp_list_pages( $args );
 				$countries = getCountries($region[0]);
 
 				// output countries in region
-				foreach($countries as $country): 
-				?>
+				foreach($countries as $country):
+					if(the_field('flag', $country->ID)) { ?>
 					<a href="<?php echo get_permalink( $country->ID ) ?>" class="country">
 						<img src="<?php the_field('flag', $country->ID); ?>" alt="" />
 					</a>
-				<?php endforeach; ?>
+				<?php } endforeach; ?>
 				</div>
 				
 			</div>
