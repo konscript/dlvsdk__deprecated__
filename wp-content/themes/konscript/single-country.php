@@ -7,9 +7,13 @@ $args = array(
   'echo'         => false,  
 );
 $sidebar_menu = wp_list_pages( $args );
+$sidebar_country_meta_links = '<a href="'.get_field('latest_disease_surveillance').'" target="_blank">Latest Disease Surveillance</a>';
+if (get_field('updated_malaria_map')) {
+	$sidebar_country_meta_links .= '<a href="'.get_field('updated_malaria_map').'" target="_blank">Updated Malaria Map</a>';
+}
 $sidebar_country_meta = '
 	<div class="country-meta-header">Country Facts</div>
-	<table class="country-meta zebra">
+	<table class="country-meta">
 		<tbody>
 		<tr>
 			<td><strong>Capital:</strong></td>
@@ -20,12 +24,12 @@ $sidebar_country_meta = '
 			<td>'.get_field('population').'</td>
 		</tr>
 		<tr>
-			<td colspan="2"><strong>Embassy:</strong></td>
+			<td colspan="2"><strong>'.get_field('embassy_name').'</strong></td>
 		</tr>
 		<tr>
 			<td colspan="2">
-				'.get_field('embassy').'<br />
-				<a href="'.get_field('latest_disease_surveillance').'" target="_blank">Latest Disease Surveillance</a>
+				'.get_field('embassy_info').'<br />
+				'.$sidebar_country_meta_links.'
 			</td>
 		</tr>
 		</tbody>

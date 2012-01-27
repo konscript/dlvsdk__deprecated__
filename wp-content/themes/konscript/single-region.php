@@ -14,11 +14,31 @@ $menu = wp_list_pages( $args );
 		<div class="post region">
 			<h1><?php the_title(); ?></h1>
 			<div class="post-content">
-      	
-				<div>Please click a country below, to read more about it, and the recommended vaccinations.</div>
 
+				<form method="GET" id="travelguide" style="display: inline" action="<?php bloginfo('wpurl'); ?>">
+				  <select name="Country" id="country-selector">
+			    <option value="" selected="selected">Select Country</option>
+					<?php $region = get_post_custom_values('countries');
+								$countries = getCountries($region[0]); ?>	
+					<?php foreach($countries as $country): ?>
+						<?php 
+							$country_name = $country->post_title;
+							$country_slug = get_permalink($country->ID);				
+							$country_id = $country->ID;
+						?>					
+					    <option value="<?= $country_slug; ?>"><?=$country_name; ?></option>					
+					<?php endforeach; ?>
+				  </select>
+				  <input type="Submit" value="Find">
+				</form>	
+
+				<span> to read more about it, and the recommended vaccinations.</span>
+
+				<img src="<?php bloginfo('template_directory'); ?>/img/continents-<?php echo basename(get_permalink()); ?>.png" alt="">
+      	
 				<div class="country-wrapper">
 				<?php
+
 				// get ids of countries in region
 				$region = get_post_custom_values('countries');
 				
@@ -26,9 +46,12 @@ $menu = wp_list_pages( $args );
 				$countries = getCountries($region[0]);
 
 				// output countries in region
-				foreach($countries as $country): ?>
-					<a href="<?php echo get_permalink( $country->ID ) ?>" class="country"><?php echo $country->post_title; ?></a>
-				<?php endforeach;?>
+				foreach($countries as $country): 
+				?>
+					<a href="<?php echo get_permalink( $country->ID ) ?>" class="country">
+						<img src="<?php the_field('flag', $country->ID); ?>" alt="" />
+					</a>
+				<?php endforeach; ?>
 				</div>
 				
 			</div>

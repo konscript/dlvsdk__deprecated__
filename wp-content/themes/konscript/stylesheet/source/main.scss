@@ -778,26 +778,26 @@ div.wpcf7{
 		
 		.country-wrapper {
 			@include clearfix;
-			margin-top: 20px;
-			border-left: 1px solid #eee;
-			border-top: 1px solid #eee;			
+			//margin-top: 20px;
+			//border-left: 1px solid #eee;
+			//border-top: 1px solid #eee;			
 		}
 		
 		.country {
 			display: block;
 			float: left;
-			width: 200px;
+			width: 50px;
 			white-space: nowrap;
 			overflow: hidden;
-			border-right: 1px solid #eee;
-			border-bottom: 1px solid #eee;
+			//border-right: 1px solid #eee;
+			//border-bottom: 1px solid #eee;
 			padding: 10px;
+			
+			img {
+				width: 100%;
+			}
 		}
-		
-		.country:nth-child(odd) {
-			background-color: #f6f6f6;
-		}
-		
+				
 	}
  
  /**
@@ -838,13 +838,19 @@ div.wpcf7{
 
 	.country-meta {
 		@include column($sidebar-columns);
+		border: 1px solid #eee;
 		display: block;
 		//@include prepend(1);
 		//margin-top: 15px;
 		text-align: left;
-		tbody {
-			width: 100%;
+		line-height: 2em;
+		padding-bottom: 10px;
+
+		tbody {}
+		td {
+			padding: 10px 10px 0 10px;
 		}
+		
 	}
 	
 	.country-flag {
