@@ -21,7 +21,7 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 	border: 1px solid #ccc;	
 	position:relative; 
 	height:$featured-height; 
-	margin-bottom: 20px;
+	margin-bottom: 15px;
 	padding: 0;
 	overflow: hidden;
 	@include border-radius(0);
@@ -85,7 +85,7 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 		
 		/* single tab  */
 		li { 
-			@include background-image(linear-gradient(color-stops(#f9f9f9, #eee)));
+			@include background-image(linear-gradient(color-stops(#f9f9f9, $color-secondary-c)));
 			margin: 0;
 			text-indent: 0px;
 			@include border-radius(0px);
@@ -101,14 +101,15 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 			}
 			
 				/*  link */
-				a { 
+				a {
+					font-family: $typography-family-secondary;					
 					padding: 5px 0;
 					display:block;
 					text-decoration: none;
 					height:50px; 
 					color:#000;  
 					font-weight: normal;
-					font-size: 15px;		
+					font-size: 17px;		
 					width: 100%;
 				}
 			
@@ -164,8 +165,7 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 	#travelguide-after {
 		margin: 10px 0 0 0;
 		@include column(floor($travelwidth / 2), true);
-		text-align: left;
-		font-size: 11px; }
+		text-align: left; }
 
 	#travelguide {
 		text-align:right;
@@ -183,8 +183,6 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 			background-color: #fff;
 			color: #000;
 			outline: none;
-			font-size: 12px;
-			font-family: Verdana, Arial, sans-serif;
 		}
 		#country-selector {
 			width: 120px;
@@ -196,8 +194,9 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 	$darkblue: #74B6CF;
 	#map-wrapper {
 		@include border-radius(3px);
-		width: 100%;
-		//border: 1px solid $darkblue;
+		border: 1px solid $darkblue;
+		border-top: 1px solid lighten($darkblue, 10%);
+		border-bottom: 1px solid darken($darkblue, 10%);		
 		background-color: $darkblue;
 		background-image: -moz-radial-gradient(50% 50%, ellipse cover, $lightblue, $darkblue 100%);
 		background-image: -webkit-radial-gradient(50% 50%, ellipse cover, $lightblue, $darkblue 100%);
@@ -265,7 +264,7 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 		
 		// title
 		.title {
-			font-weight: bold;
+			//font-weight: bold;
 		}
 		
 		// address

@@ -17,20 +17,32 @@ $blueprint-grid-width: ($blueprint-container-size + $blueprint-grid-margin) / $b
 @import "blueprint/reset";
 
 // Color
-$color-primary: #000000; 		// Black
-$color-primary-b: #535353; 	// Dark Grey
-$color-primary-c: #7f7f7f; 	// Light Grey
-$color-secondary: #fff;		// White
-$color-tertiary: #fff;		// White
+$color-primary: 		#000000;	// Black
+$color-primary-b: 	#535353;	// Black Light 
+$color-primary-c: 	#7f7f7f;	// Black Lighter 
+$color-secondary:		#fff;			// White
+$color-secondary-b:	#f6f6f6;	// White Dark
+$color-secondary-c:	#eee;			// White Darker
+$color-contrast-b:	#ee3124;	// Red Light
+$color-contrast:		darken($color-contrast-b, 10%);		// Red
+$color-contrast-c:	lighten($color-contrast-b, 10%);	// Red Lighter
 
 $font-color: $color-primary;
-$link-color: #a00e2e;
+$link-color: $color-contrast;
+$link-hover-color: lighten($color-contrast, 10%); 
+$link-focus-color: lighten($color-contrast, 10%);
+$link-active-color: lighten($color-contrast, 10%);
+$link-visited-color: $color-contrast;
+$alt-text-color: $color-primary-b;
+$blueprint-background-color: $color-secondary;
+$blueprint-border-color: $color-primary-c;
 
 // Typography
-$typography-family-primary: 'Verdana', Arial, Helvetica, sans-serif;
+$typography-family-primary: Verdana, Arial, Helvetica, sans-serif;
+$typography-family-secondary: Georgia, "Times New Roman" serif;
 $typography-size-header: 161px;
 $typography-size-subheader: 141px;
-$typography-size-normal: 12px;
+$typography-size-normal: 11px;
 
 // Fonts
 $blueprint-font-family: $typography-family-primary;

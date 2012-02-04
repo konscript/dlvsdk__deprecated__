@@ -19,26 +19,25 @@
 // that you scope your blueprint styles, so that you can better control
 // what pages use blueprint when stylesheets are concatenated together.
 body.bp {
-  @include blueprint-typography(true);
   @include blueprint-utilities;
   @include blueprint-debug;
   @include blueprint-interaction;
 }
 
-form.bp {
+form {
   @include blueprint-form;
-  }
+}
+
+	@include blueprint-typography();
 
 /**
  * Body
  ************************************************/
 // Contains everything
-html, body{
-	//height:100%;
-}
+html, body{}
 
 body {
-	font-size: 11px;
+	//font-size: 11px;
 	line-height: 1.75em;
 	font-style: normal;
 	font-family: $typography-family-primary;
@@ -50,11 +49,10 @@ body {
 
 	#wrapper {
 		@include container;		
-		//@include box-shadow(0px 10px 20px rgba(000,000,000,0.05));		
-		margin: 0 auto;
-		overflow: hidden;		
+		position: relative;
+		//@include box-shadow(0px 5px 15px rgba(100,100,100,0.10));		
 		background-color: #fff;	
-		min-height:100%;
+		min-height: 100%;
 	}
 	
 	// Wrapper for everything inside of the body
@@ -62,7 +60,7 @@ body {
 		//@include prepend(1);
 		//@include append(1);	
 		@include column($body-container-cols, true); 
-		margin: 0 10px 10px 10px;
+		margin: 0 10px 25px 10px;
 	}
 
 /**
@@ -94,7 +92,7 @@ h1 {
 	font-size: 35px;
 	line-height: normal;
 	font-weight: normal;
-	font-family: Georgia;
+	font-family: $typography-family-secondary;
 	color: black;
 	margin-top: 15px;
 }
@@ -102,14 +100,14 @@ h1 {
 h2{
 	font-size:23px;
 	font-weight:normal;
-	font-family:Georgia;
+	font-family: $typography-family-secondary;
 	color:#000000;
 }
 
 h3 {
 	font-size:20px;
 	font-weight:normal;
-	font-family:Georgia;
+	font-family: $typography-family-secondary;
 	color:#000000;
 }
 	
@@ -259,7 +257,7 @@ img.wp-smiley {}
 
 	// Contains site title and tagline
 	#header {
-		@include column($body-container-cols, true); 
+		@include column(48, true); 
 		//height:130px;
 		margin: $blueprint-grid-margin 0 15px 0;
 	}
@@ -273,7 +271,6 @@ img.wp-smiley {}
 			@include column($body-container-cols / 2, true); 
 			text-align: right;
 			margin-top: 10px;
-			font-size: 12px;
 			color: #aaaaaa;
 			a {	color: #aaaaaa; }
 						
@@ -296,7 +293,7 @@ img.wp-smiley {}
 		overflow:hidden;	
 		float:left;
 		@include column($body-container-cols, true); 
-		height:50px;
+		height: 50px;
 		//@include background-image(linear-gradient(#717171,#343434));
  		background: url('../../img/menubg.gif') repeat-x left center;
  		//background-color: #333;  
@@ -306,31 +303,32 @@ img.wp-smiley {}
 		// Menu list.
 		#primary-menu ul {
 				list-style: none;
-				@include column($body-container-cols); 
+				@include column($body-container-cols);
+				padding-left: 0;
 		}
 			#primary-menu li {
 				float:left;
-				line-height:50px;				
+				line-height:48px;				
 			}
 				#primary-menu li a {   	
 					display:block;			
-					padding-left: 12px;	
-					padding-right: 12px;
+					padding: 0 15px;
 					font-size: 1em;
 					color:#ffffff;
 					text-decoration:none;
-					border-top: 0px solid rgba(255,255,255,0);
 					border-left: 1px solid rgba(0, 0, 0, 0.1);
-					border-right: 1px solid #908F8F;
+					border-right: 1px solid rgba(255, 255, 255, 0.1);
 					//@include transition-property(all);
 					//@include transition-duration(2s);					
 					//background-color: #717171;
 					//@include background-image(linear-gradient(#717171,#343434));
+					border-top: 1px solid lighten($color-primary-c, 10%);
+					border-bottom: 1px solid darken($color-primary-c, 10%);
 				}
 
 				// rounded corners on very first menu item
 				#primary-menu li:first-child a {
-					border-left: 0px;
+					//border-left: 0px;
 			 		@include border-radius($radius 0 0 $radius);					
 				}
 
@@ -346,11 +344,17 @@ img.wp-smiley {}
 				#primary-menu li.current_page_parent a,
 				#primary-menu li.current-page-ancestor a				
 				{					
-					//background-color: #818181;					
+					background-color: $color-contrast-b;					
 					//@include background-image(linear-gradient(#858585,#393939));					
-					background:url('../../img/menu_on.gif') repeat-x;
+					//background:url('../../img/menu_on.gif') repeat-x;
+					@include background-image(linear-gradient($color-contrast-b, $color-contrast));					
 					border-top: 0px solid rgba(255,255,255,1);
-				}
+					text-decoration: none;
+					border-right: 1px solid lighten($color-contrast-b, 5%);
+					border-left: 1px solid $color-contrast;
+					border-bottom: 1px solid darken($color-contrast-b, 15%);
+					border-top: 1px solid darken($color-contrast-c, 10%);
+				}				
 				
 				/*
 				// search form
@@ -396,7 +400,6 @@ img.wp-smiley {}
 	#sidebar {
 		@include column($sidebar-columns); 
 		//@include append(1);
-		font-size:11px;
 	}	 
 	
 	// hide category name in submenu
@@ -410,7 +413,8 @@ img.wp-smiley {}
 	}			
 	
 	#sidebar ul {
-		list-style-type:none;
+		list-style-type: none;
+		padding-left: 0;
 	}
 	#sidebar ul li {
 		display:inline;
@@ -419,14 +423,14 @@ img.wp-smiley {}
 
 	}
 	#sidebar ul li a {
-		color:#000000;
+		color: $color-primary;
 		float:left;
 		text-decoration:none;
 		width:100%;
 		background:url('../../img/submenu_off.gif') no-repeat;
 		background-position:7px 50%;
-		text-indent: 30px;
-		border-bottom: 1px solid #eee;		
+		text-indent: 25px;
+		border-bottom: 1px solid $color-secondary-c;
 		height: 30px;
 		overflow: hidden;		
 	}
@@ -435,10 +439,8 @@ img.wp-smiley {}
 	#sidebar ul .current-cat a {
 		background:url('../../img/submenu_on.gif') no-repeat;
 		background-position:0 50%;
-		color:#000000;
-		text-decoration:underline;
+		text-decoration: none;
 		font-weight: normal;
-		border-bottom: 1px solid #eee;
 	}
 /**
  * Containers below the header and navigation
@@ -680,9 +682,8 @@ img.wp-smiley {}
 			@include column(7 * $body-container-cols / 8); 			
 			margin-top: $margin;
 			padding-top: $margin / 2;
-			border-top: solid 1px #EEEDED;
-			color: #898887;
-			font-size: 11px;
+			border-top: solid 1px $color-secondary-c;
+			color: $color-primary-c;
 		}
 		
 		#footer .logo {	
@@ -703,11 +704,11 @@ img.wp-smiley {}
 
 //for embeded form in iframe 
 body.page-template-template-iframe-php{
-	background-color:white;
+	background-color: $color-secondary;
 	background-image:none;
 
 	div.wpcf7 {
-		background-color:white;
+		background-color: $color-secondary;
 		padding-bottom: 30px;
 	}
 }
@@ -733,7 +734,6 @@ div.wpcf7{
 		border:0;
 		color:red;
 		background: none;
-		font-size: 0.8em;
 	}
 	// general positioning of fields
 	.input-field { margin-bottom:10px; }
@@ -793,8 +793,8 @@ div.wpcf7{
 		.country-wrapper {
 			@include clearfix;
 			//margin-top: 20px;
-			//border-left: 1px solid #eee;
-			//border-top: 1px solid #eee;			
+			//border-left: 1px solid $color-secondary-c;
+			//border-top: 1px solid $color-secondary-c;			
 		}
 		
 		.country {
@@ -803,8 +803,8 @@ div.wpcf7{
 			width: 50px;
 			white-space: nowrap;
 			overflow: hidden;
-			//border-right: 1px solid #eee;
-			//border-bottom: 1px solid #eee;
+			//border-right: 1px solid $color-secondary-c;
+			//border-bottom: 1px solid $color-secondary-c;
 			padding: 10px;
 			
 			img {
@@ -820,17 +820,17 @@ div.wpcf7{
 	table.zebra {
 		width:100%;
 		margin-bottom: 10px;
-		border-top: 1px solid #eee;
-		border-right: 1px solid #eee;			
+		border-top: 1px solid $color-secondary-c;
+		border-right: 1px solid $color-secondary-c;
   	
   		thead tr td {
 				font-weight: bold; }
   		
   		td {
   			line-height: 25px;
-				padding: 4px 10px;
-				border-bottom: 1px solid #eee;
-				border-left: 1px solid #eee; }
+				padding: 5px 15px;
+				border-bottom: 1px solid $color-secondary-c;
+				border-left: 1px solid $color-secondary-c; }
   		
   		tbody tr:nth-child(odd){
   			background-color: #f6f6f6; }
@@ -847,12 +847,12 @@ div.wpcf7{
 		text-align: center;
 		font-size: 18px;
 		padding: 0 0 20px 0;
-		font-family:Georgia;		
+		font-family: $typography-family-secondary;		
 	}
 
 	.country-meta {
 		@include column($sidebar-columns);
-		border: 1px solid #eee;
+		border: 1px solid $color-secondary-c;
 		display: block;
 		//@include prepend(1);
 		//margin-top: 15px;
@@ -862,7 +862,7 @@ div.wpcf7{
 
 		tbody {}
 		td {
-			padding: 10px 10px 0 10px;
+			padding: 5px 10px 0 10px;
 		}
 		
 	}
@@ -892,8 +892,8 @@ div.wpcf7{
 			float: left;
 			clear: both;
 			width: 100%;
-			border-top: 1px solid #eee;
-			border-left: 1px solid #eee;			
+			border-top: 1px solid $color-secondary-c;
+			border-left: 1px solid $color-secondary-c;			
 		}
 	
 		table#vaccinations_groups thead tr td {
@@ -905,10 +905,16 @@ div.wpcf7{
 		}
 	
 		table#vaccinations_groups tr td{
-			text-align:center;	
-			padding: 10px;
-			border-bottom: 1px solid #eee;
-			border-right: 1px solid #eee;			
+			text-align: center;	
+			padding: 5px 10px;
+			border-bottom: 1px solid $color-secondary-c;
+			border-right: 1px solid $color-secondary-c;			
+							
+			img {
+				margin-top: 5px;
+				width: 18px;
+				height: 18px;
+			}
 		}
 
 			table#vaccinations_groups tr td.vaccination-name {
@@ -931,9 +937,7 @@ div.wpcf7{
 		border: 1px solid #bebebe;
 		background-color: #fff;
 		color: #000;
-		outline: none;
-		font-size: 12px;
-		font-family: Verdana, Arial, sans-serif; }
+		outline: none; }
 		
 	#clearSearch {
 		@include border-radius(3px);
