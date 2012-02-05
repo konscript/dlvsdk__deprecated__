@@ -115,8 +115,8 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 			
 			// image
 			a img{	 
-				margin: 5px 20px;
-				width: 40px;
+				margin: 5px 15px;
+				width: 35px;
 				vertical-align:middle;
 			}
 
@@ -163,12 +163,12 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 		font-size: 12px; }
 	*/
 	#travelguide-after {
-		margin: 10px 0 0 0;
+		margin: 15px 0 0 0;
 		@include column(floor($travelwidth / 2), true);
 		text-align: left; }
 
 	#travelguide {
-		text-align:right;
+		text-align: right;
 		margin-top: 10px;
 		position: relative;
 		@include column($travelwidth / 2); 	
@@ -248,43 +248,30 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 // Clinics Column (bottom, below left and right)
 .clinics{ 
 	@include column($body-container-cols, true);
+	padding: 5px 0 10px 0;
 	
-	padding: 10px 0;
-	
-	a:hover {
-		text-decoration: none;
-	}
-	
-	.clinic{
+	a.clinic {
 		@include column(($body-container-cols/5), true);
 		overflow:hidden;		
 		line-height: 20px;
 		height: 40px;
 		cursor:pointer;
+				
+		// address icon
+		text-indent: 35px;
+		background: url('../../img/icon-address-black.png') no-repeat	5px center;
 		
-		// title
-		.title {
-			//font-weight: bold;
-		}
-		
-		// address
+		.title {}
 		.address {
 			color: $quiet-color;
-		}
-		
-		// address icon
-		text-indent: 25px;
-		background: url('../../img/icon-address-black.png') no-repeat	center left;
+		}		
 		
 		// change icon on hover
 		&:hover{
-				background-image: url('../../img/icon-address-red.png')	;
+			background-image: url('../../img/icon-address-red.png');
+			text-decoration: none;			
 		}		
 		
-		// add padding to all children
-		&>*{
-			padding: 0 5px;
-		}	
 	} 
 }	
 

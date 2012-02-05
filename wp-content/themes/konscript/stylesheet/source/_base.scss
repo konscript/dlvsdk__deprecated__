@@ -31,7 +31,7 @@ $color-secondary:		#fff;			// White
 $color-secondary-b:	#f6f6f6;	// White Dark
 $color-secondary-c:	#eee;			// White Darker
 $color-contrast-b:	#ee3124;	// Red Light
-$color-contrast:		darken($color-contrast-b, 10%);		// Red
+$color-contrast:		darken($color-contrast-b, 15%);		// Red
 $color-contrast-c:	lighten($color-contrast-b, 10%);	// Red Lighter
 
 $font-color: $color-primary;
@@ -51,7 +51,7 @@ $quiet-color: lighten($font-color, 40%);
 
 // Typography
 $typography-family-primary: Verdana, Arial, Helvetica, sans-serif;
-$typography-family-secondary: Georgia, "Times New Roman" serif;
+$typography-family-secondary: Georgia, "Times New Roman", serif;
 $typography-size-normal: 11px;
 $typography-size-header: 161px;
 $typography-size-subheader: 141px;
