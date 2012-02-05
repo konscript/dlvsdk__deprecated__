@@ -850,11 +850,9 @@ form {
 a {
 	text-decoration: none;
 	outline: none;
-	color: $link-color;
 }
 a:visited {}
 a:hover {
-	color: $link-color;
 	text-decoration: underline;
 }
 a:active {}

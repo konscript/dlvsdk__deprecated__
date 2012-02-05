@@ -35,10 +35,10 @@ $color-contrast:		darken($color-contrast-b, 10%);		// Red
 $color-contrast-c:	lighten($color-contrast-b, 10%);	// Red Lighter
 
 $font-color: $color-primary;
-$link-color: darken($color-contrast, 10%);
-$link-hover-color: lighten($color-contrast, 10%); 
-$link-focus-color: lighten($color-contrast, 10%);
-$link-active-color: lighten($color-contrast, 10%);
+$link-color: $color-contrast;
+$link-hover-color: $color-contrast-b; 
+$link-focus-color: $color-contrast-b;
+$link-active-color: $color-contrast-b;
 $link-visited-color: $color-contrast;
 $alt-text-color: $color-primary-b;
 $blueprint-background-color: $color-secondary;
