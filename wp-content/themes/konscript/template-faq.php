@@ -1,14 +1,6 @@
 <?php /* Template Name: FAQ*/ ?>
 <?php get_header(); ?>
-<?php 
-$args = array(
-  'post_type'	=>	'region',
-  'title_li'	=>	'&nbsp;',
-  'echo'			=>	false,  
-);
-$menu = wp_list_pages( $args );
-?>
-<?php the_submenu($menu); ?>
+<?php the_submenu(); ?>
 
 <section id="primary">
 	<div id="content" role="main">

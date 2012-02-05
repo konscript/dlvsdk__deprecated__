@@ -777,11 +777,11 @@ div.template.booking {
 		}
 		.fieldWrapper.textarea {
 			height: 50px;
- 			textarea {	height:40px;	}
+ 			textarea { height:40px; }
 		}	 
 		.fieldWrapper.select {
-			height: 30px;
- 			select {	height:30px; }
+			height: 25px;
+ 			select { height: 25px; }
 		}	 	 			
 				 			
 	}
@@ -797,7 +797,9 @@ div.template.booking {
 		left: 220px;
 		width: 300px;
 		text-align:left;
-	} 	 			
+	}
+	
+	a.button {}
 	
 }
 
@@ -828,7 +830,7 @@ html body {
 
 // Standard forms
 form {
-  @include blueprint-form;
+  //@include blueprint-form;
 }
 
 // Hyperlinks 
@@ -846,7 +848,6 @@ a:active {}
 h1, h2, h3, h4, h5, h6 {
 	//padding-bottom: .4em;
 	margin: 20px 0 15px 0;
-	font-family: $typography-family-secondary;	
 }
 
 // Headers 
@@ -860,17 +861,17 @@ h1 {
 }
 
 h2{
-	font-size:23px;
+	font-size: 23px;
 	font-weight:normal;
 	font-family: $typography-family-secondary;
-	color:#000000;
+	color: #000000;
 }
 
 h3 {
-	font-size:20px;
+	font-size: 20px;
 	font-weight:normal;
 	font-family: $typography-family-secondary;
-	color:#000000;
+	color: #000000;
 }
 	
 h4 {}

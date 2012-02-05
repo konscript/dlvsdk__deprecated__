@@ -25,7 +25,6 @@ $sidebar_country_meta = '
 		</tr>
 		<tr>
 			<td colspan="2">
-				<strong>'.get_field('embassy_name').'</strong><br />
 				'.get_field('embassy_info').'
 			</td>
 		</tr>
