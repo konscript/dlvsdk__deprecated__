@@ -1,11 +1,5 @@
 <?php 
 
-/**
-##########################################
-# INCLUDES								 							 #
-##########################################
-**/
-
 // safety, jquery cdn and setup
 require_once 'functions/setup.php';
 
@@ -32,40 +26,5 @@ require_once 'functions/relationships.php';
 // relationships
 require_once 'functions/utilities.php';
 
-
-function getPageIDOfCurrentCustomPostType(){
-	global $wpdb;
-	global $post;		
-	
-	// get current post type		
-	$post_type = get_post_type($post);
-	
-	// get id of page with current custom post type template		
-	$post_id = $wpdb->get_var("SELECT post_id FROM $wpdb->postmeta WHERE meta_value = 'template-".$post_type.".php'");		
-	return $post_id;
-}
-
-/**
-#############################
-# SHORTEN EXCERPT			#
-#############################
-**/
-function konscript_excerpt($length, $str) {
-   if(strlen($str)>$length) {
-       $subex = substr($str,0,$length-5);
-       $exwords = explode(" ",$subex);
-       $excut = -(strlen($exwords[count($exwords)-1]));
-       if($excut<0) {
-            $res = substr($subex,0,$excut);
-       } else {
-       	    $res = $subex;
-       }
-       $res .= "[...]";
-   } else {
-	   $res = $str;
-   }
-   
-   return $res;
-}
-
+// theme options in admin (unused?)
 require_once( get_template_directory() . '/lib/admin/theme-options.php' );

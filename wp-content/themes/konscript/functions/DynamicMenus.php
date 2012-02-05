@@ -10,8 +10,8 @@ Author URI: http://github.com/ksmandersen/
 
 // Get the available menu's registed in Wordpress Menu interface
 function get_menus(){
-    // $r = array(-1 => "", -2 => "- Hide Submenu -");
-    $r = array();
+    $r = array(-1 => "(no menu)");
+    //$r = array();
     $menus = wp_get_nav_menus();
 		if(is_array($menus) && count($menus) > 0) {
 			foreach($menus as $key => $menu) {

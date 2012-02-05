@@ -1,4 +1,4 @@
-<?php /* Template Name: Frontpage*/ ?>
+<?php /* Template Name: Frontpage */ ?>
 <?php get_header(); ?>
 
 <div id="content" class="no-sidebar">	

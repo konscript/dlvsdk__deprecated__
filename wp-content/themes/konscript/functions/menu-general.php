@@ -15,18 +15,43 @@ function my_class_names($classes) {
 }
 */
 
-// output submenu 
+function sidebar( $supplied_menu = false, $supplied_image = false, $supplied_additional = false ) {
+	echo '<div id="sidebar">';
+	if ($supplied_menu != false){
+		$get_submenu = get_submenu();
+		if ($supplied_menu === true && $get_submenu != null) {
+			echo '<div class="sidebar-menu">' . $get_submenu . '</div>';
+		} else if ($supplied_menu !== true) {
+			echo '<div class="sidebar-menu">' . $supplied_menu . '</div>';			
+		}
+	}
+	if ($supplied_image != false){
+		$get_image = get_the_post_thumbnail($id, array(200,600));
+		if ($supplied_image === true && $get_image != null) {
+			echo '<div class="sidebar-image">' . get_the_post_thumbnail($id, array(205,600)) . '</div>';
+		} else if ($supplied_image !== true) {
+			echo '<div class="sidebar-image">' . $sidebar_image . '</div>';
+		}			
+	}
+	if ($supplied_additional != false){
+		echo '<div class="sidebar-additional">' . $supplied_additional . '</div>';
+	}
+	echo '</div>';
+}
+
+// output submenu
+// DEPRECATED!
 function the_submenu($supplied_menu = false) {
 
 	// use wordpres inbuilt menu
 	if($supplied_menu === false){		
+
 		$submenu = get_submenu();
-	
 		echo '<div id="sidebar">'.$submenu.'</div>';
 		
 	// a custom menu is supplied
-	}else{
-			echo '<div id="sidebar">'.$supplied_menu.'</div>';
+	} else {
+		echo '<div id="sidebar">'.$supplied_menu.'</div>';
 	}
 }
 
@@ -52,8 +77,13 @@ function get_submenu(){
 			$menu_id = get_post_meta($post->post_parent, 'dpm_page-menu-id', true);
 		}						
 	}
+
+	if ($menu_id == -1 || $menu_id == null) {
+		return false;
+	} else {
+		return wp_nav_menu(array('menu' => $menu_id, 'echo' => false));
+	}
 	
-	return wp_nav_menu(array('menu' => $menu_id, 'echo' => false));
 } 
 
 // include Kristians Dynamic Menus on admin page
@@ -82,7 +112,6 @@ function theme_addmenus() {
 }
 add_action( 'init', 'theme_addmenus' );
 
-
 /**
 #############################
 # primary menu with search  #
@@ -107,15 +136,13 @@ function primary_menu(){
 		if($item->object_id == $pageIDOfCurrentCustomPostType){
 		    array_push($classes, 'current-menu-item');			
 		}
-		
 		return $classes;
 	}							
 	
-    $menu = wp_nav_menu(array(
-		'theme_location' 	=> 'main',
-		'container'=> false,
-		'echo'            => true,
-
+	$menu = wp_nav_menu(array(
+		'theme_location'	=> 'main',
+		'container'				=> false,
+		'echo'						=> true,
 	));
 	
 	//get_search_form(); 

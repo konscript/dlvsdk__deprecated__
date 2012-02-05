@@ -155,7 +155,7 @@ body {
 					text-decoration: none;
 					border-right: 1px solid $color-contrast-b;
 					border-left: 1px solid $color-contrast;
-					border-bottom: 1px solid darken($color-contrast-b, 15%);
+					border-bottom: 1px solid darken($color-contrast-b, 20%);
 					border-top: 1px solid darken($color-contrast-c, 10%);
 				}				
 				
@@ -205,11 +205,25 @@ body {
 		//@include append(1);
 	}	 
 	
+	.sidebar-menu {
+		@include column($sidebar-columns); 		
+		padding-bottom: 20px;
+	}
+	
+	.sidebar-image {
+		@include column($sidebar-columns); 		
+		padding-bottom: 20px;
+		
+		img {
+			@include border-radius($radius);
+		}		
+	}
+	
 	// hide category name in submenu
 	#sidebar li.categories,
 	#sidebar li.pagenav {
 		@include column($sidebar-columns, true); 
-		margin-bottom: 20px;
+		//margin-bottom: 20px;
 		list-style-type: none;
 		
 		h2 { display:none; }
@@ -217,7 +231,8 @@ body {
 	
 	#sidebar ul {
 		list-style-type: none;
-		padding-left: 0;
+		padding: 0;
+		margin: 0;
 	}
 	#sidebar ul li {
 		display:inline;

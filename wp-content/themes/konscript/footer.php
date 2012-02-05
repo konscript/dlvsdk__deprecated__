@@ -3,8 +3,8 @@
 	<div id="footer-container">
 		<div id="footer">			
 			<div class="text">
-				<?php echo get_num_queries()." queries."; ?> 						
-         Gladsaxevej 376 • 2860 Søborg • Tlf: 70 25 40 80 • Fax: 70 25 90 41 • Email: info@dlvs.dk
+				<?php //echo get_num_queries()." queries."; ?> 						
+         Gladsaxevej 376, 2860 Søborg, Denmark • Phone: +45 70254080 • Fax: +45 70259041 • Email: info@dlvs.dk
        </div>
        <div class="logo">
        	<img src="<?php bloginfo('template_url'); ?>/img/dlvs-12-grayscale.png" alt="UK Travel Vaccination Service" />

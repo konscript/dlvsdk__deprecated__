@@ -2,18 +2,16 @@
  * Utilities (_utilities.scss)
  */
 
- /* Buttons */
-
-	a.button-book,
-	#column-right a.button-book {
+	// Book button
+	a.button-book {
 		@include background-image(linear-gradient($color-contrast-b, $color-contrast));
 		@include border-radius(4px);
 //	@include box-shadow(0px 1px 4px rgba(000,000,000,0.3),0px 0px 1px rgba(255,255,255,0.7));
 		position: relative;
+		width: auto;		
 		background-color: $color-contrast-b;
 		display: block;
 		float: right;
-		width: 100%;
 		margin: 0 0 20px 0;
 		border-top: 1px solid lighten($color-contrast-b, 10%);
 		border-bottom: 1px solid darken($color-contrast, 10%);		
@@ -36,14 +34,27 @@
 			@include text-shadow(0 -1px 1px rgba(000,000,000,0.2));		
 			float: left;
 			color: #fff;
-			font-size: 22px;
 			line-height: 1em;			
 			font-weight: normal;
 			//font-style: italic;			
 			text-transform: uppercase;
 			//font-family: Georgia, verdana, sans-serif;			
+			letter-spacing: -0.05em;
+			font-size: 16px;
+			padding: 14px 22px 14px 22px;
+			margin: 0 auto;	
+		}
+				
+	}
+	
+	// Book button on Frontpage
+	body.home #column-right a.button-book {
+		width: 100%;
+
+		.button-book-title {
+			font-size: 22px;
 			padding: 24px 0 24px 34px;		
-			letter-spacing: -0.05em;	
+			margin: 0;
 		}
 		
 		.button-book-meta {
@@ -60,32 +71,3 @@
 		}
 		
 	}
-	
-	a.button-sidebar {
-		margin-top: 20px;
-
-		.button-book-title {
-			font-size: 18px;
-			padding: 16px 0 16px 24px;
-			margin: 0 auto;
-		}
-	}	
-	
-	.single a.button-book {
-		width: auto;
-		
-		.button-book-title {
-			//background-image: url('../../img/icon_booking.png');
-			background-repeat: no-repeat;
-			background-position: 87% 50%;
-			font-size: 16px;
-			padding: 14px 22px 14px 22px;
-			margin: 0 auto;
-		}
-
-	}
-	
-	a.button-book.large {		
-		line-height: 28px;
-		font-size: 1.8em;
-	}	

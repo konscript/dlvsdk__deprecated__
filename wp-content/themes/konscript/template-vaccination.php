@@ -1,6 +1,6 @@
-<?php /* Template Name: Vaccination*/ ?>
+<?php /* Template Name: Vaccinations */ ?>
 <?php get_header(); ?>
-<?php the_submenu(); ?>
+<?php sidebar(false, true, false); ?>
 
 <section id="primary">
 	<div id="content" role="main">
@@ -19,7 +19,7 @@
 
 	<?php $vaccinations = get_posts( $args ); ?> 
 	<table class="zebra">
-		<thead><tr><td>Vaccination</td><td>Pris</td><td>Antal</td><td>Beskyttelse</td></tr></thead>
+		<thead><tr><td>Vaccination</td><td>Price</td><td>Quantity</td><td>Protection</td></tr></thead>
 		<tbody>
 		<?php foreach($vaccinations as $vaccination){ ?>
 			<tr>

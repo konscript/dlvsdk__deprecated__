@@ -2,12 +2,12 @@
 <?php
 // Sidebar menu
 $args = array(
-  'post_type'=>'clinic',
-  'title_li'=> '&nbsp;',
-  'echo' => false,  
+  'post_type'	=>'clinic',
+  'title_li'	=> '&nbsp;',
+  'echo'			=> false,  
 );
 $sidebar_menu = wp_list_pages( $args );
-the_submenu($sidebar_menu . $sidebar_book); ?>
+sidebar($sidebar_menu, false, false); ?>
 
 	<div id="content">
 		<?php if (have_posts()): while (have_posts()): the_post(); ?>

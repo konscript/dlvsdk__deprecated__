@@ -1,11 +1,10 @@
 <?php get_header(); ?>
 <?php 
-	$submenu = wp_list_categories(array(
-		'title_li' => '&nbsp;',
-		'echo' => false
-	));
-	the_submenu($submenu); 
-?>
+$sidebar_menu = wp_list_categories(array(
+	'title_li'	=> '&nbsp;',
+	'echo'			=> false
+));
+sidebar($sidebar_menu, false, false); ?>
 
 
 <div id="content">

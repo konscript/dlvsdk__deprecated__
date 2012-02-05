@@ -1,4 +1,4 @@
-<?php /* Template Name: Clinic*/ ?>
+<?php /* Template Name: Clinics */ ?>
 <?php get_header(); ?>
 <?php
 // Sidebar menu
@@ -8,7 +8,7 @@ $args = array(
   'echo' => false,  
 );
 $sidebar_menu = wp_list_pages( $args );
-the_submenu($sidebar_menu); ?>
+sidebar($sidebar_menu, true, false); ?>
 
 <section id="primary">
 	<div id="content" role="main">

@@ -1,4 +1,4 @@
-<?php /* Template Name: No sidebar*/ ?>
+<?php /* Template Name: No Sidebar */ ?>
 <?php get_header(); ?>
 
 <div id="content">	

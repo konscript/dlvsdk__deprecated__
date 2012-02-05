@@ -1,4 +1,4 @@
-<?php /* Template Name: Booking*/ ?>
+<?php /* Template Name: Booking */ ?>
 <?php get_header(); ?>
 	<div id="content" class="no-sidebar">
 			<div class="template booking">

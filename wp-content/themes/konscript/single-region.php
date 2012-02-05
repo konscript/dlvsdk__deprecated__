@@ -1,13 +1,13 @@
 <?php get_header(); ?>
 <?php 
 $args = array(
-  'post_type'=>'region',
-  'title_li'=> '&nbsp;',
-  'echo'         => false,  
+	'post_type'	=>'region',
+	'title_li'	=> '&nbsp;',
+	'echo'			=> false,
 );
-$menu = wp_list_pages( $args );
+$sidebar_menu = wp_list_pages( $args );
+sidebar($sidebar_menu, false, false);
 ?>
-<?php the_submenu($menu); ?>
 
 <div id="content">
 	<?php if (have_posts()): while (have_posts()): the_post(); ?>

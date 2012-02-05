@@ -1,16 +1,14 @@
-<?php 
-$args = array(
-  'post_type'=>'vaccination',
-  'title_li'=> '&nbsp;',
-  'echo' => false,  
-);
-
-if(!$_GET["ajax"]){
+<?php if(!$_GET["ajax"]){
 	get_header();
-	$menu = wp_list_pages( $args );
-	the_submenu($menu); 
-}
-?>
+
+	$args = array(
+	  'post_type'=>'vaccination',
+	  'title_li'=> '&nbsp;',
+	  'echo' => false,  
+	);
+	$sidebar_menu = wp_list_pages( $args );
+	sidebar($sidebar_menu, false, false);
+} ?>
 
 	<div id="content">
 

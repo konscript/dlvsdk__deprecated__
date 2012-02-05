@@ -35,7 +35,7 @@ $sidebar_country_meta = '
 		</tr>				
 		</tbody>
 	</table>';
-the_submenu($sidebar_menu . $sidebar_country_meta); ?>
+sidebar($sidebar_menu, false, $sidebar_country_meta); ?>
 
 	<div id="content">
 		<?php if (have_posts()): while (have_posts()): the_post(); ?>

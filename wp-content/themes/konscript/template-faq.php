@@ -1,11 +1,11 @@
-<?php /* Template Name: FAQ*/ ?>
+<?php /* Template Name: FAQs */ ?>
 <?php get_header(); ?>
-<?php the_submenu(); ?>
+<?php sidebar(false, true, false); ?>
 
 <section id="primary">
 	<div id="content" role="main">
 	<div class="post faq">
-		<h1><?php post_type_archive_title(); ?></h1>	
+		<h1><?php the_title(); ?><?php //post_type_archive_title(); ?></h1>	
 		
 			<?php echo the_content(); ?>
 
