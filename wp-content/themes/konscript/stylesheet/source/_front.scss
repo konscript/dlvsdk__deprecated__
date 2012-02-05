@@ -211,10 +211,10 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 		#continents li .bg {
 			@include opacity(0);
 			@include transition-property(opacity);
-			@include transition-duration(0.5s);	
+			@include transition-duration(0.3s);	
 		}
 		#continents li:hover .bg {
-			@include opacity(1);	
+			@include opacity(1);
 		}
 	}	
 	
