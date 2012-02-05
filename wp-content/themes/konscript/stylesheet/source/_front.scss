@@ -107,9 +107,9 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 					display:block;
 					text-decoration: none;
 					height:50px; 
-					color:#000;  
+					color: $color-primary;
 					font-weight: normal;
-					font-size: 17px;		
+					font-size: 18px;
 					width: 100%;
 				}
 			

@@ -3,6 +3,7 @@
  */
 
 // Load the base
+@import "base";
 @import "compass/css3/border-radius";
 @import "compass/css3/transition";
 @import "compass/css3/gradient";
@@ -10,31 +11,20 @@
 @import "compass/css3/box-shadow";
 @import "compass/css3/text-shadow";
 @import "compass/utilities/general/clearfix";
-@import "blueprint/form";
-@import "base";
 @import "utilities";
 @import "front";
-
-// If you are doing a lot of stylesheet concatenation, it is suggested
-// that you scope your blueprint styles, so that you can better control
-// what pages use blueprint when stylesheets are concatenated together.
-body.bp {
-  @include blueprint-utilities;
-  @include blueprint-debug;
-  @include blueprint-interaction;
-}
-
-form {
-  @include blueprint-form;
-}
-
-	@include blueprint-typography();
 
 /**
  * Body
  ************************************************/
+
 // Contains everything
-html, body{}
+html, body{
+	@include blueprint-typography();
+//  @include blueprint-utilities;
+//  @include blueprint-debug;
+//  @include blueprint-interaction;	
+}
 
 body {
 	//font-size: 11px;
@@ -62,191 +52,6 @@ body {
 		@include column($body-container-cols, true); 
 		margin: 0 10px 25px 10px;
 	}
-
-/**
- * Elements
- ************************************************/
-
-// Hyperlinks 
-a {
-	text-decoration: none;
-	outline:none;
-	color: $link-color;
-}
-a:visited {}
-a:hover {
-	color: $link-color;
-	text-decoration: underline;
-}
-a:active {}
-
-
-h1, h2, h3, h4, h5, h6 {
-	color: #1F1E1D;
-	//padding-bottom: .4em;
-	margin: 20px 0 15px 0;
-}
-
-// Headers 
-h1 {
-	font-size: 35px;
-	line-height: normal;
-	font-weight: normal;
-	font-family: $typography-family-secondary;
-	color: black;
-	margin-top: 15px;
-}
-
-h2{
-	font-size:23px;
-	font-weight:normal;
-	font-family: $typography-family-secondary;
-	color:#000000;
-}
-
-h3 {
-	font-size:20px;
-	font-weight:normal;
-	font-family: $typography-family-secondary;
-	color:#000000;
-}
-	
-h4 {}
-h5 {}
-h6 {}
-
-// Text elements 
-strong {}
-em {}
-cite {}
-abbr {}
-acronym {}
-sup {}
-sub {}
-address {}
-ins {}
-dfn {}
-del {}
-
-// Paragraphs 
-p {
-	margin-bottom: 1.5em;
-}
-
-// Unordered lists 
-ul {}
-	ul li {}
-	
-/* ul */
-ul.nodots {
-	padding:0;
-	margin:0;
-	list-style-type:none;
-}
-
-.post ul {
-	list-style: inside url(../../img/dlvs-12.png);	
-	margin:0 0 10px 0;
-}
-
-ul li { 
-	margin:0 0 5px 0;
-}	
-
-// Ordered lists 
-ol {}
-	ol li {}
-
-// Defition lists 
-dl {}
-	dt {}
-	dd {}
-
-// Blockquotes 
-blockquote {}
-	blockquote blockquote {}
-	blockquote em {}
-
-// Object 
-object {}
-
-// Code 
-code {}
-pre {}
-pre code {}
-
-// Tables 
-table {}
-	caption {}
-	tr {}
-	th {}
-	td {}
-
-// Forms 
-form {}
-	select, input, textarea {
-		border: 1px solid #999;		
-		@include border-radius(3px);	
-	
-		// validation error formatting
-		&.error {
-			border: 1px solid red;
-		}
-	}
-		
-	label {}
-	option {}
-
-// Notes 
-.note {}
-
-// Warnings/Alerts
-.warning, .alert {}
-
-// Errors
-.error {}
-
-// Downloads
-.download {}
-
-// Alignment
-.left, .alignleft {}
-.right, .alignright {}
-.center, .aligncenter {}
-.block, .alignnone {}
-.clear{clear:both;}	
-
-// general headers
-p.header {
-	font-weight: bold;
-	margin-top: 10px;
-}
-
-/**
- * Images
- ************************************************/
-
-// Normal images
-img {}
-a img {}
-
-// WP Smilies
-img.wp-smiley {}
-
-// Thumbnails
-.thumbnail {}
-
-// WP Captions [caption]
-.wp-caption {}
-	.wp-caption img {}
-	.wp-caption p {}
-
-// Gallery [gallery]
-.gallery {}
-	.gallery img {}
-
-// Avatars
-.avatar {}
 
 /**
  * Header
@@ -1028,6 +833,199 @@ div.template.booking {
 }
 .ui-accordion .ui-accordion-content {
 	margin-top: 0;
+}
+
+/**
+ * Elements
+ ************************************************/
+
+html body { 
+
+// Standard forms
+form {
+  @include blueprint-form;
+}
+
+// Hyperlinks 
+a {
+	text-decoration: none;
+	outline: none;
+	color: $link-color;
+}
+a:visited {}
+a:hover {
+	color: $link-color;
+	text-decoration: underline;
+}
+a:active {}
+
+
+h1, h2, h3, h4, h5, h6 {
+	//padding-bottom: .4em;
+	margin: 20px 0 15px 0;
+}
+
+// Headers 
+h1 {
+	font-size: 35px;
+	line-height: normal;
+	font-weight: normal;
+	font-family: $typography-family-secondary;
+	color: black;
+	margin-top: 15px;
+}
+
+h2{
+	font-size:23px;
+	font-weight:normal;
+	font-family: $typography-family-secondary;
+	color:#000000;
+}
+
+h3 {
+	font-size:20px;
+	font-weight:normal;
+	font-family: $typography-family-secondary;
+	color:#000000;
+}
+	
+h4 {}
+h5 {}
+h6 {}
+
+// Text elements 
+strong {}
+em {}
+cite {}
+abbr {}
+acronym {}
+sup {}
+sub {}
+address {}
+ins {}
+dfn {}
+del {}
+
+// Paragraphs 
+p {
+	margin-bottom: 1.5em;
+}
+
+// Unordered lists 
+ul {}
+	ul li {}
+	
+/* ul */
+ul.nodots {
+	padding:0;
+	margin:0;
+	list-style-type:none;
+}
+
+.post ul {
+	list-style: inside url(../../img/dlvs-12.png);	
+	margin:0 0 10px 0;
+}
+
+ul li { 
+	margin:0 0 5px 0;
+}	
+
+// Ordered lists 
+ol {}
+	ol li {}
+
+// Defition lists 
+dl {}
+	dt {}
+	dd {}
+
+// Blockquotes 
+blockquote {}
+	blockquote blockquote {}
+	blockquote em {}
+
+// Object 
+object {}
+
+// Code 
+code {}
+pre {}
+pre code {}
+
+// Tables 
+table {}
+	caption {}
+	tr {}
+	th {}
+	td {}
+
+// Forms 
+form {}
+	select, input, textarea {
+		border: 1px solid #999;		
+		@include border-radius(3px);	
+	
+		// validation error formatting
+		&.error {
+			border: 1px solid red;
+		}
+	}
+		
+	label {}
+	option {}
+
+// Notes 
+.note {}
+
+// Warnings/Alerts
+.warning, .alert {}
+
+// Errors
+.error {}
+
+// Downloads
+.download {}
+
+// Alignment
+.left, .alignleft {}
+.right, .alignright {}
+.center, .aligncenter {}
+.block, .alignnone {}
+.clear{clear:both;}	
+
+// general headers
+p.header {
+	font-weight: bold;
+	margin-top: 10px;
+}
+
+/**
+ * Images
+ ************************************************/
+
+// Normal images
+img {}
+a img {}
+
+// WP Smilies
+img.wp-smiley {}
+
+// Thumbnails
+.thumbnail {}
+
+// WP Captions [caption]
+.wp-caption {}
+	.wp-caption img {}
+	.wp-caption p {}
+
+// Gallery [gallery]
+.gallery {}
+	.gallery img {}
+
+// Avatars
+.avatar {}
+
 }
 
 /**

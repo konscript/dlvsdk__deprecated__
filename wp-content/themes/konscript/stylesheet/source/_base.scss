@@ -2,21 +2,28 @@
  * Base (_base.scss)
  * Partial for initializing common variables, importing utilities and setting up the framework
  */
- 
+
+/**
+ * Grid and Layout
+ ************************************************/
+
 // Configure blueprint
 $blueprint-grid-columns: 48;
 $blueprint-container-size: 950px;
 $blueprint-grid-margin: 10px;
 
-// Use this to calculate the width based on the total width.
-// Or you can set $blueprint-grid-width to a fixed value and unset $blueprint-container-size -- it will be calculated for you.
+// Column width (set to fixed and unset container-size for auto)
 $blueprint-grid-width: ($blueprint-container-size + $blueprint-grid-margin) / $blueprint-grid-columns - $blueprint-grid-margin;
 
-// Load compass tools, utilities and blueprint modules
-@import "blueprint";
-@import "blueprint/reset";
+// Helper variables
+$body-container-cols: $blueprint-grid-columns - 1;
+$margin: $blueprint-grid-margin;
+$radius: 4px;
 
-// Color
+/**
+ * Colors
+ ************************************************/
+
 $color-primary: 		#000000;	// Black
 $color-primary-b: 	#535353;	// Black Light 
 $color-primary-c: 	#7f7f7f;	// Black Lighter 
@@ -28,7 +35,7 @@ $color-contrast:		darken($color-contrast-b, 10%);		// Red
 $color-contrast-c:	lighten($color-contrast-b, 10%);	// Red Lighter
 
 $font-color: $color-primary;
-$link-color: $color-contrast;
+$link-color: darken($color-contrast, 10%);
 $link-hover-color: lighten($color-contrast, 10%); 
 $link-focus-color: lighten($color-contrast, 10%);
 $link-active-color: lighten($color-contrast, 10%);
@@ -36,23 +43,29 @@ $link-visited-color: $color-contrast;
 $alt-text-color: $color-primary-b;
 $blueprint-background-color: $color-secondary;
 $blueprint-border-color: $color-primary-c;
+$quiet-color: lighten($font-color, 40%);
+
+/**
+ * Typography
+ ************************************************/
 
 // Typography
 $typography-family-primary: Verdana, Arial, Helvetica, sans-serif;
 $typography-family-secondary: Georgia, "Times New Roman" serif;
+$typography-size-normal: 11px;
 $typography-size-header: 161px;
 $typography-size-subheader: 141px;
-$typography-size-normal: 11px;
 
 // Fonts
 $blueprint-font-family: $typography-family-primary;
 $blueprint-font-size: $typography-size-normal;
-@import "blueprint/typography";
 
 /**
- * Variables
- *****/
-$margin: $blueprint-grid-margin;
-$quiet-color: lighten($font-color, 40%);
-$body-container-cols: $blueprint-grid-columns - 1;
-$radius: 3px;
+ * Misc. (load compass modules)
+ ************************************************/
+
+@import "blueprint";
+@import "blueprint/reset";
+@import "blueprint/typography";
+@import "blueprint/form";
+

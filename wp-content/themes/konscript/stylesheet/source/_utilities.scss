@@ -37,6 +37,7 @@
 			float: left;
 			color: #fff;
 			font-size: 22px;
+			line-height: 1em;			
 			font-weight: normal;
 			//font-style: italic;			
 			text-transform: uppercase;
@@ -48,7 +49,7 @@
 		.button-book-meta {
 			//@include text-shadow(0 -2px 0px rgba(000,000,000,0.2), 0 1px 0 rgba(255,255,255,0));		
 			//@include text-shadow(0 1px 0 rgba(255,255,255,0.3));					
-			padding: 19px 34px 15px 0;			
+			padding: 20px 34px 20px 0;			
 			float:right;
 			font-style: italic;						
 			text-align: right;
