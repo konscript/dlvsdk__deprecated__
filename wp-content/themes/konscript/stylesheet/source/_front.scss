@@ -7,14 +7,14 @@ $one_third: floor($body-container-cols * 1 / 3); // column width for right colum
 $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
  
 #content .frontpage-column{
-	overflow:hidden;
+	overflow: hidden;
 }
 
 // Top content slider banner
  #tabs { 
 
  	// height of content slider
-	$featured-height: 183px;	 
+	$featured-height: 182px;	 
 
 	@include column($body-container-cols, true); 
 
@@ -233,6 +233,8 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 	
 	// table with most popular destinations
 	.top-destinations	{
+		margin-bottom: 0;
+		
 		td>* {
 			vertical-align: middle;
 		}
@@ -248,7 +250,7 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 // Clinics Column (bottom, below left and right)
 .clinics{ 
 	@include column($body-container-cols, true);
-	padding: 5px 0 10px 0;
+	padding: 15px 0 10px 0;
 	
 	a.clinic {
 		@include column(($body-container-cols/5), true);
