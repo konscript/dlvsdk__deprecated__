@@ -16,7 +16,6 @@
 				'post_type'       => 'clinic'); ?>
 
 				<?php $clinics = get_posts( $args ); ?> 
-				<?php echo the_content(); ?>					
 				
 				<div class="form">
 					<form id="booking">
@@ -57,7 +56,10 @@
 				</div>
 				
 				<div class="iframe">
-					<div class="iframe-placeholder"><?php echo get_the_post_thumbnail($id, array(460,600)); ?></div>
+					<div class="iframe-placeholder">
+						<?php echo get_the_post_thumbnail($id, array(440,600)); ?>
+						<?php echo the_content(); ?>
+					</div>
 					<iframe src="about:blank" frameborder="0" width="100%" height="600"></iframe>
 				</div>
 			</div><!--#end post-->

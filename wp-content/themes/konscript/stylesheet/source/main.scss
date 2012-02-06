@@ -809,8 +809,15 @@ div.template.booking {
 	.iframe {
 		@include column($body-container-cols / 2, true);
 		
-		.iframe-placeholder img {
-			@include border-radius($radius);
+		.iframe-placeholder {
+			margin: 0 10px;
+			
+			img {
+				@include border-radius($radius);
+			}
+			p {
+				margin-top: 10px;
+			}
 		}
 	} 			
 	
