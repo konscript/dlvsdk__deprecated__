@@ -28,8 +28,7 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 	
 	// tabs content
 	> div {				
-		@include column($two_thirds, true); 		
-
+		@include column($two_thirds, true);
 		height:  $featured-height;							
 		padding: 0;			
 		position: relative;
@@ -40,6 +39,7 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 			top:0;
 			left: 0;
 			z-index: 1;
+			width: 300px;
 		}				
 		
 		div.inner {
@@ -272,7 +272,11 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 		&:hover{
 			background-image: url('../../img/icon-address-red.png');
 			text-decoration: none;			
-		}		
+		}
+		
+		&:hover .title {
+			text-decoration: underline;
+		}
 		
 	} 
 }	
