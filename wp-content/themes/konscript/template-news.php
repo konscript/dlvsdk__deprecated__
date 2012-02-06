@@ -8,7 +8,7 @@ $sidebar_menu = wp_list_categories(array(
 sidebar($sidebar_menu, false, false); ?>
 
 <div id="content">
-	<h1><?php wp_title(''); ?></h1>
+	<h1><?php the_title(); ?></h1>
 	
 	<?php query_posts( 'posts_per_page=0' ); ?>
 	

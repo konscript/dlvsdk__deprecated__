@@ -760,6 +760,11 @@ div.wpcf7{
  * Booking template
  **************************/
 div.template.booking {
+	
+	h1 {
+		text-align: center;
+	}
+	
 	.form{
 	  $formColumns: $body-container-cols / 2;			
 		@include column($formColumns);
@@ -778,8 +783,8 @@ div.template.booking {
 		}
 		
 		.fieldWrapper {
-			@include column( floor( $formColumns * 2 / 3 ) , true);
- 			height: $formHeight;
+			@include column( ceil( $formColumns * 2 / 3 ) , true);
+ 			//height: $formHeight;
  			padding: 5px 0;
  			position: relative;
  			
@@ -787,15 +792,15 @@ div.template.booking {
  				padding: $padding;
  				height: $formHeight - ( $padding * 2);
  				display:block;
-				width: 200px;
+				width: 100%;
  			}		 		
 		}
 		.fieldWrapper.textarea {
-			height: 50px;
+			//height: 50px;
  			textarea { height:40px; }
 		}	 
 		.fieldWrapper.select {
-			height: 25px;
+			//height: 25px;
  			select { height: 25px; }
 		}	 	 			
 				 			
@@ -803,18 +808,28 @@ div.template.booking {
 	
 	.iframe {
 		@include column($body-container-cols / 2, true);
+		
+		.iframe-placeholder img {
+			@include border-radius($radius);
+		}
 	} 			
 	
 	// validation rules	
 	label.error {
-		position: absolute;
-		top: 0px;
-		left: 220px;
-		width: 300px;
+		//position: absolute;
+		//top: 0px;
+		//left: 220px;
+		padding: 0;
+		width: 100%;
+		color: $color-contrast;
+		font-style: italic;
 		text-align:left;
 	}
 	
-	a.button {}
+	a.button {
+		margin: 5px 0;
+		font-weight: bold;
+	}
 	
 }
 

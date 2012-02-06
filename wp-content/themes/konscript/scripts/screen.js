@@ -70,7 +70,7 @@ jQuery.noConflict();
 		
 				// disable and fade form
 				$(inputFields).attr('disabled', 'enabled');
-				$('form').fadeTo('fast', 0.5);
+				$('.template.booking form').fadeTo('fast', 0.3);
 		
 				// data
 				var fullname = $('.form #fullname').val();
@@ -96,7 +96,9 @@ jQuery.noConflict();
 					'&l5=' + encodeURI(destination);											
 		
 				// load iframe				
-        $('.template.booking iframe').attr('src', booking_url);
+				$('.template.booking .iframe-placeholder').fadeOut('fast', function() {
+					$('.template.booking iframe').attr('src', booking_url);
+				})
         
         // change navigation buttons
         $(this).hide();
@@ -108,10 +110,11 @@ jQuery.noConflict();
 				
 				// enable and fadein form
 				$(inputFields).removeAttr('disabled');
-				$('form').fadeTo('fast', 1);				
+				$('.template.booking form').fadeTo('fast', 1);				
 		
 				// disable iframe
         $('.template.booking iframe').attr('src', 'about:blank');
+				$('.template.booking .iframe-placeholder').fadeIn('fast');
         
         // change navigation buttons
         $(this).hide();
