@@ -595,6 +595,10 @@ div.wpcf7{
 
 	div.post.region {
 		
+		#country-selector {
+			width: 155px;
+		}
+				
 		.country-wrapper {
 			@include clearfix;
 			//margin-top: 20px;
@@ -605,7 +609,8 @@ div.wpcf7{
 		.country {
 			display: block;
 			float: left;
-			width: 50px;
+			width: 34px;
+			height: 24px;
 			white-space: nowrap;
 			overflow: hidden;
 			//border-right: 1px solid $color-secondary-c;

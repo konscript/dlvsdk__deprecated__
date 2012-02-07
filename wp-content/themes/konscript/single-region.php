@@ -34,7 +34,7 @@ sidebar($sidebar_menu, false, false);
 
 				<span> to read more about it, and the recommended vaccinations.</span>
 
-				<img src="<?php bloginfo('template_directory'); ?>/img/continents-<?php echo basename(get_permalink()); ?>.png" alt="">
+				<img class="region-map" src="<?php bloginfo('template_directory'); ?>/img/continents-<?php echo basename(get_permalink()); ?>.png" alt="<?php echo basename(get_permalink()); ?>" />
       	
 				<div class="country-wrapper">
 				<?php
@@ -48,8 +48,8 @@ sidebar($sidebar_menu, false, false);
 				// output countries in region
 				foreach($countries as $country):
 					if(get_field('flag', $country->ID)) { ?>
-					<a href="<?php echo get_permalink( $country->ID ); ?>" class="country">
-						<img src="<?php the_field('flag', $country->ID); ?>" alt="" />
+					<a href="<?php echo get_permalink( $country->ID ); ?>" class="country" title="<?php echo $country->post_title; ?>">
+						<img src="<?php the_field('flag', $country->ID); ?>" alt="<?php echo $country->post_title; ?>" />
 					</a>
 				<?php } endforeach; ?>
 				</div>
