@@ -1,6 +1,6 @@
 <?php /* Template Name: FAQs */ ?>
 <?php get_header(); ?>
-<?php sidebar(false, true, false); ?>
+<?php sidebar(true, true, false); ?>
 
 <section id="primary">
 	<div id="content" role="main">

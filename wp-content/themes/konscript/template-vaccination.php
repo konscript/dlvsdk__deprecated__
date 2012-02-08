@@ -1,6 +1,6 @@
 <?php /* Template Name: Vaccinations */ ?>
 <?php get_header(); ?>
-<?php sidebar(false, true, false); ?>
+<?php sidebar(true, true, false); ?>
 
 <section id="primary">
 	<div id="content" role="main">
@@ -16,7 +16,6 @@
 		'numberposts'     => -1,
 		'post_type'       => 'vaccination'); ?>
 	
-
 		<?php $vaccinations = get_posts( $args ); ?> 
 		<table class="zebra">
 			<thead><tr><td>Vaccination</td><td>Price</td><td>Quantity</td><td>Protection</td></tr></thead>
@@ -26,7 +25,7 @@
 					<td><a href="<?php echo get_permalink( $vaccination->ID ); ?>"><?php echo $vaccination->post_title; ?></a></td>
 					<td><?php the_field("price", $vaccination->ID); ?></td>
 					<td><?php the_field("quantity", $vaccination->ID); ?></td>
-					<td><?php //echo $fields["vaccination-duration"][0]; ?></td>
+					<td><?php the_field("duration_of_immunity", $vaccination->ID); //echo $fields["vaccination-duration"][0]; ?></td>
 				</tr>		 
 			<?php } ?>
 			</tbody>
