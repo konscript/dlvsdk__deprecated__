@@ -21,9 +21,11 @@
 			<div id="tabs-<?=$tab_id;?>">
 				<img src="<?php the_sub_field('background_image'); ?>" alt="<?php the_sub_field('title'); ?>" />
 				<div class="inner">
-					<p class="header"><?php the_sub_field('title'); ?></p>
-					<p><?php the_sub_field('description'); ?></p>	
-					<a class="button" href="<?php echo get_permalink(get_sub_field('link')->ID); ?>">Read more</a>
+					<!--<p class="header"><?php the_sub_field('title'); ?></p>-->
+					<p class="body">
+						<?php the_sub_field('description'); ?>
+						<a href="<?php echo get_permalink(get_sub_field('link')->ID); ?>">Read more</a>
+					</p>
 				</div>
 			</div>
 				
