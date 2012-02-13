@@ -27,7 +27,7 @@ body {
 	line-height: 1.75em;
 	font-style: normal;
 	font-family: $typography-family-primary;
-	color: $color-primary;
+	color: $color-primary-b;
 	background-image: url('../../img/bg.png');
 	background-repeat: repeat-x;
 	background-color: #fff;
@@ -117,7 +117,7 @@ body {
 					display:block;			
 					padding: 0 15px;
 					font-size: 1em;
-					color:#ffffff;
+					color: #fff;
 					text-decoration:none;
 					border-left: 1px solid rgba(0, 0, 0, 0.1);
 					border-right: 1px solid rgba(255, 255, 255, 0.1);
@@ -494,6 +494,7 @@ body {
 		#footer .text {	
 			@include column(7 * $body-container-cols / 8); 			
 			color: $color-primary-c;
+			font-size: 0.9em;
 		}
 		
 		#footer .logo {	
@@ -790,7 +791,7 @@ div.template.booking {
 		.fieldWrapper {
 			@include column( ceil( $formColumns * 2 / 3 ) , true);
  			//height: $formHeight;
- 			padding: 5px 0;
+ 			padding: 6px 0;
  			position: relative;
  			
  			input,textarea,select {
@@ -807,9 +808,27 @@ div.template.booking {
 		.fieldWrapper.select {
 			//height: 25px;
  			select { height: 25px; }
-		}	 	 			
-				 			
+		}
+		#booking .radio input[type="radio"] {
+			margin: 0 5px;
+			padding: 0;
+			position: relative;
+			float: left;
+			display: block;
+			width: auto;
+			width: 12px;
+		}
+		.radio span {
+			display: block;
+			margin: 0 5px;
+			width: 12px;
+			float: left;
+		}
+		.radio.fieldWrapper {
+			width: 170px;
+		}
 	}
+
 	
 	.iframe {
 		@include column($body-container-cols / 2, true);
@@ -836,11 +855,6 @@ div.template.booking {
 		color: $color-contrast;
 		font-style: italic;
 		text-align:left;
-	}
-	
-	a.button {
-		margin: 5px 0;
-		font-weight: bold;
 	}
 	
 }
@@ -910,7 +924,7 @@ h2{
 }
 
 h3 {
-	font-size: 20px;
+	font-size: 21px;
 	font-weight:normal;
 	font-family: $typography-family-secondary;
 	color: #000000;

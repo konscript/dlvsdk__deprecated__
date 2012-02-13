@@ -13,6 +13,7 @@
 		display: block;
 		float: right;
 		margin: 0 0 20px 0;
+		cursor: pointer;
 		border-top: 1px solid lighten($color-contrast-b, 10%);
 		border-bottom: 1px solid darken($color-contrast, 10%);		
 		//clear: both;
@@ -70,4 +71,12 @@
 			color: rgba(255,255,255,1);
 		}
 		
+	}
+	
+	a.button-book-step {
+		margin-top: 5px;
+		
+		.button-book-title {
+			font-size: 1em;			
+		}
 	}

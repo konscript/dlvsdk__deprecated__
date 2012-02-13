@@ -43,16 +43,23 @@
 							</select>						
 						</div>
 						<label for="participants">Number of people:</label>
-						<div class="fieldWrapper select">
-							<select name="participants" id="participants">
+						<div id="participants" class="fieldWrapper radio people">
+							<input type="radio" name="participants" value="1" checked="checked" />
+							<input type="radio" name="participants" value="2" />
+							<input type="radio" name="participants" value="3" />
+							<input type="radio" name="participants" value="4" />
+							<input type="radio" name="participants" value="5" />
+							<input type="radio" name="participants" value="6" />																												
+							<input type="radio" name="participants" value="7" /><br />
+							<span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7+</span>
+<!--					<select name="participants" id="participants">
 								<option value="1">1-2 persons</option>
 								<option value="2">3-4 persons</option>
-								<option value="3">5-6 persons</option>																
-							</select>						
+								<option value="3">5-6 persons</option>
+							</select>						-->
 						</div>					
 					</form>
-					
-					<label>&nbsp;</label><a class="button next" id="navigateStepNext">Next</a><a class="button next" id="navigateStepBack">Edit</a>					
+					<a class="button-book	button-book-step next" id="navigateStepNext"><div class="button-book-title">Choose time  ➥</div></a><a class="button-book	button-book-step next" id="navigateStepBack"><div class="button-book-title">Edit</div></a>					
 				</div>
 				
 				<div class="iframe">
