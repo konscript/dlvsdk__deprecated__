@@ -892,13 +892,18 @@ form {
 a {
 	text-decoration: none;
 	outline: none;
+	color: $color-contrast;
 }
-a:visited {}
+a:visited {
+	color: $color-contrast;
+}
 a:hover {
 	text-decoration: underline;
+	color: $color-contrast-b;	
 }
-a:active {}
-
+a:active {
+	color: $color-contrast-b;	
+}
 
 h1, h2, h3, h4, h5, h6 {
 	//padding-bottom: .4em;

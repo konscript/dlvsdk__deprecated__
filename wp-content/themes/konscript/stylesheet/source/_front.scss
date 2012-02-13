@@ -63,14 +63,9 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 				background: rgba(255,255,255, 0.8);
 				padding: 10px 15px;
 				
-				a { float: right; }
-			}
-			
-			.button {
-				position:absolute;
-				bottom: 50px;
-				right: 20px;
-				color: $color-contrast;
+				a { 
+					float: right;
+				}
 			}
 		}		
 	}
