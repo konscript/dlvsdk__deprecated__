@@ -60,11 +60,12 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 				background: rgb(255,255,255); 
 				filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99ffffff, endColorstr=#99ffffff);
 				-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99ffffff, endColorstr=#99ffffff)";
-				background: rgba(255,255,255, 0.8);
+				background: rgba(255,255,255, 0.75);
 				padding: 12px 15px;
 				
-				a { 
+				a, a:visited { 
 					float: right;
+					color: $color-contrast;
 				}
 			}
 		}		
