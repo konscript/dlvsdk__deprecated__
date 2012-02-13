@@ -116,7 +116,6 @@ body {
 				#primary-menu li a {   	
 					display:block;			
 					padding: 0 15px;
-					font-size: 1em;
 					color: #fff;
 					text-decoration:none;
 					border-left: 1px solid rgba(0, 0, 0, 0.1);
@@ -912,7 +911,6 @@ h1 {
 	line-height: normal;
 	font-weight: normal;
 	font-family: $typography-family-secondary;
-	color: black;
 	margin-top: 15px;
 }
 
@@ -920,15 +918,13 @@ h2{
 	font-size: 23px;
 	font-weight:normal;
 	font-family: $typography-family-secondary;
-	color: #000000;
 }
 
 h3 {
 	font-size: 21px;
 	font-weight:normal;
 	font-family: $typography-family-secondary;
-	color: #000000;
-}
+	}
 	
 h4 {}
 h5 {}
@@ -1004,12 +1000,14 @@ table {}
 // Forms 
 form {}
 	select, input, textarea {
-		border: 1px solid #999;		
-		@include border-radius(3px);	
+		border: 1px solid $color-primary-c;
+		@include border-radius(3px);
+		font-size: $typography-size-normal;
+		@include single-box-shadow(rgba(0,0,0,0.05), 0, 2px, 5px, 0, inset);
 	
 		// validation error formatting
 		&.error {
-			border: 1px solid red;
+			border: 1px solid $color-contrast;
 		}
 	}
 		

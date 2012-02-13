@@ -34,7 +34,7 @@ $color-contrast-b:	#ee3124;	// Red Light
 $color-contrast:		darken($color-contrast-b, 15%);		// Red
 $color-contrast-c:	lighten($color-contrast-b, 10%);	// Red Lighter
 
-$font-color: $color-primary;
+$font-color: $color-primary-b;
 $link-color: $color-contrast;
 $link-hover-color: $color-contrast-b; 
 $link-focus-color: $color-contrast-b;

@@ -39,7 +39,7 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 			top:0;
 			left: 0;
 			z-index: 1;
-			width: 300px;
+			//width: 300px;
 		}				
 		
 		div.inner {
@@ -53,17 +53,18 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 			//border-left: 1px solid #ccc;
 
 			/* Opacity and fall-back for browsers that don't support rgba */	
+			//@include opacity(0.6);
 			background: rgb(255,255,255); 
 			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99ffffff, endColorstr=#99ffffff);
 			-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99ffffff, endColorstr=#99ffffff)";
-			background: rgba(255,255,255, 0.8);
+			background: rgba(255,255,255, 0.6);
 			
 			.header{ margin: 0 0 10px 0; }
 			
 			.button {
 				position:absolute;
 				bottom: 50px;
-				right: 10px;
+				right: 20px;
 			}
 		}		
 	}
@@ -149,6 +150,7 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 		margin: 0;
 		line-height: 34px;
 		font-size: 34px;
+		color: $color-primary;
 		font-weight: normal;
 		text-align: center;
 	}
