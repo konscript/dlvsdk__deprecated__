@@ -736,7 +736,7 @@ div.wpcf7{
 		
 		.disclaimer {
 			@include column($content-cols, true);
-			
+			color: #aaa;
 			h3 {
 				margin-top: 0;
 			}

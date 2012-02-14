@@ -117,7 +117,6 @@ sidebar($sidebar_menu, false, $sidebar_country_meta); ?>
 						</table>		
 						
 						<div class="disclaimer">
-							<h3>Disclaimer</h3>
 							The vaccination list on this page is for general guidance, and it may vary from your actual needs. Therefore, when you book time for vaccinations or malaria counseling, you will receive a risk assessment form in your e-mail with questions about:
 							<ul>
 								<li>Your itinerary (“where are you going?”)</li>
