@@ -586,6 +586,10 @@ div.wpcf7{
 	.opening_hours {
 			@include column( $content-cols / 2, true );	
 	}
+	
+	.gmap a {
+		float: left;
+	}
 
  /**
   * region

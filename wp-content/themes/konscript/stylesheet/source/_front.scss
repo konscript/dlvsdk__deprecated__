@@ -266,12 +266,13 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 		cursor:pointer;
 				
 		// address icon
-		text-indent: 35px;
-		background: url('../../img/icon-address-black.png') no-repeat	5px center;
+		text-indent: 40px;
+		background: url('../../img/icon-address-black.png') no-repeat	10px center;
 		
 		.title {}
 		.address {
 			color: $quiet-color;
+			padding-right: 20px;
 		}		
 		
 		// change icon on hover
