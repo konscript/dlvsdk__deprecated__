@@ -3,6 +3,11 @@
 
 // show/hide content when click on title
 function slidedown($title, $content, $url = 0){
+	// don't show if content is empty
+	if($content == ""){
+		return "";
+	}
+
 	$url = is_numeric($url) ? get_permalink( $url ) : $url;
 
 	return '
