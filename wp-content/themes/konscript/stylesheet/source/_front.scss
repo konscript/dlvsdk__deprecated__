@@ -7,29 +7,28 @@ $one_third: floor($body-container-cols * 1 / 3); // column width for right colum
 $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
  
 #content .frontpage-column{
-	overflow:hidden;
+	overflow: hidden;
 }
 
 // Top content slider banner
  #tabs { 
 
  	// height of content slider
-	$featured-height: 183px;	 
+	$featured-height: 182px;	 
 
 	@include column($body-container-cols, true); 
 
 	border: 1px solid #ccc;	
 	position:relative; 
 	height:$featured-height; 
-	margin-bottom: 20px;
+	margin-bottom: 15px;
 	padding: 0;
 	overflow: hidden;
 	@include border-radius(0);
 	
 	// tabs content
 	> div {				
-		@include column($two_thirds, true); 		
-
+		@include column($two_thirds, true);
 		height:  $featured-height;							
 		padding: 0;			
 		position: relative;
@@ -40,6 +39,7 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 			top:0;
 			left: 0;
 			z-index: 1;
+			//width: 300px;
 		}				
 		
 		div.inner {
@@ -53,17 +53,20 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 			//border-left: 1px solid #ccc;
 
 			/* Opacity and fall-back for browsers that don't support rgba */	
-			background: rgb(255,255,255); 
-			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99ffffff, endColorstr=#99ffffff);
-			-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99ffffff, endColorstr=#99ffffff)";
-			background: rgba(255,255,255, 0.8);
-			
-			.header{ margin: 0 0 10px 0; }
-			
-			.button {
-				position:absolute;
-				bottom: 50px;
-				right: 10px;
+			//@include opacity(0.6);
+						
+			.body { 
+				margin: 0 0 10px 0;
+				background: rgb(255,255,255); 
+				filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99ffffff, endColorstr=#99ffffff);
+				-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99ffffff, endColorstr=#99ffffff)";
+				background: rgba(255,255,255, 0.75);
+				padding: 12px 15px;
+				
+				a, a:visited { 
+					float: right;
+					color: $color-contrast;
+				}
 			}
 		}		
 	}
@@ -85,7 +88,7 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 		
 		/* single tab  */
 		li { 
-			@include background-image(linear-gradient(color-stops(#f9f9f9, #eee)));
+			@include background-image(linear-gradient(color-stops(#f9f9f9, $color-secondary-c)));
 			margin: 0;
 			text-indent: 0px;
 			@include border-radius(0px);
@@ -101,21 +104,22 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 			}
 			
 				/*  link */
-				a { 
+				a {
+					font-family: $typography-family-secondary;					
 					padding: 5px 0;
 					display:block;
 					text-decoration: none;
 					height:50px; 
-					color:#000;  
+					color: $color-primary;
 					font-weight: normal;
-					font-size: 15px;		
+					font-size: 18px;
 					width: 100%;
 				}
 			
 			// image
 			a img{	 
-				margin: 5px 20px;
-				width: 40px;
+				margin: 5px 15px;
+				width: 35px;
 				vertical-align:middle;
 			}
 
@@ -139,7 +143,7 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 	@include float-left;	
 	@include last;
 	width: span($two_thirds);
-	margin-right: $blueprint-grid-margin * 2;
+	margin-right: $blueprint-grid-margin;
 	
 	h3 {
 		@include text-shadow(0 1px 0 rgba(255,255,255,0.5));				
@@ -148,6 +152,7 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 		margin: 0;
 		line-height: 34px;
 		font-size: 34px;
+		color: $color-primary;
 		font-weight: normal;
 		text-align: center;
 	}
@@ -162,13 +167,12 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 		font-size: 12px; }
 	*/
 	#travelguide-after {
-		margin: 10px 0 0 0;
+		margin: 15px 0 0 0;
 		@include column(floor($travelwidth / 2), true);
-		text-align: left;
-		font-size: 11px; }
+		text-align: left; }
 
 	#travelguide {
-		text-align:right;
+		text-align: right;
 		margin-top: 10px;
 		position: relative;
 		@include column($travelwidth / 2); 	
@@ -183,8 +187,6 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 			background-color: #fff;
 			color: #000;
 			outline: none;
-			font-size: 12px;
-			font-family: Verdana, Arial, sans-serif;
 		}
 		#country-selector {
 			width: 120px;
@@ -196,8 +198,9 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 	$darkblue: #74B6CF;
 	#map-wrapper {
 		@include border-radius(3px);
-		width: 100%;
-		//border: 1px solid $darkblue;
+		border: 1px solid $darkblue;
+		border-top: 1px solid lighten($darkblue, 10%);
+		border-bottom: 1px solid darken($darkblue, 10%);		
 		background-color: $darkblue;
 		background-image: -moz-radial-gradient(50% 50%, ellipse cover, $lightblue, $darkblue 100%);
 		background-image: -webkit-radial-gradient(50% 50%, ellipse cover, $lightblue, $darkblue 100%);
@@ -212,10 +215,10 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 		#continents li .bg {
 			@include opacity(0);
 			@include transition-property(opacity);
-			@include transition-duration(0.5s);	
+			@include transition-duration(0.3s);	
 		}
 		#continents li:hover .bg {
-			@include opacity(1);	
+			@include opacity(1);
 		}
 	}	
 	
@@ -225,7 +228,7 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 #content #column-right {
 	@include float-left;	
 	@include last;
-	width: span($one_third - 0.5);
+	width: span($one_third);
 	//margin-left: $blueprint-grid-margin * 2 * -1;
 	
 	.button-book {
@@ -234,6 +237,8 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 	
 	// table with most popular destinations
 	.top-destinations	{
+		margin-bottom: 0;
+		
 		td>* {
 			vertical-align: middle;
 		}
@@ -249,43 +254,34 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 // Clinics Column (bottom, below left and right)
 .clinics{ 
 	@include column($body-container-cols, true);
+	padding: 15px 0 10px 0;
 	
-	padding: 10px 0;
-	
-	a:hover {
-		text-decoration: none;
-	}
-	
-	.clinic{
+	a.clinic {
 		@include column(($body-container-cols/5), true);
 		overflow:hidden;		
 		line-height: 20px;
 		height: 40px;
 		cursor:pointer;
+				
+		// address icon
+		text-indent: 35px;
+		background: url('../../img/icon-address-black.png') no-repeat	5px center;
 		
-		// title
-		.title {
-			font-weight: bold;
-		}
-		
-		// address
+		.title {}
 		.address {
 			color: $quiet-color;
-		}
-		
-		// address icon
-		text-indent: 25px;
-		background: url('../../img/icon-address-black.png') no-repeat	center left;
+		}		
 		
 		// change icon on hover
 		&:hover{
-				background-image: url('../../img/icon-address-red.png')	;
-		}		
+			background-image: url('../../img/icon-address-red.png');
+			text-decoration: none;			
+		}
 		
-		// add padding to all children
-		&>*{
-			padding: 0 5px;
-		}	
+		&:hover .title {
+			text-decoration: underline;
+		}
+		
 	} 
 }	
 

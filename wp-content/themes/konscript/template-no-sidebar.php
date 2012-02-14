@@ -1,7 +1,7 @@
-<?php /* Template Name: No sidebar*/ ?>
+<?php /* Template Name: No Sidebar */ ?>
 <?php get_header(); ?>
 
-<div id="content">	
+<div id="content" class="no-sidebar">	
     <?php if (have_posts()): while (have_posts()): the_post(); ?>
 
         <div class="post">

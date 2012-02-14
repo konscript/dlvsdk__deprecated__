@@ -7,26 +7,52 @@ $args = array(
   'echo'         => false,  
 );
 $sidebar_menu = wp_list_pages( $args );
-$destination = urlencode(the_title('', '', false));
-$sidebar_book = '<a class="button-book" href="' . get_bloginfo('wpurl') . '/booking/destination/' . $destination . '"><div class="button-book-title">Book your vaccination</div></a>';
-the_submenu($sidebar_menu . $sidebar_book); ?>
+$sidebar_country_meta_links = '<a href="'.get_field('latest_disease_surveillance').'" target="_blank">Latest Disease Surveillance</a>';
+if (get_field('updated_malaria_map')) {
+	$sidebar_country_meta_links .= '<br /><a href="'.get_field('updated_malaria_map').'" target="_blank">Updated Malaria Map</a>';
+}
+$sidebar_country_meta = '
+	<div class="country-meta-header">Country Facts</div>
+	<table class="country-meta">
+		<tbody>
+		<tr>
+			<td><strong>Capital:</strong></td>
+			<td>'.get_field('capital').'</td>
+		</tr>
+		<tr>
+			<td><strong>Population:</strong></td>
+			<td>'.get_field('population').'</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				'.get_field('embassy_info').'
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				'.$sidebar_country_meta_links.'		
+			</td>
+		</tr>				
+		</tbody>
+	</table>';
+sidebar($sidebar_menu, false, $sidebar_country_meta); ?>
 
 	<div id="content">
 		<?php if (have_posts()): while (have_posts()): the_post(); ?>
 		    <div class="post country">
-		        <h1><?php the_title(); ?></h1>
-
-						<?php $country_meta = '
+		        
+						<?php if(get_field('flag')) { ?>
 							<div class="country-flag">
-								<a href="'.get_field('latest_disease_surveillance').'" target="_blank">Latest Disease Surveillance</a><br />							
-								<img src="'.get_field('flag').'" />
+								<img src="<?php echo get_field('flag'); ?>" />
 							</div>
-							<div class="country-meta">
-								<strong>Capital:</strong> '.get_field('capital').'<br />
-								<strong>Population:</strong> '.get_field('population').'<br />
-								<strong>Embassy:</strong> '.get_field('embassy').'<br />
-							</div>';
-							echo $country_meta;
+						<?php } ?>
+						
+						<h1><?php the_title(); ?></h1>
+
+						<?php 
+							$destination = urlencode(the_title('', '', false));
+							$book_button = '<a class="button-book" href="' . get_bloginfo('wpurl') . '/booking/destination/' . $destination . '"><div class="button-book-title">Book your vaccination</div></a>';
+							echo $book_button;
 						?>
 		
 						<div class="post-content">	

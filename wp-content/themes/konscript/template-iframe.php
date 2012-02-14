@@ -1,4 +1,4 @@
-<?php /* Template Name: Iframe*/ ?>
+<?php /* Template Name: Iframe */ ?>
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -24,15 +24,14 @@
 	<?php // NOTE: We are enqueing jQuery from Google CDN in the functions.php. If it doesn't load we grab the local version ?>
 	<script>!window.jQuery && document.write('<script src="scripts/jquery-1.6.2.min.js"><\/script>')</script>
 
-	
 </head>
 <body <?php body_class(); ?>>
 
-                <?php echo the_content(); ?>
+	<?php echo the_content(); ?>
 
-<div class="hide">
-	<?php wp_footer(); ?>
-</div>
+	<div class="hide">
+		<?php wp_footer(); ?>
+	</div>
 
 </body>
 </html>

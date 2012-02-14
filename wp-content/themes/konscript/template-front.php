@@ -1,4 +1,4 @@
-<?php /* Template Name: Frontpage*/ ?>
+<?php /* Template Name: Frontpage */ ?>
 <?php get_header(); ?>
 
 <div id="content" class="no-sidebar">	
@@ -21,9 +21,11 @@
 			<div id="tabs-<?=$tab_id;?>">
 				<img src="<?php the_sub_field('background_image'); ?>" alt="<?php the_sub_field('title'); ?>" />
 				<div class="inner">
-					<p class="header"><?php the_sub_field('title'); ?></p>
-					<p><?php the_sub_field('description'); ?></p>	
-					<a class="button" href="<?php echo get_permalink(get_sub_field('link')->ID); ?>">Read more</a>
+					<!--<p class="header"><?php the_sub_field('title'); ?></p>-->
+					<p class="body">
+						<?php the_sub_field('description'); ?>
+						<a href="<?php echo get_permalink(get_sub_field('link')->ID); ?>">Read more</a>
+					</p>
 				</div>
 			</div>
 				
@@ -85,15 +87,7 @@
 
 		<table class="zebra top-destinations">
 		<?php 
-		$args = array(
-			'post_type'		=> 'country',
-			'orderby'   => 'menu_order',
-			'order'     => 'ASC',
-			'numberposts'			=>	'8'
-		);
-
-		// get countries
-		$top_destinations = get_posts( $args );
+		$top_destinations = get_field('top_destinations');
 		foreach($top_destinations as $country): 		
 		?>
 			<tr><td><img src="<?php the_field('flag', $country->ID); ?>" alt="" /><a href="<?php echo get_permalink($country->ID); ?>"><?php echo $country->post_title; ?> </a></td></tr>
@@ -104,11 +98,9 @@
 	<div class="clinics">
 		<?php	$clinics = getClinics();
 		foreach($clinics as $clinic):	?>
-		<a href="<?php echo get_permalink($clinic->ID); ?>">
-			<div class="clinic">
-				<div class="title"><?php echo $clinic->post_title; ?></div>
-				<div class="address"><?php the_field("address", $clinic->ID); ?></div>
-			</div>
+		<a href="<?php echo get_permalink($clinic->ID); ?>" class="clinic">
+			<div class="title"><?php echo $clinic->post_title; ?></div>
+			<div class="address"><?php the_field("address", $clinic->ID); ?></div>
 		</a>
 		<?php	endforeach;	?>
 	</div>

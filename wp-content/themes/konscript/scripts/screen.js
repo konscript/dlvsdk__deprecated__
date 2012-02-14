@@ -16,7 +16,7 @@ jQuery.noConflict();
 		$("#tabs").tabs({fx:{opacity: "toggle"}}).tabs("rotate", 7000, true);
 		
 		// process buttons (jquery ui)
-		$( "a.button" ).button();
+		//$( "a.button" ).button();
 		
 		// Booking: load iframe and disable form
 		bookingNavigate();
@@ -65,12 +65,13 @@ jQuery.noConflict();
 		
 			// form is invalid
 			if(!$("form#booking").valid()){
+				$(this).effect("shake", { times:2, distance:4, direction: "left" }, 50);
 			 return false;
 			}
 		
 				// disable and fade form
 				$(inputFields).attr('disabled', 'enabled');
-				$('form').fadeTo('fast', 0.5);
+				$('.template.booking form').fadeTo('fast', 0.5);
 		
 				// data
 				var fullname = $('.form #fullname').val();
@@ -79,8 +80,9 @@ jQuery.noConflict();
 				var comments = $('.form #comments').val();
 				var clinic_url = $('.form #clinic option:selected').data('url'); // URL
 				var destination = $('.form #destination').val();
-				var participants = $('.form #participants option:selected').val(); 
-				var service = participants; // SERVICE	
+				var participants = $('.form #participants input:checked').val(); 
+				//var participants = $('.form #participants option:selected').val(); 
+				//var service = participants; // SERVICE	
 				
 				// remove leading zero from phone number
 				phone = phone.substr(0,1) == '0' ? phone.substr(1) : phone;
@@ -88,15 +90,18 @@ jQuery.noConflict();
 				// url encode values				
 				var booking_url = 
 					clinic_url + 
-					'?service=service' + service + 
-					'&l1=' + encodeURI(fullname) +
+					//'?service=service' + service + 
+					'?l1=' + encodeURI(fullname) +
 					'&l2=' + encodeURI(email) +
 					'&l3=%2B44' + encodeURI(phone) +
 					'&l4=' + encodeURI(comments) +
-					'&l5=' + encodeURI(destination);											
+					'&l5=' + encodeURI(destination) + 
+					'&l6=' + encodeURI(participants);
 		
 				// load iframe				
-        $('.template.booking iframe').attr('src', booking_url);
+				$('.template.booking .iframe-placeholder').fadeOut('fast', function() {
+					$('.template.booking iframe').attr('src', booking_url);
+				})
         
         // change navigation buttons
         $(this).hide();
@@ -108,10 +113,11 @@ jQuery.noConflict();
 				
 				// enable and fadein form
 				$(inputFields).removeAttr('disabled');
-				$('form').fadeTo('fast', 1);				
+				$('.template.booking form').fadeTo('fast', 1);				
 		
 				// disable iframe
         $('.template.booking iframe').attr('src', 'about:blank');
+				$('.template.booking .iframe-placeholder').fadeIn('fast');
         
         // change navigation buttons
         $(this).hide();

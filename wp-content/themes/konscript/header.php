@@ -51,7 +51,12 @@
 	<div id="body-container">
 			<div id="header">
 				<div id="logo"><a href="<?php echo home_url(); ?>"><img src="<?php bloginfo('template_directory'); ?>/img/dlvs_logo_2012.png" alt=""></a></div>
-				<div id="tools"> <a href="<?php bloginfo('wpurl'); ?>/about/contact">Contact</a> | <a href="#">Login</a> </div>			
+				<div id="tools">
+					<a href="<?php bloginfo('wpurl'); ?>/aboutus">About</a><span> | </span>
+					<a href="<?php bloginfo('wpurl'); ?>/aboutus/contact">Contact</a><span> | </span>
+					<a href="#">Clinic Login</a><span> | </span>
+					<a href="<?php bloginfo('wpurl'); ?>/booking">Booking</a>
+				</div>			
 				<div id="primary-menu">
 					<?php primary_menu(); ?>
 				</div>

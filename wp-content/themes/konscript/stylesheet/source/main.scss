@@ -3,6 +3,7 @@
  */
 
 // Load the base
+@import "base";
 @import "compass/css3/border-radius";
 @import "compass/css3/transition";
 @import "compass/css3/gradient";
@@ -10,245 +11,45 @@
 @import "compass/css3/box-shadow";
 @import "compass/css3/text-shadow";
 @import "compass/utilities/general/clearfix";
-@import "blueprint/form";
-@import "base";
 @import "utilities";
 @import "front";
-
-// If you are doing a lot of stylesheet concatenation, it is suggested
-// that you scope your blueprint styles, so that you can better control
-// what pages use blueprint when stylesheets are concatenated together.
-body.bp {
-  @include blueprint-typography(true);
-  @include blueprint-utilities;
-  @include blueprint-debug;
-  @include blueprint-interaction;
-}
-
-form.bp {
-  @include blueprint-form;
-  }
 
 /**
  * Body
  ************************************************/
+
 // Contains everything
 html, body{
-	//height:100%;
+	@include blueprint-typography();
 }
 
 body {
-	font-size: 11px;
 	line-height: 1.75em;
 	font-style: normal;
 	font-family: $typography-family-primary;
-	color: $color-primary;
+	color: $color-primary-b;
 	background-image: url('../../img/bg.png');
 	background-repeat: repeat-x;
-	background-color: #fff;		
+	background-color: #fff;
 }
 
 	#wrapper {
 		@include container;		
-		//@include box-shadow(0px 10px 20px rgba(000,000,000,0.05));		
-		margin: 0 auto;
-		overflow: hidden;		
-		background-color: #fff;	
-		min-height:100%;
+		position: relative;
+		//@include box-shadow(0px 5px 15px rgba(100,100,100,0.10));		
+		min-height: 100%;
 	}
 	
 	// Wrapper for everything inside of the body
 	#body-container {
 		//@include prepend(1);
 		//@include append(1);	
+		background-color: #fff;		
 		@include column($body-container-cols, true); 
-		margin: 0px 10px;
+		padding: 0 10px 10px 10px;
+		@include border-radius(0 0 $radius $radius);
+		border-bottom: 1px solid darken($color-secondary-c, 10%);
 	}
-
-/**
- * Elements
- ************************************************/
-
-// Hyperlinks 
-a {
-	text-decoration: none;
-	outline:none;
-	color: $link-color;
-}
-a:visited {}
-a:hover {
-	color: $link-color;
-	text-decoration: underline;
-}
-a:active {}
-
-
-h1, h2, h3, h4, h5, h6 {
-	color: #1F1E1D;
-	//padding-bottom: .4em;
-	margin: 20px 0 15px 0;
-}
-
-// Headers 
-h1 {
-	font-size: 35px;
-	line-height: normal;
-	font-weight: normal;
-	font-family: Georgia;
-	color: black;
-	margin-top: 15px;
-}
-
-h2{
-	font-size:23px;
-	font-weight:normal;
-	font-family:Georgia;
-	color:#000000;
-}
-
-h3 {
-	font-size:20px;
-	font-weight:normal;
-	font-family:Georgia;
-	color:#000000;
-}
-	
-h4 {}
-h5 {}
-h6 {}
-
-// Text elements 
-strong {}
-em {}
-cite {}
-abbr {}
-acronym {}
-sup {}
-sub {}
-address {}
-ins {}
-dfn {}
-del {}
-
-// Paragraphs 
-p {
-	margin-bottom: 1.5em;
-}
-
-// Unordered lists 
-ul {}
-	ul li {}
-	
-/* ul */
-ul.nodots {
-	padding:0;
-	margin:0;
-	list-style-type:none;
-}
-
-.post ul {
-	list-style: inside url(../../img/dlvs-12.png);	
-	margin:0 0 10px 0;
-}
-
-ul li { 
-	margin:0 0 5px 0;
-}	
-
-// Ordered lists 
-ol {}
-	ol li {}
-
-// Defition lists 
-dl {}
-	dt {}
-	dd {}
-
-// Blockquotes 
-blockquote {}
-	blockquote blockquote {}
-	blockquote em {}
-
-// Object 
-object {}
-
-// Code 
-code {}
-pre {}
-pre code {}
-
-// Tables 
-table {}
-	caption {}
-	tr {}
-	th {}
-	td {}
-
-// Forms 
-form {}
-	select, input, textarea {
-		border: 1px solid #999;		
-		@include border-radius(3px);	
-	
-		// validation error formatting
-		&.error {
-			border: 1px solid red;
-		}
-	}
-		
-	label {}
-	option {}
-
-// Notes 
-.note {}
-
-// Warnings/Alerts
-.warning, .alert {}
-
-// Errors
-.error {}
-
-// Downloads
-.download {}
-
-// Alignment
-.left, .alignleft {}
-.right, .alignright {}
-.center, .aligncenter {}
-.block, .alignnone {}
-.clear{clear:both;}	
-
-// general headers
-p.header {
-	font-weight: bold;
-	margin-top: 10px;
-}
-
-/**
- * Images
- ************************************************/
-
-// Normal images
-img {}
-a img {}
-
-// WP Smilies
-img.wp-smiley {}
-
-// Thumbnails
-.thumbnail {}
-
-// WP Captions [caption]
-.wp-caption {}
-	.wp-caption img {}
-	.wp-caption p {}
-
-// Gallery [gallery]
-.gallery {}
-	.gallery img {}
-
-// Avatars
-.avatar {}
 
 /**
  * Header
@@ -259,7 +60,7 @@ img.wp-smiley {}
 
 	// Contains site title and tagline
 	#header {
-		@include column($body-container-cols, true); 
+		@include column(48, true); 
 		//height:130px;
 		margin: $blueprint-grid-margin 0 15px 0;
 	}
@@ -273,7 +74,6 @@ img.wp-smiley {}
 			@include column($body-container-cols / 2, true); 
 			text-align: right;
 			margin-top: 10px;
-			font-size: 12px;
 			color: #aaaaaa;
 			a {	color: #aaaaaa; }
 						
@@ -296,7 +96,7 @@ img.wp-smiley {}
 		overflow:hidden;	
 		float:left;
 		@include column($body-container-cols, true); 
-		height:50px;
+		height: 50px;
 		//@include background-image(linear-gradient(#717171,#343434));
  		background: url('../../img/menubg.gif') repeat-x left center;
  		//background-color: #333;  
@@ -306,31 +106,31 @@ img.wp-smiley {}
 		// Menu list.
 		#primary-menu ul {
 				list-style: none;
-				@include column($body-container-cols); 
+				@include column($body-container-cols);
+				padding-left: 0;
 		}
 			#primary-menu li {
 				float:left;
-				line-height:50px;				
+				line-height:48px;				
 			}
 				#primary-menu li a {   	
 					display:block;			
-					padding-left: 12px;	
-					padding-right: 12px;
-					font-size: 1em;
-					color:#ffffff;
+					padding: 0 15px;
+					color: #fff;
 					text-decoration:none;
-					border-top: 0px solid rgba(255,255,255,0);
 					border-left: 1px solid rgba(0, 0, 0, 0.1);
-					border-right: 1px solid #908F8F;
+					border-right: 1px solid rgba(255, 255, 255, 0.1);
 					//@include transition-property(all);
 					//@include transition-duration(2s);					
 					//background-color: #717171;
 					//@include background-image(linear-gradient(#717171,#343434));
+					border-top: 1px solid lighten($color-primary-c, 10%);
+					border-bottom: 1px solid darken($color-primary-c, 10%);
 				}
 
 				// rounded corners on very first menu item
 				#primary-menu li:first-child a {
-					border-left: 0px;
+					//border-left: 0px;
 			 		@include border-radius($radius 0 0 $radius);					
 				}
 
@@ -346,11 +146,17 @@ img.wp-smiley {}
 				#primary-menu li.current_page_parent a,
 				#primary-menu li.current-page-ancestor a				
 				{					
-					//background-color: #818181;					
+					background-color: $color-contrast-b;					
 					//@include background-image(linear-gradient(#858585,#393939));					
-					background:url('../../img/menu_on.gif') repeat-x;
+					//background:url('../../img/menu_on.gif') repeat-x;
+					@include background-image(linear-gradient($color-contrast-b, $color-contrast));					
 					border-top: 0px solid rgba(255,255,255,1);
-				}
+					text-decoration: none;
+					border-right: 1px solid $color-contrast-b;
+					border-left: 1px solid $color-contrast;
+					border-bottom: 1px solid darken($color-contrast-b, 20%);
+					border-top: 1px solid darken($color-contrast-c, 10%);
+				}				
 				
 				/*
 				// search form
@@ -395,22 +201,37 @@ img.wp-smiley {}
 	 
 	#sidebar {
 		@include column($sidebar-columns); 
-		@include append(1);
-		font-size:11px;
+		//@include append(1);
 	}	 
+	
+	.sidebar-menu {
+		@include column($sidebar-columns); 		
+		padding-bottom: 20px;
+	}
+	
+	.sidebar-image {
+		@include column($sidebar-columns); 		
+		padding-bottom: 20px;
+		
+		img {
+			@include border-radius($radius);
+		}		
+	}
 	
 	// hide category name in submenu
 	#sidebar li.categories,
 	#sidebar li.pagenav {
 		@include column($sidebar-columns, true); 
-		margin-bottom: 20px;
+		//margin-bottom: 20px;
 		list-style-type: none;
 		
 		h2 { display:none; }
 	}			
 	
 	#sidebar ul {
-		list-style-type:none;
+		list-style-type: none;
+		padding: 0;
+		margin: 0;
 	}
 	#sidebar ul li {
 		display:inline;
@@ -419,14 +240,14 @@ img.wp-smiley {}
 
 	}
 	#sidebar ul li a {
-		color:#000000;
+		color: $color-primary;
 		float:left;
 		text-decoration:none;
 		width:100%;
 		background:url('../../img/submenu_off.gif') no-repeat;
 		background-position:7px 50%;
-		text-indent: 30px;
-		border-bottom: 1px solid #eee;		
+		text-indent: 25px;
+		border-bottom: 1px solid $color-secondary-c;
 		height: 30px;
 		overflow: hidden;		
 	}
@@ -435,17 +256,15 @@ img.wp-smiley {}
 	#sidebar ul .current-cat a {
 		background:url('../../img/submenu_on.gif') no-repeat;
 		background-position:0 50%;
-		color:#000000;
-		text-decoration:underline;
+		text-decoration: none;
 		font-weight: normal;
-		border-bottom: 1px solid #eee;
 	}
 /**
  * Containers below the header and navigation
  ************************************************/
 
 	// Content for pages with sidebar
-  $content-cols: ceil(3 * $body-container-cols / 4 - 1);
+  $content-cols: ceil(3 * $body-container-cols / 4);
 	#content {
 		@include column($content-cols, true);
 	}
@@ -665,37 +484,24 @@ img.wp-smiley {}
 // Wrapper for the entire footer
 #footer-container {}
 
-	// Subsidiary widget section
-	#subsidiary {}
-		#subsidiary .widget {}
-			#subsidiary .widget-inside {}
-				#subsidiary .widget-title {}
-
 	// Footer section
 	#footer {
-		@include column($body-container-cols, true); 	
+		@include column($body-container-cols, true);
+		padding: $margin;		
 	}
 
 		#footer .text {	
 			@include column(7 * $body-container-cols / 8); 			
-			margin-top: $margin;
-			padding-top: $margin / 2;
-			border-top: solid 1px #EEEDED;
-			color: #898887;
-			font-size: 11px;
+			color: $color-primary-c;
+			font-size: 0.9em;
 		}
 		
 		#footer .logo {	
 			@include column(1 * $body-container-cols / 8, true); 	
-			text-align:right;				
+			text-align: right;
 		}
-		
-		// Footer extra
-		#footer .copyright {}
-		#footer .credit {}
-		
+				
 /****************************************************/
-
 
 /**
  * Contact form 7
@@ -703,11 +509,11 @@ img.wp-smiley {}
 
 //for embeded form in iframe 
 body.page-template-template-iframe-php{
-	background-color:white;
+	background-color: $color-secondary;
 	background-image:none;
 
 	div.wpcf7 {
-		background-color:white;
+		background-color: $color-secondary;
 		padding-bottom: 30px;
 	}
 }
@@ -733,7 +539,6 @@ div.wpcf7{
 		border:0;
 		color:red;
 		background: none;
-		font-size: 0.8em;
 	}
 	// general positioning of fields
 	.input-field { margin-bottom:10px; }
@@ -754,6 +559,20 @@ div.wpcf7{
  /*
   * Clinic
 	**********************************/
+	
+	.post.clinic {
+		h1 {
+			//float: left;
+			@include column(18);
+			margin-top: 10px;			
+		}
+		
+		.post-content {
+			@include column($content-cols, true);
+		}
+		
+	}
+	
 	.contact {
 		@include column( $content-cols / 2 );	
 				
@@ -776,28 +595,33 @@ div.wpcf7{
 
 	div.post.region {
 		
+		#country-selector {
+			width: 155px;
+		}
+				
 		.country-wrapper {
 			@include clearfix;
-			margin-top: 20px;
-			border-left: 1px solid #eee;
-			border-top: 1px solid #eee;			
+			//margin-top: 20px;
+			//border-left: 1px solid $color-secondary-c;
+			//border-top: 1px solid $color-secondary-c;			
 		}
 		
 		.country {
 			display: block;
 			float: left;
-			width: 200px;
+			width: 34px;
+			height: 24px;
 			white-space: nowrap;
 			overflow: hidden;
-			border-right: 1px solid #eee;
-			border-bottom: 1px solid #eee;
+			//border-right: 1px solid $color-secondary-c;
+			//border-bottom: 1px solid $color-secondary-c;
 			padding: 10px;
+			
+			img {
+				width: 100%;
+			}
 		}
-		
-		.country:nth-child(odd) {
-			background-color: #f6f6f6;
-		}
-		
+				
 	}
  
  /**
@@ -806,17 +630,17 @@ div.wpcf7{
 	table.zebra {
 		width:100%;
 		margin-bottom: 10px;
-		border-top: 1px solid #eee;
-		border-right: 1px solid #eee;			
+		border-top: 1px solid $color-secondary-c;
+		border-right: 1px solid $color-secondary-c;
   	
   		thead tr td {
 				font-weight: bold; }
   		
   		td {
   			line-height: 25px;
-				padding: 4px 10px;
-				border-bottom: 1px solid #eee;
-				border-left: 1px solid #eee; }
+				padding: 5px 15px;
+				border-bottom: 1px solid $color-secondary-c;
+				border-left: 1px solid $color-secondary-c; }
   		
   		tbody tr:nth-child(odd){
   			background-color: #f6f6f6; }
@@ -826,32 +650,42 @@ div.wpcf7{
   * country
   **********************************/  
 
+	$sidebar-columns: floor($body-container-cols / 4);
+
+	.country-meta-header {
+		@include column($sidebar-columns);
+		text-align: center;
+		font-size: 18px;
+		padding: 0 0 20px 0;
+		font-family: $typography-family-secondary;		
+	}
+
 	.country-meta {
-		float: left;
-		clear: left;
-		margin-bottom: 10px;
+		@include column($sidebar-columns);
+		border: 1px solid $color-secondary-c;
+		display: block;
+		//@include prepend(1);
+		//margin-top: 15px;
 		text-align: left;
-		
-		strong {
-			float: left;
-			display: block;
-			width: 90px;
+		line-height: 2em;
+		padding-bottom: 10px;
+
+		tbody {}
+		td {
+			padding: 5px 10px 0 10px;
 		}
+		
 	}
 	
 	.country-flag {
-		float: right;
-		margin-top: 15px;
+		@include column(3);
+		
+//		width: 30px;
 		text-align: right;
-		
-		a {
-			float: right;
-			margin-bottom: 10px;
-		}
-		
+		margin-top: 10px;
+				
 		img {
-			float: right;
-			max-height: 115px;
+			width: 100%;
 		}
 	}
 
@@ -859,14 +693,17 @@ div.wpcf7{
   div.post.country{	
 	
 		h1 {
-			float: left;
-			//@include column(10);
+			//float: left;
+			@include column(10);
+			margin-top: 10px;			
 		}
 			
 		#vaccinations_groups {
+			float: left;
+			clear: both;
 			width: 100%;
-			border-top: 1px solid #eee;
-			border-left: 1px solid #eee;			
+			border-top: 1px solid $color-secondary-c;
+			border-left: 1px solid $color-secondary-c;			
 		}
 	
 		table#vaccinations_groups thead tr td {
@@ -878,10 +715,16 @@ div.wpcf7{
 		}
 	
 		table#vaccinations_groups tr td{
-			text-align:center;	
-			padding: 10px;
-			border-bottom: 1px solid #eee;
-			border-right: 1px solid #eee;			
+			text-align: center;	
+			padding: 5px 10px;
+			border-bottom: 1px solid $color-secondary-c;
+			border-right: 1px solid $color-secondary-c;			
+							
+			img {
+				margin-top: 5px;
+				width: 18px;
+				height: 18px;
+			}
 		}
 
 			table#vaccinations_groups tr td.vaccination-name {
@@ -904,9 +747,7 @@ div.wpcf7{
 		border: 1px solid #bebebe;
 		background-color: #fff;
 		color: #000;
-		outline: none;
-		font-size: 12px;
-		font-family: Verdana, Arial, sans-serif; }
+		outline: none; }
 		
 	#clearSearch {
 		@include border-radius(3px);
@@ -924,6 +765,11 @@ div.wpcf7{
  * Booking template
  **************************/
 div.template.booking {
+	
+	h1 {
+		text-align: center;
+	}
+	
 	.form{
 	  $formColumns: $body-container-cols / 2;			
 		@include column($formColumns);
@@ -942,41 +788,73 @@ div.template.booking {
 		}
 		
 		.fieldWrapper {
-			@include column( floor( $formColumns * 2 / 3 ) , true);
- 			height: $formHeight;
- 			padding: 5px 0;
+			@include column( ceil( $formColumns * 2 / 3 ) , true);
+ 			//height: $formHeight;
+ 			padding: 6px 0;
  			position: relative;
  			
  			input,textarea,select {
  				padding: $padding;
  				height: $formHeight - ( $padding * 2);
  				display:block;
-				width: 200px;
+				width: 100%;
  			}		 		
 		}
 		.fieldWrapper.textarea {
-			height: 50px;
- 			textarea {	height:40px;	}
+			//height: 50px;
+ 			textarea { height:40px; }
 		}	 
 		.fieldWrapper.select {
-			height: 30px;
- 			select {	height:30px; }
-		}	 	 			
-				 			
+			//height: 25px;
+ 			select { height: 25px; }
+		}
+		#booking .radio input[type="radio"] {
+			margin: 0 5px;
+			padding: 0;
+			position: relative;
+			float: left;
+			display: block;
+			width: auto;
+			width: 12px;
+		}
+		.radio span {
+			display: block;
+			margin: 0 5px;
+			width: 12px;
+			float: left;
+		}
+		.radio.fieldWrapper {
+			width: 170px;
+		}
 	}
+
 	
 	.iframe {
 		@include column($body-container-cols / 2, true);
+		
+		.iframe-placeholder {
+			margin: 0 10px;
+			
+			img {
+				@include border-radius($radius);
+			}
+			p {
+				margin-top: 10px;
+			}
+		}
 	} 			
 	
 	// validation rules	
 	label.error {
-		position: absolute;
-		top: 0px;
-		left: 220px;
-		width: 300px;
+		//position: absolute;
+		//top: 0px;
+		//left: 220px;
+		padding: 0;
+		width: 100%;
+		color: $color-contrast;
+		font-style: italic;
 		text-align:left;
-	} 	 			
+	}
 	
 }
 
@@ -997,6 +875,201 @@ div.template.booking {
 }
 .ui-accordion .ui-accordion-content {
 	margin-top: 0;
+}
+
+/**
+ * Elements
+ ************************************************/
+
+html body { 
+
+// Standard forms
+form {
+  //@include blueprint-form;
+}
+
+// Hyperlinks 
+a {
+	text-decoration: none;
+	outline: none;
+	color: $color-contrast;
+}
+a:visited {
+	color: $color-contrast;
+}
+a:hover {
+	text-decoration: underline;
+	color: $color-contrast-b;	
+}
+a:active {
+	color: $color-contrast-b;	
+}
+
+h1, h2, h3, h4, h5, h6 {
+	//padding-bottom: .4em;
+	margin: 20px 0 15px 0;
+}
+
+// Headers 
+h1 {
+	font-size: 35px;
+	line-height: normal;
+	font-weight: normal;
+	font-family: $typography-family-secondary;
+	margin-top: 15px;
+}
+
+h2{
+	font-size: 23px;
+	font-weight:normal;
+	font-family: $typography-family-secondary;
+}
+
+h3 {
+	font-size: 21px;
+	font-weight:normal;
+	font-family: $typography-family-secondary;
+	}
+	
+h4 {}
+h5 {}
+h6 {}
+
+// Text elements 
+strong {}
+em {}
+cite {}
+abbr {}
+acronym {}
+sup {}
+sub {}
+address {}
+ins {}
+dfn {}
+del {}
+
+// Paragraphs 
+p {
+	margin-bottom: 1.5em;
+}
+
+// Unordered lists 
+ul {}
+	ul li {}
+	
+/* ul */
+ul.nodots {
+	padding:0;
+	margin:0;
+	list-style-type:none;
+}
+
+.post ul {
+	list-style: inside url('../../img/dlvs-12.png');
+	margin:0 0 10px 0;
+}
+
+ul li { 
+	margin:0 0 5px 0;
+}	
+
+// Ordered lists 
+ol {}
+	ol li {}
+
+// Defition lists 
+dl {}
+	dt {}
+	dd {}
+
+// Blockquotes 
+blockquote {}
+	blockquote blockquote {}
+	blockquote em {}
+
+// Object 
+object {}
+
+// Code 
+code {}
+pre {}
+pre code {}
+
+// Tables 
+table {}
+	caption {}
+	tr {}
+	th {}
+	td {}
+
+// Forms 
+form {}
+	select, input, textarea {
+		border: 1px solid $color-primary-c;
+		@include border-radius(3px);
+		font-size: $typography-size-normal;
+		@include single-box-shadow(rgba(0,0,0,0.05), 0, 2px, 5px, 0, inset);
+	
+		// validation error formatting
+		&.error {
+			border: 1px solid $color-contrast;
+		}
+	}
+		
+	label {}
+	option {}
+
+// Notes 
+.note {}
+
+// Warnings/Alerts
+.warning, .alert {}
+
+// Errors
+.error {}
+
+// Downloads
+.download {}
+
+// Alignment
+.left, .alignleft {}
+.right, .alignright {}
+.center, .aligncenter {}
+.block, .alignnone {}
+.clear{clear:both;}	
+
+// general headers
+p.header {
+	font-weight: bold;
+	margin-top: 10px;
+}
+
+/**
+ * Images
+ ************************************************/
+
+// Normal images
+img {}
+a img {}
+
+// WP Smilies
+img.wp-smiley {}
+
+// Thumbnails
+.thumbnail {}
+
+// WP Captions [caption]
+.wp-caption {}
+	.wp-caption img {}
+	.wp-caption p {}
+
+// Gallery [gallery]
+.gallery {}
+	.gallery img {}
+
+// Avatars
+.avatar {}
+
 }
 
 /**

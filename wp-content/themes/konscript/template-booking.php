@@ -1,23 +1,21 @@
-<?php /* Template Name: Booking*/ ?>
+<?php /* Template Name: Booking */ ?>
 <?php get_header(); ?>
 	<div id="content" class="no-sidebar">
 			<div class="template booking">
 				<h1><?php the_title(); ?></h1>
 				
-		<?php
-		
-		// destination
-		$clinic_param = urldecode($wp_query->query_vars['clinic_param']);		
-		$destination_param = urldecode($wp_query->query_vars['destination_param']);
+				<?php		
+				// destination
+				$clinic_param = urldecode($wp_query->query_vars['clinic_param']);		
+				$destination_param = urldecode($wp_query->query_vars['destination_param']);
 				
-		$args = array(
-		'orderby'         => 'title',
-		'order'           => 'ASC',
-		'numberposts'     => -1,
-		'post_type'       => 'clinic'); ?>
+				$args = array(
+				'orderby'         => 'title',
+				'order'           => 'ASC',
+				'numberposts'     => -1,
+				'post_type'       => 'clinic'); ?>
 
-		<?php $clinics = get_posts( $args ); ?> 
-				<?php echo the_content(); ?>					
+				<?php $clinics = get_posts( $args ); ?> 
 				
 				<div class="form">
 					<form id="booking">
@@ -30,37 +28,46 @@
 						<label for="clinic">Clinic:</label>
 						<div class="fieldWrapper select">
 							<select name="clinic" id="clinic">
-								<option data-url="about:blank" value="">Choose</option>																				
+								<option data-url="about:blank" value="">Choose your clinic</option>																				
 									<?php foreach($clinics as $clinic){
-									
+										
 										$slug = $clinic->post_name;
 										$selected = ( $clinic->post_name == $clinic_param ) ? "selected" : "";
-										
-										$booking_url = trim(get_field("booking_url", $clinic->ID));
+										$booking_url = trim(get_field("booking_url", $clinic->ID));										
 										$address = get_field("address", $clinic->ID);
 										$title = $clinic->post_title;																				
-										echo'<option '.$selected.' data-url="'.$booking_url.'" value="London">'.$title.' - ' . $address . '</option>';
-
+										if ($booking_url) {
+											echo'<option '.$selected.' data-url="'.$booking_url.'" value="London">'.$title.' - ' . $address . '</option>';
+										}
 									}	?>
 							</select>						
 						</div>
 						<label for="participants">Number of people:</label>
-						<div class="fieldWrapper select">
-							<select name="participants" id="participants">
+						<div id="participants" class="fieldWrapper radio people">
+							<input type="radio" name="participants" value="1" checked="checked" />
+							<input type="radio" name="participants" value="2" />
+							<input type="radio" name="participants" value="3" />
+							<input type="radio" name="participants" value="4" />
+							<input type="radio" name="participants" value="5" />
+							<input type="radio" name="participants" value="6" />																												
+							<input type="radio" name="participants" value="7" /><br />
+							<span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7+</span>
+<!--					<select name="participants" id="participants">
 								<option value="1">1-2 persons</option>
 								<option value="2">3-4 persons</option>
-								<option value="3">5-6 persons</option>																
-							</select>						
+								<option value="3">5-6 persons</option>
+							</select>						-->
 						</div>					
 					</form>
-					
-					<label>&nbsp;</label><a class="button next" id="navigateStepNext">Next</a>
-					<label>&nbsp;</label><a class="button next" id="navigateStepBack">Edit</a>					
+					<a class="button-book	button-book-step next" id="navigateStepNext"><div class="button-book-title">Choose time  ➥</div></a><a class="button-book	button-book-step next" id="navigateStepBack"><div class="button-book-title">Edit</div></a>					
 				</div>
 				
 				<div class="iframe">
-					<iframe src="about:blank" frameborder="0" width="100%" height="600"></iframe>			
-				
+					<div class="iframe-placeholder">
+						<?php echo get_the_post_thumbnail($id, array(440,600)); ?>
+						<?php echo the_content(); ?>
+					</div>
+					<iframe src="about:blank" frameborder="0" width="100%" height="600"></iframe>
 				</div>
 			</div><!--#end post-->
 	</div><!--#end content -->

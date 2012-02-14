@@ -4,7 +4,10 @@
 
 // Load the base
 @import "_base";
-
+@import "blueprint";
+@import "blueprint/reset";
+@import "blueprint/typography";
+	
 //Recommended Blueprint configuration with scoping and semantic layout:
 body.bp {
   @include blueprint-ie(true);

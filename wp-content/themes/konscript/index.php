@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<?php include("submenu-cat.php"); ?>
+<?php sidebar(true, true, false); ?>
 
 NEVER USE..
 
