@@ -940,10 +940,10 @@ h2{
 }
 
 h3 {
-	font-size: 22px;
+	font-size: 19px;
 	font-weight:normal;
 	font-family: $typography-family-secondary;
-	}
+}
 	
 h4 {}
 h5 {}
@@ -979,7 +979,8 @@ ul.nodots {
 }
 
 .post ul {
-	list-style: inside url('../../img/dlvs-12.png');
+	//list-style: inside url('../../img/dlvs-12-grayscale.png');
+	list-style: inside disc;
 	margin:0 0 10px 0;
 }
 
