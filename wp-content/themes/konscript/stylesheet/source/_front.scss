@@ -16,7 +16,7 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
  	// height of content slider
 	$featured-height: 182px;	 
 
-	@include column($body-container-cols, true); 
+	@include column($body-container-cols, true);
 
 	border: 1px solid #ccc;	
 	position:relative; 
@@ -56,6 +56,8 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 			//@include opacity(0.6);
 						
 			.body { 
+				@include clearfix;
+				@include border-radius(3px);
 				margin: 0 0 10px 0;
 				background: rgb(255,255,255); 
 				filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99ffffff, endColorstr=#99ffffff);

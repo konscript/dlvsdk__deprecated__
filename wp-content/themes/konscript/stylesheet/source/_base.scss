@@ -25,11 +25,12 @@ $radius: 4px;
  ************************************************/
 
 $color-primary: 		#000000;	// Black
-$color-primary-b: 	#535353;	// Black Light 
+$color-primary-b: 	#444;			// Black Light 
 $color-primary-c: 	#7f7f7f;	// Black Lighter 
 $color-secondary:		#fff;			// White
 $color-secondary-b:	#f6f6f6;	// White Dark
 $color-secondary-c:	#eee;			// White Darker
+$color-secondary-d:	#ccc;			// White Even Darker
 $color-contrast-b:	#ee3124;	// Red Light
 $color-contrast:		darken($color-contrast-b, 15%);		// Red
 $color-contrast-c:	lighten($color-contrast-b, 10%);	// Red Lighter
@@ -50,9 +51,9 @@ $quiet-color: lighten($font-color, 40%);
  ************************************************/
 
 // Typography
-$typography-family-primary: Verdana, Arial, Helvetica, sans-serif;
+$typography-family-primary: 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
 $typography-family-secondary: Georgia, "Times New Roman", serif;
-$typography-size-normal: 12px;
+$typography-size-normal: 11px;
 $typography-size-header: 161px;
 $typography-size-subheader: 141px;
 
