@@ -4,8 +4,10 @@
 
 # Ignore everything in the root except the "wp-content" directory.
 /*
+.DS_Store
 !.gitignore
 !wp-content/
+!public/
 
 # ignore drafts made by stupid programs
 *.*~

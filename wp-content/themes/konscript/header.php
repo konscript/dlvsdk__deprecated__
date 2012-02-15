@@ -54,7 +54,6 @@
 				<div id="tools">
 					<a href="<?php bloginfo('wpurl'); ?>/aboutus">About</a><span> | </span>
 					<a href="<?php bloginfo('wpurl'); ?>/aboutus/contact">Contact</a><span> | </span>
-					<a href="#">Clinic Login</a><span> | </span>
 					<a href="<?php bloginfo('wpurl'); ?>/booking">Booking</a>
 				</div>			
 				<div id="primary-menu">

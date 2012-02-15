@@ -18,17 +18,15 @@
  * Body
  ************************************************/
 
-// Contains everything
-html, body{
-	@include blueprint-typography();
-}
+@include blueprint-typography();
 
 body {
-	line-height: 1.75em;
+	line-height: 1.8em;
 	font-style: normal;
 	font-family: $typography-family-primary;
 	color: $color-primary-b;
 	background-image: url('../../img/bg.png');
+	background-position: top center;
 	background-repeat: repeat-x;
 	background-color: #fff;
 }
@@ -491,13 +489,13 @@ body {
 	}
 
 		#footer .text {	
-			@include column(7 * $body-container-cols / 8); 			
+			@include column(45);
 			color: $color-primary-c;
 			font-size: 0.9em;
 		}
 		
 		#footer .logo {	
-			@include column(1 * $body-container-cols / 8, true); 	
+			@include column(2, true); 	
 			text-align: right;
 		}
 				
@@ -588,6 +586,10 @@ div.wpcf7{
 	.opening_hours {
 			@include column( $content-cols / 2, true );	
 	}
+	
+	.gmap a {
+		float: left;
+	}
 
  /**
   * region
@@ -655,8 +657,9 @@ div.wpcf7{
 	.country-meta-header {
 		@include column($sidebar-columns);
 		text-align: center;
-		font-size: 18px;
-		padding: 0 0 20px 0;
+		//font-size: 18px;
+		//padding: 0 0 20px 0;
+		margin: 0 0 20px 0;
 		font-family: $typography-family-secondary;		
 	}
 
@@ -694,7 +697,7 @@ div.wpcf7{
 	
 		h1 {
 			//float: left;
-			@include column(10);
+			@include column(18);
 			margin-top: 10px;			
 		}
 			
@@ -727,9 +730,20 @@ div.wpcf7{
 			}
 		}
 
-			table#vaccinations_groups tr td.vaccination-name {
-				width: 30%;
+		table#vaccinations_groups tr td.vaccination-name {
+			width: 30%;
+		}
+		
+		.disclaimer {
+			@include column($content-cols, true);
+			color: #aaa;
+			h3 {
+				margin-top: 0;
 			}
+			ul {
+				margin: 10px 0;
+			}
+		}
   
   }
 
@@ -912,7 +926,7 @@ h1, h2, h3, h4, h5, h6 {
 
 // Headers 
 h1 {
-	font-size: 35px;
+	font-size: 30px;
 	line-height: normal;
 	font-weight: normal;
 	font-family: $typography-family-secondary;
@@ -920,16 +934,16 @@ h1 {
 }
 
 h2{
-	font-size: 23px;
+	font-size: 24px;
 	font-weight:normal;
 	font-family: $typography-family-secondary;
 }
 
 h3 {
-	font-size: 21px;
+	font-size: 19px;
 	font-weight:normal;
 	font-family: $typography-family-secondary;
-	}
+}
 	
 h4 {}
 h5 {}
@@ -965,7 +979,8 @@ ul.nodots {
 }
 
 .post ul {
-	list-style: inside url('../../img/dlvs-12.png');
+	//list-style: inside url('../../img/dlvs-12-grayscale.png');
+	list-style: inside disc;
 	margin:0 0 10px 0;
 }
 
@@ -1005,7 +1020,7 @@ table {}
 // Forms 
 form {}
 	select, input, textarea {
-		border: 1px solid $color-primary-c;
+		border: 1px solid $color-secondary-d;
 		@include border-radius(3px);
 		font-size: $typography-size-normal;
 		@include single-box-shadow(rgba(0,0,0,0.05), 0, 2px, 5px, 0, inset);

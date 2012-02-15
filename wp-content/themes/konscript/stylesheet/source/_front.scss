@@ -16,7 +16,7 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
  	// height of content slider
 	$featured-height: 182px;	 
 
-	@include column($body-container-cols, true); 
+	@include column($body-container-cols, true);
 
 	border: 1px solid #ccc;	
 	position:relative; 
@@ -44,20 +44,19 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 		
 		div.inner {
 			@include column($one_third, true); 		
-		
 			position:relative;
 			z-index: 2;			
 			float:right;
 			padding: $blueprint-grid-margin * 2;
 			height:  $featured-height;			
 			//border-left: 1px solid #ccc;
-
-			/* Opacity and fall-back for browsers that don't support rgba */	
-			//@include opacity(0.6);
 						
 			.body { 
+				@include clearfix;
+				@include border-radius(3px);
 				margin: 0 0 10px 0;
-				background: rgb(255,255,255); 
+				/* Opacity and fall-back for browsers that don't support rgba */
+				background: #fff; 
 				filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99ffffff, endColorstr=#99ffffff);
 				-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99ffffff, endColorstr=#99ffffff)";
 				background: rgba(255,255,255, 0.75);
@@ -109,10 +108,10 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 					padding: 5px 0;
 					display:block;
 					text-decoration: none;
-					height:50px; 
-					color: $color-primary;
+					height: 50px; 
+					color: $color-primary-b;
 					font-weight: normal;
-					font-size: 18px;
+					font-size: 19px;
 					width: 100%;
 				}
 			
@@ -257,19 +256,20 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 	padding: 15px 0 10px 0;
 	
 	a.clinic {
-		@include column(($body-container-cols/5), true);
+		@include column(($body-container-cols/4), true);
 		overflow:hidden;		
 		line-height: 20px;
 		height: 40px;
 		cursor:pointer;
 				
 		// address icon
-		text-indent: 35px;
-		background: url('../../img/icon-address-black.png') no-repeat	5px center;
+		text-indent: 40px;
+		background: url('../../img/icon-address-black.png') no-repeat	10px center;
 		
 		.title {}
 		.address {
 			color: $quiet-color;
+			padding-right: 20px;
 		}		
 		
 		// change icon on hover
