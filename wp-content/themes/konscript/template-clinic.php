@@ -12,12 +12,13 @@ sidebar($sidebar_menu, true, false); ?>
 
 <section id="primary">
 	<div id="content" role="main">
-	<h1><?php post_type_archive_title(); ?></h1> 
 	
 	<?php 
 	$clinic = basename(get_permalink());
 	echo '<a class="button-book" href="' . get_bloginfo('wpurl') . '/booking/clinic/' . $clinic . '"><div class="button-book-title">Book your vaccination</div></a>';
 	?>
+	<h1><?php the_title(); ?></h1> 		
+	<?php echo the_content(); ?>	
 
 	</div><!-- #content -->
 </section><!-- #primary -->
