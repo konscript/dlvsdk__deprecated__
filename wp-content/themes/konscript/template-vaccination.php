@@ -4,11 +4,12 @@
 
 <section id="primary">
 	<div id="content" role="main">
-		<h1><?php the_title(); ?><?php //post_type_archive_title(); ?></h1>	
+		<?php 
+			echo '<a class="button-book" href="' . get_bloginfo('wpurl') . '/booking/"><div class="button-book-title">Book your vaccination</div></a>';
+		?>
 	
-		<div class="post-content">
-			<?php echo the_content(); ?>
-		</div>
+		<h1><?php the_title(); ?></h1>		
+		<?php echo the_content(); ?>
 	
 		<?php $args = array(
 		'orderby'         => 'title',
