@@ -4,11 +4,17 @@
 		<div id="footer">			
 			<div class="text">
 				<?php //echo get_num_queries()." queries."; ?> 
-				UK Travel Vaccination Service - A trading name of The Health Station • 21 Brand Street, Hitchin, Herts SG5 1JE • Phone 0845 521 0030 • Email admin@thehealthstation.co.uk						
+				UK Travel Vaccination Service - A trading name of The Health Station • 21 Brand Street, Hitchin, Herts SG5 1JE • Phone 0845 521 0030 • Email admin@thehealthstation.co.uk		
        </div>
        <div class="logo">
        	<img src="<?php bloginfo('template_url'); ?>/img/dlvs-12-grayscale.png" alt="UK Travel Vaccination Service" />
        </div>
+<?php 
+// only show queries to admin
+if ( is_user_logged_in() && current_user_can('manage_options') ) {
+	echo "Number of queries: ".  get_num_queries(); 
+}	
+?> 
 		</div><!--#end footer-->
 	</div><!--#end footer-->	
 </div><!--#end wrapper-->

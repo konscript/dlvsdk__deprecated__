@@ -11,6 +11,9 @@
 } ?>
 
 	<div id="content">
+		<?php 
+			echo '<a class="button-book" href="' . get_bloginfo('wpurl') . '/booking/"><div class="button-book-title">Book your vaccination</div></a>';
+		?>	
 
 		<?php if (have_posts()): while (have_posts()): the_post(); ?>
 		    <div class="post">
