@@ -83,16 +83,8 @@
 	<div class="frontpage-column" id="column-right">	
 
 		<a class="button-book" href="<?php bloginfo('wpurl'); ?>/booking"><div class="button-book-title">Book now</div><div class="button-book-meta">Quick and easy<br />online booking</div></a>
-		<h3>Popular destinations</h3>			
-
-		<table class="zebra top-destinations">
-		<?php 
-		$top_destinations = get_field('top_destinations');
-		foreach($top_destinations as $country): 		
-		?>
-			<tr><td><img src="<?php the_field('flag', $country->ID); ?>" alt="" /><a href="<?php echo get_permalink($country->ID); ?>"><?php echo $country->post_title; ?> </a></td></tr>
-		<?php endforeach; ?>
-		</table>
+		<h3><?php the_field("title_right"); ?></h3>
+		<?php the_field("content_right"); ?>		
 	</div>
 	
 	<div class="clinics">
