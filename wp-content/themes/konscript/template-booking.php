@@ -74,7 +74,7 @@
 			</div>
 			*/				
 			?>
-			<?php $weekdays = array("monday", "tuesday", "wednesday", "thursday", "friday"); ?>						
+			<?php $weekdays = array("monday", "tuesday", "wednesday", "thursday", "friday", "saturday"); ?>						
 			<iframe src="about:blank" frameborder="0" width="100%" height="600" style="display:none"></iframe>		
 			<table class="zebra">
 				<thead>

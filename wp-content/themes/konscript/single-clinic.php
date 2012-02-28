@@ -32,7 +32,7 @@ sidebar($sidebar_menu, false, false); ?>
 						<p class="telephone">Phone: <?php the_field('phone_number'); ?></p>
 					</div>	
 					
-					<?php $weekdays = array("monday", "tuesday", "wednesday", "thursday", "friday"); ?>						
+					<?php $weekdays = array("monday", "tuesday", "wednesday", "thursday", "friday", "saturday"); ?>						
 					<div class="opening_hours">	
 						<p class="header">Opening hours</p>
 						<table class="zebra">
