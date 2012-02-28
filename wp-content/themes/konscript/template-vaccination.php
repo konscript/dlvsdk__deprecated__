@@ -4,10 +4,7 @@
 
 <section id="primary">
 	<div id="content" role="main">
-		<?php 
-			echo '<a class="button-book" href="' . get_bloginfo('wpurl') . '/booking/"><div class="button-book-title">Book your vaccination</div></a>';
-		?>
-	
+		<a class="button-book" href="<?php echo get_bloginfo('wpurl'); ?>'/booking/"><div class="button-book-title">Book your vaccination</div></a>
 		<h1><?php the_title(); ?></h1>		
 		<?php echo the_content(); ?>
 	

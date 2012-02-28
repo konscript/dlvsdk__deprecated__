@@ -153,8 +153,8 @@ function getClinics(){
 	$args = array(
 		'post_type'		=> 'clinic',
 		'order'       => 'ASC',
-		'orderby'     => 'title',
-		'numberposts'			=>	'5',
+		'orderby'     => 'title'
+		//'numberposts'			=>	'5',
 	);
 
 	// get clinics

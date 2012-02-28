@@ -21,6 +21,9 @@ jQuery.noConflict();
 		// Booking: load iframe and disable form
 		bookingNavigate();
 		
+		// booking iframe
+		bookingIframe();		
+		
 		// vaccination lightbox
 		vaccinationLightbox();
 		
@@ -32,6 +35,18 @@ jQuery.noConflict();
 	/*
 	 * functions begin
 	 **************************************************************************************/	
+
+	// load iframe
+	function bookingIframe(){		
+		$('.template.booking a.button-book').click(function(){
+			var booking_url = $(this).attr('href');
+			
+			$('.zebra').fadeOut('fast', function() {
+				$('.template.booking iframe').attr('src', booking_url).show();
+			});
+			return false;
+		});
+	}
 
 	// Booking: load iframe when clinic is selected
 	function bookingNavigate() {
