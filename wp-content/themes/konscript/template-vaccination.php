@@ -4,7 +4,7 @@
 
 <section id="primary">
 	<div id="content" role="main">
-		<a class="button-book" href="<?php echo get_bloginfo('wpurl'); ?>'/booking/"><div class="button-book-title">Book your vaccination</div></a>
+		<a class="button-book" href="<?php echo get_bloginfo('wpurl'); ?>'/booking/"><div class="button-book-title">Bestil vaccination</div></a>
 		<h1><?php the_title(); ?></h1>		
 		<?php echo the_content(); ?>
 	
@@ -16,7 +16,7 @@
 	
 		<?php $vaccinations = get_posts( $args ); ?> 
 		<table class="zebra">
-			<thead><tr><td>Vaccination</td><td>Price</td><td>Quantity</td><td>Protection</td></tr></thead>
+			<thead><tr><td>Vaccination</td><td>Pris</td><td>Antal</td><td>Beskyttelse</td></tr></thead>
 			<tbody>
 			<?php foreach($vaccinations as $vaccination){ ?>
 				<tr>

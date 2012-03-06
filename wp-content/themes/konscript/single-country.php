@@ -7,12 +7,12 @@ $args = array(
   'echo'         => false,  
 );
 $sidebar_menu = wp_list_pages( $args );
-$sidebar_country_meta_links = '<a href="'.get_field('latest_disease_surveillance').'" target="_blank">Latest Disease Surveillance</a>';
+$sidebar_country_meta_links = '<a href="'.get_field('latest_disease_surveillance').'" target="_blank">Sidste sygdomsovervågning</a>';
 if (get_field('updated_malaria_map')) {
-	$sidebar_country_meta_links .= '<br /><a href="'.get_field('updated_malaria_map').'" target="_blank">Updated Malaria Map</a>';
+	$sidebar_country_meta_links .= '<br /><a href="'.get_field('updated_malaria_map').'" target="_blank">Opdateret Malaria kort</a>';
 }
 $sidebar_country_meta = '
-	<h3 class="country-meta-header">Country Facts</h3>
+	<h3 class="country-meta-header">Lande fakta</h3>
 	<table class="country-meta">
 		<tbody>
 		<tr>
@@ -51,7 +51,7 @@ sidebar($sidebar_menu, false, $sidebar_country_meta); ?>
 
 						<?php 
 							$destination = urlencode(the_title('', '', false));
-							$book_button = '<a class="button-book" href="' . get_bloginfo('wpurl') . '/booking/destination/' . $destination . '"><div class="button-book-title">Book your vaccination</div></a>';
+							$book_button = '<a class="button-book" href="' . get_bloginfo('wpurl') . '/booking/destination/' . $destination . '"><div class="button-book-title">Bestil vaccination</div></a>';
 							echo $book_button;
 						?>
 		
@@ -62,7 +62,7 @@ sidebar($sidebar_menu, false, $sidebar_country_meta); ?>
 												
 							// labels for groups
 							$vaccinations_groups_labels = array(
-								"All travellers", "+2 weeks", "+3 months", "+6 months"
+								"Alle rejsende", "+2 uger", "+3 måneder", "+6 måneder"
 							);
 							
 							// vaccinations for groups

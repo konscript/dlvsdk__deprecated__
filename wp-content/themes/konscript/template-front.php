@@ -24,7 +24,7 @@
 					<!--<p class="header"><?php the_sub_field('title'); ?></p>-->
 					<p class="body">
 						<?php the_sub_field('description'); ?>
-						<a href="<?php echo get_permalink(get_sub_field('link')->ID); ?>">Read more</a>
+						<a href="<?php echo get_permalink(get_sub_field('link')->ID); ?>">Læs mere</a>
 					</p>
 				</div>
 			</div>
@@ -46,11 +46,11 @@
 
 		<div id="map-wrapper">
 
-		<h3>What vaccines are recommended?</h3>
+		<h3>Hvilke vacciner anbefales?</h3>
 	
 		<form method="GET" id="travelguide" action="<?php bloginfo('wpurl'); ?>">
 		  <select name="Country" id="country-selector">
-	    <option value="" selected="selected">Select Country</option>
+	    <option value="" selected="selected">Vælg land</option>
 			<?php $countries = getCountries(); ?>	
 			<?php foreach($countries as $country): ?>
 				<?php 
@@ -64,7 +64,7 @@
 		  <input type="Submit" value="Find">
 		</form>	
 
-		<p id="travelguide-after">or click on the map:</p>		
+		<p id="travelguide-after">eller klik på kortet:</p>		
 		
 		<div id="map-continents">
 		  <ul id="continents">
@@ -82,7 +82,7 @@
 			
 	<div class="frontpage-column" id="column-right">	
 
-		<a class="button-book" href="<?php bloginfo('wpurl'); ?>/booking"><div class="button-book-title">Book now</div><div class="button-book-meta">Quick and easy<br />online booking</div></a>
+		<a class="button-book" href="<?php bloginfo('wpurl'); ?>/booking"><div class="button-book-title">Bestil tid</div><div class="button-book-meta">Nem og hurtig<br />online bestilling</div></a>
 		<h3><?php the_field("title_right"); ?></h3>
 		<?php the_field("content_right"); ?>		
 	</div>

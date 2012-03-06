@@ -3,8 +3,7 @@
 	<div id="footer-container">
 		<div id="footer">			
 			<div class="text">
-				<?php //echo get_num_queries()." queries."; ?> 
-				UK Travel Vaccination Service - A trading name of The Health Station • 21 Brand Street, Hitchin, Herts SG5 1JE • Phone 0845 521 0030 • Email admin@thehealthstation.co.uk		
+				Gladsaxevej 376 • 2860 Søborg • Tlf: 70 25 40 80 • Fax: 70 25 90 41 • Email: info@dlvs.dk		
        </div>
        <div class="logo">
        	<img src="<?php bloginfo('template_url'); ?>/img/dlvs-12-grayscale.png" alt="UK Travel Vaccination Service" />

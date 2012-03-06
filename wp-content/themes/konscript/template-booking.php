@@ -91,7 +91,7 @@
 						<?php	foreach($weekdays as $weekday): ?>
 							<td><?php	the_field($weekday, $clinic->ID); ?></td>
 						<?php	endforeach; ?>	
-						<td><a class="button-book	button-book-table" href="<?php the_field("booking_url", $clinic->ID); ?>"><div class="button-book-title">Book now</div></a></td>
+						<td><a class="button-book	button-book-table" href="<?php the_field("booking_url", $clinic->ID); ?>"><div class="button-book-title">Bestil tid</div></a></td>
 					</tr>
 				<?php	endforeach; ?>
 			</table>

@@ -15,7 +15,7 @@ sidebar($sidebar_menu, true, false); ?>
 	
 	<?php 
 	$clinic = basename(get_permalink());
-	echo '<a class="button-book" href="' . get_bloginfo('wpurl') . '/booking/clinic/' . $clinic . '"><div class="button-book-title">Book your vaccination</div></a>';
+	echo '<a class="button-book" href="' . get_bloginfo('wpurl') . '/booking/clinic/' . $clinic . '"><div class="button-book-title">Bestil vaccination</div></a>';
 	?>
 	<h1><?php the_title(); ?></h1> 		
 	<?php echo the_content(); ?>	
