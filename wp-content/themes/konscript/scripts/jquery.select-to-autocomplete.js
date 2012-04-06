@@ -196,7 +196,7 @@ THE SOFTWARE.
         if ( option ) {
         	// hack by sqren to submit on click
 					context.$select_field.val( option['real-value'] ).delay(100).queue(function(){
-						$('#travelguide').submit();			
+						$('.map-form').submit();			
 					});
         } else {
           var option_name = context.$text_field.val().toLowerCase();

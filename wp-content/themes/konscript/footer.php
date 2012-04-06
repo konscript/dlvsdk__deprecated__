@@ -28,11 +28,7 @@ if ( is_user_logged_in() && current_user_can('manage_options') ) {
 	*/
 	?>
 
-	<script src="<?php bloginfo('template_url'); ?>/scripts/jquery.validate.min.js"></script>		
-	<?php if(is_front_page()): ?>
-  <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/scripts/continents-map/continents-map.js"></script>    		
-	<?php endif; ?>  
-
+	<script src="<?php bloginfo('template_url'); ?>/scripts/jquery.validate.min.js"></script>
 	<script type="text/javascript">
 	  var _gaq = _gaq || [];
 	  _gaq.push(['_setAccount', 'UA-25539846-1']);

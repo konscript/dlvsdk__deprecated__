@@ -15,7 +15,7 @@ sidebar($sidebar_menu, false, false);
 			<h1><?php the_title(); ?></h1>
 			<div class="post-content">
 
-				<form method="GET" id="travelguide" style="display: inline" action="<?php bloginfo('wpurl'); ?>">
+				<form method="GET" class="map-form" action="<?php bloginfo('wpurl'); ?>">
 				  <select name="Country" id="country-selector">
 			    <option value="" selected="selected">Select Country</option>
 					<?php $region = get_post_custom_values('countries');

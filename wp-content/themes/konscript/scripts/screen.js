@@ -145,7 +145,7 @@ jQuery.noConflict();
 	 ******************/		
 	function travelguide(){
 		// hide submit button for js-enabled users
-		$('#travelguide [type=submit]').hide();
+		$('.map-form [type=submit]').hide();
 		
 		// old-school change page on click
 		$('#country-selector').change(function(){

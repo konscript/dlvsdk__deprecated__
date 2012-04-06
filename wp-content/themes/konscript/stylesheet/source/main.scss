@@ -774,6 +774,61 @@ div.wpcf7{
 /*****************************************************************
  *	Templates
  *****************************************************************/    
+
+
+/*
+ * Vaccination recommendations template
+ **************************/ 
+
+	.map-header {
+		@include text-shadow(0 1px 0 rgba(255,255,255,0.5));				
+		display: block;
+		padding: 30px 0 0px 0;
+		margin: 0;
+		line-height: 34px;
+		font-size: 34px;
+		color: $color-primary;
+		font-weight: normal;
+		text-align: center;
+	}
+
+	.map-form-container {
+		text-align: center;
+		margin-top: 10px;
+	}
+
+	.map-text {}
+	.map-form { display: inline; }
+	#country-selector {	width: 120px;}
+
+	// World Map
+	$lightblue: #D4ECF5;
+	$darkblue: #74B6CF;
+	#map-wrapper {
+		@include border-radius(3px);
+		border: 1px solid $darkblue;
+		border-top: 1px solid lighten($darkblue, 10%);
+		border-bottom: 1px solid darken($darkblue, 10%);		
+		background-color: $darkblue;
+		background-image: -moz-radial-gradient(50% 50%, ellipse cover, $lightblue, $darkblue 100%);
+		background-image: -webkit-radial-gradient(50% 50%, ellipse cover, $lightblue, $darkblue 100%);
+		background-image: -o-radial-gradient(50% 50%, ellipse cover, $lightblue, $darkblue 100%);
+		background-image: -ms-radial-gradient(50% 50%, ellipse cover, $lightblue, $darkblue 100%);
+		background-image: radial-gradient(50% 50%, ellipse cover, $lightblue, $darkblue 100%)
+	}
+
+	#map-continents {
+		//padding-top: 35px;
+
+		#continents li .bg {
+			@include opacity(0);
+			@include transition-property(opacity);
+			@include transition-duration(0.3s);	
+		}
+		#continents li:hover .bg {
+			@include opacity(1);
+		}
+	}
 		
 /*
  * Booking template

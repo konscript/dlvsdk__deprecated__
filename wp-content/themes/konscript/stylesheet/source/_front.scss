@@ -143,21 +143,9 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 	@include last;
 	width: span($two_thirds);
 	margin-right: $blueprint-grid-margin;
-	
-	h3 {
-		@include text-shadow(0 1px 0 rgba(255,255,255,0.5));				
-		display: block;
-		padding: 30px 0 0px 0;
-		margin: 0;
-		line-height: 34px;
-		font-size: 34px;
-		color: $color-primary;
-		font-weight: normal;
-		text-align: center;
-	}
-	
+		
 	// Travel Guide country selector
-	$travelwidth: $body-container-cols * 2 / 3 - 1;
+	//$travelwidth: $body-container-cols * 2 / 3 - 1;
 	/*
 	#travelguide-before {	
 		padding-top: 20px;
@@ -165,61 +153,6 @@ $two_thirds: ceil($body-container-cols * 2 / 3); // column width for left column
 		text-align: right;
 		font-size: 12px; }
 	*/
-	#travelguide-after {
-		margin: 15px 0 0 0;
-		@include column(floor($travelwidth / 2), true);
-		text-align: left; }
-
-	#travelguide {
-		text-align: right;
-		margin-top: 10px;
-		position: relative;
-		@include column($travelwidth / 2); 	
-		z-index: 10;
-
-		input.ui-autocomplete-input {
-			@include border-radius(3px);
-			//@include background-image(linear-gradient(#fff, #f0f0f0));
-			width: 188px - (2 * 10px);
-			padding: 10px;
-			border: 1px solid #bebebe;
-			background-color: #fff;
-			color: #000;
-			outline: none;
-		}
-		#country-selector {
-			width: 120px;
-		}	
-	}
-
-	// World Map
-	$lightblue: #D4ECF5;
-	$darkblue: #74B6CF;
-	#map-wrapper {
-		@include border-radius(3px);
-		border: 1px solid $darkblue;
-		border-top: 1px solid lighten($darkblue, 10%);
-		border-bottom: 1px solid darken($darkblue, 10%);		
-		background-color: $darkblue;
-		background-image: -moz-radial-gradient(50% 50%, ellipse cover, $lightblue, $darkblue 100%);
-		background-image: -webkit-radial-gradient(50% 50%, ellipse cover, $lightblue, $darkblue 100%);
-		background-image: -o-radial-gradient(50% 50%, ellipse cover, $lightblue, $darkblue 100%);
-		background-image: -ms-radial-gradient(50% 50%, ellipse cover, $lightblue, $darkblue 100%);
-		background-image: radial-gradient(50% 50%, ellipse cover, $lightblue, $darkblue 100%)
-	}
-
-	#map-continents {
-		padding-top: 35px;
-
-		#continents li .bg {
-			@include opacity(0);
-			@include transition-property(opacity);
-			@include transition-duration(0.3s);	
-		}
-		#continents li:hover .bg {
-			@include opacity(1);
-		}
-	}	
 	
 }
 
