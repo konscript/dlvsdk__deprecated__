@@ -1,12 +1,5 @@
 <?php
 
-// Safety first.
-if (!empty($_SERVER['SCRIPT_FILENAME']) && 'functions.php' == basename($_SERVER['SCRIPT_FILENAME']))
-	die ('Please do not load this page directly!');
-	
-// Wordpress features setup
-add_theme_support( 'post-thumbnails', array( 'page' ) );
-
 // Getting page ID of current Custom Post Type
 function getPageIDOfCurrentCustomPostType(){
 	global $wpdb;
@@ -63,7 +56,7 @@ add_action('login_head', 'custom_logo');
 
 // Admin Footer
 function remove_footer_admin () {
-	echo 'Powered by Konscript';
+	echo 'Developed by Konscript';
 }
 add_filter('admin_footer_text', 'remove_footer_admin');
 
