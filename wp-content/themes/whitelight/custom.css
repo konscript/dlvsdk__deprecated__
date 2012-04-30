@@ -1,21 +1,26 @@
 /* 
-WOO CUSTOM STYLESHEET
+WOO CUSTOM STYLESHEET (for DLVS)
 ---------------------
 
-Instructions:
-
-Add your custom styles in this file instead of style.css so it 
-is easier to update the theme. Simply copy an existing style 
-from style.css to this file, and modify it to your liking. */
+/**********************************************
+ * Hide Search
+ **********************************************/
 #header .search_main {
   display: none;
 }
 #header hgroup {
   margin-bottom: 0px;
 }
+/**********************************************
+ * Main Navigaton
+ **********************************************/
 #navigation ul#main-nav {
   float: right;
   margin-top: 20px;
+}
+#navigation,
+#navigation .nav a {
+  font-size: 16px;
 }
 #navigation .nav li:hover > a {
   -moz-transition: all 0.2s ease-in-out;
@@ -32,6 +37,23 @@ from style.css to this file, and modify it to your liking. */
 #navigation .nav li.li.current-menu-item a {
   color: white!important;
 }
+#navigation .nav li ul li a {
+  color: #4B4B4B;
+}
+#navigation .nav li ul {
+  background: #E9E9E9;
+  -moz-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+#navigation .nav li a:hover::after,
+#navigation .nav li:hover > a::after {
+  border-color: #B72020 transparent transparent transparent!important;
+}
+/********************************************** 
+ * Feated slider on homepage
+ **********************************************/
 #featured {
   box-shadow: none;
   -webkit-box-shadow: none;
@@ -133,3 +155,6 @@ from style.css to this file, and modify it to your liking. */
   left: 20px;
   right: auto;
 }
+/********************************************** 
+ * Mixins
+ **********************************************/

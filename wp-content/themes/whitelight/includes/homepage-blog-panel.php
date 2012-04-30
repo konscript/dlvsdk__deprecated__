@@ -20,7 +20,7 @@
 ?>			
 		<div class="home-blog fix">
 			
-			<section id="main" class="col-left"> 
+			<section id="" class=""> 
 			
 			<?php
 				if ( $settings['blog_area_content'] == 'page' ) {

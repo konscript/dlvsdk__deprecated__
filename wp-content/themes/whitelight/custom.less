@@ -1,21 +1,27 @@
 /* 
-WOO CUSTOM STYLESHEET
+WOO CUSTOM STYLESHEET (for DLVS)
 ---------------------
 
-Instructions:
-
-Add your custom styles in this file instead of style.css so it 
-is easier to update the theme. Simply copy an existing style 
-from style.css to this file, and modify it to your liking. */
+/**********************************************
+ * Hide Search
+ **********************************************/
 
 // Permanently hide the search bar
 #header .search_main { display: none; }
 #header hgroup { margin-bottom: 0px; }
 
+/**********************************************
+ * Main Navigaton
+ **********************************************/
+
 // Push top menu to the outmost right and align with logo
 #navigation ul#main-nav {
 	float: right;
 	margin-top: 20px
+}
+
+#navigation, #navigation .nav a {
+	font-size: 16px;
 }
 
 // Make main nav hovering more subtle
@@ -27,6 +33,23 @@ from style.css to this file, and modify it to your liking. */
 #navigation { .nav li.current_page_item a, .nav li.current_page_parent a, .nav li.current-menu-ancestor a, .nav li.current-cat a, .nav li.li.current-menu-item a {
 	color: white!important;
 }}
+#navigation .nav li ul li a {
+	color: #4B4B4B;
+}
+#navigation .nav li ul {
+	background: #E9E9E9;
+	.transition(all, 0.2s);
+}
+
+// Recolor little small arrow when dropdown
+#navigation .nav li a:hover::after,
+#navigation .nav li:hover > a::after {
+	border-color: #B72020 transparent transparent transparent!important;
+}
+
+/********************************************** 
+ * Feated slider on homepage
+ **********************************************/
 
 // No shadows on slider wrapper (best for white bg)
 #featured {
@@ -134,6 +157,10 @@ from style.css to this file, and modify it to your liking. */
 	left: 20px;
 	right: auto;
 }
+
+/********************************************** 
+ * Mixins
+ **********************************************/
 
 // CSS3 Transition mixin
 .transition(@range: all, @time: 1s, @ease: ease-in-out) {

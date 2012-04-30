@@ -100,7 +100,7 @@
 	    	    			</div>
 	    	    			<br />
 	    	    			<div class="calltoaction">
-	    	    				<a href="#">Book tid online</a>
+	    	    				<a href="booking">Book tid online</a>
 	    	    			</div>
 	    	    		</header>
 	    	    		
