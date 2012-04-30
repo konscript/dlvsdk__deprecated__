@@ -107,10 +107,14 @@ body a:hover {
 }
 .controls-container .flex-control-nav li {
   border: 1px solid rgba(0, 0, 0, 0.3);
+  width: 15px;
+  height: 15px;
 }
 .controls-container .flex-control-nav li a {
   border: 5px solid #fff;
   background: #fff;
+  width: 6px;
+  padding-top: 6px;
 }
 .controls-container .flex-control-nav li a:hover {
   background: #000;

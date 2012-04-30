@@ -1,0 +1,99 @@
+/* 
+WOO CUSTOM STYLESHEET
+---------------------
+
+Instructions:
+
+Add your custom styles in this file instead of style.css so it 
+is easier to update the theme. Simply copy an existing style 
+from style.css to this file, and modify it to your liking. */
+
+// Permanently hide the search bar
+#header .search_main { display: none; }
+#header hgroup { margin-bottom: 0px; }
+
+// Push top menu to the outmost right and align with logo
+#navigation ul#main-nav {
+	float: right;
+	margin-top: 20px
+}
+
+// Make main nav hovering more subtle
+#navigation .nav li:hover > a {
+	.transition(all, 0.1s);
+	background-color: #e9e9e9;
+	color: black!important;	
+}
+#navigation { .nav li.current_page_item a, .nav li.current_page_parent a, .nav li.current-menu-ancestor a, .nav li.current-cat a, .nav li.li.current-menu-item a {
+	color: white!important;
+}}
+
+// No shadows on slider wrapper (best for white bg)
+#featured {
+	box-shadow: none; -webkit-box-shadow: none; -moz-box-shadow: none; -o-box-shadow: none;
+}
+
+// Slider content bar (only apply to iPad portrait and up)
+@media only screen and (min-width: 768px) {
+
+	#featured .slide-content-container {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+	}
+	#featured article {
+		height: 100%;
+		width: 300px;
+		float: right;
+		margin-right: 10%;
+		background: #fff;
+		background-color: rgba(255,255,255,0.7);
+	}
+	#featured article header {
+		position: relative;
+		height: auto;
+		background-color: transparent;
+		color: black;
+		bottom: 0;
+		left: 0;
+		width: auto;
+		padding: 30px;
+	}
+	#featured article header h1,
+	#featured article header .entry {
+		height: auto;
+	}
+	#featured article header h1 {
+		font-family: Georgia, serif;
+		color: black;
+		font-size: 2.5em;
+		padding-bottom: 20px;
+	}
+	#featured article header .entry {
+		font-family: Arial, sans-serif;
+		font-size: 1em;
+		line-height: 1.5em;
+		color: #585858;
+	}
+}
+// Hide the content bar in slider when too tight (between 768px & 920px)
+@media only screen and (min-width: 768px) and (max-width: 920px) {
+	#featured article header .entry {
+		display: none;
+	}
+}
+
+.controls-container .flex-control-nav {
+	left: 20px;
+	right: auto;
+}
+
+// CSS3 Transition mixin
+.transition(@range: all, @time: 1s, @ease: ease-in-out)
+{
+    -moz-transition: @range @time @ease;
+    -webkit-transition: @range @time @ease;
+    -o-transition: @range @time @ease;
+    transition: @range @time @ease;
+}

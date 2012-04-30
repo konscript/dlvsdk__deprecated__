@@ -597,16 +597,3 @@ INDEX
     width: 48%;
   }
 }
-/**
- * DLVS Customization
- */
-#header .search_main {
-  display: none;
-}
-#header hgroup {
-  margin-bottom: 0px;
-}
-#navigation ul#main-nav {
-  float: right;
-  margin-top: 20px;
-}

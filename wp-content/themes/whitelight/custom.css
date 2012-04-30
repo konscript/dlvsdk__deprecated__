@@ -7,4 +7,85 @@ Instructions:
 Add your custom styles in this file instead of style.css so it 
 is easier to update the theme. Simply copy an existing style 
 from style.css to this file, and modify it to your liking. */
-
+#header .search_main {
+  display: none;
+}
+#header hgroup {
+  margin-bottom: 0px;
+}
+#navigation ul#main-nav {
+  float: right;
+  margin-top: 20px;
+}
+#navigation .nav li:hover > a {
+  -moz-transition: all 0.1s ease-in-out;
+  -webkit-transition: all 0.1s ease-in-out;
+  -o-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+  background-color: #e9e9e9;
+  color: black!important;
+}
+#navigation .nav li.current_page_item a,
+#navigation .nav li.current_page_parent a,
+#navigation .nav li.current-menu-ancestor a,
+#navigation .nav li.current-cat a,
+#navigation .nav li.li.current-menu-item a {
+  color: white!important;
+}
+#featured {
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  -o-box-shadow: none;
+}
+@media only screen and (min-width: 768px) {
+  #featured .slide-content-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+  }
+  #featured article {
+    height: 100%;
+    width: 300px;
+    float: right;
+    margin-right: 10%;
+    background: #fff;
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+  #featured article header {
+    position: relative;
+    height: auto;
+    background-color: transparent;
+    color: black;
+    bottom: 0;
+    left: 0;
+    width: auto;
+    padding: 30px;
+  }
+  #featured article header h1,
+  #featured article header .entry {
+    height: auto;
+  }
+  #featured article header h1 {
+    font-family: Georgia, serif;
+    color: black;
+    font-size: 2.5em;
+    padding-bottom: 20px;
+  }
+  #featured article header .entry {
+    font-family: Arial, sans-serif;
+    font-size: 1em;
+    line-height: 1.5em;
+    color: #585858;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 920px) {
+  #featured article header .entry {
+    display: none;
+  }
+}
+.controls-container .flex-control-nav {
+  left: 20px;
+  right: auto;
+}
