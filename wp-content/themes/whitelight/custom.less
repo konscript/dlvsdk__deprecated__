@@ -20,7 +20,7 @@ from style.css to this file, and modify it to your liking. */
 
 // Make main nav hovering more subtle
 #navigation .nav li:hover > a {
-	.transition(all, 0.1s);
+	.transition(all, 0.2s);
 	background-color: #e9e9e9;
 	color: black!important;	
 }
@@ -31,6 +31,10 @@ from style.css to this file, and modify it to your liking. */
 // No shadows on slider wrapper (best for white bg)
 #featured {
 	box-shadow: none; -webkit-box-shadow: none; -moz-box-shadow: none; -o-box-shadow: none;
+}
+
+#featured article header .button {
+	display: none;
 }
 
 // Slider content bar (only apply to iPad portrait and up)
@@ -52,13 +56,14 @@ from style.css to this file, and modify it to your liking. */
 	}
 	#featured article header {
 		position: relative;
-		height: auto;
+		height: 100%;
 		background-color: transparent;
 		color: black;
 		bottom: 0;
 		left: 0;
 		width: auto;
-		padding: 30px;
+		padding: 30px 30px 0 30px;
+		text-shadow: none;
 	}
 	#featured article header h1,
 	#featured article header .entry {
@@ -76,7 +81,48 @@ from style.css to this file, and modify it to your liking. */
 		line-height: 1.5em;
 		color: #585858;
 	}
+	#featured article header .calltoaction {
+		position: absolute;
+		bottom: 60px;
+		width: 240px;
+		display: block;
+		text-align: center;
+	}
+	#featured article header .calltoaction a {
+		display: block;
+		font-size: 1.1em;
+		background-color: #B72020;
+		border-radius: 3px;
+		padding: 10px 20px;
+		width: auto;
+
+		&:hover {
+			background-color: lighten(#B72020, 10%);
+			text-decoration: none;
+			.transition(all, 0.2s);
+		}
+	}
 }
+
+// Slider content bar (only apply to small size devices)
+@media only screen and (max-width: 768px) {
+	#featured article {
+		background: #B72020;
+	}
+	#featured article header {
+		text-shadow: none;
+	}
+	#featured article header h1 {
+		font-family: Georgia, serif;
+		font-size: 2.5em;
+	}
+	#featured article header .entry {
+		font-family: Arial, sans-serif;
+		font-size: 1em;
+		line-height: 1.5em;
+	}	
+}
+
 // Hide the content bar in slider when too tight (between 768px & 920px)
 @media only screen and (min-width: 768px) and (max-width: 920px) {
 	#featured article header .entry {
@@ -90,8 +136,7 @@ from style.css to this file, and modify it to your liking. */
 }
 
 // CSS3 Transition mixin
-.transition(@range: all, @time: 1s, @ease: ease-in-out)
-{
+.transition(@range: all, @time: 1s, @ease: ease-in-out) {
     -moz-transition: @range @time @ease;
     -webkit-transition: @range @time @ease;
     -o-transition: @range @time @ease;

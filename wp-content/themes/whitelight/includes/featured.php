@@ -98,7 +98,10 @@
 	    	    					echo woo_text_trim ( $slide_excerpt, 16 );
 	    	    				?>
 	    	    			</div>
-	    	    		
+	    	    			<br />
+	    	    			<div class="calltoaction">
+	    	    				<a href="#">Book tid online</a>
+	    	    			</div>
 	    	    		</header>
 	    	    		
 	    	    	</article>

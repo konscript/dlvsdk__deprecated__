@@ -41,23 +41,13 @@ INDEX
   }
 }
 /* Adjust header elements positioning between 768px & 920px */
+/*
 @media only screen and (min-width: 768px) and (max-width: 920px) {
-  #logo,
-  hgroup {
-    float: none!important;
-  }
-  #navigation {
-    float: none!important;
-    clear: both;
-    margin: 1.5em 0 0 -10px !important;
-  }
-  #header .search_main {
-    float: none;
-    position: absolute;
-    top: 0;
-    right: 0;
-  }
+	#logo, hgroup  { float: none!important; }
+	#navigation  { float: none!important; clear: both; margin: 1.5em 0 0 -10px!important; }
+	#header .search_main  { float: none; position: absolute; top: 0; right: 0; }
 }
+*/
 /* Move normal width slider navigation elements for high resolutions */
 @media only screen and (min-width: 1024px) {
   .featured-wrap .controls-container ul.flex-direction-nav {
