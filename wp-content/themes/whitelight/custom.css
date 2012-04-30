@@ -18,11 +18,7 @@ WOO CUSTOM STYLESHEET (for DLVS)
   float: right;
   margin-top: 20px;
 }
-#navigation,
-#navigation .nav a {
-  font-size: 16px;
-}
-#navigation .nav li:hover > a {
+#navigation .nav > li:hover > a {
   -moz-transition: all 0.2s ease-in-out;
   -webkit-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
@@ -36,16 +32,6 @@ WOO CUSTOM STYLESHEET (for DLVS)
 #navigation .nav li.current-cat a,
 #navigation .nav li.li.current-menu-item a {
   color: white!important;
-}
-#navigation .nav li ul li a {
-  color: #4B4B4B;
-}
-#navigation .nav li ul {
-  background: #E9E9E9;
-  -moz-transition: all 0.2s ease-in-out;
-  -webkit-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
 }
 #navigation .nav li a:hover::after,
 #navigation .nav li:hover > a::after {
