@@ -1,7 +1,18 @@
 /* 
 WOO CUSTOM STYLESHEET (for DLVS)
----------------------
-
+---------------------*/
+/**
+ * Grid and Layout
+ ************************************************/
+/**
+ * Colors
+ ************************************************/
+/**
+ * Typography
+ ************************************************/
+/**
+ * Misc. (load compass modules)
+ ************************************************/
 /**********************************************
  * Hide Search
  **********************************************/
@@ -144,6 +155,60 @@ WOO CUSTOM STYLESHEET (for DLVS)
 .controls-container .flex-control-nav {
   left: 20px;
   right: auto;
+}
+/********************************************** 
+ * Features area on homepage
+ **********************************************/
+.home-section#features li h2 a {
+  font-weight: normal;
+  font-style: italic;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.1em;
+}
+.home-section#features li p img {
+  margin-right: 15px;
+}
+.home-section li h2 {
+  margin-bottom: 1em;
+}
+.home-section header h1 {
+  font-size: 1em;
+  font-weight: bold;
+}
+/********************************************** 
+ * Streamer (mobile app) area on homepage
+ **********************************************/
+.home-section#streamer {
+  margin-bottom: -26px;
+  border-bottom: none;
+}
+.home-section#streamer h1 {
+  font-weight: normal;
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.3em;
+  width: 50%;
+  float: left;
+  margin-bottom: 1.5em;
+}
+.home-section#streamer h1 .highlight {
+  color: #b7190e;
+}
+.home-section#streamer .icons {
+  width: 180px;
+  float: right;
+  margin-top: -15px;
+}
+.home-section#streamer .icons a {
+  display: block;
+  margin: 5px 0;
+}
+.home-section#streamer .phone {
+  width: 252px;
+  float: right;
+  margin-top: -102px;
+}
+.home-section#streamer .phone img {
+  float: right;
 }
 /********************************************** 
  * Mixins

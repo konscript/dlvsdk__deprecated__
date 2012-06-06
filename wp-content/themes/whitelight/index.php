@@ -54,8 +54,11 @@
 			// Output the Blog Area	
 			if ( $settings['alt_blog_area'] == 'true' ) { get_template_part( 'includes/homepage-blog-alt-panel' ); } 
 
-			// Output the Content Area	
-			if ( $settings['blog_area'] == 'true' ) { get_template_part( 'includes/homepage-blog-panel' ); } 
+			// Output the Content Area
+			if ( $settings['blog_area'] == 'true' ) { get_template_part( 'includes/homepage-blog-panel' ); }
+
+			// DLVS: Output the streamer
+			get_template_part( 'includes/homepage-streamer-panel' ); 
 		
 		} else {
 			

@@ -30,6 +30,8 @@ $includes = array(
 
 // Add custom DLVS includes
 array_splice($includes, count($includes), 0, array(
+	'includes/dlvs/DynamicMenus.php',
+	'includes/dlvs/menu-general.php',
 	'includes/dlvs/post-type-clinic.php',
 	'includes/dlvs/post-type-country.php',
 	'includes/dlvs/post-type-faq.php',

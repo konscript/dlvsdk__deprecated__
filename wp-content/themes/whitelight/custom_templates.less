@@ -1,0 +1,383 @@
+/*****************************************************************
+ *	CUSTOM POST TYPES
+ *****************************************************************/    
+
+ /*
+  * Clinic
+	**********************************/
+	
+	.post.clinic {
+		h1 {
+			//float: left;
+			@include column(18);
+			margin-top: 10px;			
+		}
+		
+		.post-content {
+			@include column(@content-cols, true);
+		}
+		
+	}
+	
+	.contact {
+		@include column( $content-cols / 2 );	
+				
+		p.address {	background: url('../../img/icon-address-black-20px.png') no-repeat	center left; }
+		p.telephone {	background: url('../../img/icon-telephone-20px.png') no-repeat	center left; }		
+		p.telephone, p.address {
+			padding-left: 25px;
+			min-height: 20px;
+			line-height:13px;
+		}
+	}	
+	
+	.opening_hours {
+			@include column( $content-cols / 2, true );	
+	}
+	
+	.gmap a {
+		float: left;
+	}
+
+ /**
+  * region
+  **********************************/
+
+	div.post.region {
+		
+		#country-selector {
+			width: 155px;
+		}
+				
+		.country-wrapper {
+			@include clearfix;
+			//margin-top: 20px;
+			//border-left: 1px solid $color-secondary-c;
+			//border-top: 1px solid $color-secondary-c;			
+		}
+		
+		.country {
+			display: block;
+			float: left;
+			width: 34px;
+			height: 24px;
+			white-space: nowrap;
+			overflow: hidden;
+			//border-right: 1px solid $color-secondary-c;
+			//border-bottom: 1px solid $color-secondary-c;
+			padding: 10px;
+			
+			img {
+				width: 100%;
+			}
+		}
+				
+	}
+ 
+ /**
+  * vaccination
+  **********************************/
+	table.zebra {
+		width:100%;
+		margin-bottom: 10px;
+		border-top: 1px solid $color-secondary-c;
+		border-right: 1px solid $color-secondary-c;
+  	
+  		thead tr td {
+				font-weight: bold; }
+  		
+  		td {
+  			line-height: 25px;
+				padding: 5px 15px;
+				border-bottom: 1px solid $color-secondary-c;
+				border-left: 1px solid $color-secondary-c; }
+  		
+  		tbody tr:nth-child(odd){
+  			background-color: #f6f6f6; }
+  }
+  
+ /**
+  * country
+  **********************************/  
+
+	$sidebar-columns: floor($body-container-cols / 4);
+
+	.country-meta-header {
+		@include column($sidebar-columns);
+		text-align: center;
+		//font-size: 18px;
+		//padding: 0 0 20px 0;
+		margin: 0 0 20px 0;
+		font-family: $typography-family-secondary;		
+	}
+
+	.country-meta {
+		@include column($sidebar-columns);
+		border: 1px solid $color-secondary-c;
+		display: block;
+		//@include prepend(1);
+		//margin-top: 15px;
+		text-align: left;
+		line-height: 2em;
+		padding-bottom: 10px;
+
+		tbody {}
+		td {
+			padding: 5px 10px 0 10px;
+		}
+		
+	}
+	
+	.country-flag {
+		@include column(3);
+		
+//		width: 30px;
+		text-align: right;
+		margin-top: 10px;
+				
+		img {
+			width: 100%;
+		}
+	}
+
+
+  div.post.country{	
+	
+		h1 {
+			//float: left;
+			@include column(18);
+			margin-top: 10px;			
+		}
+			
+		#vaccinations_groups {
+			float: left;
+			clear: both;
+			width: 100%;
+			border-top: 1px solid $color-secondary-c;
+			border-left: 1px solid $color-secondary-c;			
+		}
+	
+		table#vaccinations_groups thead tr td {
+			font-weight: bold;
+		}
+
+		table#vaccinations_groups tr td:first-child	{
+			text-align: left;
+		}
+	
+		table#vaccinations_groups tr td{
+			text-align: center;	
+			padding: 5px 10px;
+			border-bottom: 1px solid $color-secondary-c;
+			border-right: 1px solid $color-secondary-c;			
+							
+			img {
+				margin-top: 5px;
+				width: 18px;
+				height: 18px;
+			}
+		}
+
+		table#vaccinations_groups tr td.vaccination-name {
+			width: 30%;
+		}
+		
+		.disclaimer {
+			@include column($content-cols, true);
+			color: #aaa;
+			h3 {
+				margin-top: 0;
+			}
+			ul {
+				margin: 10px 0;
+			}
+		}
+  
+  }
+
+/**
+* faq
+**********************************/    
+
+.post.faq{	
+	
+	#searchFaq {
+		@include border-radius(3px);
+		//@include background-image(linear-gradient(#fff, #f0f0f0));
+		width: 200px;
+		padding: 10px;
+		border: 1px solid #bebebe;
+		background-color: #fff;
+		color: #000;
+		outline: none; }
+		
+	#clearSearch {
+		@include border-radius(3px);
+		padding: 2px 6px 3px 6px;		
+		//border: 1px solid #D8DCDF;		
+	}
+}
+
+
+/*****************************************************************
+ *	Templates
+ *****************************************************************/    
+
+
+/*
+ * Vaccination recommendations template
+ **************************/ 
+
+	.map-header {
+		@include text-shadow(0 1px 0 rgba(255,255,255,0.5));				
+		display: block;
+		padding: 30px 0 0px 0;
+		margin: 0;
+		line-height: 34px;
+		font-size: 34px;
+		color: $color-primary;
+		font-weight: normal;
+		text-align: center;
+	}
+
+	.map-form-container {
+		text-align: center;
+		margin-top: 10px;
+	}
+
+	.map-text {}
+	.map-form { display: inline; }
+	#country-selector {	width: 120px;}
+
+	// World Map
+	$lightblue: #D4ECF5;
+	$darkblue: #74B6CF;
+	#map-wrapper {
+		@include border-radius(3px);
+		border: 1px solid $darkblue;
+		border-top: 1px solid lighten($darkblue, 10%);
+		border-bottom: 1px solid darken($darkblue, 10%);		
+		background-color: $darkblue;
+		background-image: -moz-radial-gradient(50% 50%, ellipse cover, $lightblue, $darkblue 100%);
+		background-image: -webkit-radial-gradient(50% 50%, ellipse cover, $lightblue, $darkblue 100%);
+		background-image: -o-radial-gradient(50% 50%, ellipse cover, $lightblue, $darkblue 100%);
+		background-image: -ms-radial-gradient(50% 50%, ellipse cover, $lightblue, $darkblue 100%);
+		background-image: radial-gradient(50% 50%, ellipse cover, $lightblue, $darkblue 100%)
+	}
+
+	#map-continents {
+		//padding-top: 35px;
+
+		#continents li .bg {
+			@include opacity(0);
+			@include transition-property(opacity);
+			@include transition-duration(0.3s);	
+		}
+		#continents li:hover .bg {
+			@include opacity(1);
+		}
+	}
+		
+/*
+ * Booking template
+ **************************/
+div.template.booking {
+	
+	h1 {
+		text-align: center;
+	}
+	
+	.form{
+	  $formColumns: $body-container-cols / 2;			
+		@include column($formColumns);
+		
+		$formHeight: 25px;
+		$padding: 5px;
+		
+		label {	 					
+				$labelColumns: floor( $formColumns * 1 / 3 );
+	 			@include column( $labelColumns );
+	 			text-align: right;
+				line-height: $formHeight;			 			
+	 			height: $formHeight;
+	 			padding: $padding 0;
+	 			text-weight:bold;
+		}
+		
+		.fieldWrapper {
+			@include column( ceil( $formColumns * 2 / 3 ) , true);
+ 			//height: $formHeight;
+ 			padding: 6px 0;
+ 			position: relative;
+ 			
+ 			input,textarea,select {
+ 				padding: $padding;
+ 				height: $formHeight - ( $padding * 2);
+ 				display:block;
+				width: 100%;
+ 			}		 		
+		}
+		.fieldWrapper.textarea {
+			//height: 50px;
+ 			textarea { height:40px; }
+		}	 
+		.fieldWrapper.select {
+			//height: 25px;
+ 			select { height: 25px; }
+		}
+		#booking .radio input[type="radio"] {
+			margin: 0 5px;
+			padding: 0;
+			position: relative;
+			float: left;
+			display: block;
+			width: auto;
+			width: 12px;
+		}
+		.radio span {
+			display: block;
+			margin: 0 5px;
+			width: 12px;
+			float: left;
+		}
+		.radio.fieldWrapper {
+			width: 170px;
+		}
+	}
+
+	
+	.iframe {
+		@include column($body-container-cols / 2, true);
+		
+		.iframe-placeholder {
+			margin: 0 10px;
+			
+			img {
+				@include border-radius($radius);
+			}
+			p {
+				margin-top: 10px;
+			}
+		}
+	} 			
+	
+	// validation rules	
+	label.error {
+		//position: absolute;
+		//top: 0px;
+		//left: 220px;
+		padding: 0;
+		width: 100%;
+		color: $color-contrast;
+		font-style: italic;
+		text-align:left;
+	}
+	
+}
+
+/*
+ * Generic Fixes
+ ********************************/
+.clearfix{
+	@include clearfix;
+}  

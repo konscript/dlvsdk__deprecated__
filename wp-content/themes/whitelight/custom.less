@@ -1,6 +1,71 @@
 /* 
 WOO CUSTOM STYLESHEET (for DLVS)
----------------------
+---------------------*/
+
+/**
+ * Grid and Layout
+ ************************************************/
+
+// Configure blueprint
+@blueprint-grid-columns: 48;
+@blueprint-container-size: 950px;
+@blueprint-grid-margin: 10px;
+
+// Column width (set to fixed and unset container-size for auto)
+@blueprint-grid-width: (@blueprint-container-size + @blueprint-grid-margin) / @blueprint-grid-columns - @blueprint-grid-margin;
+
+// Helper variables
+@body-container-cols: @blueprint-grid-columns - 1;
+@content-cols: ceil(3 * @body-container-cols / 4);
+@margin: @blueprint-grid-margin;
+@radius: 4px;
+
+/**
+ * Colors
+ ************************************************/
+
+@color-primary: 		#000000;	// Black
+@color-primary-b: 	#444;			// Black Light 
+@color-primary-c: 	#7f7f7f;	// Black Lighter 
+@color-secondary:		#fff;			// White
+@color-secondary-b:	#f6f6f6;	// White Dark
+@color-secondary-c:	#eee;			// White Darker
+@color-secondary-d:	#ccc;			// White Even Darker
+@color-contrast-b:	#ee3124;	// Red Light
+@color-contrast:		darken(@color-contrast-b, 15%);		// Red
+@color-contrast-c:	lighten(@color-contrast-b, 10%);	// Red Lighter
+
+@font-color: @color-primary-b;
+@link-color: @color-contrast;
+@link-hover-color: @color-contrast-b; 
+@link-focus-color: @color-contrast-b;
+@link-active-color: @color-contrast-b;
+@link-visited-color: @color-contrast;
+@alt-text-color: @color-primary-b;
+@blueprint-background-color: @color-secondary;
+@blueprint-border-color: @color-primary-c;
+@quiet-color: lighten(@font-color, 40%);
+
+/**
+ * Typography
+ ************************************************/
+
+// Typography
+@typography-family-primary: 'Lucida Grande', Verdana, Arial, Helvetica, sans-serif;
+@typography-family-secondary: Georgia, "Times New Roman", serif;
+@typography-size-normal: 11px;
+@typography-size-header: 161px;
+@typography-size-subheader: 141px;
+
+// Fonts
+@blueprint-font-family: @typography-family-primary;
+@blueprint-font-size: @typography-size-normal;
+
+/**
+ * Misc. (load compass modules)
+ ************************************************/
+
+//@import "custom_templates.less";
 
 /**********************************************
  * Hide Search
@@ -150,6 +215,74 @@ WOO CUSTOM STYLESHEET (for DLVS)
 .controls-container .flex-control-nav {
 	left: 20px;
 	right: auto;
+}
+
+
+/********************************************** 
+ * Features area on homepage
+ **********************************************/
+
+.home-section#features li h2 a {
+	font-weight: normal;
+	font-style: italic;
+	font-family: @typography-family-secondary;
+	font-size: 1.1em;
+}
+
+.home-section#features li p img {
+	margin-right: 15px;
+}
+
+.home-section li h2 {
+	margin-bottom: 1em;
+}
+
+.home-section header h1 {
+	font-size: 1em;
+	font-weight: bold;
+}
+
+/********************************************** 
+ * Streamer (mobile app) area on homepage
+ **********************************************/
+
+// Streamer
+.home-section#streamer {
+	margin-bottom: -26px;
+	border-bottom: none;
+
+	h1 {
+		font-weight: normal;
+		font-family: @typography-family-secondary;
+		line-height: 1.3em;
+		width: 50%;
+		float: left;
+		margin-bottom: 1.5em;
+
+		.highlight {
+			color: @color-contrast;
+		}
+	}
+
+	.icons {
+		width: 180px;
+		float: right;
+		margin-top: -15px;
+
+		a {
+			display: block;
+			margin: 5px 0;
+		}
+	}
+	.phone {
+		width: 252px;
+		float: right;
+		margin-top: -102px;
+
+		img {
+			float:right;
+		}
+	}
 }
 
 /********************************************** 
