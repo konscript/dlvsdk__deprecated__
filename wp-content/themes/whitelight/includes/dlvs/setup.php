@@ -1,5 +1,14 @@
 <?php
 
+// Load JS for frontend
+wp_enqueue_script('jquery-ui-1.8.16.custom.min.js', get_template_directory_uri() . '/includes/js/jquery-ui-1.8.16.custom.min.js', array( 'jquery' ) );
+wp_enqueue_script('jquery-ui-autocomplete.js', get_template_directory_uri() . '/includes/js/jquery-ui-autocomplete.js', array( 'jquery' ) );
+wp_enqueue_script('jquery.maphilight.min.js', get_template_directory_uri() . '/includes/js/jquery.maphilight.min.js', array( 'jquery' ) );
+wp_enqueue_script('jquery.select-to-autocomplete.js', get_template_directory_uri() . '/includes/js/jquery.select-to-autocomplete.js', array( 'jquery' ) );
+wp_enqueue_script('jquery.validate.min.js', get_template_directory_uri() . '/includes/js/jquery.validate.min.js', array( 'jquery' ) );
+wp_enqueue_script('continents-map.js', get_template_directory_uri() . '/includes/js/continents-map/continents-map.js', array( 'jquery' ) );
+wp_enqueue_script('dlvs-main', get_template_directory_uri() . '/includes/js/dlvs-main.js', array( 'jquery' ) );
+
 // Getting page ID of current Custom Post Type
 function getPageIDOfCurrentCustomPostType(){
 	global $wpdb;

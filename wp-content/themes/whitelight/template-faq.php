@@ -1,12 +1,13 @@
 <?php /* Template Name: FAQs */ ?>
 <?php get_header(); ?>
-<?php sidebar(true, true, false); ?>
 
-<section id="primary">
-	<div id="content" role="main">
-	<div class="post faq">
-		<h1><?php the_title(); ?><?php //post_type_archive_title(); ?></h1>	
-		
+<div id="content">
+	<div class="page col-full">
+		<?php sidebar(true, true, false); ?>
+		<section id="main" class="col-left faq">
+
+			<header><h1><?php the_title(); ?></h1></header>
+			
 			<?php echo the_content(); ?>
 
 				<input type="text" id="searchFaq" placeholder="Type to search" />
@@ -38,8 +39,8 @@
 					endforeach; ?>
 				</div>
 			<?php endforeach; ?>
- 		</div>	
-	</div><!-- #content -->
-</section><!-- #primary -->
+ 		</section>	
+	</div>
+</div>
 
 <?php get_footer(); ?>

@@ -1,4 +1,6 @@
-<?php /* Template Name: Frontpage */ ?>
+<?php /* Template Name: Frontpage */
+	  /* OLD DEPRECATED */
+?>
 <?php get_header(); ?>
 
 <div id="content" class="no-sidebar">	

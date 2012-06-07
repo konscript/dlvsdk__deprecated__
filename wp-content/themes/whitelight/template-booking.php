@@ -1,8 +1,9 @@
 <?php /* Template Name: Booking */ ?>
 <?php get_header(); ?>
-	<div id="content" class="no-sidebar">
-		<div class="template booking">
-			<h1><?php the_title(); ?></h1>
+<div id="content">
+	<div class="page col-full">
+		<section class="col-full template booking">
+			<header><h1><?php the_title(); ?></h1></header>
 			
 			<?php
 									
@@ -95,9 +96,9 @@
 					</tr>
 				<?php	endforeach; ?>
 			</table>
-		</div><!--#end post-->
-	</div><!--#end content -->
-	
+		</div>
+	</div>
+</div>
 
 <?php get_footer(); ?>
 

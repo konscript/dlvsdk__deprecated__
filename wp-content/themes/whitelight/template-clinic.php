@@ -7,20 +7,22 @@ $args = array(
   'title_li'=> '&nbsp;',
   'echo' => false,  
 );
-$sidebar_menu = wp_list_pages( $args );
-sidebar($sidebar_menu, true, false); ?>
+$sidebar_menu = wp_list_pages( $args ); ?>
 
-<section id="primary">
-	<div id="content" role="main">
+<div id="content">
+	<div class="page col-full">
+		<?php sidebar($sidebar_menu, true, false); ?>
+		<section id="main" class="col-left">
 	
-	<?php 
-	$clinic = basename(get_permalink());
-	echo '<a class="button-book" href="' . get_bloginfo('wpurl') . '/booking/clinic/' . $clinic . '"><div class="button-book-title">Bestil vaccination</div></a>';
-	?>
-	<h1><?php the_title(); ?></h1> 		
-	<?php echo the_content(); ?>	
+			<?php 
+			$clinic = basename(get_permalink());
+			echo '<a class="button-book" href="' . get_bloginfo('wpurl') . '/booking/clinic/' . $clinic . '"><div class="button-book-title">Bestil vaccination</div></a>';
+			?>
+			<header><h1><?php the_title(); ?></h1></header>
+			<?php echo the_content(); ?>	
 
-	</div><!-- #content -->
-</section><!-- #primary -->
+		</section>
+	</div>
+</div>
 
 <?php get_footer(); ?>

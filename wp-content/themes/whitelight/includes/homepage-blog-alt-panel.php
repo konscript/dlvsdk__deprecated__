@@ -41,6 +41,9 @@
     		
     			<header class="block">
     				<h1><?php echo stripslashes( $settings['alt_blog_area_title'] ); ?></h1>
+    				<a href="<?php if ( $settings['alt_blog_area_link_URL'] != '' ) echo $settings['alt_blog_area_link_URL']; else echo next_posts(); ?>" title="<?php echo stripslashes( $settings['alt_blog_area_link_text'] ); ?>">
+    					<img src="<?php echo get_template_directory_uri(); ?>/images/dlvs/frontpage-mapthumb.jpg" style="max-width: 100%; margin: 10px 0" />
+    				</a>
     				<p><?php echo stripslashes( $settings['alt_blog_area_message'] ); ?></p>
     				<a class="more" href="<?php if ( $settings['alt_blog_area_link_URL'] != '' ) echo $settings['alt_blog_area_link_URL']; else echo next_posts(); ?>" title="<?php echo stripslashes( $settings['alt_blog_area_link_text'] ); ?>"><?php echo stripslashes( $settings['alt_blog_area_link_text'] ); ?></a>
     			</header>
