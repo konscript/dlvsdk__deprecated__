@@ -53,7 +53,13 @@ WOO CUSTOM STYLESHEET (for DLVS)
   border-color: #B72020 transparent transparent transparent!important;
 }
 /********************************************** 
- * Feated slider on homepage
+ * Homepage
+ **********************************************/
+.home #content {
+  padding-bottom: 0;
+}
+/********************************************** 
+ * Featured slider on homepage
  **********************************************/
 #featured {
   box-shadow: none;
@@ -184,43 +190,65 @@ WOO CUSTOM STYLESHEET (for DLVS)
   font-family: Georgia, "Times New Roman", serif;
   font-size: 1.1em;
 }
-.home-section#blog-alt li p img {
-  margin-right: 15px;
+.home-section#blog-alt ul li .thumbnail {
+  display: none;
+}
+/* Only apply to iPad portrait and up */
+@media only screen and (min-width: 768px) {
+  .home-section#blog-alt header {
+    width: 48%;
+    margin-right: 4%;
+  }
+  .home-section#blog-alt ul {
+    width: 48%;
+  }
+  .home-section#blog-alt ul li {
+    width: 46%;
+    margin-right: 8%;
+  }
+  .home-section#blog-alt ul li.last {
+    margin-right: 0;
+  }
 }
 /********************************************** 
  * Streamer (mobile app) area on homepage
  **********************************************/
 .home-section#streamer {
-  margin-bottom: -26px;
   border-bottom: none;
 }
 .home-section#streamer h1 {
   font-weight: normal;
   font-family: Georgia, "Times New Roman", serif;
   line-height: 1.3em;
-  width: 50%;
-  float: left;
-  margin-bottom: 1.5em;
+  font-size: 2.2em;
 }
 .home-section#streamer h1 .highlight {
   color: #b7190e;
 }
-.home-section#streamer .icons {
-  width: 180px;
-  float: right;
-  margin-top: -15px;
+.home-section#streamer .phone .icons {
+  margin: 20px 0;
 }
-.home-section#streamer .icons a {
-  display: block;
-  margin: 5px 0;
-}
-.home-section#streamer .phone {
-  width: 252px;
-  float: right;
-  margin-top: -102px;
-}
-.home-section#streamer .phone img {
-  float: right;
+/* Only apply to iPad portrait and up */
+@media only screen and (min-width: 768px) {
+  .home-section#streamer h1 {
+    float: left;
+    margin-bottom: 1.5em;
+  }
+  .home-section#streamer .phone {
+    float: right;
+  }
+  .home-section#streamer .phone a.iphone-model {
+    float: left;
+    margin-top: -90px;
+  }
+  .home-section#streamer .phone .icons {
+    float: left;
+    margin: 0 40px;
+  }
+  .home-section#streamer .phone .icons a {
+    display: block;
+    margin: 5px 0;
+  }
 }
 /********************************************** 
  * Mixins

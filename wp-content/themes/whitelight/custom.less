@@ -107,7 +107,15 @@ WOO CUSTOM STYLESHEET (for DLVS)
 }
 
 /********************************************** 
- * Feated slider on homepage
+ * Homepage
+ **********************************************/
+
+.home #content {
+	padding-bottom: 0;
+}
+
+/********************************************** 
+ * Featured slider on homepage
  **********************************************/
 
 // No shadows on slider wrapper (best for white bg)
@@ -246,15 +254,48 @@ WOO CUSTOM STYLESHEET (for DLVS)
  * Blogpost area on homepage
  **********************************************/
 
-.home-section#blog-alt li h2 a {
-	font-weight: normal;
-	font-style: italic;
-	font-family: @typography-family-secondary;
-	font-size: 1.1em;
+.home-section#blog-alt {
+
+	li h2 a {
+		font-weight: normal;
+		font-style: italic;
+		font-family: @typography-family-secondary;
+		font-size: 1.1em;
+	}
+
+	ul {
+		li {
+			.thumbnail {
+				display: none;
+			}	
+		}
+	}
 }
 
-.home-section#blog-alt li p img {
-	margin-right: 15px;
+/* Only apply to iPad portrait and up */
+@media only screen and (min-width: 768px) {
+
+.home-section#blog-alt {
+
+	header {
+		width: 48%;
+		margin-right: 4%
+	}
+
+	ul {
+		width: 48%;
+
+		li {
+			width: 46%;
+			margin-right: 8%;
+		}
+
+		li.last {
+			margin-right: 0;
+		}
+	}
+}
+
 }
 
 /********************************************** 
@@ -263,41 +304,57 @@ WOO CUSTOM STYLESHEET (for DLVS)
 
 // Streamer
 .home-section#streamer {
-	margin-bottom: -26px;
+	//margin-bottom: -26px;
 	border-bottom: none;
 
 	h1 {
 		font-weight: normal;
 		font-family: @typography-family-secondary;
 		line-height: 1.3em;
-		width: 50%;
-		float: left;
-		margin-bottom: 1.5em;
+		font-size: 2.2em;
 
 		.highlight {
 			color: @color-contrast;
 		}
 	}
 
-	.icons {
-		width: 180px;
-		float: right;
-		margin-top: -15px;
-
-		a {
-			display: block;
-			margin: 5px 0;
-		}
-	}
 	.phone {
-		width: 252px;
-		float: right;
-		margin-top: -102px;
-
-		img {
-			float:right;
+		.icons {
+			margin: 20px 0;
 		}
 	}
+}
+
+/* Only apply to iPad portrait and up */
+@media only screen and (min-width: 768px) {
+
+.home-section#streamer {
+
+	h1 {
+		float: left;		
+		margin-bottom: 1.5em;
+	}
+
+	.phone {
+		float: right;
+
+		a.iphone-model {
+			float: left;
+			margin-top: -90px;
+		}
+
+		.icons {
+			float: left;
+			margin: 0 40px;
+
+			a {
+				display: block;
+				margin: 5px 0;
+			}
+		}		
+	}
+}
+
 }
 
 /********************************************** 
