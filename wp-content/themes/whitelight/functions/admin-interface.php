@@ -331,6 +331,17 @@ if ( ! function_exists( 'woothemes_options_page' ) ) {
 		global $pagenow;
 ?>
 <div class="wrap" id="woo_container">
+<?php
+	// Custom action at the top of the admin interface.
+	$page = '';
+	if ( isset( $_GET['page'] ) ) {
+		$page = sanitize_user( esc_attr( strip_tags( $_GET['page'] ) ) );
+	} 
+	do_action( 'wooframework_container_inside' );
+	if ( $page != '' ) {
+		do_action( 'wooframework_container_inside-' . $page );
+	}
+?>
 <div id="woo-popup-save" class="woo-save-popup"><div class="woo-save-save"><?php _e( 'Options Updated', 'woothemes' ); ?></div></div>
 <div id="woo-popup-reset" class="woo-save-popup"><div class="woo-save-reset"><?php _e( 'Options Reset', 'woothemes' ); ?></div></div>
     <form action="" enctype="multipart/form-data" id="wooform" method="post">
@@ -547,7 +558,7 @@ if ( ! function_exists( 'woo_load_only' ) ) {
 		wp_register_script( 'jquery-ui-datepicker', get_template_directory_uri() . '/functions/js/ui.datepicker.js', array( 'jquery-ui-core' ) );
 		wp_register_script( 'jquery-input-mask', get_template_directory_uri() . '/functions/js/jquery.maskedinput-1.2.2.js', array( 'jquery' ) );
 		wp_register_script( 'woo-scripts', get_template_directory_uri() . '/functions/js/woo-scripts.js', array( 'jquery' ) );
-		wp_register_script( 'woo-admin-interface', get_template_directory_uri() . '/functions/js/woo-admin-interface.js', array( 'jquery' ), '5.0.0' );
+		wp_register_script( 'woo-admin-interface', get_template_directory_uri() . '/functions/js/woo-admin-interface.js', array( 'jquery' ), '5.3.5' );
 		wp_register_script( 'colourpicker', get_template_directory_uri() . '/functions/js/colorpicker.js', array( 'jquery' ) );
 
 		wp_enqueue_script( 'jquery-ui-datepicker' );
@@ -556,6 +567,7 @@ if ( ! function_exists( 'woo_load_only' ) ) {
 		wp_enqueue_script( 'colourpicker' );
 		wp_enqueue_script( 'woo-admin-interface' );
 		wp_enqueue_script( 'woo-custom-fields' );
+		wp_enqueue_script( 'jquery-ui-slider' );
 
 		// Register the typography preview JavaScript.
 		wp_register_script( 'woo-typography-preview', get_template_directory_uri() . '/functions/js/woo-typography-preview.js', array( 'jquery' ), '1.0.0', true );
@@ -569,7 +581,7 @@ if ( ! function_exists( 'woo_load_only' ) ) {
 
 if ( ! function_exists( 'woo_framework_load_css' ) ) {
 	function woo_framework_load_css () {
-		wp_register_style( 'woo-admin-interface', get_template_directory_uri() . '/functions/admin-style.css', '', '5.0.0' );
+		wp_register_style( 'woo-admin-interface', get_template_directory_uri() . '/functions/admin-style.css', '', '5.3.10' );
 		wp_register_style( 'jquery-ui-datepicker', get_template_directory_uri() . '/functions/css/jquery-ui-datepicker.css' );
 		wp_register_style( 'colourpicker', get_template_directory_uri() . '/functions/css/colorpicker.css' );
 
@@ -1473,6 +1485,15 @@ if ( ! function_exists( 'woothemes_machine' ) ) {
 				$output .= '</span><!--/.time-selectors-->' . "\n";
 				
 				$output .= '<input class="woo-input-calendar" type="text" name="' . $value['id'] . '[date]" id="'.$value['id'].'" value="' . esc_attr( date( 'm/d/Y', $val ) ) . '">';
+			break;
+
+			case 'slider':
+				$val = $value['std'];
+				$std = get_option( $value['id'] );
+				if ( $std != "" ) { $val = $std; }
+				$val = stripslashes( $val ); // Strip out unwanted slashes.
+				$output .= '<div class="ui-slide" id="'. $value['id'] .'_div" min="'. esc_attr( $value['min'] ) .'" max="'. esc_attr( $value['max'] ) .'" inc="'. esc_attr( $value['increment'] ) .'"></div>';
+				$output .= '<input readonly="readonly" class="woo-input" name="'. $value['id'] .'" id="'. $value['id'] .'" type="'. $value['type'] .'" value="'. esc_attr( $val ) .'" />';
 			break;
 
 			case "heading":

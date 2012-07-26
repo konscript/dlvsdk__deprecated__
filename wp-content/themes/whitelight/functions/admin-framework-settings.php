@@ -186,9 +186,9 @@ function woothemes_framework_settings_page() {
 										'icon' => 'presstrends',
 										'type' => 'heading' );
 									
-		$framework_options[] = array( 	'name' => __( 'Disable PressTrends Tracking', 'woothemes' ),
-										'desc' => __( 'Disable sending of usage data to PressTrends.', 'woothemes' ),
-										'id' => $shortname . '_presstrends_disable',
+		$framework_options[] = array( 	'name' => __( 'Enable PressTrends Tracking', 'woothemes' ),
+										'desc' => __( 'Enable sending of usage data to PressTrends.', 'woothemes' ),
+										'id' => $shortname . '_presstrends_enable',
 										'std' => 'false',
 										'type' => 'checkbox' );
 	

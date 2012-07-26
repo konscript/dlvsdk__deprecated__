@@ -30,7 +30,7 @@ add_action( 'woo_theme_activate', 'woo_themeoptions_redirect', 10 );
 
 function woo_themeoptions_redirect () {
 	// Do redirect
-	header( 'Location: ' . admin_url() . 'admin.php?page=woothemes' );
+	header( 'Location: ' . admin_url() . 'admin.php?page=woothemes&activated=true' );
 } // End woo_themeoptions_redirect()
 
 /*-----------------------------------------------------------------------------------*/
@@ -155,29 +155,34 @@ add_action( 'wp_head', 'woothemes_wp_head', 10 );
 /*-----------------------------------------------------------------------------------*/
 if ( ! function_exists( 'woo_output_alt_stylesheet' ) ) {
 	function woo_output_alt_stylesheet() {
-
 		$style = '';
 
 		if ( isset( $_REQUEST['style'] ) ) {
 			// Sanitize requested value.
-			$requested_style = strtolower( strip_tags( trim( $_REQUEST['style'] ) ) );
+			$requested_style = esc_attr( strtolower( strip_tags( trim( $_REQUEST['style'] ) ) ) );
 			$style = $requested_style;
 		}
 
 		echo "\n" . "<!-- Alt Stylesheet -->\n";
-		if ($style != '') {
-			echo '<link href="'. get_template_directory_uri() . '/styles/'. $style . '.css" rel="stylesheet" type="text/css" />' . "\n";
+		// If we're using the query variable, be sure to check for /css/layout.css as well.
+		if ( $style != '' ) {
+			if ( strtolower( $style ) == 'default' ) {
+				if ( file_exists( get_template_directory() . '/css/layout.css' ) ) {
+					echo '<link href="' . get_template_directory_uri() . '/css/layout.css" rel="stylesheet" type="text/css" />' . "\n";
+				}
+				echo '<link href="' . get_stylesheet_uri() . '" rel="stylesheet" type="text/css" />' . "\n";
+			} else {
+				echo '<link href="' . get_template_directory_uri() . '/styles/'. $style .'.css" rel="stylesheet" type="text/css" />' . "\n";
+			}
 		} else {
 			$style = get_option( 'woo_alt_stylesheet' );
+			$style = esc_attr( strtolower( strip_tags( trim( $style ) ) ) );
 			if( $style != '' ) {
-				// Sanitize value.
-				$style = strtolower( strip_tags( trim( $style ) ) );
 				echo '<link href="'. get_template_directory_uri() . '/styles/'. $style .'" rel="stylesheet" type="text/css" />' . "\n";
 			} else {
 				echo '<link href="'. get_template_directory_uri() . '/styles/default.css" rel="stylesheet" type="text/css" />' . "\n";
 			}
 		}
-
 	} // End woo_output_alt_stylesheet()
 }
 

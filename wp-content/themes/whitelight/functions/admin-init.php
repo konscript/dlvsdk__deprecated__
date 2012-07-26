@@ -4,7 +4,7 @@
 /*-----------------------------------------------------------------------------------*/
 function woo_version_init() {
 
-    $woo_framework_version = '5.3.0';
+    $woo_framework_version = '5.3.12';
 
     if ( get_option( 'woo_framework_version' ) != $woo_framework_version ) {
     	update_option( 'woo_framework_version', $woo_framework_version );

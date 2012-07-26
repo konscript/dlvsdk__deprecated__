@@ -48,31 +48,42 @@ function woothemes_metabox_create( $post, $callback ) {
 	
 	$template_to_show = $callback['args'];
 
-    $woo_metaboxes = get_option( 'woo_custom_template' );
+    $woo_metaboxes = get_option( 'woo_custom_template', array() );
 
-    $seo_metaboxes = get_option( 'woo_custom_seo_template' );
+    $seo_metaboxes = get_option( 'woo_custom_seo_template', array() );
 
     if( empty( $seo_metaboxes ) && $template_to_show == 'seo' ) {
     	return;
     }
 
 	// Array sanity check.
-	if ( ! is_array( $woo_metaboxes ) ) { return; }
+	if ( ! is_array( $woo_metaboxes ) ) { $woo_metaboxes = array(); }
+
+    // Determine whether or not to display general fields.
+    $display_general_fields = true;
+    if ( count( $woo_metaboxes ) <= 0 ) {
+        $display_general_fields = false;
+    }
 
 	// Determine whether or not to display SEO fields.
 	$display_seo_fields = true;
-	if ( get_option( 'seo_woo_hide_fields' ) == 'true' ) {
+	if ( get_option( 'seo_woo_hide_fields' ) == 'true' || ( get_option( 'seo_woo_use_third_party_data' ) == 'true' ) ) {
 		$display_seo_fields = false;
 	}
 
     $output = '';
     
+    // Add nonce for custom fields.
+    $output .= wp_nonce_field( 'wooframework-custom-fields', 'wooframework-custom-fields-nonce', true, false );
+
     if ( $callback['id'] == 'woothemes-settings' ) {
 	    // Add tabs.
 	    $output .= '<div class="wooframework-tabs">' . "\n";
 	    
 	    $output .= '<ul class="tabber hide-if-no-js">' . "\n";
-	    	$output .= '<li class="wf-tab-general"><a href="#wf-tab-general">' . __( 'General Settings', 'woothemes' ) . '</a></li>' . "\n";
+	    	if ( $display_general_fields ) {
+                $output .= '<li class="wf-tab-general"><a href="#wf-tab-general">' . __( 'General Settings', 'woothemes' ) . '</a></li>' . "\n";
+            }
 	    	if ( $display_seo_fields ) {
 	    		$output .= '<li class="wf-tab-seo"><a href="#wf-tab-seo">' . __( 'SEO', 'woothemes' ) . '</a></li>' . "\n";
 	    	}
@@ -82,8 +93,11 @@ function woothemes_metabox_create( $post, $callback ) {
 	    $output .= '</ul>' . "\n";
     }
     
-    $output .= woothemes_metabox_create_fields( $woo_metaboxes, $callback, 'general' );
-    
+    if ( $display_general_fields ) {
+        $output .= woothemes_metabox_create_fields( $woo_metaboxes, $callback, 'general' );
+
+    }
+
     if ( $display_seo_fields && ( array_search( get_post_type(), $seo_post_types ) !== false ) ) {
     	$output .= woothemes_metabox_create_fields( $seo_metaboxes, $callback, 'seo' );
     }
@@ -103,14 +117,16 @@ function woothemes_metabox_create( $post, $callback ) {
  * 
  * @access public
  * @since 5.3.0
- * @param array $woo_metaboxes
+ * @param array $metaboxes
  * @param array $callback
  * @param string $token (default: 'general')
  * @return string $output
  */
-function woothemes_metabox_create_fields ( $woo_metaboxes, $callback, $token = 'general' ) {
+function woothemes_metabox_create_fields ( $metaboxes, $callback, $token = 'general' ) {
 	global $post;
-	
+
+    if ( ! is_array( $metaboxes ) ) { return; }
+
 	// $template_to_show = $callback['args'];
 	$template_to_show = $token;
 	
@@ -118,11 +134,11 @@ function woothemes_metabox_create_fields ( $woo_metaboxes, $callback, $token = '
 	
 	$output .= '<div id="wf-tab-' . $token . '">' . "\n";
 	$output .= '<table class="woo_metaboxes_table">'."\n";
-    foreach ( $woo_metaboxes as $k => $woo_metabox ) {
+    foreach ( $metaboxes as $k => $woo_metabox ) {
     
     	// Setup CSS classes to be added to each table row.
     	$row_css_class = 'woo-custom-field';
-    	if ( ( $k + 1 ) == count( $woo_metaboxes ) ) { $row_css_class .= ' last'; }
+    	if ( ( $k + 1 ) == count( $metaboxes ) ) { $row_css_class .= ' last'; }
     
     	$woo_id = 'woothemes_' . $woo_metabox['name'];
     	$woo_name = $woo_metabox['name'];
@@ -445,13 +461,11 @@ function woothemes_metabox_create_fields ( $woo_metaboxes, $callback, $token = '
  * @return void
  */
 function woothemes_metabox_handle() {
-
     $pID = '';
     global $globals, $post;
 
-    $woo_metaboxes = get_option( 'woo_custom_template' );
-
-    $seo_metaboxes = get_option( 'woo_custom_seo_template' );
+    $woo_metaboxes = get_option( 'woo_custom_template', array() );
+    $seo_metaboxes = get_option( 'woo_custom_seo_template', array() );
 	
     if( ! empty( $seo_metaboxes ) && get_option( 'seo_woo_hide_fields' ) != 'true' ) {
     	$woo_metaboxes = array_merge( (array)$woo_metaboxes, (array)$seo_metaboxes );
@@ -475,111 +489,112 @@ function woothemes_metabox_handle() {
 
     if ( isset( $_POST['action'] ) && $_POST['action'] == 'editpost' ) {
 
-        foreach ( $woo_metaboxes as $k => $woo_metabox ) { // On Save.. this gets looped in the header response and saves the values submitted
-            if( isset( $woo_metabox['type'] ) && ( in_array( $woo_metabox['type'], woothemes_metabox_fieldtypes() ) ) ) {
-				$var = $woo_metabox['name'];
+        if ( ( get_post_type() != '' ) && ( get_post_type() != 'nav_menu_item' ) && wp_verify_nonce( $_POST['wooframework-custom-fields-nonce'], 'wooframework-custom-fields' ) ) {
 
-				// Get the current value for checking in the script.
-			    $current_value = '';
-			    $current_value = get_post_meta( $pID, $var, true );
+            foreach ( $woo_metaboxes as $k => $woo_metabox ) { // On Save.. this gets looped in the header response and saves the values submitted
+                if( isset( $woo_metabox['type'] ) && ( in_array( $woo_metabox['type'], woothemes_metabox_fieldtypes() ) ) ) {
+    				$var = $woo_metabox['name'];
 
-				if ( isset( $_POST[$var] ) ) {
+    				// Get the current value for checking in the script.
+    			    $current_value = '';
+    			    $current_value = get_post_meta( $pID, $var, true );
 
-					// Sanitize the input.
-					$posted_value = '';
-					$posted_value = $_POST[$var];
+    				if ( isset( $_POST[$var] ) ) {
 
-					 // If it doesn't exist, add the post meta.
-					if(get_post_meta( $pID, $var ) == "") {
+    					// Sanitize the input.
+    					$posted_value = '';
+    					$posted_value = $_POST[$var];
 
-						add_post_meta( $pID, $var, $posted_value, true );
+    					 // If it doesn't exist, add the post meta.
+    					if(get_post_meta( $pID, $var ) == "") {
 
-					}
-					// Otherwise, if it's different, update the post meta.
-					elseif( $posted_value != get_post_meta( $pID, $var, true ) ) {
+    						add_post_meta( $pID, $var, $posted_value, true );
 
-						update_post_meta( $pID, $var, $posted_value );
+    					}
+    					// Otherwise, if it's different, update the post meta.
+    					elseif( $posted_value != get_post_meta( $pID, $var, true ) ) {
 
-					}
-					// Otherwise, if no value is set, delete the post meta.
-					elseif($posted_value == "") {
+    						update_post_meta( $pID, $var, $posted_value );
 
-						delete_post_meta( $pID, $var, get_post_meta( $pID, $var, true ) );
+    					}
+    					// Otherwise, if no value is set, delete the post meta.
+    					elseif($posted_value == "") {
 
-					} // End IF Statement
+    						delete_post_meta( $pID, $var, get_post_meta( $pID, $var, true ) );
 
-				} elseif ( ! isset( $_POST[$var] ) && $woo_metabox['type'] == 'checkbox' ) {
+    					} // End IF Statement
 
-					update_post_meta( $pID, $var, 'false' );
+    				} elseif ( ! isset( $_POST[$var] ) && $woo_metabox['type'] == 'checkbox' ) {
 
-				} else {
+    					update_post_meta( $pID, $var, 'false' );
 
-					delete_post_meta( $pID, $var, $current_value ); // Deletes check boxes OR no $_POST
+    				} else {
 
-				} // End IF Statement
+    					delete_post_meta( $pID, $var, $current_value ); // Deletes check boxes OR no $_POST
 
-            } else if ( $woo_metabox['type'] == 'timestamp' ) {
-            	// Timestamp save logic.
-            	
-            	// It is assumed that the data comes back in the following format:
-				// date: month/day/year
-				// hour: int(2)
-				// minute: int(2)
-				// second: int(2)
-				
-				$var = $woo_metabox['name'];
-				
-				// Format the data into a timestamp.
-				$date = $_POST[$var]['date'];
-				
-				$hour = $_POST[$var]['hour'];
-				$minute = $_POST[$var]['minute'];
-				// $second = $_POST[$var]['second'];
-				$second = '00';
-				
-				$day = substr( $date, 3, 2 );
-				$month = substr( $date, 0, 2 );
-				$year = substr( $date, 6, 4 );
-				
-				$timestamp = mktime( $hour, $minute, $second, $month, $day, $year );
-				
-				update_post_meta( $pID, $var, $timestamp );
-            
-            } elseif( isset( $woo_metabox['type'] ) && $woo_metabox['type'] == 'upload' ) { // So, the upload inputs will do this rather
+    				} // End IF Statement
 
-				$id = $woo_metabox['name'];
-				$override['action'] = 'editpost';
+                } else if ( $woo_metabox['type'] == 'timestamp' ) {
+                	// Timestamp save logic.
+                	
+                	// It is assumed that the data comes back in the following format:
+    				// date: month/day/year
+    				// hour: int(2)
+    				// minute: int(2)
+    				// second: int(2)
+    				
+    				$var = $woo_metabox['name'];
+    				
+    				// Format the data into a timestamp.
+    				$date = $_POST[$var]['date'];
+    				
+    				$hour = $_POST[$var]['hour'];
+    				$minute = $_POST[$var]['minute'];
+    				// $second = $_POST[$var]['second'];
+    				$second = '00';
+    				
+    				$day = substr( $date, 3, 2 );
+    				$month = substr( $date, 0, 2 );
+    				$year = substr( $date, 6, 4 );
+    				
+    				$timestamp = mktime( $hour, $minute, $second, $month, $day, $year );
+    				
+    				update_post_meta( $pID, $var, $timestamp );
+                
+                } elseif( isset( $woo_metabox['type'] ) && $woo_metabox['type'] == 'upload' ) { // So, the upload inputs will do this rather
 
-			    if(!empty($_FILES['attachement_'.$id]['name'])){ //New upload
-			    $_FILES['attachement_'.$id]['name'] = preg_replace( '/[^a-zA-Z0-9._\-]/', '', $_FILES['attachement_'.$id]['name']);
-			           $uploaded_file = wp_handle_upload($_FILES['attachement_' . $id ],$override);
-			           $uploaded_file['option_name']  = $woo_metabox['label'];
-			           $upload_tracking[] = $uploaded_file;
-			           update_post_meta( $pID, $id, $uploaded_file['url'] );
+    				$id = $woo_metabox['name'];
+    				$override['action'] = 'editpost';
 
-			    } elseif ( empty( $_FILES['attachement_'.$id]['name'] ) && isset( $_POST[ $id ] ) ) {
+    			    if(!empty($_FILES['attachement_'.$id]['name'])){ //New upload
+    			    $_FILES['attachement_'.$id]['name'] = preg_replace( '/[^a-zA-Z0-9._\-]/', '', $_FILES['attachement_'.$id]['name']);
+    			           $uploaded_file = wp_handle_upload($_FILES['attachement_' . $id ],$override);
+    			           $uploaded_file['option_name']  = $woo_metabox['label'];
+    			           $upload_tracking[] = $uploaded_file;
+    			           update_post_meta( $pID, $id, $uploaded_file['url'] );
 
-			       	// Sanitize the input.
-					$posted_value = '';
-					$posted_value = $_POST[$id];
+    			    } elseif ( empty( $_FILES['attachement_'.$id]['name'] ) && isset( $_POST[ $id ] ) ) {
 
-			        update_post_meta($pID, $id, $posted_value);
+    			       	// Sanitize the input.
+    					$posted_value = '';
+    					$posted_value = $_POST[$id];
 
-			    } elseif ( $_POST[ $id ] == '' )  {
+    			        update_post_meta($pID, $id, $posted_value);
 
-			    	delete_post_meta( $pID, $id, get_post_meta( $pID, $id, true ) );
+    			    } elseif ( $_POST[ $id ] == '' )  {
 
-			    } // End IF Statement
+    			    	delete_post_meta( $pID, $id, get_post_meta( $pID, $id, true ) );
 
-			} // End IF Statement
+    			    } // End IF Statement
 
-               // Error Tracking - File upload was not an Image
-               update_option( 'woo_custom_upload_tracking', $upload_tracking );
+    			} // End IF Statement
 
-            } // End FOREACH Loop
+                   // Error Tracking - File upload was not an Image
+                   update_option( 'woo_custom_upload_tracking', $upload_tracking );
 
+                } // End FOREACH Loop
+            } // End IF Statement
         } // End IF Statement
-
 } // End woothemes_metabox_handle()
 
 /*-----------------------------------------------------------------------------------*/
@@ -592,7 +607,7 @@ function woothemes_metabox_handle() {
  * @return void
  */
 function woothemes_metabox_add() {
-	$woo_metaboxes = get_option( 'woo_custom_template' );
+	$woo_metaboxes = get_option( 'woo_custom_template', array() );
 
     if ( function_exists( 'add_meta_box' ) ) {
 
@@ -616,9 +631,7 @@ function woothemes_metabox_add() {
 				// Allow child themes/plugins to filter these settings.
 				$settings = apply_filters( 'woothemes_metabox_settings', $settings, $type, $settings['id'] );
 
-				if ( ! empty( $woo_metaboxes ) ) {
-					add_meta_box( $settings['id'], $settings['title'], $settings['callback'], $settings['page'], $settings['priority'], $settings['callback_args'] );
-				}
+				add_meta_box( $settings['id'], $settings['title'], $settings['callback'], $settings['page'], $settings['priority'], $settings['callback_args'] );
 
 				//if(!empty($woo_metaboxes)) Temporarily Removed
 			}

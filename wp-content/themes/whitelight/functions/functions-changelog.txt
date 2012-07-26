@@ -1,5 +1,62 @@
 *** WooThemes Framework Changelog **
 
+2012.04.29 - version 5.3.12 - critical
+ * - SECURITY UPDATE - Make sure the shortcode preview file's code is removed correctly upon WooFramework upgrade.
+ * admin-setup.php - Add extra sanitization to the alternate styles loader.
+ * /js/shortcode-generator/preview-shortcode-external.php - Make sure the file is empty (aside from a short error message) and that all vulnerable code is removed successfully.
+ * admin-functions.php - added "Bitter" Google font
+
+2012.04.29 - version 5.3.11 - critical
+ * - SECURITY UPDATE - Shortcode preview feature removed in previous version due to potential exploit.
+ * admin-functions.php - Make sure PressTrends banner displays only for PressTrends-enabled themes.
+
+2012.04.25 - version 5.3.10
+ * /images/ico-presstrends-banner.png - Logo for the PressTrends banner.
+ * admin-interface.php - Bump version number of admin-style.css enqueue to 5.3.10.
+ * admin-functions.php - Add PressTrends banner, displayed upon first activation of a theme with a PressTrends key.
+ * admin-style.css - Add styling for the PressTrends banner.
+
+2012.04.24 - version 5.3.9 - critical
+ * admin-custom.php - Make sure to check if a post type is set before running the nonce check in the custom fields saving logic (this fixes the conflict on the WordPress Menus screen).
+
+2012.04.23 - version 5.3.8 - critical
+ * /js/shortcode-generator/js/dialog-js.php - Removed all functionality relating to the shortcode preview.
+ * /js/shortcode-generator/editor_plugin.js - Remove non-required woo_js_querystring() functionality and add extra security layer to the dialog popup.
+ * /js/shortcode-generator/dialog.php - Add extra security layer to the dialog popup window.
+ * /js/shortcode-generator/preview-shortcode-external.php - REMOVED
+ * admin-shortcode-generator.php - Removed non-essential testing method (not previously used) and added extra security layer.
+ * admin-custom.php - Add extra security layer to the custom fields meta box. Make sure it's possilbe to display the "SEO" fields, even if there are no "General Settings" fields for a post type. Remove check on 0-indexed array key.
+
+2012.04.16 - version 5.3.7 - critical
+ * /js/shortcode-generator/preview-shortcode-external.php - Escape URLs to JavaScript files and update jQuery in use to V1.7.2.
+ * /js/shortcode-generator/dialog.php - Escape URLs to JavaScript files.
+ * admin-setup.php - Make sure, when loading an alternate style via the query variable, to include /css/layout.css if the current theme contains the file, when loading the "default" alternate style.
+
+2012.04.16 - version 5.3.6
+ * thumb.php - updated TimThumb 2.8.10
+
+2012.04.12 - version 5.3.5
+ * admin-interface.php - Add jquery ui slider as a theme option control
+ * admin-style.css - Added styling for the jquery ui slider.
+ * /js/woo-admin-interface.js - Add jquery ui slider as a theme option control
+
+2012.04.02 - version 5.3.4
+ * admin-setup.php - Add "activated=true" to the theme activation redirect URL.
+ * admin-interface.php - Add custom "wooframework_container_inside" action to the admin interface straight inside #woo_container.
+ * admin-functions.php - Add WooDojo banner advert logic for the Theme Options screen.
+ * admin-style.css - Added styling for the WooDojo banner.
+ * /js/woo-admin-interface.js - Add confirmation popup on banner "close" button.
+
+2012.03.16 - version 5.3.3
+ * admin-functions.php - Cater for static front pages that use the /page/ permastruct for pagination, when determining the page number to display inside woo_title().
+
+2012.03.12 - version 5.3.2
+ * admin-custom.php - Make sure the SEO custom fields don't display if the "use 3rd party plugin data" checkbox is checked. Prevent foreach() error message.
+ * admin-shortcodes.php - Add "show_default_fields" setting to the [contact_form] shortcode, to disable the default Name, E-mail and Message fields.
+
+2012.03.06 - version 5.3.1
+ * thumb.php - fixed timthumb-config.php path to look in theme root folder.
+
 2012.02.22 - version 5.3.0
  * admin-interface.php - Make sure that selected theme options aren't updated if the user doesn't have the "unfiltered_html" capability.
  * admin-custom.php - Add tabbing to custom fields meta box. Move "SEO" fields into a tab instead of their own meta box.

@@ -51,6 +51,9 @@ TABLE OF CONTENTS
 - woo_get_posts_by_taxonomy()
 - If the user has specified a "posts page", load the "Blog" page template there
 - PressTrends API Integration
+- WooDojo Download Banner
+- wooframework_add_woodojo_banner()
+- wooframework_ajax_banner_close()
 -----------------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------------*/
@@ -1574,6 +1577,8 @@ function woo_title(){
 				}
 			if(is_paged()){
 				$paged_var = get_query_var( 'paged' );
+				if ( $paged_var == '0' ) { $paged_var = get_query_var( 'page' ); } // Account for static front pages that paginate using the /page/2/ permastruct.
+				
 				if(get_option( 'seo_woo_paged_var_pos') == 'after'){
 
 					$output .= $sep . get_option( 'seo_woo_paged_var') . ' ' . $paged_var;
@@ -2203,7 +2208,7 @@ $google_fonts = array(	array( 'name' => "Cantarell", 'variant' => ':r,b,i,bi'),
 						array( 'name' => "Quattrocento", 'variant' => ''),
 						array( 'name' => "Amaranth", 'variant' => ''),
 						array( 'name' => "Irish Grover", 'variant' => ''),
-						array( 'name' => "Oswald", 'variant' => ''),
+						array( 'name' => "Oswald", 'variant' => ':400,300,700'),
 						array( 'name' => "EB Garamond", 'variant' => ''),
 						array( 'name' => "Nova Round", 'variant' => ''),
 						array( 'name' => "Nova Slim", 'variant' => ''),
@@ -2388,7 +2393,10 @@ $google_fonts = array(	array( 'name' => "Cantarell", 'variant' => ':r,b,i,bi'),
 						array( 'name' => "Petrona", 'variant' => ''),
 						array( 'name' => "Lancelot", 'variant' => ''),
 						array( 'name' => "Convergence", 'variant' => ''),
-						array( 'name' => "Bitter", 'variant' => '')
+						array( 'name' => "Cutive", 'variant' => ''),
+						array( 'name' => "Karla", 'variant' => ':400,400italic,700,700italic'),
+						array( 'name' => "Bitter", 'variant' => ':r,i,b')
+						
 );
 
 
@@ -3680,14 +3688,14 @@ if ( ! function_exists( 'woo_load_posts_page_blog_template' ) ) {
  */
 
 if ( defined( 'WOO_PRESSTRENDS_THEMEKEY' ) ) {
-	if ( get_option( 'framework_woo_presstrends_disable', 'false' ) != 'true' ) {
+	if ( get_option( 'framework_woo_presstrends_enable', 'false' ) == 'true' ) {
 		add_action( 'admin_footer', 'woo_presstrends', 100 );
 	}
 }
 
 function woo_presstrends () {
 	if ( ! defined( 'WOO_PRESSTRENDS_THEMEKEY' ) ) { return; }
-	
+
 	// Add your PressTrends API Keys
 	$api_key = 'ypvilflyjb7yyht8as1u2k0no3rxbgl2p4a9';
 	$auth = WOO_PRESSTRENDS_THEMEKEY;
@@ -3696,6 +3704,8 @@ function woo_presstrends () {
 	$data = get_transient( 'woo_presstrends_data' );
 
 	if ( ! $data || $data == '' ) {
+		global $wpdb;
+
 		// Don't edit below
 		$api_base = 'http://api.presstrends.io/index.php/api/sites/add/auth/';
 		
@@ -3703,6 +3713,7 @@ function woo_presstrends () {
 		$url = $api_base . $auth . '/api/' . $api_key . '/';
 		$data = array();
 		$count_posts = wp_count_posts();
+		$count_pages = wp_count_posts( 'page' );
 		$comments_count = wp_count_comments();
 		$theme_data = get_theme_data( get_template_directory() . '/style.css' );
 		$plugin_count = count( get_option( 'active_plugins' ) );
@@ -3710,9 +3721,30 @@ function woo_presstrends () {
 		$data['posts'] = $count_posts->publish;
 		$data['comments'] = $comments_count->total_comments;
 		$data['theme_version'] = $theme_data['Version'];
-		$data['theme_name'] = str_replace( ' ', '', get_bloginfo( 'name' ) );
+		$data['theme_name'] = $theme_data['Name'];
+		$data['site_name'] = str_replace( ' ', '', get_bloginfo( 'name' ) );
 		$data['plugins'] = $plugin_count;
+		$all_plugins = get_plugins();
+		$plugin_name = '';
+		foreach( $all_plugins as $plugin_file => $plugin_data ) {
+			$plugin_name .= $plugin_data['Name'];
+			$plugin_name .= '&';
+		}
 		
+		$posts_with_comments = $wpdb->get_var("SELECT COUNT(*) FROM {$wpdb->prefix}posts WHERE post_type='post' AND comment_count > 0");
+		$comments_to_posts = number_format(($posts_with_comments / $count_posts->publish) * 100, 0, '.', '');
+		$pingback_result = $wpdb->get_var('SELECT COUNT(comment_ID) FROM '.$wpdb->comments.' WHERE comment_type = "pingback"');
+
+		$data['posts'] = $count_posts->publish;
+		$data['pages'] = $count_pages->publish;
+		$data['comments'] = $comments_count->total_comments;
+		$data['approved'] = $comments_count->approved;
+		$data['spam'] = $comments_count->spam;
+		$data['pingbacks'] = $pingback_result;
+		$data['post_conversion'] = $comments_to_posts;
+		$data['plugin'] = urlencode( $plugin_name );
+		$data['wpversion'] = get_bloginfo( 'version' );
+
 		foreach ( $data as $k => $v ) {
 			$url .= $k . '/' . $v . '/';
 		}
@@ -3731,4 +3763,83 @@ function woo_presstrends () {
 /*-----------------------------------------------------------------------------------*/
 /* THE END */
 /*-----------------------------------------------------------------------------------*/
+
+/*-----------------------------------------------------------------------------------*/
+/* WooDojo Download Banner */
+/*-----------------------------------------------------------------------------------*/
+
+if ( is_admin() && current_user_can( 'install_plugins' ) && ! class_exists( 'WooDojo' ) ) {
+	add_action( 'wooframework_container_inside', 'wooframework_add_woodojo_banner' );
+}
+
+if ( defined( 'WOO_PRESSTRENDS_THEMEKEY' ) && is_admin() && current_user_can( 'switch_themes' ) && isset( $_GET['activated'] ) && ( $_GET['activated'] == 'true' ) ) {
+	add_action( 'wooframework_container_inside', 'wooframework_add_presstrends_banner' );
+}
+
+add_action( 'wp_ajax_wooframework_banner_close', 'wooframework_ajax_banner_close' );
+
+/**
+ * Add a WooDojo banner on the Theme Options screen.
+ * @since 5.3.4
+ * @return void
+ */
+function wooframework_add_woodojo_banner () {
+	if ( get_user_setting( 'wooframeworkhidebannerwoodojo', '0' ) == '1' ) { return; }
+
+	$close_url = wp_nonce_url( admin_url( 'admin-ajax.php?action=wooframework_banner_close&banner=woodojo' ), 'wooframework_banner_close' );
+	$html = '';
+	
+	$html .= '<div id="woodojo-banner" class="wooframework-banner">' . "\n";
+	$html .= '<span class="main">' . __( 'Enhance your theme with WooDojo.', 'woothemes' ) . '</span>' . "\n";
+	$html .= '<span>' . __( 'WooDojo is powerful WooThemes features suit for enhancing your website. Learn more.', 'woothemes' ) . '</span>' . "\n";
+	$html .= '<a class="button-primary" href="' . esc_url( 'http://woothemes.com/woodojo/' ) . '" title="' . esc_attr__( 'Get WooDojo', 'woothemes' ) . '" target="_blank">' . __( 'Get WooDojo', 'woothemes' ) . '</a>' . "\n";
+	$html .= '<span class="close-banner"><a href="' . $close_url . '">' . __( 'Close', 'woothemes' ) . '</a></span>' . "\n";
+	$html .= '</div>' . "\n";
+	
+	echo $html;
+} // End wooframework_add_woodojo_banner()
+
+/**
+ * Add a PressTrends banner on the Theme Options screen on first activation.
+ * @since 5.3.4
+ * @return void
+ */
+function wooframework_add_presstrends_banner () {
+	if ( get_user_setting( 'wooframeworkhidebannerpresstrends', '0' ) == '1' ) { return; }
+
+	$close_url = wp_nonce_url( admin_url( 'admin-ajax.php?action=wooframework_banner_close&banner=presstrends' ), 'wooframework_banner_close' );
+	$html = '';
+	
+	$html .= '<div id="presstrends-banner" class="wooframework-banner">' . "\n";
+	$html .= '<span class="main">' . __( 'Enable PressTrends', 'woothemes' ) . '</span>' . "\n";
+	$html .= '<span class="info">' . sprintf( __( 'PressTrends is a simple usage tracker that allows us to see how our customers are using WooThemes themes - so that we can help improve them for you. %sNone%s of your personal data is sent to PressTrends.', 'woothemes' ), '<br /><strong>', '</strong>' ) . '</span>' . "\n";
+	$html .= '<a class="button-primary" href="' . esc_url( admin_url( 'admin.php?page=woothemes_framework_settings' ) ) . '" title="' . esc_attr__( 'Enable PressTrends', 'woothemes' ) . '">' . __( 'Enable PressTrends', 'woothemes' ) . '</a>' . "\n";
+	$html .= '<span class="close-banner"><a href="' . $close_url . '">' . __( 'Close', 'woothemes' ) . '</a></span>' . "\n";
+	$html .= '</div>' . "\n";
+	
+	echo $html;
+} // End wooframework_add_presstrends_banner()
+
+/**
+ * wooframework_ajax_banner_close function.
+ * 
+ * @access public
+ * @since 1.0.0
+ */
+function wooframework_ajax_banner_close () {
+	if( ! current_user_can( 'install_plugins' ) ) wp_die( __( 'You do not have sufficient permissions to access this page.', 'woothemes' ) );
+	
+	if( ! check_admin_referer( 'wooframework_banner_close' ) ) wp_die( __( 'You have taken too long. Please go back and retry.', 'woothemes' ) );
+	
+	$banner = ( isset( $_GET['banner'] ) ) ? $_GET['banner'] : '';
+	
+	if( ! $banner ) die;
+
+	// Run the update.
+	$response = set_user_setting( 'wooframeworkhidebanner' . $banner, '1' );
+
+	$sendback = remove_query_arg( array( 'trashed', 'untrashed', 'deleted', 'ids' ), wp_get_referer() );
+	wp_safe_redirect( $sendback );
+	exit;
+} // End toggle_notifications_status()
 ?>

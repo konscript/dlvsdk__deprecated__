@@ -1062,7 +1062,8 @@ function woo_shortcode_contactform ( $atts, $content = null ) {
 		$defaults = array(
 						'email' => get_option( 'woo_contactform_email'),
 						'subject' => __( 'Message via the contact form', 'woothemes' ),
-						'button_text' => apply_filters( 'woo_contact_form_button_text', __( 'Submit', 'woothemes' ) )
+						'button_text' => apply_filters( 'woo_contact_form_button_text', __( 'Submit', 'woothemes' ) ), 
+						'show_default_fields' => 'yes'
 						);
 
 		extract( shortcode_atts( $defaults, $atts ) );
@@ -1353,7 +1354,7 @@ function woo_shortcode_contactform ( $atts, $content = null ) {
 
 		$emailSent = false;
 
-		if ( ( count( $_POST ) > 3 ) && isset( $_POST['submitted'] ) ) {
+		if ( ( count( $_POST ) > 2 ) && isset( $_POST['submitted'] ) ) {
 
 			$fields_to_skip = array( 'checking', 'submitted', 'sendCopy' );
 			$default_fields = array( 'contactName' => '', 'contactEmail' => '', 'contactMessage' => '' );
@@ -1365,21 +1366,21 @@ function woo_shortcode_contactform ( $atts, $content = null ) {
 
 			$posted_data = $_POST;
 
-			// Check for errors.
-			foreach ( array_keys( $default_fields ) as $d ) {
-
-				if ( !isset ( $_POST[$d] ) || $_POST[$d] == '' || ( $d == 'contactEmail' && ! is_email( $_POST[$d] ) ) ) {
-
-					$error_messages[$d] = $error_responses[$d];
-
-				} // End IF Statement
-
-			} // End FOREACH Loop
+			// Check if we're using the default fields.
+			if ( $show_default_fields != 'no' ) {
+				// Check for errors.
+				foreach ( array_keys( $default_fields ) as $d ) {
+					if ( !isset ( $_POST[$d] ) || $_POST[$d] == '' || ( $d == 'contactEmail' && ! is_email( $_POST[$d] ) ) ) {
+						$error_messages[$d] = $error_responses[$d];
+					} // End IF Statement
+				} // End FOREACH Loop
+			} else {
+				$default_fields = array( 'contactName' => get_bloginfo( 'name' ), 'contactEmail' => get_bloginfo( 'admin_email' ), 'contactMessage' => '' );
+			}
 
 			// If we have errors, don't do anything. Otherwise, run the processing code.
 
 			if ( count( $error_messages ) ) {} else {
-
 				// Setup e-mail variables.
 				$message_fromname = $default_fields['contactName'];
 				$message_fromemail = strtolower( $default_fields['contactEmail'] );
@@ -1388,21 +1389,15 @@ function woo_shortcode_contactform ( $atts, $content = null ) {
 
 				// Filter out skipped fields and assign default fields.
 				foreach ( $posted_data as $k => $v ) {
-
 					if ( in_array( $k, $fields_to_skip ) ) {
-
 						unset( $posted_data[$k] );
-
 					} // End IF Statement
 
 					if ( in_array( $k, array_keys( $default_fields ) ) ) {
-
 						$default_fields[$k] = $v;
 
 						unset( $posted_data[$k] );
-
 					} // End IF Statement
-
 				} // End FOREACH Loop
 
 				// Okay, so now we're left with only the dynamic fields. Assign to a fresh variable.
@@ -1411,35 +1406,23 @@ function woo_shortcode_contactform ( $atts, $content = null ) {
 				// Format the default fields into the $message_body.
 
 				foreach ( $default_fields as $k => $v ) {
-
 					if ( $v == '' ) {} else {
-
 						$message_body .= str_replace( 'contact', '', $k ) . ': ' . $v . "\n\r";
-
 					} // End IF Statement
-
 				} // End FOREACH Loop
 
 				// Format the dynamic fields into the $message_body.
 
 				foreach ( $dynamic_fields as $k => $v ) {
-
 					if ( $v == '' ) {} else {
-
 						$value = '';
 
 						if ( substr( $k, 0, 7 ) == 'select_' || substr( $k, 0, 6 ) == 'radio_' ) {
-
 							$message_body .= $formatted_dynamic_atts[$k]['label'] . ': ' . $formatted_dynamic_atts[$k]['options'][$v] . "\n\r";
-
 						} else {
-
 							$message_body .= $formatted_dynamic_atts[$k]['label'] . ': ' . $v . "\n\r";
-
 						} // End IF Statement
-
 					} // End IF Statement
-
 				} // End FOREACH Loop
 
 				// Send the e-mail.
@@ -1448,13 +1431,10 @@ function woo_shortcode_contactform ( $atts, $content = null ) {
 				$emailSent = wp_mail($email, $subject, $message_body, $headers);
 
 				// Send a copy of the e-mail to the sender, if specified.
-
 				if ( isset( $_POST['sendCopy'] ) && $_POST['sendCopy'] == 'true' ) {
-
 					$headers = __( 'From: ', 'woothemes') . $default_fields['contactName'] . ' <' . $default_fields['contactEmail'] . '>' . "\r\n" . __( 'Reply-To: ', 'woothemes' ) . $default_fields['contactEmail'];
 
 					$emailSent = wp_mail($default_fields['contactEmail'], $subject, $message_body, $headers);
-
 				} // End IF Statement
 
 			} // End IF Statement ( count( $error_messages ) )
@@ -1469,81 +1449,65 @@ function woo_shortcode_contactform ( $atts, $content = null ) {
 		/* Display message HTML if necessary.
 		--------------------------------------------------*/
 
-		// Success message.
-
+		// Success messages
 		if( isset( $emailSent ) && $emailSent == true ) {
-
 			$html .= do_shortcode( '[box type="tick"]' . __( 'Your email was successfully sent.', 'woothemes' ) . '[/box]' );
 			$html .= '<span class="has_sent hide"></span>' . "\n";
+		}
 
-		} // End IF Statement
-
-		// Error messages.
-
+		// Error messages
 		if( count( $error_messages ) ) {
-
 			$html .= do_shortcode( '[box type="alert"]' . __( 'There were one or more errors while submitting the form.', 'woothemes' ) . '[/box]' );
-
-		} // End IF Statement
+		}
 
         // No e-mail address supplied.
-
         if( $email == '' ) {
-
 			$html .= do_shortcode( '[box type="alert"]' . __( 'E-mail has not been setup properly. Please add your contact e-mail!', 'woothemes' ) . '[/box]' );
-
-		} // End IF Statement
+		}
 
 		if ( $email == '' ) {} else {
-
 			$html .= '<form action="" id="contactForm" method="post">' . "\n";
-
 				$html .= '<fieldset class="forms">' . "\n";
 
 			/* Parse the "static" form fields.
 			--------------------------------------------------*/
+			if ( $show_default_fields != 'no' ) {
+				$contactName = '';
+				if( isset( $_POST['contactName'] ) ) { $contactName = $_POST['contactName']; }
 
-			$contactName = '';
-			if( isset( $_POST['contactName'] ) ) { $contactName = $_POST['contactName']; } // End IF Statement
+				$contactEmail = '';
+				if( isset( $_POST['contactEmail'] ) ) { $contactEmail = $_POST['contactEmail']; }
 
-			$contactEmail = '';
-			if( isset( $_POST['contactEmail'] ) ) { $contactEmail = $_POST['contactEmail']; } // End IF Statement
+				$contactMessage = '';
+				if( isset( $_POST['contactMessage'] ) ) { $contactMessage = stripslashes( $_POST['contactMessage'] ); }
 
-			$contactMessage = '';
-			if( isset( $_POST['contactMessage'] ) ) { $contactMessage = stripslashes( $_POST['contactMessage'] ); } // End IF Statement
+				$html .= '<p><label for="contactName">' . __( 'Name', 'woothemes' ) . '</label>' . "\n";
+				$html .= '<input type="text" name="contactName" id="contactName" value="' . esc_attr( $contactName ) . '" class="txt requiredField" />' . "\n";
 
-			$html .= '<p><label for="contactName">' . __( 'Name', 'woothemes' ) . '</label>' . "\n";
-			$html .= '<input type="text" name="contactName" id="contactName" value="' . esc_attr( $contactName ) . '" class="txt requiredField" />' . "\n";
+				if( array_key_exists( 'contactName', $error_messages ) ) {
+					$html .= '<span class="error">' . $error_messages['contactName'] . '</span>' . "\n";
+				}
 
-			if( array_key_exists( 'contactName', $error_messages ) ) {
+				$html .= '</p>' . "\n";
 
-				$html .= '<span class="error">' . $error_messages['contactName'] . '</span>' . "\n";
+				$html .= '<p><label for="contactEmail">' . __( 'Email', 'woothemes' ) . '</label>' . "\n";
+				$html .= '<input type="text" name="contactEmail" id="contactEmail" value="' . esc_attr( $contactEmail ) . '" class="txt requiredField email" />' . "\n";
 
-			} // End IF Statement
+				if( array_key_exists( 'contactEmail', $error_messages ) ) {
+					$html .= '<span class="error">' . $error_messages['contactEmail'] . '</span>' . "\n";
+				}
 
-			$html .= '</p>' . "\n";
+				$html .= '</p>' . "\n";
 
-			$html .= '<p><label for="contactEmail">' . __( 'Email', 'woothemes' ) . '</label>' . "\n";
-			$html .= '<input type="text" name="contactEmail" id="contactEmail" value="' . esc_attr( $contactEmail ) . '" class="txt requiredField email" />' . "\n";
+				$html .= '<p class="textarea"><label for="contactMessage">' . __( 'Message', 'woothemes' ) . '</label>' . "\n";
+				$html .= '<textarea name="contactMessage" id="contactMessage" rows="20" cols="30" class="textarea requiredField">' . esc_textarea( $contactMessage ) . '</textarea>' . "\n";
 
-			if( array_key_exists( 'contactEmail', $error_messages ) ) {
+				if( array_key_exists( 'contactMessage', $error_messages ) ) {
+					$html .= '<span class="error">' . $error_messages['contactMessage'] . '</span>' . "\n";
+				}
 
-				$html .= '<span class="error">' . $error_messages['contactEmail'] . '</span>' . "\n";
-
-			} // End IF Statement
-
-			$html .= '</p>' . "\n";
-
-			$html .= '<p class="textarea"><label for="contactMessage">' . __( 'Message', 'woothemes' ) . '</label>' . "\n";
-			$html .= '<textarea name="contactMessage" id="contactMessage" rows="20" cols="30" class="textarea requiredField">' . esc_textarea( $contactMessage ) . '</textarea>' . "\n";
-
-			if( array_key_exists( 'contactMessage', $error_messages ) ) {
-
-				$html .= '<span class="error">' . $error_messages['contactMessage'] . '</span>' . "\n";
-
-			} // End IF Statement
-
-			$html .= '</p>' . "\n";
+				$html .= '</p>' . "\n";
+			} // End static fields check
 
 			/* Parse dynamic fields into HTML.
 			--------------------------------------------------*/
@@ -1556,7 +1520,6 @@ function woo_shortcode_contactform ( $atts, $content = null ) {
 					--------------------------------------------------*/
 
 					if ( substr( $k, 0, 6 ) == 'radio_' ) {
-
 						/* Generate Select Box Field HTML.
 						----------------------------------------------*/
 
@@ -1568,20 +1531,16 @@ function woo_shortcode_contactform ( $atts, $content = null ) {
 							$html .= '<span class="woo-radio-container fl">' . "\n";
 
 							foreach ( $v['options'] as $value => $label ) {
-
 								$html .= '<input type="radio" name="' . $k . '" class="radio-button woo-input-radio" value="' . $value . '"' . checked( $value, ${$k}, false ) . ' />&nbsp;' . $label . '<br />' . "\n";
-
-							} // End FOREACH Loop
+							}
 
 							$html .= '</span><!--/.woo-radio-container-->' . "\n";
-
-					} // End IF Statement
+					}
 
 					/* Parse the checkbox inputs.
 					--------------------------------------------------*/
 
 					if ( substr( $k, 0, 9 ) == 'checkbox_' ) {
-
 						/* Generate Checkbox Input Field HTML.
 						----------------------------------------------*/
 
@@ -1594,14 +1553,12 @@ function woo_shortcode_contactform ( $atts, $content = null ) {
 						$html .= '<p class="inline">' . "\n";
 						$html .= '<input type="checkbox" value="' . ${$k} . '" name="' . $k . '" id="' . $k . '" class="checkbox input-checkbox woo-input-checkbox"' . checked( $checked, ${$k}, false ) . ' />' . "\n";
 						$html .= '<label for="' . $k . '">' . $v['label'] . '</label></p>' . "\n";
-
-					} // End IF Statement
+					}
 
 					/* Parse the text inputs.
 					--------------------------------------------------*/
 
 					if ( substr( $k, 0, 5 ) == 'text_' ) {
-
 						/* Generate Text Input Field HTML.
 						----------------------------------------------*/
 
@@ -1610,14 +1567,12 @@ function woo_shortcode_contactform ( $atts, $content = null ) {
 
 						$html .= '<p><label for="' . $k . '">' . $v['label'] . '</label>' . "\n";
 						$html .= '<input type="text" value="' . esc_attr( ${$k} ) . '" name="' . $k . '" id="' . $k . '" class="txt input-text textfield woo-input-text" /></p>' . "\n";
-
-					} // End IF Statement
+					}
 
 					/* Parse the select boxes.
 					--------------------------------------------------*/
 
 					if ( substr( $k, 0, 7 ) == 'select_' ) {
-
 						/* Generate Select Box Field HTML.
 						----------------------------------------------*/
 
@@ -1628,23 +1583,19 @@ function woo_shortcode_contactform ( $atts, $content = null ) {
 						$html .= '<select name="' . $k . '" id="' . $k . '" class="select selectfield woo-select">' . "\n";
 
 							foreach ( $v['options'] as $value => $label ) {
-
 								$selected = '';
 								if ( $value == ${$k} ) { $selected = ' selected="selected"'; } // End IF Statement
 
 								$html .= '<option value="' . esc_attr( $value ) . '"' . $selected . '>' . $label . '</option>' . "\n";
-
-							} // End FOREACH Loop
+							}
 
 						$html .= '</select></p>' . "\n";
-
-					} // End IF Statement
+					}
 
 					/* Parse the textarea inputs.
 					--------------------------------------------------*/
 
 					if ( substr( $k, 0, 9 ) == 'textarea_' ) {
-
 						/* Generate Textarea Input Field HTML.
 						----------------------------------------------*/
 
@@ -1654,10 +1605,8 @@ function woo_shortcode_contactform ( $atts, $content = null ) {
 						$html .= '<p><label for="' . $k . '">' . $v['label'] . '</label>' . "\n";
 						$html .= '<textarea rows="' . $v['number_of_rows'] . '" cols="' . $v['number_of_columns'] . '" name="' . $k . '" id="' . $k . '" class="input-textarea textarea woo-textarea">' . $v['default_text'] . '</textarea></p>' . "\n";
 
-					} // End IF Statement
-
+					}
 				} // End FOREACH Loop
-
 			} // End IF Statement
 
 			/* The end of the form.
@@ -1665,36 +1614,25 @@ function woo_shortcode_contactform ( $atts, $content = null ) {
 
 			$sendCopy = '';
 			if(isset($_POST['sendCopy']) && $_POST['sendCopy'] == true) {
-
 				$sendCopy = ' checked="checked"';
-
-			} // End IF Statement
+			}
 
 			$html .= '<p class="inline"><input type="checkbox" name="sendCopy" id="sendCopy" value="true"' . $sendCopy . ' /><label for="sendCopy">' . __( 'Send a copy of this email to yourself', 'woothemes' ) . '</label></p>' . "\n";
 
 			$checking = '';
 			if(isset($_POST['checking'])) {
-
 				$checking = $_POST['checking'];
-
-			} // End IF Statement
+			}
 
 			$html .= '<p class="screenReader"><label for="checking" class="screenReader">' . __('If you want to submit this form, do not enter anything in this field', 'woothemes') . '</label><input type="text" name="checking" id="checking" class="screenReader" value="' . esc_attr( $checking ) . '" /></p>' . "\n";
-
 			$html .= '<p class="buttons"><input type="hidden" name="submitted" id="submitted" value="true" /><input class="submit button" type="submit" value="' . $button_text . '" /></p>';
-
 				$html .= '</fieldset>' . "\n";
-
 			$html .= '</form>' . "\n";
-
 			$html .= '</div><!--/.post .contact-form-->' . "\n";
-
 			$html .= '<div class="fix"></div>' . "\n";
-
 		} // End IF Statement ( $email == '' )
 
 		return $html;
-
 } // End woo_shortcode_contactform()
 
 add_shortcode( 'contact_form', 'woo_shortcode_contactform' );
