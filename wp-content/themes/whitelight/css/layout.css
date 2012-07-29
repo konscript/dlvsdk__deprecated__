@@ -24,6 +24,119 @@ INDEX
 
 */
 /*----------------------*/
+/*---------------------------------------------------
+    LESS Elements 0.6
+  ---------------------------------------------------
+    A set of useful LESS mixins by Dmitry Fadeyev
+    Special thanks for mixin suggestions to:
+      Kris Van Herzeele,
+      Benoit Adam,
+      Portenart Emile-Victor,
+      Ryan Faerman
+
+    More info at: http://lesselements.com
+-----------------------------------------------------*/
+/**
+ * Utilities (_utilities.less)
+ */
+a.button-book {
+  background: #b7190e;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #b7190e), color-stop(1, #ee3124));
+  background: -ms-linear-gradient(bottom, #b7190e, #ee3124);
+  background: -moz-linear-gradient(center bottom, #b7190e 0%, #ee3124 100%);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  position: relative;
+  width: auto;
+  background-color: #ee3124;
+  display: block;
+  float: right;
+  margin: 0 0 20px 0;
+  cursor: pointer;
+  border-top: 1px solid #f25e53;
+  border-bottom: 1px solid #88130b;
+}
+a.button-book:hover {
+  background: #f0473c;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #f0473c), color-stop(1, #cf1c10));
+  background: -ms-linear-gradient(bottom, #f0473c, #cf1c10);
+  background: -moz-linear-gradient(center bottom, #f0473c 0%, #cf1c10 100%);
+  background-color: #f0473c;
+  border-top: 1px solid #cf1c10;
+  border-bottom: 1px solid #e72012;
+  color: #fff;
+  text-decoration: none;
+}
+a.button-book .button-book-title {
+  float: left;
+  color: #f6f6f6;
+  line-height: 1em;
+  font-weight: normal;
+  text-transform: uppercase;
+  font-family: 'Lucida Grande', Georgia, verdana, sans-serif;
+  letter-spacing: 0.05em;
+  font-size: 15px;
+  padding: 16px 24px 16px 24px;
+  margin: 0 auto;
+}
+body.home #column-right a.button-book {
+  width: 100%;
+}
+body.home #column-right a.button-book .button-book-title {
+  font-size: 22px;
+  padding: 25px 0 24px 34px;
+  margin: 0;
+}
+body.home #column-right a.button-book .button-book-meta {
+  padding: 20px 34px 20px 0;
+  float: right;
+  font-style: italic;
+  text-align: right;
+  line-height: 1.5em;
+  font-size: 10px;
+  text-transform: lowercase;
+  color: #ffffff;
+}
+a.button-book-step {
+  margin-top: 5px;
+}
+a.button-book-step .button-book-title {
+  font-size: 1em;
+}
+a.button-book-table {
+  height: 40px;
+  margin: 2px;
+}
+a.button-book-table .button-book-title {
+  font-size: 1em;
+  line-height: 40px;
+  padding: 0px 5px;
+}
+/*****
+	 * Table even/odd colored rows
+	 *************************/
+table.zebra {
+  width: 100%;
+  margin-bottom: 10px;
+  border-top: 1px solid #eeeeee;
+  border-right: 1px solid #eeeeee;
+}
+table.zebra thead tr td {
+  font-weight: bold;
+}
+table.zebra td {
+  line-height: 25px;
+  padding: 5px 15px;
+  border-bottom: 1px solid #eeeeee;
+  border-left: 1px solid #eeeeee;
+}
+table.zebra tbody tr:nth-child(odd) {
+  background-color: #f6f6f6;
+}
 /*----------------------*/
 /* Adding padding to left & right of content columns */
 #top,
@@ -367,6 +480,10 @@ INDEX
     filter: alpha(opacity=@opacity * 100) !important;
     -moz-opacity: 1 !important;
     -khtml-opacity: 1 !important;
+    opacity: 1 !important;
+    -moz-opacity: 1 !important;
+    -khtml-opacity: 1 !important;
+    -webkit-opacity: 1 !important;
     opacity: 1 !important;
   }
   .featured-wrap .controls-container .flex-control-nav {

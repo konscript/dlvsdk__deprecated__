@@ -1,12 +1,23 @@
 <?php
 
-// Load JS for frontend
-wp_enqueue_script('jquery-ui-1.8.16.custom.min.js', get_template_directory_uri() . '/includes/js/jquery-ui-1.8.16.custom.min.js', array( 'jquery' ) );
-wp_enqueue_script('jquery-ui-autocomplete.js', get_template_directory_uri() . '/includes/js/jquery-ui-autocomplete.js', array( 'jquery' ) );
-wp_enqueue_script('jquery.maphilight.min.js', get_template_directory_uri() . '/includes/js/jquery.maphilight.min.js', array( 'jquery' ) );
-wp_enqueue_script('jquery.select-to-autocomplete.js', get_template_directory_uri() . '/includes/js/jquery.select-to-autocomplete.js', array( 'jquery' ) );
-wp_enqueue_script('jquery.validate.min.js', get_template_directory_uri() . '/includes/js/jquery.validate.min.js', array( 'jquery' ) );
-wp_enqueue_script('dlvs-main', get_template_directory_uri() . '/includes/js/dlvs/dlvs-main.js', array( 'jquery' ) );
+if( !is_admin()){
+	// load up jQuery from Google CDN
+	wp_deregister_script('jquery'); 
+	wp_register_script('jquery', ("http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"), false, '1.6.2');    
+	wp_enqueue_script('jquery');
+   
+	wp_deregister_script('jqueryui');   
+	wp_register_script('jqueryui', ("http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"), false, '1.8.16');   
+	wp_enqueue_script('jqueryui');  
+
+	// load local js files
+	wp_enqueue_script('jquery-ui-autocomplete.js', get_template_directory_uri() . '/includes/js/jquery-ui-autocomplete.js', array( 'jquery' ) );
+	wp_enqueue_script('jquery.maphilight.min.js', get_template_directory_uri() . '/includes/js/jquery.maphilight.min.js', array( 'jquery' ) );
+	wp_enqueue_script('jquery.select-to-autocomplete.js', get_template_directory_uri() . '/includes/js/jquery.select-to-autocomplete.js', array( 'jquery' ) );
+	wp_enqueue_script('jquery.validate.min.js', get_template_directory_uri() . '/includes/js/jquery.validate.min.js', array( 'jquery' ) );
+	wp_enqueue_script('dlvs-main', get_template_directory_uri() . '/includes/js/dlvs/dlvs-main.js', array( 'jquery' ) );
+
+}
 
 // Getting page ID of current Custom Post Type
 function getPageIDOfCurrentCustomPostType(){
@@ -40,16 +51,7 @@ function konscript_excerpt($length, $str) {
    return $res;
 }
 
-// load up jQuery from Google CDN
-if( !is_admin()){
-	wp_deregister_script('jquery'); 
-	wp_register_script('jquery', ("http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"), false, '1.6.2');    
-	wp_enqueue_script('jquery');
-   
-	wp_deregister_script('jqueryui');   
-	wp_register_script('jqueryui', ("http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"), false, '1.5.3');   
-	wp_enqueue_script('jqueryui');   
-}
+
 
 // Remove useless the_generator meta tag - whoops
 add_filter( 'the_generator', create_function('$a', "return null;") );

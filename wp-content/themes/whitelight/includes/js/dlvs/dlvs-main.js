@@ -29,8 +29,6 @@ jQuery.noConflict();
 		
 		// misc css styling
 		miscStyles();
-
-
 		
 	});
 	

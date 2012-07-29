@@ -6,7 +6,7 @@
 		<?php sidebar(true, true, false); ?>
 		<section id="main" class="col-left">
 
-			<a class="button-book" href="<?php echo get_bloginfo('wpurl'); ?>'/booking/"><div class="button-book-title">Bestil vaccination</div></a>
+			<a class="button-book" href="<?php echo get_bloginfo('wpurl'); ?>/booking/"><div class="button-book-title">Bestil vaccination</div></a>
 			<header><h1><?php the_title(); ?></h1></header>
 			<?php echo the_content(); ?>
 
