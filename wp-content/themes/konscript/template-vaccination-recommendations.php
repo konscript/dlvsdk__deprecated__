@@ -45,5 +45,5 @@
 
 	</div><!-- #content -->
 </section><!-- #primary -->
-<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/scripts/continents-map/continents-map.js"></script> 
+<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/dlvs/jquery.cssmap.js"></script> 
 <?php get_footer(); ?>

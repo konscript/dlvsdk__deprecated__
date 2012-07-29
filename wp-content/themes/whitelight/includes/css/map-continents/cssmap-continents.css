@@ -1,0 +1,134 @@
+/* default tooltip */
+.css-map li a{ 
+  background: #111;
+  background: rgba(0,0,0,.8);
+  color: #eee;
+  font: normal 13px 'Lucida Grande',Arial,sans-serif;
+  padding: .5em 1.2em;
+  text-align: center;
+  text-shadow: 0 1px 0 #000;
+  white-space: nowrap;
+  -moz-border-radius: .6em;
+  -ms-border-radius: .6em;
+  -o-border-radius: .6em;
+  -webkit-border-radius: .6em;
+  border-radius: .6em;  
+ }
+ .m650 .css-map li a,.m540 .css-map li a{ font-size: 11px }
+ .m430 .css-map li a,.m320 .css-map li a,.m210 .css-map li a{ font-size: 10px }
+
+ /* tooltip arrow; when you change its size don't forget to set tooltipArrowHeight variable in the cssMap(); function */
+ .css-map li a .tooltip-arrow{
+  bottom: -5px; /* must be the same as a border-width */
+  border: solid;
+  border-color: #111 transparent;
+  border-color: rgba(0,0,0,.8) transparent;
+  border-width: 5px 5px 0 5px; /* this's a height of the arrow */
+  margin-left: -5px; /* must be the same as a border-width */
+ }
+ .css-map li a.tooltip-right .tooltip-arrow{
+   margin-right: -5px; /* must be the same as a tooltip-arrow border-width */
+  }
+ .css-map li a.tooltip-top .tooltip-arrow{ /* set tooltip under the arrow */
+   border-width:0 5px 5px 5px;
+   top: -5px;
+  }
+
+ /* tooltip style when the region is activated */
+ .css-map .active-region a{background-color: #111}
+  .css-map .active-region a .tooltip-arrow{border-color: #111 transparent}
+
+ /* links in the visible list of regions */
+ .map-visible-list a{
+   /* color: #eee; */ 
+  }
+ .map-visible-list a:hover,.map-visible-list a:focus,.map-visible-list li.focus a{
+   /* color: #fc0; */
+  }
+ .map-visible-list a:active,.map-visible-list li.active-region a{
+   /* color: #cc3; */
+  }
+
+
+/* default pre-loader */
+.map-loader{
+  background: #111;
+  background: rgba(0,0,0,.8);
+  color: #eee;
+  font: normal 14px 'Lucida Grande',Arial,sans-serif;
+  padding: .6em 1.2em;
+  text-shadow: 0 1px 0 #000;
+  -moz-border-radius: .6em;
+  -ms-border-radius: .6em;
+  -o-border-radius: .6em;
+  -webkit-border-radius: .6em;
+  border-radius: .6em; 
+ }
+.m430 .map-loader,.m320 .map-loader{font-size:11px}
+.m210 .map-loader{font-size:10px}
+
+/* link to the search engine - shown in the multipleClick mode */
+.map-search-link{
+  /* your properties goes here */
+ }
+ .map-search-link:hover,a.map-search-link:focus{ 
+   /* selected link style */
+  }
+ .m430 .map-search-link,.m320 .map-search-link{
+   /* style for a specific map size, ex.:
+   font-size: 1em;
+   */
+  }
+
+/* --------------------------------------------------------
+ * the maps starts here
+
+ * DO NOT EDIT! 
+
+ * World continents, CSS & jQuery clickable map
+ * http://winstonwolf.pl/clickable-maps/world-continents.html
+ * version: 4.3
+ * Copyright (C) 2009 - 2012 Winston_Wolf | All rights reserved
+*/
+.css-map-container{margin:0 auto;overflow:hidden;position:relative} .css-map{display:block;left:0;margin:0;list-style:none;padding:0;position:relative} .css-map li{height:0;width:0} .css-map li a{height:auto;margin:-9999em 0 0 0;position:absolute;text-decoration:none;width:auto;z-index:89} .css-map li a:focus{outline:0 none} .css-map-container span{display:block;height:0;left:0;position:absolute;top:-9999px;width:0} .css-map li a.tooltip-right{left:auto;right:0;width:auto} .css-map li a .tooltip-arrow{left:50%;top:auto} .css-map li a.tooltip-middle .tooltip-arrow{display:none} .css-map li a.tooltip-top .tooltip-arrow{bottom:auto} .css-map li a.tooltip-right .tooltip-arrow{left:auto} .css-map-container .cities{top:0;z-index:88} .css-map .bg{padding:10px} .css-map .active-region .bg{z-index:87} .css-map .m{cursor:pointer;z-index:99} .css-map .m span{z-index:89} .map-visible-list{clear:both;overflow:hidden} span.map-loader{height:auto;position:absolute;text-align:center;width:auto;z-index:90} .map-error{background:#111;color:#fd0;padding:1em 0;text-align:center} .map-error b{font-size:1.3em} .map-error a{color:#fd0}
+
+/* really, DO NOT EDIT THIS! */
+.c1 .s1{height:.3em;left:5.2em;top:4.4em;width:.7em}.c1 .s2{height:.5em;left:5.2em;top:3.9em;width:1.2em}.c1 .s3{height:.2em;left:6.3em;top:3.2em;width:.1em}.c1 .s4{height:.4em;left:6.2em;top:3.2em;width:.1em}.c1 .s5{height:.5em;left:6.1em;top:3.2em;width:.1em}.c1 .s6{height:1em;left:6em;top:3.1em;width:.1em}.c1 .s7{height:1.3em;left:5.2em;top:2.9em;width:.8em}.c1 .s8{height:.7em;left:4.3em;top:2.7em;width:.2em}.c1 .s9{height:1.2em;left:5.1em;top:2.6em;width:.8em}.c1 .s10{height:1em;left:4.5em;top:2.5em;width:1.1em}.c1 .s11{height:.1em;left:4.9em;top:2.4em;width:.3em} .c2 .s1{height:.2em;left:7.3em;top:.6em;width:.9em}.c2 .s2{height:.3em;left:9.3em;top:.9em;width:.8em}.c2 .s3{height:.4em;left:6.8em;top:.8em;width:2.5em}.c2 .s4{height:.4em;left:6.7em;top:1.2em;width:3.4em}.c2 .s5{height:.4em;left:6.6em;top:1.5em;width:3em}.c2 .s6{height:.3em;left:6.5em;top:1.8em;width:2.6em}.c2 .s7{height:.1em;left:8.2em;top:4em;width:.7em}.c2 .s8{height:.1em;left:9.2em;top:3.8em;width:.1em}.c2 .s9{height:.2em;left:8.1em;top:3.8em;width:1.1em}.c2 .s10{height:.2em;left:8em;top:3.7em;width:1em}.c2 .s11{height:.2em;left:7.9em;top:3.6em;width:.8em}.c2 .s12{height:.2em;left:7.7em;top:3.4em;width:.8em}.c2 .s13{height:.2em;left:7em;top:3.2em;width:1.6em}.c2 .s14{height:.1em;left:6.1em;top:3.1em;width:2.4em}.c2 .s15{height:.2em;left:6em;top:2.9em;width:.4em}.c2 .s16{height:.3em;left:5.9em;top:2.6em;width:.5em}.c2 .s17{height:1.2em;left:6.4em;top:1.9em;width:2em}.c2 .s18{height:.1em;left:6.3em;top:1.9em;width:.1em}.c2 .s19{height:.1em;left:6em;top:2.1em;width:3.1em}.c2 .s20{height:.1em;left:5.8em;top:2.5em;width:3.2em}.c2 .s21{height:.3em;left:5.7em;top:2.2em;width:3.4em}.c2 .s22{height:.1em;left:5.6em;top:2.3em;width:.1em} .c3 .s1{height:.4em;left:9.6em;top:4.5em;width:.1em}.c3 .s2{height:.2em;left:10.3em;top:4.9em;width:.1em}.c3 .s3{height:.2em;left:9.9em;top:5.1em;width:.3em}.c3 .s4{height:.4em;left:10.1em;top:4.8em;width:.2em}.c3 .s5{height:.1em;left:9.3em;top:5.1em;width:.2em}.c3 .s6{height:.7em;left:8.4em;top:4.3em;width:.3em}.c3 .s7{height:.7em;left:8.6em;top:4.2em;width:.3em}.c3 .s8{height:.8em;left:8.9em;top:4.1em;width:.2em}.c3 .s9{height:1em;left:9.1em;top:4em;width:.1em}.c3 .s10{height:1.2em;left:9.2em;top:3.9em;width:.4em} .c4 .s1{height:.1em;left:5.2em;top:2.4em;width:.5em}.c4 .s2{height:.1em;left:4.6em;top:2.4em;width:.3em}.c4 .s3{height:.1em;left:4.6em;top:2.3em;width:1em}.c4 .s4{height:.1em;left:4.6em;top:2.2em;width:1.1em}.c4 .s5{height:.1em;left:4.6em;top:2.1em;width:1.4em}.c4 .s6{height:.2em;left:4.6em;top:1.7em;width:.1em}.c4 .s7{height:.2em;left:4.7em;top:1.9em;width:1.6em}.c4 .s8{height:.1em;left:6.3em;top:2em;width:.1em}.c4 .s9{height:.4em;left:4.7em;top:1.5em;width:1.8em}.c4 .s10{height:.5em;left:5em;top:1.3em;width:1.6em}.c4 .s11{height:.3em;left:5.1em;top:1.2em;width:1.6em}.c4 .s12{height:.1em;left:5.5em;top:.9em;width:.3em}.c4 .s13{height:.2em;left:5.2em;top:1em;width:1.6em}.c4 .s14{height:.2em;left:6.3em;top:.8em;width:.3em}.c4 .s15{height:.2em;left:6.4em;top:.6em;width:.5em}.c4 .s16{height:.3em;left:5.2em;top:.4em;width:.5em}.c4 .s17{height:.2em;left:4.2em;top:1.2em;width:.3em} .c5 .s1{height:.1em;left:2.7em;top:3.5em;width:.2em}.c5 .s2{height:.1em;left:2.5em;top:3.4em;width:.3em}.c5 .s3{height:.1em;left:2.3em;top:3.3em;width:.5em}.c5 .s4{height:.2em;left:2.1em;top:3.1em;width:1.2em}.c5 .s5{height:.2em;left:1.9em;top:3em;width:1em}.c5 .s6{height:.2em;left:1.7em;top:2.8em;width:1.2em}.c5 .s7{height:.2em;left:1.6em;top:2.6em;width:1.4em}.c5 .s8{height:.2em;left:1.5em;top:2.4em;width:1.7em}.c5 .s9{height:.2em;left:1.3em;top:2em;width:.2em}.c5 .s10{height:.9em;left:.5em;top:1.1em;width:1em}.c5 .s11{height:.9em;left:.3em;top:1.2em;width:.2em}.c5 .s12{height:.2em;left:.6em;top:3.1em;width:.1em}.c5 .s13{height:1.3em;left:1.5em;top:1.1em;width:2em}.c5 .s14{height:1.6em;left:1.9em;top:.7em;width:1.8em}.c5 .s15{height:1.1em;left:2.3em;top:.6em;width:1.7em}.c5 .s16{height:.3em;left:1.5em;top:.8em;width:2.9em}.c5 .s17{height:.5em;left:4.2em;top:.6em;width:.1em}.c5 .s18{height:.8em;left:2.4em;top:.5em;width:1.8em}.c5 .s19{height:.2em;left:2.4em;top:.4em;width:1.7em}.c5 .s20{height:.2em;left:3.4em;top:.3em;width:.6em} .c6 .s1{height:.6em;left:2.8em;top:5.2em;width:.4em}.c6 .s2{height:.3em;left:2.8em;top:4.9em;width:.7em}.c6 .s3{height:.3em;left:2.9em;top:4.7em;width:.8em}.c6 .s4{height:.4em;left:3.9em;top:4em;width:.1em}.c6 .s5{height:.8em;left:2.9em;top:3.9em;width:1em}.c6 .s6{height:.8em;left:2.8em;top:3.7em;width:.7em}.c6 .s7{height:.4em;left:2.6em;top:3.8em;width:1em}.c6 .s8{height:.8em;left:2.7em;top:3.6em;width:.7em}.c6 .s9{height:.1em;left:2.9em;top:3.5em;width:.2em} 
+
+/* size: 210 */
+.m210{width:210px} .m210 .continents,.m210 .continents .bg,.m210 .continents-cities{background:transparent url('continents-210.png') no-repeat -495px 0} .m210 .continents,.m210 .continents-cities{height:120px;width:210px} .m210 .continents{background-position:0 -237px} .m210 .continents .m{margin:9998px 0 0 -1px} .m210 .continents .m span{font-size:20px}
+.m210 .c1:hover .bg,.m210 .c1.focus .bg,.m210 .c1.active-region .bg{height:46px;left:76px;top:36px;width:40px}.m210 .c1:hover .bg,.m210 .c1.focus .bg{background-position:-123px -3px}.m210 .c1.active-region .bg{background-position:-373px -3px} .m210 .c2:hover .bg,.m210 .c2.focus .bg,.m210 .c2.active-region .bg{height:71px;left:101px;top:0;width:90px}.m210 .c2:hover .bg,.m210 .c2.focus .bg{background-position:-10px -66px}.m210 .c2.active-region .bg{background-position:-260px -66px} .m210 .c3:hover .bg,.m210 .c3.focus .bg,.m210 .c3.active-region .bg{height:29px;left:157px;top:66px;width:38px}.m210 .c3:hover .bg,.m210 .c3.focus .bg{background-position:-184px -20px}.m210 .c3.active-region .bg{background-position:-434px -20px} .m210 .c4:hover .bg,.m210 .c4.focus .bg,.m210 .c4.active-region .bg{height:42px;left:72px;top:-4px;width:54px}.m210 .c4:hover .bg,.m210 .c4.focus .bg{background-position:-48px -2px}.m210 .c4.active-region .bg{background-position:-298px -2px} .m210 .c5:hover .bg,.m210 .c5.focus .bg,.m210 .c5.active-region .bg{height:66px;left:-5px;top:-5px;width:82px}.m210 .c5:hover .bg,.m210 .c5.focus .bg{background-position:-122px -71px}.m210 .c5.active-region .bg{background-position:-372px -71px} .m210 .c6:hover .bg,.m210 .c6.focus .bg,.m210 .c6.active-region .bg{height:45px;left:41px;top:59px;width:27px}.m210 .c6:hover .bg,.m210 .c6.focus .bg{background-position:1px 0}.m210 .c6.active-region .bg{background-position:-249px 0}
+.m210 .c1 a{left:106px;top:61px} .m210 .c2 a{left:150px;top:40px} .m210 .c2 a.tooltip-right .tooltip-arrow{right:60px} .m210 .c3 a{left:180px;top:89px} .m210 .c3 a.tooltip-right .tooltip-arrow{right:30px} .m210 .c4 a{left:109px;top:36px} .m210 .c5 a{left:46px;top:44px} .m210 .c5 a.tooltip-left .tooltip-arrow{left:46px} .m210 .c6 a{left:65px;top:85px} .m210 .c6 a.tooltip-left .tooltip-arrow{left:65px}
+
+/* size: 320 */
+.m320{width:320px} .m320 .continents,.m320 .continents .bg,.m320 .continents-cities{background:transparent url('continents-320.png') no-repeat -710px 0} .m320 .continents,.m320 .continents-cities{height:185px;width:320px} .m320 .continents{background-position:0 -330px} .m320 .continents .m{margin:10000px 0 0 1px} .m320 .continents .m span{font-size:30px}
+.m320 .c1:hover .bg,.m320 .c1.focus .bg,.m320 .c1.active-region .bg{height:68px;left:122px;top:62px;width:59px}.m320 .c1:hover .bg,.m320 .c1.focus .bg{background-position:-185px -10px}.m320 .c1.active-region .bg{background-position:-535px -10px} .m320 .c2:hover .bg,.m320 .c2.focus .bg,.m320 .c2.active-region .bg{height:106px;left:159px;top:8px;width:134px}.m320 .c2:hover .bg,.m320 .c2.focus .bg{background-position:-14px -101px}.m320 .c2.active-region .bg{background-position:-364px -101px} .m320 .c3:hover .bg,.m320 .c3.focus .bg,.m320 .c3.active-region .bg{height:43px;left:243px;top:107px;width:57px}.m320 .c3:hover .bg,.m320 .c3.focus .bg{background-position:-273px -16px}.m320 .c3.active-region .bg{background-position:-623px -16px} .m320 .c4:hover .bg,.m320 .c4.focus .bg,.m320 .c4.active-region .bg{height:63px;left:116px;top:2px;width:80px}.m320 .c4:hover .bg,.m320 .c4.focus .bg{background-position:-75px -8px}.m320 .c4.active-region .bg{background-position:-425px -8px} .m320 .c5:hover .bg,.m320 .c5.focus .bg,.m320 .c5.active-region .bg{height:99px;left:0;top:0;width:122px}.m320 .c5:hover .bg,.m320 .c5.focus .bg{background-position:-188px -109px}.m320 .c5.active-region .bg{background-position:-538px -109px} .m320 .c6:hover .bg,.m320 .c6.focus .bg,.m320 .c6.active-region .bg{height:67px;left:70px;top:97px;width:40px}.m320 .c6:hover .bg,.m320 .c6.focus .bg{background-position:-5px -5px}.m320 .c6.active-region .bg{background-position:-355px -5px}
+.m320 .c1 a{left:162px;top:100px} .m320 .c2 a{left:230px;top:60px} .m320 .c2 a.tooltip-right .tooltip-arrow{right:90px} .m320 .c3 a{left:273px;top:137px} .m320 .c3 a.tooltip-right .tooltip-arrow{right:47px} .m320 .c4 a{left:166px;top:55px} .m320 .c5 a{left:70px;top:68px} .m320 .c5 a.tooltip-left .tooltip-arrow{left:70px} .m320 .c6 a{left:100px;top:135px} .m320 .c6 a.tooltip-left .tooltip-arrow{left:100px}
+
+/* size: 430 */
+.m430{width:430px} .m430 .continents,.m430 .continents .bg,.m430 .continents-cities{background:transparent url('continents-430.png') no-repeat -880px 0} .m430 .continents,.m430 .continents-cities{height:250px;width:430px} .m430 .continents{background-position:0 -380px} .m430 .continents .m{margin:10001px 0 0 2px} .m430 .continents .m span{font-size:40px}
+.m430 .c1:hover .bg,.m430 .c1.focus .bg,.m430 .c1.active-region .bg{height:91px;left:167px;top:88px;width:79px}.m430 .c1:hover .bg,.m430 .c1.focus .bg{background-position:-224px -12px}.m430 .c1.active-region .bg{background-position:-664px -12px} .m430 .c2:hover .bg,.m430 .c2.focus .bg,.m430 .c2.active-region .bg{height:141px;left:217px;top:16px;width:179px}.m430 .c2:hover .bg,.m430 .c2.focus .bg{background-position:-4px -123px}.m430 .c2.active-region .bg{background-position:-444px -123px} .m430 .c3:hover .bg,.m430 .c3.focus .bg,.m430 .c3.active-region .bg{height:57px;left:329px;top:147px;width:76px}.m430 .c3:hover .bg,.m430 .c3.focus .bg{background-position:-336px -26px}.m430 .c3.active-region .bg{background-position:-776px -26px} .m430 .c4:hover .bg,.m430 .c4.focus .bg,.m430 .c4.active-region .bg{height:84px;left:160px;top:8px;width:107px}.m430 .c4:hover .bg,.m430 .c4.focus .bg{background-position:-88px -9px}.m430 .c4.active-region .bg{background-position:-528px -9px} .m430 .c5:hover .bg,.m430 .c5.focus .bg,.m430 .c5.active-region .bg{height:131px;left:5px;top:5px;width:162px}.m430 .c5:hover .bg,.m430 .c5.focus .bg{background-position:-213px -133px}.m430 .c5.active-region .bg{background-position:-653px -133px} .m430 .c6:hover .bg,.m430 .c6.focus .bg,.m430 .c6.active-region .bg{height:89px;left:98px;top:134px;width:54px}.m430 .c6:hover .bg,.m430 .c6.focus .bg{background-position:-4px -5px}.m430 .c6.active-region .bg{background-position:-444px -5px}
+.m430 .c1 a{left:218px;top:135px} .m430 .c2 a{left:310px;top:85px} .m430 .c3 a{left:366px;top:185px} .m430 .c4 a{left:223px;top:78px} .m430 .c5 a{left:96px;top:90px} .m430 .c6 a{left:135px;top:180px}
+
+/* size: 540 */
+.m540{width:540px} .m540 .continents,.m540 .continents .bg,.m540 .continents-cities{background:transparent url('continents-540-dlvs.png') no-repeat -1025px 0} .m540 .continents,.m540 .continents-cities{height:315px;width:540px} .m540 .continents{background-position:0 -415px} .m540 .continents .m{margin:10003px 0 0 4px} .m540 .continents .m span{font-size:50px}
+.m540 .c1:hover .bg,.m540 .c1.focus .bg,.m540 .c1.active-region .bg{height:113px;left:213px;top:114px;width:99px}.m540 .c1:hover .bg,.m540 .c1.focus .bg{background-position:-263px -7px}.m540 .c1.active-region .bg{background-position:-773px -7px} .m540 .c2:hover .bg,.m540 .c2.focus .bg,.m540 .c2.active-region .bg{height:175px;left:275px;top:24px;width:223px}.m540 .c2:hover .bg,.m540 .c2.focus .bg{background-position:-4px -150px}.m540 .c2.active-region .bg{background-position:-514px -150px} .m540 .c3:hover .bg,.m540 .c3.focus .bg,.m540 .c3.active-region .bg{height:71px;left:415px;top:188px;width:95px}.m540 .c3:hover .bg,.m540 .c3.focus .bg{background-position:-391px -29px}.m540 .c3.active-region .bg{background-position:-901px -29px} .m540 .c4:hover .bg,.m540 .c4.focus .bg,.m540 .c4.active-region .bg{height:105px;left:203px;top:14px;width:134px}.m540 .c4:hover .bg,.m540 .c4.focus .bg{background-position:-100px -5px}.m540 .c4.active-region .bg{background-position:-610px -5px} .m540 .c5:hover .bg,.m540 .c5.focus .bg,.m540 .c5.active-region .bg{height:164px;left:10px;top:10px;width:203px}.m540 .c5:hover .bg,.m540 .c5.focus .bg{background-position:-257px -162px}.m540 .c5.active-region .bg{background-position:-767px -162px} .m540 .c6:hover .bg,.m540 .c6.focus .bg,.m540 .c6.active-region .bg{height:111px;left:126px;top:171px;width:67px}.m540 .c6:hover .bg,.m540 .c6.focus .bg{background-position:-4px -9px}.m540 .c6.active-region .bg{background-position:-514px -9px}
+.m540 .c1 a{left:272px;top:170px} .m540 .c2 a{left:385px;top:105px} .m540 .c3 a{left:457px;top:233px} .m540 .c4 a{left:280px;top:95px} .m540 .c5 a{left:121px;top:120px} .m540 .c6 a{left:170px;top:220px}
+
+/* size: 650 */
+.m650{width:650px} .m650 .continents,.m650 .continents .bg,.m650 .continents-cities{background:transparent url('continents-650.png') no-repeat -1190px 0} .m650 .continents,.m650 .continents-cities{height:375px;width:650px} .m650 .continents{background-position:0 -486px} .m650 .continents .m{margin:10005px 0 0 6px} .m650 .continents .m span{font-size:60px}
+.m650 .c1:hover .bg,.m650 .c1.focus .bg,.m650 .c1.active-region .bg{height:136px;left:259px;top:140px;width:118px}.m650 .c1:hover .bg,.m650 .c1.focus .bg{background-position:-305px -8px}.m650 .c1.active-region .bg{background-position:-895px -8px} .m650 .c2:hover .bg,.m650 .c2.focus .bg,.m650 .c2.active-region .bg{height:211px;left:334px;top:32px;width:268px}.m650 .c2:hover .bg,.m650 .c2.focus .bg{background-position:-5px -170px}.m650 .c2.active-region .bg{background-position:-595px -170px} .m650 .c3:hover .bg,.m650 .c3.focus .bg,.m650 .c3.active-region .bg{height:85px;left:502px;top:228px;width:114px}.m650 .c3:hover .bg,.m650 .c3.focus .bg{background-position:-453px -28px}.m650 .c3.active-region .bg{background-position:-1043px -28px} .m650 .c4:hover .bg,.m650 .c4.focus .bg,.m650 .c4.active-region .bg{height:126px;left:247px;top:20px;width:160px}.m650 .c4:hover .bg,.m650 .c4.focus .bg{background-position:-114px -4px}.m650 .c4.active-region .bg{background-position:-704px -4px} .m650 .c5:hover .bg,.m650 .c5.focus .bg,.m650 .c5.active-region .bg{height:196px;left:15px;top:15px;width:243px}.m650 .c5:hover .bg,.m650 .c5.focus .bg{background-position:-302px -184px}.m650 .c5.active-region .bg{background-position:-892px -184px} .m650 .c6:hover .bg,.m650 .c6.focus .bg,.m650 .c6.active-region .bg{height:133px;left:155px;top:209px;width:80px}.m650 .c6:hover .bg,.m650 .c6.focus .bg{background-position:-5px -7px}.m650 .c6.active-region .bg{background-position:-595px -7px}
+.m650 .c1 a{left:328px;top:205px} .m650 .c2 a{left:467px;top:125px} .m650 .c3 a{left:550px;top:280px} .m650 .c4 a{left:337px;top:117px} .m650 .c5 a{left:146px;top:140px} .m650 .c6 a{left:205px;top:270px}
+
+/* size: 750 */
+.m750{width:750px} .m750 .continents,.m750 .continents .bg,.m750 .continents-cities{background:transparent url('continents-750.png') no-repeat -1345px 0} .m750 .continents,.m750 .continents-cities{height:430px;width:750px} .m750 .continents{background-position:0 -525px} .m750 .continents .m{margin:10002px 0 0 3px} .m750 .continents .m span{font-size:70px}
+.m750 .c1:hover .bg,.m750 .c1.focus .bg,.m750 .c1.active-region .bg{height:158px;left:299px;top:161px;width:138px}.m750 .c1:hover .bg,.m750 .c1.focus .bg{background-position:-346px -13px}.m750 .c1.active-region .bg{background-position:-1016px -13px} .m750 .c2:hover .bg,.m750 .c2.focus .bg,.m750 .c2.active-region .bg{height:245px;left:387px;top:34px;width:312px}.m750 .c2:hover .bg,.m750 .c2.focus .bg{background-position:-5px -184px}.m750 .c2.active-region .bg{background-position:-675px -184px} .m750 .c3:hover .bg,.m750 .c3.focus .bg,.m750 .c3.active-region .bg{height:100px;left:582px;top:264px;width:133px}.m750 .c3:hover .bg,.m750 .c3.focus .bg{background-position:-513px -62px}.m750 .c3.active-region .bg{background-position:-1183px -62px} .m750 .c4:hover .bg,.m750 .c4.focus .bg,.m750 .c4.active-region .bg{height:147px;left:286px;top:20px;width:187px}.m750 .c4:hover .bg,.m750 .c4.focus .bg{background-position:-127px -8px}.m750 .c4.active-region .bg{background-position:-797px -8px} .m750 .c5:hover .bg,.m750 .c5.focus .bg,.m750 .c5.active-region .bg{height:229px;left:15px;top:15px;width:284px}.m750 .c5:hover .bg,.m750 .c5.focus .bg{background-position:-347px -201px}.m750 .c5.active-region .bg{background-position:-1017px -201px} .m750 .c6:hover .bg,.m750 .c6.focus .bg,.m750 .c6.active-region .bg{height:155px;left:178px;top:241px;width:94px}.m750 .c6:hover .bg,.m750 .c6.focus .bg{background-position:-4px -10px}.m750 .c6.active-region .bg{background-position:-674px -10px}
+.m750 .c1 a{left:378px;top:235px} .m750 .c2 a{left:540px;top:140px} .m750 .c3 a{left:636px;top:320px} .m750 .c4 a{left:389px;top:135px} .m750 .c5 a{left:166px;top:165px} .m750 .c6 a{left:235px;top:315px}
+
+/* size: 850 */
+.m850{width:850px} .m850 .continents,.m850 .continents .bg,.m850 .continents-cities{background:transparent url('continents-850.png') no-repeat -1530px 0} .m850 .continents,.m850 .continents-cities{height:485px;width:850px} .m850 .continents{background-position:0 -600px} .m850 .continents .m{margin:9999px 0 0 0} .m850 .continents .m span{font-size:80px}
+.m850 .c1:hover .bg,.m850 .c1.focus .bg,.m850 .c1.active-region .bg{height:181px;left:340px;top:182px;width:158px}.m850 .c1:hover .bg,.m850 .c1.focus .bg{background-position:-247px -5px}.m850 .c1.active-region .bg{background-position:-1017px -5px} .m850 .c2:hover .bg,.m850 .c2.focus .bg,.m850 .c2.active-region .bg{height:281px;left:440px;top:37px;width:357px}.m850 .c2:hover .bg,.m850 .c2.focus .bg{background-position:-5px -215px}.m850 .c2.active-region .bg{background-position:-775px -215px} .m850 .c3:hover .bg,.m850 .c3.focus .bg,.m850 .c3.active-region .bg{height:114px;left:664px;top:300px;width:152px}.m850 .c3:hover .bg,.m850 .c3.focus .bg{background-position:-583px -73px}.m850 .c3.active-region .bg{background-position:-1353px -73px} .m850 .c4:hover .bg,.m850 .c4.focus .bg,.m850 .c4.active-region .bg{height:168px;left:325px;top:21px;width:213px}.m850 .c4:hover .bg,.m850 .c4.focus .bg{background-position:-4px -18px}.m850 .c4.active-region .bg{background-position:-774px -18px} .m850 .c5:hover .bg,.m850 .c5.focus .bg,.m850 .c5.active-region .bg{height:262px;left:15px;top:15px;width:324px}.m850 .c5:hover .bg,.m850 .c5.focus .bg{background-position:-392px -235px}.m850 .c5.active-region .bg{background-position:-1162px -235px} .m850 .c6:hover .bg,.m850 .c6.focus .bg,.m850 .c6.active-region .bg{height:177px;left:202px;top:273px;width:107px}.m850 .c6:hover .bg,.m850 .c6.focus .bg{background-position:-435px -9px}.m850 .c6.active-region .bg{background-position:-1205px -9px} 
+.m850 .c1 a{left:430px;top:270px} .m850 .c2 a{left:610px;top:150px} .m850 .c3 a{left:725px;top:364px} .m850 .c4 a{left:440px;top:155px} .m850 .c5 a{left:185px;top:185px} .m850 .c6 a{left:265px;top:350px}
+
+/* --------------------------------------------------------
+end of the maps */

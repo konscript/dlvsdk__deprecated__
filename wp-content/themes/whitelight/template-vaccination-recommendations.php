@@ -33,19 +33,37 @@
 					<span class="map-text">eller klik på kortet:</span>
 				</div>
 				
-				<div id="map-continents">
-				  <ul id="continents">
-				   <li id="c1"><a href="<?php bloginfo('wpurl'); ?>/region/africa">Afrika</a></li>
-				   <li id="c2"><a href="<?php bloginfo('wpurl'); ?>/region/asia">Asien</a></li>
-				   <li id="c3"><a href="<?php bloginfo('wpurl'); ?>/region/oceania">Oceanien</a></li>
-				   <li id="c4"><a href="<?php bloginfo('wpurl'); ?>/region/europe">Europa</a></li>
-				   <li id="c5"><a href="<?php bloginfo('wpurl'); ?>/region/north-america">Nord Amerika</a></li>
-				   <li id="c6"><a href="<?php bloginfo('wpurl'); ?>/region/south-america">Syd Amerika</a></li>
-				  </ul>
-				</div>		
+
+
+				 <div id="map-continents">
+				 <ul class="continents">
+				  <li class="c1"><a href="<?php bloginfo('wpurl'); ?>/region/africa">Africa</a></li>
+				  <li class="c2"><a href="<?php bloginfo('wpurl'); ?>/region/asia">Asien</a></li>
+				  <li class="c3"><a href="<?php bloginfo('wpurl'); ?>/region/oceania">Oceanien</a></li>
+				  <li class="c4"><a href="<?php bloginfo('wpurl'); ?>/region/europe">Europa</a></li>
+				  <li class="c5"><a href="<?php bloginfo('wpurl'); ?>/region/north-america">Nord Amerika</a></li>
+				  <li class="c6"><a href="<?php bloginfo('wpurl'); ?>/region/south-america">Syd Amerika</a></li>
+				 </ul>
+				</div>
+
 			</div>		
 		</section>
 	</div>
 </div>
-<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/scripts/continents-map/continents-map.js"></script> 
+
+<script type="text/javascript">
+jQuery.noConflict();
+(function($){
+	$(document).ready(function() {	
+		$('#map-continents').cssMap({'size' : 540});
+	});
+})(jQuery);
+	
+</script>
+
+
+<?php wp_enqueue_script('jquery.cssmap.js', get_template_directory_uri() . '/includes/js/dlvs/jquery.cssmap.js' );?>
+<link rel="stylesheet" type="text/css" media="screen,projection" href="<?php echo get_template_directory_uri(); ?>/includes/css/map-continents/cssmap-continents.css" />
+
+
 <?php get_footer(); ?>
